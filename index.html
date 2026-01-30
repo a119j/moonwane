@@ -1172,20 +1172,27 @@
             });
         });
         
-        // 防盗版防护层 - 延迟加载核心内容
-        setTimeout(() => {
-            // 注入延迟加载的内容
-            document.querySelectorAll('.inject-content').forEach(el => {
-                el.innerHTML = el.getAttribute('data-content');
-            });
-            
-            // 盗版检测：如果从非法域名访问，清空内容
-            const allowedDomains = ['moonwane.ink', 'moonwane.netlify.app', 'localhost', 'web.archive.org', 'archive.org'];
-            const currentDomain = window.location.hostname;
-            if (!allowedDomains.some(domain => currentDomain.includes(domain)) && currentDomain !== '') {
-                document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
-            }
-        }, 800);
+      // 防盗版防护层 - 延迟加载核心内容
+setTimeout(() => {
+    // 注入延迟加载的内容
+    document.querySelectorAll('.inject-content').forEach(el => {
+        el.innerHTML = el.getAttribute('data-content');
+    });
+    
+    // 盗版检测：如果从非法域名访问，清空内容
+    const allowedDomains = [
+        'moonwane.ink', 
+        'moonwane.netlify.app', 
+        'localhost', 
+        'web.archive.org', 
+        'archive.org',
+        'meek-crisp-a48f0e.netlify.app'  // 添加临时域名
+    ];
+    const currentDomain = window.location.hostname;
+    if (!allowedDomains.some(domain => currentDomain.includes(domain)) && currentDomain !== '') {
+        document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
+    }
+}, 800);
         
         // 分享功能
         function shareToSocial(platform) {
@@ -1250,4 +1257,5 @@
         }
     </script>
 </body>
+
 </html>
