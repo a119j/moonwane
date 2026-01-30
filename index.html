@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonWane Ink | 月笼沙</title>
+    
+    <!-- SEO优化和防护meta标签 -->
+    <meta name="description" content="MoonWane Ink | 月笼沙 - Stories etched in fading moonlight. 《六秒钉六年》作者个人站点。">
+    <meta name="keywords" content="MoonWane, 月笼沙, 六秒钉六年, Six Seconds Six Years, 文学创作, 加拿大作家">
+    <meta name="author" content="月笼沙 (Yue Long Sha)">
+    <meta name="robots" content="noarchive,noindex,nofollow">
+    <meta name="copyright" content="MoonWane Ink - 版权所有，侵权必究">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0a0a14;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(28, 28, 50, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(40, 40, 70, 0.3) 0%, transparent 20%);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .links a, .links .button, .links span,
+        header, footer, .poetry-section {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 160px 20px 80px;
+            position: relative;
+            z-index: 2;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.8s ease-out;
+        }
+        
+        .logo-main {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #f0f0f0;
+        }
+        
+        .logo-sub {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-left: 1rem;
+            color: #f8f8f8;
+        }
+        
+        .title-moon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #d4d0cb;
+            box-shadow: 0 0 28px #b0acaa;
+            overflow: hidden;
+            margin: 0 12px;
+        }
+        
+        .title-moon::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0b0e17;
+            border-radius: 50%;
+            animation: realphase 36s linear infinite;
+        }
+        
+        @keyframes realphase {
+            0% { transform: translateX(100%); }
+            12.5% { transform: translateX(60%); }
+            25% { transform: translateX(0%); }
+            50% { transform: translateX(-100%); }
+            75% { transform: translateX(0%); }
+            87.5% { transform: translateX(40%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            opacity: 0.92;
+            margin: 36px 0 12px;
+            line-height: 1.5;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .tagline-translation {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            font-family: 'Noto Serif SC', serif;
+            animation: fadeIn 2.2s ease-out;
+        }
+        
+        .author-credit {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin: 0;
+            line-height: 1.5;
+            font-family: 'Noto Serif SC', serif;
+            animation: fadeIn 2.4s ease-out;
+        }
+        
+        .links-section {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .links {
+            max-width: 640px;
+            margin: 0 auto 100px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .links a, .links .button {
+            display: block;
+            margin: 24px auto;
+            padding: 24px 24px 24px 80px;
+            position: relative;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            text-decoration: none;
+            color: #d4d0cb;
+            transition: all 0.4s ease;
+            font-size: 1.35rem;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            animation: fadeIn 0.8s ease-out;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .links a::before, .links .button::before {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+        }
+        
+        .links a.book-card::before { 
+            content: "✑";
+            color: #d4d0cb;
+        }
+        
+        .links a.patreon-link::before { 
+            content: "❤️";
+            color: #b87378;
+        }
+        
+        .links .button::before {
+            content: "★";
+            color: #7bc8f8;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .links a.support-link::before { 
+            content: "☕";
+            color: #a8a4a0;
+        }
+        
+        .links a:hover, .links .button:hover {
+            background: #1a2d42;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.7), 0 0 20px rgba(123, 200, 248, 0.3);
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        
+        .links a.support-link {
+            transition: all 0.1s ease !important;
+        }
+        
+        .links a.book-card::before, 
+        .links a.patreon-link::before,
+        .links .button::before,
+        .links a.support-link::before {
+            transition: all 0.3s ease;
+        }
+        
+        .links a.book-card:hover::before {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+        }
+        
+        .links a.patreon-link:hover::before {
+            text-shadow: 0 0 15px rgba(255, 100, 100, 0.8);
+        }
+        
+        .links .button:hover::before {
+            text-shadow: 0 0 15px rgba(123, 200, 248, 0.9);
+        }
+        
+        .links a.support-link:hover::before {
+            text-shadow: 0 0 15px rgba(160, 160, 160, 0.8);
+        }
+        
+        .golden-sentence {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #ffd700;
+            margin-top: 10px;
+            display: block;
+            letter-spacing: 0.5px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .poetry-section {
+            padding: 100px 20px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .poetry {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 60px;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .poetry-english {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .poetry-chinese {
+            font-size: 1.1rem;
+            color: #cccccc;
+        }
+        
+        footer {
+            padding: 40px 20px 60px;
+            text-align: center;
+            opacity: 0.92;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .contact-email {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-email a {
+            color: #e8e6e3;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: rgba(30, 30, 30, 0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .contact-email a:hover {
+            color: #ffffff;
+            background: rgba(50, 50, 70, 0.5);
+            box-shadow: 0 0 15px rgba(123, 200, 248, 0.5);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+        
+        .envelope-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+            color: #d4d0cb;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-email a:hover .envelope-icon {
+            text-shadow: 0 0 10px rgba(212, 208, 203, 0.9);
+            transform: scale(1.1);
+        }
+        
+        .email-arrow {
+            margin-left: 8px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-email a:hover .email-arrow {
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            color: #e8e6e3;
+            margin-bottom: 8px;
+        }
+        
+        .name-parts {
+            display: inline-flex;
+            gap: 0.3em;
+        }
+        
+        .book-info {
+            color: #e8e6e3;
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+        
+        .copyright-protection {
+            color: #e8e6e3;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        
+        .share-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .menu-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #d4d0cb;
+            font-size: 18px;
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.05);
+        }
+        
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(11, 14, 23, 0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px 0;
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .menu-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .menu-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            color: #d4d0cb;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .menu-item i {
+            margin-right: 10px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .archive-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(11, 14, 23, 0.95);
+            border: 1px solid rgba(123, 200, 248, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            max-width: 300px;
+            z-index: 1001;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            transform: translateX(400px);
+            transition: transform 0.4s ease;
+            font-size: 0.9rem;
+        }
+        
+        .archive-toast.active {
+            transform: translateX(0);
+        }
+        
+        .toast-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .toast-title {
+            font-weight: 600;
+            color: #7bc8f8;
+            font-size: 1rem;
+        }
+        
+        .toast-close {
+            background: none;
+            border: none;
+            color: #d4d0cb;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            margin-left: auto;
+        }
+        
+        .toast-content {
+            color: #d4d0cb;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        
+        .toast-button {
+            background: rgba(123, 200, 248, 0.2);
+            border: 1px solid rgba(123, 200, 248, 0.4);
+            color: #7bc8f8;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .toast-button:hover {
+            background: rgba(123, 200, 248, 0.3);
+            box-shadow: 0 0 10px rgba(123, 200, 248, 0.3);
+        }
+        
+        .toast-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .moon-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 14, 23, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .moon-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .moon-animation {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #d4d0cb;
+            box-shadow: 0 0 40px #b0acaa, 0 0 80px rgba(180, 176, 170, 0.5);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            animation: moonPulse 3s ease-in-out infinite;
+        }
+        
+        .moon-animation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #0b0e17;
+            border-radius: 50%;
+            animation: realphase 15s linear infinite;
+        }
+        
+        .thank-you-text {
+            font-size: 1.8rem;
+            color: #d4d0cb;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .recorded-text {
+            font-size: 1.2rem;
+            color: #a8a4a0;
+            text-align: center;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        
+        @keyframes moonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* 新增：目录表格样式 */
+        .chapter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chapter-table th, .chapter-table td {
+            padding: 16px 12px;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chapter-table th {
+            background-color: rgba(30, 35, 60, 0.7);
+            color: #ffd700;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .chapter-table tr:hover {
+            background-color: rgba(40, 45, 70, 0.3);
+        }
+        
+        .chapter-table ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .chapter-table li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .chapter-table li:last-child {
+            margin-bottom: 0;
+        }
+        
+        .chapter-title {
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .chapter-subtitle {
+            font-size: 0.9rem;
+            color: #b8b4b0;
+            display: block;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+        
+        .act-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 4px;
+            display: block;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        .act-title-second-line {
+            font-size: 1rem;
+            color: #d0d0d0;
+            margin-bottom: 12px;
+            display: block;
+            text-align: center;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .logo-main {
+                font-size: 3.5rem;
+            }
+            
+            .logo-sub {
+                font-size: 2rem;
+            }
+            
+            .title-moon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .tagline {
+                font-size: 1.6rem;
+            }
+            
+            .tagline-translation {
+                font-size: 1rem;
+            }
+            
+            .author-credit {
+                font-size: 1rem;
+            }
+            
+            .links a, .links .button {
+                font-size: 1.38rem;
+                padding: 24px 18px 24px 76px;
+            }
+            
+            .links a::before, .links .button::before {
+                left: 20px;
+            }
+            
+            .moon-animation {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .thank-you-text {
+                font-size: 1.5rem;
+            }
+            
+            .recorded-text {
+                font-size: 1.1rem;
+            }
+            
+            .menu-dropdown {
+                min-width: 140px;
+            }
+            
+            .poetry {
+                font-size: 1.2rem;
+            }
+            
+            .poetry-english {
+                font-size: 1.3rem;
+            }
+            
+            .poetry-chinese {
+                font-size: 1rem;
+            }
+            
+            .archive-toast {
+                top: 70px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+            
+            /* 移动端表格适配 */
+            .chapter-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .chapter-table th, .chapter-table td {
+                min-width: 280px;
+                padding: 12px 10px;
+            }
+            
+            .chapter-table th {
+                font-size: 1rem;
+            }
+            
+            .act-title {
+                font-size: 1.1rem;
+            }
+            
+            .act-title-second-line {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 右上角分享菜单 -->
+    <div class="share-menu">
+        <div class="menu-toggle" id="menuToggle">⋯</div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <button class="menu-item" onclick="shareToSocial('share')">
+                <i class="fas fa-share-alt"></i> 分享
+            </button>
+            <button class="menu-item" onclick="shareToSocial('save')">
+                <i class="fas fa-save"></i> 保存
+            </button>
+            <button class="menu-item" onclick="shareToSocial('saveas')">
+                <i class="fas fa-download"></i> 另存为
+            </button>
+        </div>
+    </div>
+
+    <!-- Wayback存档提醒 -->
+    <div class="archive-toast" id="archiveToast">
+        <div class="toast-header">
+            <div class="toast-title">
+                <i class="fas fa-archive"></i> Wayback存档提醒
+            </div>
+            <button class="toast-close" id="toastClose">&times;</button>
+        </div>
+        <div class="toast-content">
+            距离上次存档已超过30天，建议更新Wayback Machine存档以保护您的版权。
+        </div>
+        <div class="toast-actions">
+            <a href="https://web.archive.org/save/" target="_blank" rel="noopener noreferrer nofollow" class="toast-button">立即存档</a>
+            <button class="toast-button" id="remindLater">稍后提醒</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1 class="logo-main">MoonWane</h1>
+                <div class="title-moon"></div>
+                <h2 class="logo-sub">Ink</h2>
+            </div>
+            <p class="tagline">Stories etched in fading moonlight.</p>
+            <p class="tagline-translation">月光渐逝，人生海海，刻即是记。</p>
+            <p class="author-credit">— 月笼沙 作品站 —</p>
+        </header>
+        
+        <section class="links-section">
+            <div class="links">
+                <!-- 书籍卡片 -->
+                <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card">
+                    《六秒钉六年》<br>
+                    <span style="font-size:0.95rem;opacity:0.7;">Six Seconds, Six Years | 作品已完成，发布形式待定。寻求出版/发表合作</span>
+                    <span class="golden-sentence">六秒数据，钉死六年人生。</span>
+                </a>
+                
+                <!-- 官方简介 - 受保护内容 -->
+                <div style="max-width:640px;margin:40px auto 60px;padding:24px 32px;background:rgba(20,25,40,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:16px;text-align:center;">
+                  <p style="font-size:1.25rem;color:#ffd700;margin-bottom:16px;font-weight:500;">
+                    官方简介
+                  </p>
+                  <div class="inject-content" data-content="基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎<br><br><span style='color:#b8b4b0;font-size:0.95rem;'>关键词：六秒钉六年 · 6 seconds · 平安符 · 靶心与靶环 · 自证清白悖论 · 疑罪从无 · 蚍蜉撼树 · 盲眼钟表匠</span>" style="font-size:1.1rem;line-height:1.9;color:#e8e6e3;">
+                    <span style="color:#666;">内容加载中...</span>
+                  </div>
+                </div>
+                
+                <!-- 三幕章节目录 - 表格形式 -->
+                <details style="max-width:640px;margin:40px auto 80px;background:rgba(20,25,40,0.4);border-radius:16px;overflow:hidden;">
+                  <summary style="padding:20px 32px;background:rgba(40,50,80,0.6);font-size:1.3rem;color:#ffd700;cursor:pointer;">
+                    📖 完整章节目录（共18章+番外，约15万字）
+                  </summary>
+                  <div class="inject-content" data-content="
+                  <table class='chapter-table'>
+                    <thead>
+                      <tr>
+                        <th>第一幕</th>
+                        <th>第二幕</th>
+                        <th>第三幕</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span class='act-title'>崩塌 ·</span>
+                          <span class='act-title-second-line'>当日常被制度击穿</span>
+                          <ul>
+                            <li>
+                              <span class='chapter-title'>第1章 六秒与六年的开端</span>
+                              <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
+                              <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
+                              <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
+                              <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
+                              <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
+                              <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
+                              <span class='chapter-subtitle'>手铐只是换了一种形态</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
+                              <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
+                              <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
+                              <span class='chapter-subtitle'>我们不需要被同情</span>
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <span class='act-title'>抗争 ·</span>
+                          <span class='act-title-second-line'>数据、轮胎与系统共同失真</span>
+                          <ul>
+                            <li>
+                              <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
+                              <span class='chapter-subtitle'>数据如何被误读成罪</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
+                              <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
+                              <span class='chapter-subtitle'>物证与失察的双重真相</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
+                              <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
+                              <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
+                              <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第11章 临阵换帅</span>
+                              <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
+                              <span class='chapter-subtitle'>闭环如何形成真相</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
+                              <span class='chapter-subtitle'>一句&quot;没必要&quot;，否决一个家庭的命运</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
+                              <span class='chapter-subtitle'>五个证人，五个平行世界</span>
+                            </li>
+                          </ul>
+                        </td>
+                        <td>
+                          <span class='act-title'>重启 ·</span>
+                          <span class='act-title-second-line'>在制度的余震中重建家园</span>
+                          <ul>
+                            <li>
+                              <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
+                              <span class='chapter-subtitle'>律师，在开庭前消失了</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
+                              <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第15章 家的天平</span>
+                              <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
+                              <span class='chapter-subtitle'>六年，换一张交通罚单</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
+                              <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第17章（下）后视镜里的六年</span>
+                              <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
+                              <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
+                            </li>
+                            <li>
+                              <span class='chapter-title'>番外篇 案子的三个谜</span>
+                              <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  " style="padding:20px 32px;color:#e0e0e0;line-height:2.2;font-size:1.05rem;">
+                    <span style="color:#666;">章节目录加载中...</span>
+                  </div>
+                </details>
+                
+                <!-- Patreon独家章节 - 带安全属性 -->
+                <a href="https://patreon.com/MoonWaneInk" class="patreon-link" target="_blank" rel="noopener noreferrer nofollow">
+                    Patreon 独家章节
+                </a>
+                
+                <!-- 想看按钮 -->
+                <div class="button" id="wantToReadBtn">
+                    想看 / Want to Read<br>
+                    <span style="font-size:0.95rem;opacity:0.7;">点击表达兴趣，帮助我们了解读者需求</span>
+                </div>
+                
+                <!-- 赞助支持 - 带安全属性 -->
+                <a href="https://ko-fi.com/moonwaneink" class="support-link" target="_blank" rel="noopener noreferrer nofollow">
+                    赞助支持<br>
+                    <span style="font-size:0.95rem;opacity:0.7;">
+                        💳 支持 PayPal / 信用卡<br>
+                        🇨🇦 多伦多作者，感谢支持创作！
+                    </span>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <section class="poetry-section">
+        <div class="poetry">
+            <div class="poetry-english">Ink for every phase of the moon.</div>
+            <div class="poetry-chinese">月盈月缺，以墨为记</div>
+        </div>
+        
+        <footer>
+            <div class="contact-email">
+                <a href="mailto:author@moonwane.ink">
+                    <i class="fas fa-envelope envelope-icon"></i>
+                    author@moonwane.ink
+                    <span class="email-arrow">→</span>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2025 月笼沙 · <span class="name-parts">Yue Long sha</span> · MoonWane.Ink
+            </div>
+            <div class="book-info">
+                《六秒钉六年》（Six Seconds, Six Years）
+            </div>
+            <div class="book-info">
+                已获加拿大国际版权保护
+            </div>
+            <div class="copyright-protection">
+                （登记号：1239217）
+            </div>
+        </footer>
+    </section>
+
+    <!-- 月亮动画覆盖层 -->
+    <div class="moon-overlay" id="moonOverlay">
+        <div class="moon-animation"></div>
+        <div class="thank-you-text">Thank You</div>
+        <div class="recorded-text">感谢，只记录<br>（不收集个人数据）</div>
+    </div>
+
+    <script>
+        // 安全防护：防止网站被嵌入到其他页面中
+        if (self != top) {
+            top.location = self.location;
+        }
+        
+        // Wayback触发计数器
+        let menuClickCount = 0;
+        let menuClickTimer = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const wantToReadBtn = document.getElementById('wantToReadBtn');
+            const moonOverlay = document.getElementById('moonOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuDropdown = document.getElementById('menuDropdown');
+            const supportLink = document.querySelector('.support-link');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbycXq1GoTM56XsQdty7BCvd70Gi12gdmG_mdn0vsVX_rrf6eXvz-CBIQKMXHzTNKDAQMA/exec';
+            
+            // Wayback存档提醒元素
+            const archiveToast = document.getElementById('archiveToast');
+            const toastClose = document.getElementById('toastClose');
+            const remindLater = document.getElementById('remindLater');
+            
+            let hasTrackedClick = false;
+            
+            // 点击"想看"按钮
+            wantToReadBtn.addEventListener('click', function() {
+                // 显示月亮动画
+                moonOverlay.classList.add('active');
+                
+                // 如果是第一次点击，发送统计数据
+                if (!hasTrackedClick) {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).catch(err => {
+                        console.log('统计信息已发送');
+                    });
+                    
+                    hasTrackedClick = true;
+                }
+                
+                // 3秒后隐藏动画
+                setTimeout(function() {
+                    moonOverlay.classList.remove('active');
+                }, 3000);
+            });
+            
+            // 点击覆盖层也可以关闭
+            moonOverlay.addEventListener('click', function() {
+                moonOverlay.classList.remove('active');
+            });
+            
+            // 右上角菜单功能 - 修复版
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // 正常显示/隐藏下拉菜单
+                menuDropdown.classList.toggle('active');
+                
+                // Wayback存档提醒触发逻辑
+                menuClickCount++;
+                
+                // 清除之前的计时器
+                if (menuClickTimer) {
+                    clearTimeout(menuClickTimer);
+                }
+                
+                // 设置新的计时器，4秒内没有再次点击则重置计数
+                menuClickTimer = setTimeout(function() {
+                    menuClickCount = 0;
+                }, 4000);
+                
+                // 如果连续点击3次，显示存档提醒
+                if (menuClickCount >= 3) {
+                    archiveToast.classList.add('active');
+                    menuClickCount = 0; // 重置计数
+                }
+            });
+            
+            // 点击页面其他地方关闭菜单
+            document.addEventListener('click', function() {
+                menuDropdown.classList.remove('active');
+            });
+            
+            // 赞助支持链接优化
+            supportLink.addEventListener('click', function(e) {
+                // 直接跳转，不添加任何延迟
+            });
+            
+            // Wayback存档提醒功能
+            function checkArchiveReminder() {
+                // 默认不显示提醒，除非通过特殊方式触发
+            }
+            
+            // 关闭提醒
+            toastClose.addEventListener('click', function() {
+                archiveToast.classList.remove('active');
+                localStorage.setItem('lastArchiveReminder', Date.now());
+            });
+            
+            // 稍后提醒
+            remindLater.addEventListener('click', function() {
+                archiveToast.classList.remove('active');
+                localStorage.setItem('lastArchiveReminder', Date.now() - (15 * 24 * 60 * 60 * 1000));
+            });
+            
+            // 页面加载时检查是否需要显示提醒
+            checkArchiveReminder();
+            
+            // 内容保护措施 - 已放宽：允许复制必要信息
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // 禁用拖拽
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        });
+        
+        // 防盗版防护层 - 延迟加载核心内容
+        setTimeout(() => {
+            // 注入延迟加载的内容
+            document.querySelectorAll('.inject-content').forEach(el => {
+                el.innerHTML = el.getAttribute('data-content');
+            });
+            
+            // 盗版检测：如果从非法域名访问，清空内容
+            const allowedDomains = ['moonwane.ink', 'moonwane.netlify.app', 'localhost', 'web.archive.org', 'archive.org'];
+            const currentDomain = window.location.hostname;
+            if (!allowedDomains.some(domain => currentDomain.includes(domain)) && currentDomain !== '') {
+                document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
+            }
+        }, 800);
+        
+        // 分享功能
+        function shareToSocial(platform) {
+            const url = window.location.href;
+            const title = document.title;
+            const text = "MoonWane Ink | 月笼沙 - stories etched in fading moonlight";
+            
+            document.getElementById('menuDropdown').classList.remove('active');
+            
+            switch(platform) {
+                case 'share':
+                    if (navigator.share) {
+                        navigator.share({
+                            title: title,
+                            text: text,
+                            url: url
+                        });
+                    } else {
+                        // 备用：复制链接到剪贴板
+                        if (navigator.clipboard && window.isSecureContext) {
+                            navigator.clipboard.writeText(url).then(() => {
+                                alert('链接已复制到剪贴板！');
+                            });
+                        } else {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = url;
+                            textArea.style.position = 'fixed';
+                            textArea.style.opacity = '0';
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            alert('链接已复制到剪贴板！');
+                        }
+                    }
+                    break;
+                case 'save':
+                    alert('保存功能');
+                    break;
+                case 'saveas':
+                    alert('另存为功能');
+                    break;
+                default:
+                    console.log('未知操作');
+            }
+        }
+        
+        // 复制到剪贴板的辅助函数
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text);
+            } else {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+        }
+    </script>
+</body>
+</html>
