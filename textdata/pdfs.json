@@ -1,195 +1,269 @@
-
-// pdfs.json - PDF文件映射表
-// 作用：通过file_id统一管理PDF的实际存储位置
+// pdfs.json - 文件映射表（支持混合模式）
+// status: "unpublished"（未发布）, "external"（外部链接）, "drive"（Google Drive）
 {
   "files": [
-    // 以下是章节PDF示例 - 请替换为您的实际Google Drive文件ID
+    // === 第一幕：崩塌（共10个文件）===
     {
       "file_id": "pdf_001",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第1章 六秒与六年的开端"
     },
     {
       "file_id": "pdf_002",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第2章 碾碎：系统启动的第一声"
     },
     {
       "file_id": "pdf_003",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_3",
-      "github_file_path": ""
+      "status": "unpublished", 
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第3章 拔河：资本、人性与保单"
     },
     {
       "file_id": "pdf_004_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_4_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第4章（上）傍晚五点，逮捕令"
     },
     {
       "file_id": "pdf_004_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_4_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第4章（下）两万五千加元，自由价"
     },
     {
       "file_id": "pdf_005_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_5_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第5章（上）捕·审：国家机器的两副面孔"
     },
     {
       "file_id": "pdf_005_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_5_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第5章（下）牢·镣：无形的终生刑期"
     },
     {
       "file_id": "pdf_006",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_6",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第6章 变形：重压之下，一切都会变形"
     },
     {
       "file_id": "pdf_007_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_7_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第7章（上）挥拳：凭本能挥出一拳"
     },
     {
       "file_id": "pdf_007_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_7_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第7章（下）积蓄：晨光下的裂痕与姿态"
     },
+    
+    // === 第二幕：抗争（共10个文件）===
     {
       "file_id": "pdf_008_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_8_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？"
     },
     {
       "file_id": "pdf_008_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_8_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第8章（下）定罪的六秒：机器的呼吸与系统的失聪"
     },
     {
       "file_id": "pdf_009_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_9_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第9章（上）轮胎不会说谎"
     },
     {
       "file_id": "pdf_009_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_9_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第9章（下）轮胎不会说谎"
     },
     {
       "file_id": "pdf_010_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_10_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第10章（上）穿越时空，剥茧自证"
     },
     {
       "file_id": "pdf_010_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_10_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第10章（下）穿越时空，剥茧自证"
     },
     {
       "file_id": "pdf_011",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_11",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第11章 临阵换帅"
     },
     {
       "file_id": "pdf_012_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第12章（上）盲转齿轮：罪证靶环的绘制"
     },
     {
       "file_id": "pdf_012_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第12章（中）锁定靶心：中心轮的冷酷裁决"
     },
     {
       "file_id": "pdf_012_3",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_3",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第12章（下）失焦的探照灯：碎片真相与文明微光"
     },
+    
+    // === 第三幕：重启（共9个文件）===
     {
       "file_id": "pdf_013",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_13",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第13章 头狼离场：信任出现真空"
     },
     {
       "file_id": "pdf_014",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_14",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第14章 蚍蜉撼树：一个母亲的觉醒"
     },
     {
       "file_id": "pdf_015",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_15",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第15章 家的天平"
     },
     {
       "file_id": "pdf_016",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_16",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第16章 刹车：系统决定止损的瞬间"
     },
     {
       "file_id": "pdf_017_1",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_17_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第17章（上）盲眼钟表匠"
     },
     {
       "file_id": "pdf_017_2",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_17_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第17章（下）后视镜里的六年"
     },
     {
       "file_id": "pdf_018",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_18",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "第18章 未来之轮：一切都是最好的安排"
     },
     {
       "file_id": "pdf_extra",
-      "type": "google_drive",
-      "drive_file_id": "YOUR_DRIVE_FILE_ID_EXTRA",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "番外篇 案子的三个谜"
     },
-    // 以下是证据库PDF示例
+    
+    // === 证据库的4个文件 ===
     {
       "file_id": "evidence_001",
-      "type": "google_drive",
-      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_1",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "核心证据1：事故现场照片与报告"
     },
     {
       "file_id": "evidence_002",
-      "type": "google_drive",
-      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_2",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "核心证据2：车辆ECU数据报告"
     },
     {
       "file_id": "evidence_003",
-      "type": "google_drive",
-      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_3",
-      "github_file_path": ""
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "核心证据3：轮胎检测分析报告"
+    },
+    {
+      "file_id": "evidence_004",
+      "status": "unpublished",
+      "type": "future_drive",
+      "drive_file_id": "",
+      "external_link": "",
+      "description": "核心证据4：专家意见报告"
     }
   ]
 }
