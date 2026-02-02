@@ -1,1 +1,22 @@
 
+// chapters.json - 存储书籍的章节目录结构
+// 结构：三幕 -> 章节列表 -> 章节详情 (标题、副标题、PDF链接等)
+{
+  "acts": [
+    {
+      "actNumber": 1,
+      "actTitle": "第一幕：标题",
+      "actSubtitle": "副标题",
+      "chapters": [
+        {
+          "chapterNumber": 1.1,
+          "title": "第一章标题",
+          "subtitle": "章节副标题",
+          "pdfId": "pdf_001" // 对应 pdfs.json 中的 file_id
+        }
+        // ... 可以继续添加更多章节
+      ]
+    }
+    // ... 可以继续添加第二幕、第三幕
+  ]
+}
