@@ -1,1 +1,195 @@
 
+// pdfs.json - PDF文件映射表
+// 作用：通过file_id统一管理PDF的实际存储位置
+{
+  "files": [
+    // 以下是章节PDF示例 - 请替换为您的实际Google Drive文件ID
+    {
+      "file_id": "pdf_001",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_002",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_003",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_3",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_004_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_4_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_004_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_4_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_005_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_5_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_005_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_5_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_006",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_6",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_007_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_7_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_007_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_7_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_008_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_8_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_008_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_8_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_009_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_9_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_009_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_9_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_010_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_10_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_010_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_10_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_011",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_11",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_012_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_012_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_012_3",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_12_3",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_013",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_13",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_014",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_14",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_015",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_15",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_016",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_16",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_017_1",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_17_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_017_2",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_17_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_018",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_18",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "pdf_extra",
+      "type": "google_drive",
+      "drive_file_id": "YOUR_DRIVE_FILE_ID_EXTRA",
+      "github_file_path": ""
+    },
+    // 以下是证据库PDF示例
+    {
+      "file_id": "evidence_001",
+      "type": "google_drive",
+      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_1",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "evidence_002",
+      "type": "google_drive",
+      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_2",
+      "github_file_path": ""
+    },
+    {
+      "file_id": "evidence_003",
+      "type": "google_drive",
+      "drive_file_id": "EVIDENCE_DRIVE_FILE_ID_3",
+      "github_file_path": ""
+    }
+  ]
+}
