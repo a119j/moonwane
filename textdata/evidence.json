@@ -1,9 +1,9 @@
-// evidence.json - 存储证据库主数据
+// evidence.json - 证据库数据
 {
   "categories": [
     {
       "categoryName": "一、核心证据分类",
-      "color": "#4CAF50", // 绿色
+      "color": "#4CAF50",
       "items": [
         {
           "id": 1,
@@ -34,15 +34,25 @@
             "胎压与负荷关系的工程计算模型"
           ],
           "pdfId": "evidence_003"
+        },
+        {
+          "id": 4,
+          "content": "独立事故重建专家报告",
+          "technicalPoints": [
+            "专家资质认证（如ACTAR认证编号）",
+            "使用的重建软件与版本（如PC-Crash, HVE）",
+            "车速计算模型与置信区间分析"
+          ],
+          "pdfId": "evidence_004"
         }
       ]
     },
     {
       "categoryName": "二、司法程序文件",
-      "color": "#7bc8f8", // 蓝色
+      "color": "#7bc8f8",
       "items": [
         {
-          "id": 4,
+          "id": 5,
           "content": "法庭传票与起诉文件",
           "technicalPoints": [
             "文件编号、提交日期与法庭印章",
@@ -52,7 +62,7 @@
           "pdfId": ""
         },
         {
-          "id": 5,
+          "id": 6,
           "content": "保释听证会记录",
           "technicalPoints": [
             "听证会日期、法官姓名与法庭编号",
@@ -61,6 +71,62 @@
           ],
           "pdfId": ""
         }
+      ]
+    },
+    {
+      "categoryName": "三、专家意见与第三方分析",
+      "color": "#FFD700",
+      "items": [
+        {
+          "id": 7,
+          "content": "通信技术专家关于\"六秒连接\"的说明",
+          "technicalPoints": [
+            "手机与车辆蓝牙/Wi-Fi连接的技术协议分析",
+            "典型连接建立时间与数据交换模式",
+            "连接中断的可能原因与技术概率"
+          ],
+          "pdfId": ""
+        },
+        {
+          "id": 8,
+          "content": "医学专家关于创伤后应激反应的评估",
+          "technicalPoints": [
+            "PTSD诊断标准与评估工具",
+            "长期司法压力对身心健康的影响研究",
+            "家庭支持系统在心理康复中的作用"
+          ],
+          "pdfId": ""
+        }
+      ]
+    },
+    {
+      "categoryName": "四、时间线与通信记录",
+      "color": "#a8a4a0",
+      "items": [
+        {
+          "id": 9,
+          "content": "关键事件时间线（从事故到撤诉）",
+          "technicalPoints": [
+            "所有关键日期与时间点的表格化整理",
+            "相关文件/证据产生的时间标记",
+            "司法程序各阶段的时间跨度统计"
+          ],
+          "pdfId": ""
+        },
+        {
+          "id": 10,
+          "content": "与保险公司、律师的邮件通信摘要",
+          "technicalPoints": [
+            "通信时间线、主要联系人",
+            "关键主张与回应的提取",
+            "附件与参考文件的交叉引用"
+          ],
+          "pdfId": ""
+        }
+      ]
+    }
+  ]
+}        }
       ]
     },
     {
