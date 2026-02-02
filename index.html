@@ -683,12 +683,16 @@
             border: none;
             background: rgba(123, 200, 248, 0.1);
             color: #7bc8f8;
+            font-size: 1.2rem; /* PDF图标大小 */
         }
 
         .external-link {
             color: #4CAF50;
             background: rgba(76, 175, 80, 0.1);
             border: 1px solid rgba(76, 175, 80, 0.2);
+            font-size: 0.9rem; /* 链接符号小于PDF图标 */
+            padding: 4px 6px;
+            margin-left: 4px;
         }
 
         .pdf-link:hover, .pdf-trigger:hover {
@@ -760,6 +764,39 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             color: #aaa !important;
+        }
+
+        /* 章节目录抽屉样式 - 增加滚动条 */
+        .chapter-drawer {
+            max-width: 640px;
+            margin: 40px auto 80px;
+            background: rgba(20,25,40,0.4);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chapter-drawer > summary {
+            padding: 20px 32px;
+            background: rgba(40,50,80,0.6);
+            font-size: 1.3rem;
+            color: #ffd700;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+
+        .chapter-drawer > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .chapter-drawer-content {
+            padding: 0;
+            max-height: 70vh; /* 限制高度 */
+            overflow-y: auto; /* 增加垂直滚动条 */
+            position: relative;
+            scroll-behavior: smooth;
         }
 
         /* 证据库抽屉样式 */
@@ -1025,6 +1062,29 @@
             background: #fff;
         }
 
+        /* 滚动条样式 */
+        .chapter-drawer-content::-webkit-scrollbar,
+        .evidence-drawer-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chapter-drawer-content::-webkit-scrollbar-track,
+        .evidence-drawer-content::-webkit-scrollbar-track {
+            background: rgba(20, 25, 40, 0.3);
+            border-radius: 4px;
+        }
+
+        .chapter-drawer-content::-webkit-scrollbar-thumb,
+        .evidence-drawer-content::-webkit-scrollbar-thumb {
+            background: rgba(123, 200, 248, 0.3);
+            border-radius: 4px;
+        }
+
+        .chapter-drawer-content::-webkit-scrollbar-thumb:hover,
+        .evidence-drawer-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(123, 200, 248, 0.5);
+        }
+
         @media (max-width: 768px) {
             .logo-main {
                 font-size: 3.5rem;
@@ -1120,10 +1180,24 @@
                 font-size: 0.9rem;
             }
             
-            .pdf-link, .external-link, .pdf-trigger {
+            .pdf-trigger {
+                font-size: 1.1rem;
+                padding: 4px;
+            }
+            
+            .external-link {
                 font-size: 0.8rem;
-                padding: 3px 6px;
-                margin-right: 4px;
+                padding: 3px 5px;
+            }
+
+            /* 章节目录移动端适配 */
+            .chapter-drawer > summary {
+                padding: 15px 20px;
+                font-size: 1.2rem;
+            }
+
+            .chapter-drawer-content {
+                max-height: 60vh;
             }
 
             /* 证据库移动端适配 */
@@ -1225,394 +1299,422 @@
                   </div>
                 </div>
                 
-                <!-- 三幕章节目录 - 表格形式 -->
-                <details style="max-width:640px;margin:40px auto 80px;background:rgba(20,25,40,0.4);border-radius:16px;overflow:hidden;">
-                  <summary style="padding:20px 32px;background:rgba(40,50,80,0.6);font-size:1.3rem;color:#ffd700;cursor:pointer;">
-                    📖 完整章节目录/内容（共18章+番外，约15万字）
-                  </summary>
-                  <div class="inject-content" data-content="
-                  <!-- 提示文字 -->
-                  <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
-                    本文档仅供阅读，不提供下载或二次传播权限。
-                  </div>
-                  
-                  <!-- 章节表格 -->
-                  <table class='chapter-table'>
-                    <thead>
-                      <tr>
-                        <th>第一幕</th>
-                        <th>第二幕</th>
-                        <th>第三幕</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <span class='act-title'>崩塌 ·</span>
-                          <span class='act-title-second-line'>当日常被制度击穿</span>
-                          <ul>
-                            <li>
-                              <span class='chapter-title'>第1章 六秒与六年的开端</span>
-                              <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='1' data-file-id='' data-file-name='第1章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
-                              <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='2' data-file-id='' data-file-name='第2章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
-                              <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='3' data-file-id='' data-file-name='第3章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='3' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
-                              <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='4-1' data-file-id='' data-file-name='第4章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='4-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
-                              <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='4-2' data-file-id='' data-file-name='第4章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='4-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
-                              <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='5-1' data-file-id='' data-file-name='第5章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='5-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
-                              <span class='chapter-subtitle'>手铐只是换了一种形态</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='5-2' data-file-id='' data-file-name='第5章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='5-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
-                              <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='6' data-file-id='' data-file-name='第6章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='6' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
-                              <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='7-1' data-file-id='' data-file-name='第7章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='7-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
-                              <span class='chapter-subtitle'>我们不需要被同情</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='7-2' data-file-id='' data-file-name='第7章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='7-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <span class='act-title'>抗争 ·</span>
-                          <span class='act-title-second-line'>数据、轮胎与系统共同失真</span>
-                          <ul>
-                            <li>
-                              <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
-                              <span class='chapter-subtitle'>数据如何被误读成罪</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='8-1' data-file-id='' data-file-name='第8章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='8-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
-                              <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='8-2' data-file-id='' data-file-name='第8章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='8-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
-                              <span class='chapter-subtitle'>物证与失察的双重真相</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='9-1' data-file-id='' data-file-name='第9章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='9-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
-                              <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='9-2' data-file-id='' data-file-name='第9章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='9-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
-                              <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='10-1' data-file-id='' data-file-name='第10章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='10-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
-                              <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='10-2' data-file-id='' data-file-name='第10章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='10-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第11章 临阵换帅</span>
-                              <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='11' data-file-id='' data-file-name='第11章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='11' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
-                              <span class='chapter-subtitle'>闭环如何形成真相</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='12-1' data-file-id='' data-file-name='第12章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='12-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
-                              <span class='chapter-subtitle'>一句&quot;没必要&quot;，否决一个家庭的命运</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='12-2' data-file-id='' data-file-name='第12章(中).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='12-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
-                              <span class='chapter-subtitle'>五个证人，五个平行世界</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='12-3' data-file-id='' data-file-name='第12章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='12-3' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                          </ul>
-                        </td>
-                        <td>
-                          <span class='act-title'>重启 ·</span>
-                          <span class='act-title-second-line'>在制度的余震中重建家园</span>
-                          <ul>
-                            <li>
-                              <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
-                              <span class='chapter-subtitle'>律师，在开庭前消失了</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='13' data-file-id='' data-file-name='第13章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='13' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
-                              <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='14' data-file-id='' data-file-name='第14章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='14' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第15章 家的天平</span>
-                              <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='15' data-file-id='' data-file-name='第15章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='15' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
-                              <span class='chapter-subtitle'>六年，换一张交通罚单</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='16' data-file-id='' data-file-name='第16章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='16' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
-                              <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='17-1' data-file-id='' data-file-name='第17章(上).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='17-1' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第17章（下）后视镜里的六年</span>
-                              <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='17-2' data-file-id='' data-file-name='第17章(下).pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='17-2' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
-                              <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='18' data-file-id='' data-file-name='第18章.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='18' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                            <li>
-                              <span class='chapter-title'>番外篇 案子的三个谜</span>
-                              <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
-                              <div class='chapter-actions'>
-                                <button class='pdf-trigger' data-chapter='extra' data-file-id='' data-file-name='番外篇.pdf'>
-                                  📄
-                                </button>
-                                <a href='#' class='external-link' data-chapter='extra' data-link=''>
-                                  🔗
-                                </a>
-                              </div>
-                            </li>
-                          </ul>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-                  <!-- 返回顶部按钮 -->
-                  <div style='text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);'>
-                    <a href='javascript:void(0)' class='back-to-top' id='chapterBackToTop'>
-                      <i class='fas fa-arrow-up'></i> 返回顶部
-                    </a>
-                  </div>
-                  " style="padding:20px 32px;color:#e0e0e0;line-height:2.2;font-size:1.05rem;">
-                    <span style="color:#666;">章节目录加载中...</span>
+                <!-- 三幕章节目录 - 表格形式（带滚动条） -->
+                <details class="chapter-drawer">
+                  <summary>📖 完整章节目录/内容（共18章+番外，约15万字）</summary>
+                  <div class="chapter-drawer-content">
+                      <div class="inject-content" data-content="
+                      <!-- 提示文字 -->
+                      <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
+                        本文档仅供阅读，不提供下载或二次传播权限。
+                      </div>
+                      
+                      <!-- 章节表格 -->
+                      <table class='chapter-table'>
+                        <thead>
+                          <tr>
+                            <th>第一幕</th>
+                            <th>第二幕</th>
+                            <th>第三幕</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <span class='act-title'>崩塌 ·</span>
+                              <span class='act-title-second-line'>当日常被制度击穿</span>
+                              <ul>
+                                <li>
+                                  <span class='chapter-title'>第1章 六秒与六年的开端</span>
+                                  <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='1' data-file-id='' data-file-name='第1章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
+                                  <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='2' data-file-id='' data-file-name='第2章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
+                                  <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='3' data-file-id='' data-file-name='第3章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='3' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
+                                  <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='4-1' data-file-id='' data-file-name='第4章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='4-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
+                                  <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='4-2' data-file-id='' data-file-name='第4章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='4-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
+                                  <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='5-1' data-file-id='' data-file-name='第5章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='5-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
+                                  <span class='chapter-subtitle'>手铐只是换了一种形态</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='5-2' data-file-id='' data-file-name='第5章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='5-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
+                                  <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='6' data-file-id='' data-file-name='第6章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='6' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
+                                  <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='7-1' data-file-id='' data-file-name='第7章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='7-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
+                                  <span class='chapter-subtitle'>我们不需要被同情</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='7-2' data-file-id='' data-file-name='第7章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='7-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                            <td>
+                              <span class='act-title'>抗争 ·</span>
+                              <span class='act-title-second-line'>数据、轮胎与系统共同失真</span>
+                              <ul>
+                                <li>
+                                  <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
+                                  <span class='chapter-subtitle'>数据如何被误读成罪</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='8-1' data-file-id='' data-file-name='第8章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='8-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
+                                  <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='8-2' data-file-id='' data-file-name='第8章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='8-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
+                                  <span class='chapter-subtitle'>物证与失察的双重真相</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='9-1' data-file-id='' data-file-name='第9章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='9-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
+                                  <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='9-2' data-file-id='' data-file-name='第9章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='9-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
+                                  <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='10-1' data-file-id='' data-file-name='第10章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='10-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
+                                  <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='10-2' data-file-id='' data-file-name='第10章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='10-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第11章 临阵换帅</span>
+                                  <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='11' data-file-id='' data-file-name='第11章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='11' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
+                                  <span class='chapter-subtitle'>闭环如何形成真相</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='12-1' data-file-id='' data-file-name='第12章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='12-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
+                                  <span class='chapter-subtitle'>一句&quot;没必要&quot;，否决一个家庭的命运</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='12-2' data-file-id='' data-file-name='第12章(中).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='12-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
+                                  <span class='chapter-subtitle'>五个证人，五个平行世界</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='12-3' data-file-id='' data-file-name='第12章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='12-3' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                            <td>
+                              <span class='act-title'>重启 ·</span>
+                              <span class='act-title-second-line'>在制度的余震中重建家园</span>
+                              <ul>
+                                <li>
+                                  <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
+                                  <span class='chapter-subtitle'>律师，在开庭前消失了</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='13' data-file-id='' data-file-name='第13章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='13' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
+                                  <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='14' data-file-id='' data-file-name='第14章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='14' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第15章 家的天平</span>
+                                  <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='15' data-file-id='' data-file-name='第15章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='15' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
+                                  <span class='chapter-subtitle'>六年，换一张交通罚单</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='16' data-file-id='' data-file-name='第16章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='16' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
+                                  <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='17-1' data-file-id='' data-file-name='第17章(上).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='17-1' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第17章（下）后视镜里的六年</span>
+                                  <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='17-2' data-file-id='' data-file-name='第17章(下).pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='17-2' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
+                                  <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='18' data-file-id='' data-file-name='第18章.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='18' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                                <li>
+                                  <span class='chapter-title'>番外篇 案子的三个谜</span>
+                                  <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
+                                  <div class='chapter-actions'>
+                                    <button class='pdf-trigger' data-chapter='extra' data-file-id='' data-file-name='番外篇.pdf'>
+                                      📄
+                                    </button>
+                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
+                                    <button class='external-link' data-chapter='extra' data-github=''>
+                                      🔗
+                                    </button>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+                      <!-- 返回顶部按钮 -->
+                      <div style='text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);'>
+                        <a href='javascript:void(0)' class='back-to-top' id='chapterBackToTop'>
+                          <i class='fas fa-arrow-up'></i> 返回顶部
+                        </a>
+                      </div>
+                      " style="padding:20px 32px;color:#e0e0e0;line-height:2.2;font-size:1.05rem;">
+                        <span style="color:#666;">章节目录加载中...</span>
+                      </div>
                   </div>
                 </details>
                 
@@ -1669,7 +1771,7 @@
                                         </td>
                                         <td>
                                             <button class="pdf-trigger" 
-                                                    data-file-id="1aBcDeFgHiJkLmNoPqRsTuVwXyZ012345"
+                                                    data-file-id="1kN1fubR9egn8lBIbsnBlI2HTkMbxymRU"
                                                     data-file-name="01_手机后台数据.pdf"
                                                     data-chapter="8">
                                                 📄
@@ -1692,7 +1794,7 @@
                                         </td>
                                         <td>
                                             <button class="pdf-trigger" 
-                                                    data-file-id="2bCdEfGhIjKlMnOpQrStUvWxYz123456"
+                                                    data-file-id="1pjKshQBHTFNaapvcD28Xrh8OGZWjYBiJ"
                                                     data-file-name="02_轮胎胎压与侧壁撕裂.pdf"
                                                     data-chapter="9">
                                                 📄
@@ -1712,7 +1814,7 @@
                                         <td>第10章（上/下）《穿越时空，剥茧自证》</td>
                                         <td>
                                             <button class="pdf-trigger" 
-                                                    data-file-id="3cDeFgHiJkLmNoPqRsTuVwXyZ234567"
+                                                    data-file-id="16hEl-qC65-Usbo7c7gai1d90-LeN86Zl"
                                                     data-file-name="03_黑匣子与行车记录仪.pdf"
                                                     data-chapter="10">
                                                 📄
@@ -1734,7 +1836,7 @@
                                         </td>
                                         <td>
                                             <button class="pdf-trigger" 
-                                                    data-file-id="4dEfGhIjKlMnOpQrStUvWxYz345678"
+                                                    data-file-id="1lHrJh3zk245LvqqWDRPJH3mrH8LzViJj"
                                                     data-file-name="04_警方证据链.pdf"
                                                     data-chapter="12">
                                                 📄
@@ -1876,7 +1978,6 @@
             const evidenceSearch = document.getElementById('evidenceSearch');
             const evidenceTable = document.getElementById('evidenceTable');
             const searchCount = document.getElementById('searchCount');
-            const evidenceDrawerContent = document.getElementById('evidenceDrawerContent');
             
             let hasTrackedClick = false;
             
@@ -2074,15 +2175,15 @@
                 }
             });
             
-            // 章节目录外部链接点击事件
-            document.querySelectorAll('.external-link').forEach(link => {
+            // GitHub链接点击事件
+            document.querySelectorAll('.external-link[data-github]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const chapterId = this.getAttribute('data-chapter');
-                    const externalLink = this.getAttribute('data-link');
+                    const githubLink = this.getAttribute('data-github');
                     
-                    if (externalLink && externalLink.trim() !== '') {
-                        window.open(externalLink, '_blank');
+                    if (githubLink && githubLink.trim() !== '') {
+                        window.open(githubLink, '_blank');
                     } else {
                         alert(`第${chapterId}章正在准备中，敬请期待！`);
                     }
@@ -2113,8 +2214,9 @@
                 document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
             }
             
-            // 为章节PDF按钮重新绑定事件（延迟加载）
+            // 为章节PDF按钮和GitHub链接重新绑定事件（延迟加载）
             setTimeout(() => {
+                // 章节目录PDF按钮
                 document.querySelectorAll('.chapter-actions .pdf-trigger').forEach(button => {
                     button.addEventListener('click', function() {
                         const fileId = this.getAttribute('data-file-id');
@@ -2140,15 +2242,38 @@
                     });
                 });
                 
+                // 章节目录GitHub链接
+                document.querySelectorAll('.chapter-actions .external-link[data-github]').forEach(link => {
+                    link.addEventListener('click', function() {
+                        const chapterId = this.getAttribute('data-chapter');
+                        const githubLink = this.getAttribute('data-github');
+                        
+                        if (githubLink && githubLink.trim() !== '') {
+                            window.open(githubLink, '_blank');
+                        } else {
+                            alert(`第${chapterId}章正在准备中，敬请期待！`);
+                        }
+                    });
+                });
+                
                 // 章节目录返回顶部按钮
                 const backToTopBtn = document.getElementById('chapterBackToTop');
                 if (backToTopBtn) {
                     backToTopBtn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        const details = document.querySelector('details[style*="max-width:640px"]');
+                        const details = document.querySelector('.chapter-drawer');
                         if (details) {
                             details.scrollIntoView({ behavior: 'smooth' });
                         }
+                    });
+                }
+                
+                // 检查法律免责链接
+                const legalLink = document.querySelector('a[href="legal-disclaimer.html"]');
+                if (legalLink) {
+                    legalLink.addEventListener('click', function(e) {
+                        console.log('法律免责链接点击');
+                        // 正常跳转
                     });
                 }
             }, 500);
@@ -2203,6 +2328,15 @@
         // GitHub Pages部署优化：确保所有资源加载完成
         window.addEventListener('load', function() {
             console.log('页面完全加载完成');
+            
+            // 检查所有按钮功能
+            console.log('检查按钮功能：');
+            console.log('1. "想看"按钮:', document.getElementById('wantToReadBtn') ? '✓ 存在' : '✗ 缺失');
+            console.log('2. "章节目录"抽屉:', document.querySelector('.chapter-drawer') ? '✓ 存在' : '✗ 缺失');
+            console.log('3. "证据库"抽屉:', document.querySelector('.evidence-drawer') ? '✓ 存在' : '✗ 缺失');
+            console.log('4. "赞助支持"链接:', document.querySelector('.support-link') ? '✓ 存在' : '✗ 缺失');
+            console.log('5. "法律免责"链接:', document.querySelector('a[href="legal-disclaimer.html"]') ? '✓ 存在' : '✗ 缺失');
+            
             // 移除加载状态提示
             const loadingElements = document.querySelectorAll('[style*="color:#666"]');
             loadingElements.forEach(el => {
