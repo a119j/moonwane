@@ -1,1 +1,22 @@
-
+// evidence.json - 存储证据库主数据
+// 结构：分类 -> 证据条目列表 (序号、内容、技术点、PDF链接等)
+{
+  "categories": [
+    {
+      "categoryName": "一、核心证据分类",
+      "items": [
+        {
+          "id": 1,
+          "content": "证据内容描述",
+          "technicalPoints": [
+            "技术要点一",
+            "技术要点二"
+          ],
+          "pdfId": "evidence_001" // 对应 pdfs.json 中的 file_id
+        }
+        // ... 可以继续添加更多证据条目
+      ]
+    }
+    // ... 可以继续添加更多分类
+  ]
+}
