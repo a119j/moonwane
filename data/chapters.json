@@ -1,1 +1,195 @@
 
+// chapters.json - 章节目录结构
+{
+  "acts": [
+    {
+      "actNumber": 1,
+      "actTitle": "第一幕：崩塌",
+      "actSubtitle": "当日常被制度击穿",
+      "chapters": [
+        {
+          "chapterNumber": "1",
+          "title": "第1章 六秒与六年的开端",
+          "subtitle": "无法阻挡的车祸，与无法重启的人生",
+          "pdfId": "pdf_001"
+        },
+        {
+          "chapterNumber": "2",
+          "title": "第2章 碾碎：系统启动的第一声",
+          "subtitle": "一场车祸，摧毁的不只是车",
+          "pdfId": "pdf_002"
+        },
+        {
+          "chapterNumber": "3",
+          "title": "第3章 拔河：资本、人性与保单",
+          "subtitle": "系统已开始运转，他们还能笑吗？",
+          "pdfId": "pdf_003"
+        },
+        {
+          "chapterNumber": "4-1",
+          "title": "第4章（上）傍晚五点，逮捕令",
+          "subtitle": "碾碎平静的，不是车祸，是手铐",
+          "pdfId": "pdf_004_1"
+        },
+        {
+          "chapterNumber": "4-2",
+          "title": "第4章（下）两万五千加元，自由价",
+          "subtitle": "如果爸爸进监狱，我还能弹琴给他听吗？",
+          "pdfId": "pdf_004_2"
+        },
+        {
+          "chapterNumber": "5-1",
+          "title": "第5章（上）捕·审：国家机器的两副面孔",
+          "subtitle": "第一刀，切在众目睽睽之下",
+          "pdfId": "pdf_005_1"
+        },
+        {
+          "chapterNumber": "5-2",
+          "title": "第5章（下）牢·镣：无形的终生刑期",
+          "subtitle": "手铐只是换了一种形态",
+          "pdfId": "pdf_005_2"
+        },
+        {
+          "chapterNumber": "6",
+          "title": "第6章 变形：重压之下，一切都会变形",
+          "subtitle": "六寸蛋糕只有三颗草莓",
+          "pdfId": "pdf_006"
+        },
+        {
+          "chapterNumber": "7-1",
+          "title": "第7章（上）挥拳：凭本能挥出一拳",
+          "subtitle": "三阳开泰，身体病了，家没病",
+          "pdfId": "pdf_007_1"
+        },
+        {
+          "chapterNumber": "7-2",
+          "title": "第7章（下）积蓄：晨光下的裂痕与姿态",
+          "subtitle": "我们不需要被同情",
+          "pdfId": "pdf_007_2"
+        }
+      ]
+    },
+    {
+      "actNumber": 2,
+      "actTitle": "第二幕：抗争",
+      "actSubtitle": "数据、轮胎与系统共同失真",
+      "chapters": [
+        {
+          "chapterNumber": "8-1",
+          "title": "第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？",
+          "subtitle": "数据如何被误读成罪",
+          "pdfId": "pdf_008_1"
+        },
+        {
+          "chapterNumber": "8-2",
+          "title": "第8章（下）定罪的六秒：机器的呼吸与系统的失聪",
+          "subtitle": "六秒连接是呼吸，不是冲浪",
+          "pdfId": "pdf_008_2"
+        },
+        {
+          "chapterNumber": "9-1",
+          "title": "第9章（上）轮胎不会说谎",
+          "subtitle": "物证与失察的双重真相",
+          "pdfId": "pdf_009_1"
+        },
+        {
+          "chapterNumber": "9-2",
+          "title": "第9章（下）轮胎不会说谎",
+          "subtitle": "爆裂、隐患、误读与被淹没的现场",
+          "pdfId": "pdf_009_2"
+        },
+        {
+          "chapterNumber": "10-1",
+          "title": "第10章（上）穿越时空，剥茧自证",
+          "subtitle": "当物证湮灭，数据开口",
+          "pdfId": "pdf_010_1"
+        },
+        {
+          "chapterNumber": "10-2",
+          "title": "第10章（下）穿越时空，剥茧自证",
+          "subtitle": "0.167秒的黑烟，撞上专家之墙",
+          "pdfId": "pdf_010_2"
+        },
+        {
+          "chapterNumber": "11",
+          "title": "第11章 临阵换帅",
+          "subtitle": "最信任的舵手成了法官，最脆弱的身体成了证人",
+          "pdfId": "pdf_011"
+        },
+        {
+          "chapterNumber": "12-1",
+          "title": "第12章（上）盲转齿轮：罪证靶环的绘制",
+          "subtitle": "闭环如何形成真相",
+          "pdfId": "pdf_012_1"
+        },
+        {
+          "chapterNumber": "12-2",
+          "title": "第12章（中）锁定靶心：中心轮的冷酷裁决",
+          "subtitle": "一句\"没必要\"，否决一个家庭的命运",
+          "pdfId": "pdf_012_2"
+        },
+        {
+          "chapterNumber": "12-3",
+          "title": "第12章（下）失焦的探照灯：碎片真相与文明微光",
+          "subtitle": "五个证人，五个平行世界",
+          "pdfId": "pdf_012_3"
+        }
+      ]
+    },
+    {
+      "actNumber": 3,
+      "actTitle": "第三幕：重启",
+      "actSubtitle": "在制度的余震中重建家园",
+      "chapters": [
+        {
+          "chapterNumber": "13",
+          "title": "第13章 头狼离场：信任出现真空",
+          "subtitle": "律师，在开庭前消失了",
+          "pdfId": "pdf_013"
+        },
+        {
+          "chapterNumber": "14",
+          "title": "第14章 蚍蜉撼树：一个母亲的觉醒",
+          "subtitle": "从旁观到发声，只有一小步",
+          "pdfId": "pdf_014"
+        },
+        {
+          "chapterNumber": "15",
+          "title": "第15章 家的天平",
+          "subtitle": "一头是案子，一头是孩子，中间是摇摇欲坠的生活",
+          "pdfId": "pdf_015"
+        },
+        {
+          "chapterNumber": "16",
+          "title": "第16章 刹车：系统决定止损的瞬间",
+          "subtitle": "六年，换一张交通罚单",
+          "pdfId": "pdf_016"
+        },
+        {
+          "chapterNumber": "17-1",
+          "title": "第17章（上）盲眼钟表匠",
+          "subtitle": "当司法程序忘记为何而转动",
+          "pdfId": "pdf_017_1"
+        },
+        {
+          "chapterNumber": "17-2",
+          "title": "第17章（下）后视镜里的六年",
+          "subtitle": "当尘埃落定，光从裂缝照进",
+          "pdfId": "pdf_017_2"
+        },
+        {
+          "chapterNumber": "18",
+          "title": "第18章 未来之轮：一切都是最好的安排",
+          "subtitle": "车轮驶向未被改写的明天",
+          "pdfId": "pdf_018"
+        },
+        {
+          "chapterNumber": "extra",
+          "title": "番外篇 案子的三个谜",
+          "subtitle": "那些系统没有回答，时间也未必能解答的问题",
+          "pdfId": "pdf_extra"
+        }
+      ]
+    }
+  ]
+}
