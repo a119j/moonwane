@@ -1,66 +1,83 @@
-// data-loader.js - MoonWane Ink 数据加载器
-// 负责加载JSON数据并生成智能链接
+// data-loader.js - MoonWane Ink 数据加载器（简化版 + 优化）
+// 只加载 data/chapters.json 和 data/evidence.json
+// 动态渲染到容器 div
 
-// 全局变量，存储加载的数据
-window.moonwaneData = {
-  chapters: null,
-  evidence: null,
-  pdfs: null,
-  loading: false
-};
-
-/**
- * 智能链接生成函数
- * 根据pdfs.json中的配置生成正确的PDF/外部链接
- * @param {string} fileId - 文件ID（如 "pdf_001", "evidence_001"）
- * @returns {string|null} - 返回链接或null（如果未发布）
- */
-window.getPdfUrl = function(fileId) {
-  if (!window.moonwaneData.pdfs || !window.moonwaneData.pdfs.files) {
-    console.warn('PDF数据尚未加载');
-    return null;
-  }
-  
-  const fileInfo = window.moonwaneData.pdfs.files.find(file => file.file_id === fileId);
-  
-  if (!fileInfo) {
-    console.warn(`未找到文件ID: ${fileId}`);
-    return null;
-  }
-  
-  // 根据状态返回链接
-  switch(fileInfo.status) {
-    case 'external':
-      // 优先使用外部阅读链接
-      return fileInfo.external_link || null;
-      
-    case 'drive':
-      // 使用Google Drive链接
-      if (fileInfo.drive_file_id) {
-        return `https://drive.google.com/file/d/${fileInfo.drive_file_id}/preview`;
+document.addEventListener('DOMContentLoaded', function() {
+  // 加载章节列表
+  fetch('/data/chapters.json')
+    .then(response => {
+      if (!response.ok) throw new Error('章节加载失败: ' + response.status);
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById('chapters-container');
+      if (!container) {
+        console.warn('未找到 chapters-container');
+        return;
       }
-      return null;
-      
-    case 'github':
-      // 使用GitHub链接
-      if (fileInfo.github_file_path) {
-        return `https://raw.githubusercontent.com/a119j/moonwane/main/${fileInfo.github_file_path}`;
-      }
-      return null;
-      
-    case 'unpublished':
-    default:
-      // 未发布，返回null
-      return null;
-  }
-};
 
-/**
- * 检查链接状态并生成HTML
- * @param {string} fileId - 文件ID
- * @param {string} chapterName - 章节名称（用于提示）
- * @returns {string} - 生成的HTML
- */
+      data.chapters.forEach(ch => {
+        const div = document.createElement('div');
+        div.style.marginBottom = '1.2em';
+        div.style.padding = '0.8em';
+        div.style.borderBottom = '1px solid #eee';
+
+        let links = '';
+        if (ch.pdf_url) links += `<a href="${ch.pdf_url}" target="_blank" style="margin-right:1em;">📄 PDF</a>`;
+        if (ch.preview_url) links += `<a href="${ch.preview_url}" target="_blank" style="margin-right:1em;">预览</a>`;
+        if (ch.external_read_url) links += `<a href="${ch.external_read_url}" target="_blank">🔗 在线阅读</a>`;
+
+        div.innerHTML = `
+          <strong>${ch.title}</strong><br>
+          ${links || '<small>暂无可用链接</small>'}
+        `;
+        container.appendChild(div);
+      });
+    })
+    .catch(err => console.error('章节加载错误:', err));
+
+  // 加载证据列表
+  fetch('/data/evidence.json')
+    .then(response => {
+      if (!response.ok) throw new Error('证据加载失败: ' + response.status);
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById('evidence-container');
+      if (!container) {
+        console.warn('未找到 evidence-container');
+        return;
+      }
+
+      data.categories.forEach(cat => {
+        if (cat.items.length === 0) return;
+
+        const catHeader = document.createElement('h4');
+        catHeader.textContent = cat.name;
+        container.appendChild(catHeader);
+
+        cat.items.forEach(item => {
+          const div = document.createElement('div');
+          div.style.margin = '1em 0 1em 2em';
+          div.style.padding = '0.8em';
+          div.style.borderLeft = '4px solid #444';  // 优化 2：更克制、严肃的深灰
+
+          let links = '';
+          if (item.pdf_url) links += `<a href="${item.pdf_url}" target="_blank" style="margin-right:1em;">📄 PDF</a>`;
+          if (item.preview_url) links += `<a href="${item.preview_url}" target="_blank" style="margin-right:1em;">预览</a>`;
+          if (item.external_read_url) links += `<a href="${item.external_read_url}" target="_blank">🔗 详细阅读</a>`;
+
+          div.innerHTML = `
+            <strong>${item.content}</strong><br>
+            <small>技术要点：${item.technicalPoints?.join('； ') || '—'}</small><br>  <!-- 优化 1：防止空数组/undefined 报错 -->
+            ${links || '<small>暂无可用链接</small>'}
+          `;
+          container.appendChild(div);
+        });
+      });
+    })
+    .catch(err => console.error('证据加载错误:', err));
+}); */
 window.generateLinkHtml = function(fileId, chapterName = '') {
   const pdfUrl = window.getPdfUrl(fileId);
   
