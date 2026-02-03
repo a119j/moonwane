@@ -1,40 +1,176 @@
-// js/data-loader.js
-// 加载章节列表
-fetch('/chapters.json')
-  .then(response => {
-    if (!response.ok) throw new Error('章节JSON加载失败');
-    return response.json();
-  })
-  .then(data => {
-    const container = document.getElementById('chapters-container');
-    if (!container) return;
+// js/data-loader.js - 动态加载章节和证据内容
+// 等待页面核心内容加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+    loadChapters();
+    loadEvidence();
+});
 
-    if (!data.chapters) {
-      console.error('chapters.json 数据结构错误：缺少 chapters 字段');
-      container.innerHTML = '<p>数据格式错误</p>';
-      return;
+// 1. 加载章节列表
+function loadChapters() {
+    fetch('/chapters.json')
+        .then(response => {
+            if (!response.ok) throw new Error(`网络响应异常: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('chapters-container');
+            if (!container) {
+                console.error('错误：未找到章节容器 (#chapters-container)');
+                return;
+            }
+            renderChapters(container, data);
+        })
+        .catch(error => {
+            console.error('加载章节数据失败:', error);
+            const container = document.getElementById('chapters-container');
+            if (container) {
+                container.innerHTML = '<p style="color: #ff6b6b; text-align:center;">章节列表加载失败，请刷新页面或稍后再试。</p>';
+            }
+        });
+}
+
+// 2. 加载证据库
+function loadEvidence() {
+    fetch('/data/evidence.json')
+        .then(response => {
+            if (!response.ok) throw new Error(`网络响应异常: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            const container = document.getElementById('evidence-container');
+            if (!container) {
+                console.error('错误：未找到证据容器 (#evidence-container)');
+                return;
+            }
+            renderEvidence(container, data);
+        })
+        .catch(error => {
+            console.error('加载证据数据失败:', error);
+            const container = document.getElementById('evidence-container');
+            if (container) {
+                container.innerHTML = '<p style="color: #ff6b6b; text-align:center;">证据库加载失败，请刷新页面或稍后再试。</p>';
+            }
+        });
+}
+
+// 渲染章节列表
+function renderChapters(container, data) {
+    // 清空“正在加载”提示
+    container.innerHTML = '';
+
+    // 检查数据格式
+    if (!data.chapters || !Array.isArray(data.chapters)) {
+        container.innerHTML = '<p>章节数据格式有误。</p>';
+        return;
     }
-
-    container.innerHTML = ''; // 清空加载提示
 
     if (data.chapters.length === 0) {
-      container.innerHTML = '<p>暂无章节内容。</p>';
-      return;
+        container.innerHTML = '<p>暂无章节发布。</p>';
+        return;
     }
 
-    data.chapters.forEach(ch => {
-      const item = document.createElement('div');
-      item.style.marginBottom = '1.2em';
-      item.style.padding = '0.8em';
-      item.style.borderBottom = '1px solid #333';
+    // 遍历并生成章节项
+    data.chapters.forEach(chapter => {
+        const chapterEl = document.createElement('div');
+        chapterEl.className = 'chapter-item';
+        chapterEl.style.cssText = `
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid #7bc8f8;
+        `;
 
-      let linksHtml = '';
-      if (ch.pdf_url && ch.pdf_url.trim() !== '') {
-        linksHtml += `<a href="${ch.pdf_url}" target="_blank" style="margin-right:1em; color:#7bc8f8;">📄 PDF</a>`;
-      }
-      if (ch.preview_url && ch.preview_url.trim() !== '') {
-        linksHtml += `<a href="${ch.preview_url}" target="_blank" style="margin-right:1em; color:#7bc8f8;">预览</a>`;
-      }
+        // 构建链接HTML
+        let linksHtml = '';
+        const hasPdf = chapter.pdf_url && chapter.pdf_url.trim() !== '';
+        const hasPreview = chapter.preview_url && chapter.preview_url.trim() !== '';
+        const hasExternal = chapter.external_read_url && chapter.external_read_url.trim() !== '';
+
+        if (hasPdf) {
+            linksHtml += `<a href="${chapter.pdf_url}" target="_blank" rel="noopener" class="content-link" style="margin-right: 1rem;">📄 PDF文件</a>`;
+        }
+        if (hasPreview) {
+            linksHtml += `<a href="${chapter.preview_url}" target="_blank" rel="noopener" class="content-link" style="margin-right: 1rem;">👁️ 在线预览</a>`;
+        }
+        if (hasExternal) {
+            linksHtml += `<a href="${chapter.external_read_url}" target="_blank" rel="noopener" class="content-link">🔗 外部阅读</a>`;
+        }
+
+        chapterEl.innerHTML = `
+            <div style="font-weight: bold; margin-bottom: 0.5rem; color: #f0f0f0;">${chapter.title}</div>
+            <div>
+                ${linksHtml ? linksHtml : '<span style="color: #888; font-size: 0.9em;">(链接准备中)</span>'}
+            </div>
+        `;
+        container.appendChild(chapterEl);
+    });
+}
+
+// 渲染证据库
+function renderEvidence(container, data) {
+    // 清空“正在加载”提示
+    container.innerHTML = '';
+
+    // 检查数据格式
+    if (!data.categories || !Array.isArray(data.categories)) {
+        container.innerHTML = '<p>证据数据格式有误。</p>';
+        return;
+    }
+
+    // 遍历每个分类
+    data.categories.forEach(category => {
+        // 跳过没有证据项的分类
+        if (!category.items || category.items.length === 0) return;
+
+        // 创建分类标题
+        const categoryTitle = document.createElement('h4');
+        categoryTitle.textContent = category.categoryName || '未命名分类';
+        categoryTitle.style.cssText = `
+            color: ${category.color || '#7bc8f8'};
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        `;
+        container.appendChild(categoryTitle);
+
+        // 遍历该分类下的每个证据项
+        category.items.forEach(item => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'evidence-item';
+            itemEl.style.cssText = `
+                margin: 1rem 0 1rem 1rem;
+                padding: 1rem;
+                background: rgba(30, 30, 30, 0.4);
+                border-radius: 6px;
+                border-left: 4px solid ${category.color || '#007bff'};
+            `;
+
+            // 构建链接HTML (预留，未来可在evidence.json中添加pdf_url字段)
+            let linksHtml = '';
+            if (item.pdf_url && item.pdf_url.trim() !== '') {
+                linksHtml += `<a href="${item.pdf_url}" target="_blank" rel="noopener" class="content-link" style="color: #FFD700; margin-right: 1rem;">📄 证据PDF</a>`;
+            }
+
+            // 将技术要点数组转换为带项目符号的HTML
+            const pointsHtml = item.technicalPoints && Array.isArray(item.technicalPoints)
+                ? `<ul style="color: #aaa; margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.95em;">
+                     ${item.technicalPoints.map(point => `<li>${point}</li>`).join('')}
+                   </ul>`
+                : '<p style="color: #888; margin-top:0.5rem;">暂无技术要点说明。</p>';
+
+            itemEl.innerHTML = `
+                <div style="font-weight: bold; color: #e0e0e0;">${item.id || ''}. ${item.content}</div>
+                ${pointsHtml}
+                <div style="margin-top: 0.8rem;">
+                    ${linksHtml ? linksHtml : '<span style="color: #888; font-size: 0.9em;">(证据文件链接准备中)</span>'}
+                </div>
+            `;
+            container.appendChild(itemEl);
+        });
+    });
+}      }
       if (ch.external_read_url && ch.external_read_url.trim() !== '') {
         linksHtml += `<a href="${ch.external_read_url}" target="_blank" style="color:#7bc8f8;">🔗 在线阅读</a>`;
       }
