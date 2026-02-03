@@ -1,40 +1,113 @@
-// data-loader.js - MoonWane Ink 数据加载器（简化版 + 优化）
-// 只加载 data/chapters.json 和 data/evidence.json
-// 动态渲染到容器 div
+// js/data-loader.js
+// 加载章节列表
+fetch('/chapters.json')
+  .then(response => {
+    if (!response.ok) throw new Error('章节JSON加载失败');
+    return response.json();
+  })
+  .then(data => {
+    const container = document.getElementById('chapters-container');
+    if (!container) return;
 
-document.addEventListener('DOMContentLoaded', function() {
-  // 加载章节列表
-  fetch('/data/chapters.json')
-    .then(response => {
-      if (!response.ok) throw new Error('章节加载失败: ' + response.status);
-      return response.json();
-    })
-    .then(data => {
-      const container = document.getElementById('chapters-container');
-      if (!container) {
-        console.warn('未找到 chapters-container');
-        return;
+    if (!data.chapters) {
+      console.error('chapters.json 数据结构错误：缺少 chapters 字段');
+      container.innerHTML = '<p>数据格式错误</p>';
+      return;
+    }
+
+    container.innerHTML = ''; // 清空加载提示
+
+    if (data.chapters.length === 0) {
+      container.innerHTML = '<p>暂无章节内容。</p>';
+      return;
+    }
+
+    data.chapters.forEach(ch => {
+      const item = document.createElement('div');
+      item.style.marginBottom = '1.2em';
+      item.style.padding = '0.8em';
+      item.style.borderBottom = '1px solid #333';
+
+      let linksHtml = '';
+      if (ch.pdf_url && ch.pdf_url.trim() !== '') {
+        linksHtml += `<a href="${ch.pdf_url}" target="_blank" style="margin-right:1em; color:#7bc8f8;">📄 PDF</a>`;
+      }
+      if (ch.preview_url && ch.preview_url.trim() !== '') {
+        linksHtml += `<a href="${ch.preview_url}" target="_blank" style="margin-right:1em; color:#7bc8f8;">预览</a>`;
+      }
+      if (ch.external_read_url && ch.external_read_url.trim() !== '') {
+        linksHtml += `<a href="${ch.external_read_url}" target="_blank" style="color:#7bc8f8;">🔗 在线阅读</a>`;
       }
 
-      data.chapters.forEach(ch => {
-        const div = document.createElement('div');
-        div.style.marginBottom = '1.2em';
-        div.style.padding = '0.8em';
-        div.style.borderBottom = '1px solid #eee';
+      item.innerHTML = `
+        <strong style="font-size:1.1em;">${ch.title}</strong><br>
+        ${linksHtml ? '<div style="margin-top:0.5em;">' + linksHtml + '</div>' : '<small style="color:#888;">(链接准备中)</small>'}
+      `;
 
-        let links = '';
-        if (ch.pdf_url) links += `<a href="${ch.pdf_url}" target="_blank" style="margin-right:1em;">📄 PDF</a>`;
-        if (ch.preview_url) links += `<a href="${ch.preview_url}" target="_blank" style="margin-right:1em;">预览</a>`;
-        if (ch.external_read_url) links += `<a href="${ch.external_read_url}" target="_blank">🔗 在线阅读</a>`;
+      container.appendChild(item);
+    });
+  })
+  .catch(err => {
+    console.error('章节加载错误:', err);
+    const container = document.getElementById('chapters-container');
+    if (container) container.innerHTML = '<p>章节加载失败，请稍后重试。</p>';
+  });
 
-        div.innerHTML = `
-          <strong>${ch.title}</strong><br>
-          ${links || '<small>暂无可用链接</small>'}
+// 加载证据列表 (注意路径是 /data/evidence.json)
+fetch('/data/evidence.json')
+  .then(response => {
+    if (!response.ok) throw new Error('证据JSON加载失败');
+    return response.json();
+  })
+  .then(data => {
+    const container = document.getElementById('evidence-container');
+    if (!container) return;
+
+    if (!data.categories) {
+      console.error('evidence.json 数据结构错误：缺少 categories 字段');
+      container.innerHTML = '<p>数据格式错误</p>';
+      return;
+    }
+
+    container.innerHTML = ''; // 清空加载提示
+
+    data.categories.forEach(category => {
+      if (!category.items || category.items.length === 0) return;
+
+      const catDiv = document.createElement('div');
+      catDiv.style.marginBottom = '2.5em';
+      catDiv.innerHTML = `<h4 style="color:${category.color || '#7bc8f8'}; border-left:4px solid ${category.color || '#7bc8f8'}; padding-left:10px;">${category.categoryName || category.name}</h4>`;
+      container.appendChild(catDiv);
+
+      category.items.forEach(item => {
+        const evDiv = document.createElement('div');
+        evDiv.style.margin = '1em 0 1em 1em';
+        evDiv.style.padding = '0.8em';
+        evDiv.style.borderLeft = '3px solid ' + (category.color || '#007bff');
+        evDiv.style.background = 'rgba(30, 30, 30, 0.3)';
+
+        let linksHtml = '';
+        // 注意：你的 evidence.json 中没有 pdf_url 等字段，需要后续添加
+        // 这里先预留结构，等你在 evidence.json 中添加 pdf_url 后即可显示
+        if (item.pdf_url && item.pdf_url.trim() !== '') {
+          linksHtml += `<a href="${item.pdf_url}" target="_blank" style="margin-right:1em; color:#FFD700;">📄 PDF</a>`;
+        }
+
+        evDiv.innerHTML = `
+          <strong>${item.content}</strong><br>
+          <small style="color:#aaa;">技术要点：${item.technicalPoints ? item.technicalPoints.join('； ') : '暂无'}</small><br>
+          ${linksHtml ? '<div style="margin-top:0.6em;">' + linksHtml + '</div>' : '<small style="color:#888;">(证据文件链接准备中)</small>'}
         `;
-        container.appendChild(div);
+
+        container.appendChild(evDiv);
       });
-    })
-    .catch(err => console.error('章节加载错误:', err));
+    });
+  })
+  .catch(err => {
+    console.error('证据加载错误:', err);
+    const container = document.getElementById('evidence-container');
+    if (container) container.innerHTML = '<p>证据加载失败，请稍后重试。</p>';
+  });    .catch(err => console.error('章节加载错误:', err));
 
   // 加载证据列表
   fetch('/data/evidence.json')
