@@ -1308,7 +1308,24 @@
                       <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
                       </div>
-                      
+                      <!-- 章节状态说明 -->
+<div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
+    <div style='margin-bottom:5px;'><strong>📋 章节状态说明：</strong></div>
+    <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;'>
+        <span style='display:inline-flex;align-items:center;gap:3px;'>
+            <button class='pdf-trigger' style='padding:2px 6px;font-size:0.9rem;cursor:default;'>📄</button> 灰色 = PDF准备中
+        </span>
+        <span style='display:inline-flex;align-items:center;gap:3px;'>
+            <button class='pdf-trigger' style='padding:2px 6px;font-size:0.9rem;cursor:pointer;background:rgba(123,200,248,0.2);'>📄</button> 蓝色 = PDF已就绪
+        </span>
+        <span style='display:inline-flex;align-items:center;gap:3px;'>
+            <button class='external-link' style='padding:2px 6px;font-size:0.9rem;cursor:default;'>🔗</button> 灰色 = 链接准备中
+        </span>
+        <span style='display:inline-flex;align-items:center;gap:3px;'>
+            <button class='external-link' style='padding:2px 6px;font-size:0.9rem;cursor:pointer;background:rgba(76,175,80,0.2);'>🔗</button> 绿色 = 链接已就绪
+        </span>
+    </div>
+</div>
                       <!-- 章节表格 -->
                       <table class='chapter-table'>
                         <thead>
@@ -2468,5 +2485,6 @@
     </script>
 </body>
 </html>
+
 
 
