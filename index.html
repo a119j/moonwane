@@ -1889,21 +1889,7 @@
             <div class="poetry-english">Ink for every phase of the moon.</div>
             <div class="poetry-chinese">月盈月缺，以墨为记</div>
         </div>
-                <!-- 以下是新增的动态内容区域 - 开始 -->
-        <section class="dynamic-content-section" style="padding: 60px 20px; max-width: 1200px; margin: 0 auto;">
-            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 40px; color: #f0f0f0;">完整章节目录</h3>
-            <div id="chapters-container" style="margin-top: 1em;">
-                <!-- 章节内容将由 data-loader.js 动态加载 -->
-                <p style="text-align: center; color: #aaa;">正在加载章节列表...</p>
-            </div>
-
-            <h3 style="text-align: center; font-size: 2rem; margin: 80px 0 40px; color: #f0f0f0;">证据库</h3>
-            <div id="evidence-container" style="margin-top: 1em;">
-                <!-- 证据内容将由 data-loader.js 动态加载 -->
-                <p style="text-align: center; color: #aaa;">正在加载证据库...</p>
-            </div>
-        </section>
-        <!-- 新增的动态内容区域 - 结束 -->
+        
         <footer>
             <div class="contact-email">
                 <a href="mailto:author@moonwane.ink">
@@ -1934,10 +1920,6 @@
                 </div>
             </div>
         </footer>
-   <!-- 在这里插入脚本引用 -->
-<script src="/js/data-loader.js"></script>
-</body>
-</html>
     </section>
 
     <!-- 月亮动画覆盖层 -->
@@ -2370,5 +2352,121 @@
         });
     </script>
 </body>
+</html>                        // 存储当前焦点元素
+                        pdfModal._previousActiveElement = this;
+                    });
+                });
+                
+                // 章节目录GitHub链接
+                document.querySelectorAll('.chapter-actions .external-link[data-github]').forEach(link => {
+                    link.addEventListener('click', function() {
+                        const chapterId = this.getAttribute('data-chapter');
+                        const githubLink = this.getAttribute('data-github');
+                        
+                        if (githubLink && githubLink.trim() !== '') {
+                            window.open(githubLink, '_blank');
+                        } else {
+                            alert(`第${chapterId}章正在准备中，敬请期待！`);
+                        }
+                    });
+                });
+                
+                // 章节目录返回顶部按钮
+                const backToTopBtn = document.getElementById('chapterBackToTop');
+                if (backToTopBtn) {
+                    backToTopBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const details = document.querySelector('.chapter-drawer');
+                        if (details) {
+                            details.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+                
+                // 检查法律免责链接
+                const legalLink = document.querySelector('a[href="legal-disclaimer.html"]');
+                if (legalLink) {
+                    legalLink.addEventListener('click', function(e) {
+                        console.log('法律免责链接点击');
+                        // 正常跳转
+                    });
+                }
+            }, 500);
+        }, 800);
+        
+        // 分享功能
+        function shareToSocial(platform) {
+            const url = window.location.href;
+            const title = document.title;
+            const text = "MoonWane Ink | 墨染月光（月笼沙） - stories etched in fading moonlight";
+            
+            document.getElementById('menuDropdown').classList.remove('active');
+            
+            switch(platform) {
+                case 'share':
+                    if (navigator.share) {
+                        navigator.share({
+                            title: title,
+                            text: text,
+                            url: url
+                        });
+                    } else {
+                        // 备用：复制链接到剪贴板
+                        if (navigator.clipboard && window.isSecureContext) {
+                            navigator.clipboard.writeText(url).then(() => {
+                                alert('链接已复制到剪贴板！');
+                            });
+                        } else {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = url;
+                            textArea.style.position = 'fixed';
+                            textArea.style.opacity = '0';
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            alert('链接已复制到剪贴板！');
+                        }
+                    }
+                    break;
+                case 'save':
+                    alert('保存功能');
+                    break;
+                case 'saveas':
+                    alert('另存为功能');
+                    break;
+                default:
+                    console.log('未知操作');
+            }
+        }
+        
+        // GitHub Pages部署优化：确保所有资源加载完成
+        window.addEventListener('load', function() {
+            console.log('页面完全加载完成');
+            
+            // 检查所有按钮功能
+            console.log('检查按钮功能：');
+            console.log('1. "想看"按钮:', document.getElementById('wantToReadBtn') ? '✓ 存在' : '✗ 缺失');
+            console.log('2. "章节目录"抽屉:', document.querySelector('.chapter-drawer') ? '✓ 存在' : '✗ 缺失');
+            console.log('3. "证据库"抽屉:', document.querySelector('.evidence-drawer') ? '✓ 存在' : '✗ 缺失');
+            console.log('4. "赞助支持"链接:', document.querySelector('.support-link') ? '✓ 存在' : '✗ 缺失');
+            console.log('5. "法律免责"链接:', document.querySelector('a[href="legal-disclaimer.html"]') ? '✓ 存在' : '✗ 缺失');
+            
+            // 移除加载状态提示
+            const loadingElements = document.querySelectorAll('[style*="color:#666"]');
+            loadingElements.forEach(el => {
+                if (el.textContent.includes('加载中')) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        if (el.parentNode) {
+                            el.parentNode.removeChild(el);
+                        }
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
 </html>
+
 
