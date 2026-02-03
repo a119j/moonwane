@@ -1889,7 +1889,21 @@
             <div class="poetry-english">Ink for every phase of the moon.</div>
             <div class="poetry-chinese">月盈月缺，以墨为记</div>
         </div>
-        
+                <!-- 以下是新增的动态内容区域 - 开始 -->
+        <section class="dynamic-content-section" style="padding: 60px 20px; max-width: 1200px; margin: 0 auto;">
+            <h3 style="text-align: center; font-size: 2rem; margin-bottom: 40px; color: #f0f0f0;">完整章节目录</h3>
+            <div id="chapters-container" style="margin-top: 1em;">
+                <!-- 章节内容将由 data-loader.js 动态加载 -->
+                <p style="text-align: center; color: #aaa;">正在加载章节列表...</p>
+            </div>
+
+            <h3 style="text-align: center; font-size: 2rem; margin: 80px 0 40px; color: #f0f0f0;">证据库</h3>
+            <div id="evidence-container" style="margin-top: 1em;">
+                <!-- 证据内容将由 data-loader.js 动态加载 -->
+                <p style="text-align: center; color: #aaa;">正在加载证据库...</p>
+            </div>
+        </section>
+        <!-- 新增的动态内容区域 - 结束 -->
         <footer>
             <div class="contact-email">
                 <a href="mailto:author@moonwane.ink">
@@ -1920,6 +1934,10 @@
                 </div>
             </div>
         </footer>
+   <!-- 在这里插入脚本引用 -->
+<script src="/js/data-loader.js"></script>
+</body>
+</html>
     </section>
 
     <!-- 月亮动画覆盖层 -->
@@ -2353,3 +2371,4 @@
     </script>
 </body>
 </html>
+
