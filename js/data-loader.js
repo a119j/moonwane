@@ -1,24 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. 加载章节目录（完全不变）
+    // 1. 加载章节目录
     fetch('data/chapters.json')
         .then(response => response.json())
         .then(data => {
             displayChapters(data.chapters);
-        });
+        })
+        .catch(error => console.error('Error loading chapters:', error));
 
-    // 2. 加载证据库（只改这里：适配新结构）
+    // 2. 加载证据库
     fetch('data/evidence.json')
         .then(response => response.json())
         .then(data => {
-            // 关键：兼容新旧格式
-            const evidenceList = data.evidence || data; // 新结构用.evidence，旧结构直接使用
+            // 兼容新旧格式：优先使用新格式的 evidence 字段
+            const evidenceList = data.evidence || data;
             
             displayEvidence(evidenceList);
             setupSearchFilter(evidenceList);
-        });
+        })
+        .catch(error => console.error('Error loading evidence:', error));
 });
 
-// 3. 显示证据（只加id，显示HTML完全不变）
+// 3. 显示章节目录
+function displayChapters(chapters) {
+    const container = document.getElementById('chapters-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+    
+    chapters.forEach(chapter => {
+        const chapterElement = document.createElement('div');
+        chapterElement.className = 'chapter-item';
+        chapterElement.id = chapter.id;
+        
+        let linksHtml = '';
+        if (chapter.links && chapter.links.length > 0) {
+            linksHtml = '<div class="chapter-links">';
+            chapter.links.forEach(link => {
+                const platformIcon = getPlatformIcon(link.platform);
+                const dateStr = link.date ? `<span class="link-date">${link.date}</span>` : '';
+                
+                linksHtml += `
+                    <a href="${link.url}" target="_blank" class="link-item ${link.platform}">
+                        ${platformIcon}
+                        <span class="link-title">${link.title}</span>
+                        ${dateStr}
+                    </a>
+                `;
+            });
+            linksHtml += '</div>';
+        }
+
+        chapterElement.innerHTML = `
+            <h3>${chapter.title}</h3>
+            <p>${chapter.description || ''}</p>
+            ${linksHtml}
+        `;
+        
+        container.appendChild(chapterElement);
+    });
+}
+
+// 4. 显示证据库
 function displayEvidence(evidenceList) {
     const container = document.getElementById('evidence-container');
     if (!container) return;
@@ -28,13 +70,108 @@ function displayEvidence(evidenceList) {
     evidenceList.forEach(evidence => {
         const evidenceElement = document.createElement('div');
         evidenceElement.className = 'evidence-item';
-        evidenceElement.dataset.id = evidence.id || ''; // 只加这一行
+        evidenceElement.dataset.id = evidence.id || '';
         
-        // 生成标签HTML（原逻辑不变）
+        // 生成标签HTML
         let tagsHtml = '';
         if (evidence.tags && evidence.tags.length > 0) {
             tagsHtml = '<div class="evidence-tags">';
             evidence.tags.forEach(tag => {
+                tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+            tagsHtml += '</div>';
+        }
+
+        // PDF链接 - 只留一个查看链接
+        let pdfLinkHtml = '';
+        if (evidence.driveUrl) {
+            // 确保是查看链接
+            const viewUrl = evidence.driveUrl.replace('/export?format=pdf', '/view');
+            pdfLinkHtml = `
+                <div class="pdf-link">
+                    <a href="${viewUrl}" target="_blank" class="btn-view">
+                        查看PDF
+                    </a>
+                </div>
+            `;
+        }
+
+        // 显示HTML - 完全保持原样！
+        evidenceElement.innerHTML = `
+            <h4>${evidence.title}</h4>
+            <div class="evidence-meta">
+                <span class="evidence-type">${evidence.type || '文档'}</span>
+                <span class="evidence-year">${evidence.year || ''}</span>
+            </div>
+            <p class="evidence-desc">${evidence.description || ''}</p>
+            ${tagsHtml}
+            ${pdfLinkHtml}
+        `;
+        
+        container.appendChild(evidenceElement);
+    });
+}
+
+// 5. 设置搜索筛选功能
+function setupSearchFilter(evidenceList) {
+    const searchInput = document.getElementById('evidence-search');
+    const typeFilter = document.getElementById('evidence-type-filter');
+    
+    if (!searchInput || !typeFilter) return;
+    
+    function filterEvidence() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedType = typeFilter.value;
+        
+        const filtered = evidenceList.filter(evidence => {
+            // 搜索过滤：标题、描述、标签
+            let matchesSearch = false;
+            if (!searchTerm) {
+                matchesSearch = true;
+            } else {
+                // 搜索标题
+                if (evidence.title && evidence.title.toLowerCase().includes(searchTerm)) {
+                    matchesSearch = true;
+                }
+                // 搜索描述
+                if (!matchesSearch && evidence.description && 
+                    evidence.description.toLowerCase().includes(searchTerm)) {
+                    matchesSearch = true;
+                }
+                // 搜索标签
+                if (!matchesSearch && evidence.tags) {
+                    matchesSearch = evidence.tags.some(tag => 
+                        tag.toLowerCase().includes(searchTerm)
+                    );
+                }
+            }
+            
+            // 类型过滤
+            const matchesType = !selectedType || evidence.type === selectedType;
+            
+            return matchesSearch && matchesType;
+        });
+        
+        displayEvidence(filtered);
+    }
+    
+    searchInput.addEventListener('input', filterEvidence);
+    typeFilter.addEventListener('change', filterEvidence);
+}
+
+// 6. 辅助函数：获取平台图标
+function getPlatformIcon(platform) {
+    const icons = {
+        'Substack': '📰',
+        'Notion': '📝',
+        'Medium': '✍️',
+        'PDF': '📄',
+        'GitHub': '💻',
+        'Google Drive': '☁️',
+        'default': '🔗'
+    };
+    return icons[platform] || icons.default;
+}            evidence.tags.forEach(tag => {
                 tagsHtml += `<span class="tag">${tag}</span>`;
             });
             tagsHtml += '</div>';
