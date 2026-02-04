@@ -1,40 +1,107 @@
-
-// evidence.json - 证据库数据
 {
-  "categories": [
+  "evidence": [
     {
-      "categoryName": "一、核心证据分类",
-      "color": "#4CAF50",
-      "items": [
-        {
-          "id": 1,
-          "content": "车辆事故现场原始照片与警方案件报告编号",
-          "technicalPoints": [
-            "照片拍摄时间、GPS坐标、原始分辨率",
-            "警方报告编号与对应的官方数据库查询路径",
-            "事故现场轮胎痕迹与车辆位置的测量数据"
-          ],
-          "pdfId": "evidence_001"
-        },
-        {
-          "id": 2,
-          "content": "车辆ECU（行车电脑）数据提取报告",
-          "technicalPoints": [
-            "数据提取时间点与设备型号（如Bosch CDR）",
-            "原始十六进制数据与解析后的速度、刹车、转向信号",
-            "重点标定\"六秒连接\"期间的数据包序列与时间戳"
-          ],
-          "pdfId": "evidence_002"
-        },
-        {
-          "id": 3,
-          "content": "轮胎专业检测机构分析报告",
-          "technicalPoints": [
-            "检测机构资质认证编号（如ISO/IEC 17025）",
-            "轮胎磨损模式、帘线断裂方向的显微镜分析照片",
-            "胎压与负荷关系的工程计算模型"
-          ],
-          "pdfId": "evidence_003"
+      "id": "ev-001",
+      "title": "车辆事故现场原始照片与警方案件报告编号",
+      "description": "车辆事故现场的原始高清照片与警方出具的案件报告编号记录",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_1/view",
+      "type": "document",
+      "year": 2024,
+      "tags": ["交通事故", "现场证据", "照片", "警方报告"],
+      "chapterId": "chapter-1"
+    },
+    {
+      "id": "ev-002",
+      "title": "医疗诊断与检查报告",
+      "description": "医院出具的伤者医疗诊断证明及相关检查报告",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_2/view",
+      "type": "medical",
+      "year": 2024,
+      "tags": ["医疗记录", "诊断证明", "检查报告"],
+      "chapterId": "chapter-2"
+    },
+    {
+      "id": "ev-003",
+      "title": "车辆维修报价与评估单",
+      "description": "4S店出具的车辆维修详细报价单和损坏评估报告",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_3/view",
+      "type": "document",
+      "year": 2024,
+      "tags": ["维修费用", "车辆损坏", "报价单", "评估报告"],
+      "chapterId": "chapter-3"
+    },
+    {
+      "id": "ev-004",
+      "title": "交通事故重建技术研究",
+      "description": "关于交通事故重建技术的学术研究论文",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_4/view",
+      "type": "academic",
+      "year": 2023,
+      "tags": ["学术研究", "事故重建", "技术分析"],
+      "chapterId": "chapter-4"
+    },
+    {
+      "id": "ev-005",
+      "title": "道路交通安全法规条文",
+      "description": "与本案相关的道路交通安全法规条文汇编",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_5/view",
+      "type": "legal",
+      "year": 2024,
+      "tags": ["法律法规", "条文汇编", "法律依据"],
+      "chapterId": "chapter-5"
+    },
+    {
+      "id": "ev-006",
+      "title": "现场监控录像分析报告",
+      "description": "基于现场监控录像制作的时间轴分析报告",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_6/view",
+      "type": "analysis",
+      "year": 2024,
+      "tags": ["监控录像", "时间轴", "视频分析"],
+      "chapterId": "chapter-6"
+    },
+    {
+      "id": "ev-007",
+      "title": "交通事故鉴定专家意见书",
+      "description": "交通事故鉴定专家出具的书面意见书",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_7/view",
+      "type": "expert",
+      "year": 2024,
+      "tags": ["专家意见", "专业鉴定", "权威分析"],
+      "chapterId": "chapter-1"
+    },
+    {
+      "id": "ev-008",
+      "title": "证人证言笔录",
+      "description": "现场目击证人的证言笔录文件",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_8/view",
+      "type": "document",
+      "year": 2024,
+      "tags": ["证人证言", "笔录", "目击者"],
+      "chapterId": "chapter-1"
+    },
+    {
+      "id": "ev-009",
+      "title": "保险理赔相关文件",
+      "description": "保险公司出具的理赔申请和相关文件",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_9/view",
+      "type": "document",
+      "year": 2024,
+      "tags": ["保险理赔", "保险公司", "理赔文件"],
+      "chapterId": "chapter-3"
+    },
+    {
+      "id": "ev-010",
+      "title": "天气与道路状况报告",
+      "description": "事故发生时段的天气和道路状况官方报告",
+      "driveUrl": "https://drive.google.com/file/d/YOUR_FILE_ID_10/view",
+      "type": "report",
+      "year": 2024,
+      "tags": ["天气报告", "道路状况", "环境因素"],
+      "chapterId": "chapter-1"
+    }
+  ]
+}          "pdfId": "evidence_003"
         },
         {
           "id": 4,
