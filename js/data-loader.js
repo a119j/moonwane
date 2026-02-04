@@ -138,6 +138,19 @@ function renderEvidenceContent(evidenceList) {
             <p>• 专业读者：可直接查阅各 Exhibit 编号，获取对应的原始数据与技术说明。</p>
         </div>
         
+        <!-- 版权及法律声明（固定于顶部） -->
+        <div style="font-size:11px; color:#777; line-height:1.2; margin: 5px 0 25px 0; padding:10px 0; text-align:center; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <p style="margin:2px 0;">
+                以上图表/资料仅用于《六秒钉六年》作品之事实佐证，未经授权禁止用于商业转载。部分数据已根据隐私法（Privacy Act）进行脱敏处理。
+            </p>
+            <p style="margin:2px 0;">
+                Copyright & Legal Notice: The images above are provided solely as factual evidence for Six Seconds, Six Years. Unauthorized commercial use is prohibited. Certain data has been redacted in compliance with the Privacy Act.
+            </p>
+            <p style="margin:2px 0; font-size:10px; color:#666;">
+                © Moonwane Project • ${new Date().getFullYear()}
+            </p>
+        </div>
+        
         <!-- 数据库目录 -->
         <h3>数据库目录</h3>
         
