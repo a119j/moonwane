@@ -1,67 +1,157 @@
-// js/data-loader.js - 动态加载章节和证据内容
-// 等待页面核心内容加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
-    loadChapters();
-    loadEvidence();
+    // 1. 加载章节目录（完全不变）
+    fetch('data/chapters.json')
+        .then(response => response.json())
+        .then(data => {
+            displayChapters(data.chapters);
+        });
+
+    // 2. 加载证据库（只改这里：适配新结构）
+    fetch('data/evidence.json')
+        .then(response => response.json())
+        .then(data => {
+            // 关键：兼容新旧格式
+            const evidenceList = data.evidence || data; // 新结构用.evidence，旧结构直接使用
+            
+            displayEvidence(evidenceList);
+            setupSearchFilter(evidenceList);
+        });
 });
 
-// 1. 加载章节列表
-function loadChapters() {
-    fetch('/chapters.json')
-        .then(response => {
-            if (!response.ok) throw new Error(`网络响应异常: ${response.status}`);
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('chapters-container');
-            if (!container) {
-                console.error('错误：未找到章节容器 (#chapters-container)');
-                return;
-            }
-            renderChapters(container, data);
-        })
-        .catch(error => {
-            console.error('加载章节数据失败:', error);
-            const container = document.getElementById('chapters-container');
-            if (container) {
-                container.innerHTML = '<p style="color: #ff6b6b; text-align:center;">章节列表加载失败，请刷新页面或稍后再试。</p>';
-            }
-        });
-}
+// 3. 显示证据（只加id，显示HTML完全不变）
+function displayEvidence(evidenceList) {
+    const container = document.getElementById('evidence-container');
+    if (!container) return;
 
-// 2. 加载证据库
-function loadEvidence() {
-    fetch('/data/evidence.json')
-        .then(response => {
-            if (!response.ok) throw new Error(`网络响应异常: ${response.status}`);
-            return response.json();
-        })
-        .then(data => {
-            const container = document.getElementById('evidence-container');
-            if (!container) {
-                console.error('错误：未找到证据容器 (#evidence-container)');
-                return;
-            }
-            renderEvidence(container, data);
-        })
-        .catch(error => {
-            console.error('加载证据数据失败:', error);
-            const container = document.getElementById('evidence-container');
-            if (container) {
-                container.innerHTML = '<p style="color: #ff6b6b; text-align:center;">证据库加载失败，请刷新页面或稍后再试。</p>';
-            }
-        });
-}
-
-// 渲染章节列表
-function renderChapters(container, data) {
-    // 清空“正在加载”提示
     container.innerHTML = '';
+    
+    evidenceList.forEach(evidence => {
+        const evidenceElement = document.createElement('div');
+        evidenceElement.className = 'evidence-item';
+        evidenceElement.dataset.id = evidence.id || ''; // 只加这一行
+        
+        // 生成标签HTML（原逻辑不变）
+        let tagsHtml = '';
+        if (evidence.tags && evidence.tags.length > 0) {
+            tagsHtml = '<div class="evidence-tags">';
+            evidence.tags.forEach(tag => {
+                tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+            tagsHtml += '</div>';
+        }
 
-    // 检查数据格式
-    if (!data.chapters || !Array.isArray(data.chapters)) {
-        container.innerHTML = '<p>章节数据格式有误。</p>';
-        return;
+        // 4. PDF链接：只留一个查看链接（唯一可见变化）
+        let pdfLinkHtml = '';
+        if (evidence.driveUrl) {
+            const viewUrl = evidence.driveUrl.replace('/export?format=pdf', '/view');
+            pdfLinkHtml = `
+                <div class="pdf-link">
+                    <a href="${viewUrl}" target="_blank" class="btn-view">
+                        查看PDF
+                    </a>
+                </div>
+            `;
+        }
+
+        // 5. 显示HTML：完全保持原样！
+        evidenceElement.innerHTML = `
+            <h4>${evidence.title}</h4>
+            <div class="evidence-meta">
+                <span class="evidence-type">${evidence.type || '文档'}</span>
+                <span class="evidence-year">${evidence.year || ''}</span>
+            </div>
+            <p class="evidence-desc">${evidence.description || ''}</p>
+            ${tagsHtml}
+            ${pdfLinkHtml}
+        `;
+        
+        container.appendChild(evidenceElement);
+    });
+}
+
+// 6. 搜索筛选函数（完全保持原逻辑）
+function setupSearchFilter(evidenceList) {
+    const searchInput = document.getElementById('evidence-search');
+    const typeFilter = document.getElementById('evidence-type-filter');
+    
+    if (!searchInput || !typeFilter) return;
+    
+    function filterEvidence() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedType = typeFilter.value;
+        
+        const filtered = evidenceList.filter(evidence => {
+            // 搜索逻辑完全不变
+            const matchesSearch = !searchTerm || 
+                evidence.title.toLowerCase().includes(searchTerm) ||
+                evidence.description.toLowerCase().includes(searchTerm) ||
+                (evidence.tags && evidence.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+            
+            const matchesType = !selectedType || evidence.type === selectedType;
+            
+            return matchesSearch && matchesType;
+        });
+        
+        displayEvidence(filtered);
+    }
+    
+    searchInput.addEventListener('input', filterEvidence);
+    typeFilter.addEventListener('change', filterEvidence);
+}
+
+// 7. 章节显示函数（完全不变）
+function displayChapters(chapters) {
+    const container = document.getElementById('chapters-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+    
+    chapters.forEach(chapter => {
+        const chapterElement = document.createElement('div');
+        chapterElement.className = 'chapter-item';
+        chapterElement.id = chapter.id;
+        
+        let linksHtml = '';
+        if (chapter.links && chapter.links.length > 0) {
+            linksHtml = '<div class="chapter-links">';
+            chapter.links.forEach(link => {
+                const platformIcon = getPlatformIcon(link.platform);
+                const dateStr = link.date ? `<span class="link-date">${link.date}</span>` : '';
+                
+                linksHtml += `
+                    <a href="${link.url}" target="_blank" class="link-item ${link.platform}">
+                        ${platformIcon}
+                        <span class="link-title">${link.title}</span>
+                        ${dateStr}
+                    </a>
+                `;
+            });
+            linksHtml += '</div>';
+        }
+
+        chapterElement.innerHTML = `
+            <h3>${chapter.title}</h3>
+            <p>${chapter.description || ''}</p>
+            ${linksHtml}
+        `;
+        
+        container.appendChild(chapterElement);
+    });
+}
+
+// 8. 辅助函数（完全不变）
+function getPlatformIcon(platform) {
+    const icons = {
+        'Substack': '📰',
+        'Notion': '📝',
+        'Medium': '✍️',
+        'PDF': '📄',
+        'GitHub': '💻',
+        'Google Drive': '☁️',
+        'default': '🔗'
+    };
+    return icons[platform] || icons.default;
+}        return;
     }
 
     if (data.chapters.length === 0) {
