@@ -1,40 +1,334 @@
+// data-loader.js - 动态加载证据库数据
 document.addEventListener('DOMContentLoaded', function() {
-    // 加载证据库
+    console.log('data-loader.js 开始加载');
+    
+    // 等待页面其他内容加载完成
     setTimeout(() => {
-        fetch('data/evidence.json')
-            .then(response => {
-                if (!response.ok) throw new Error('Evidence加载失败');
-                return response.json();
-            })
-            .then(data => {
-                // 兼容新旧格式
-                const evidenceList = data.evidence || data;
-                
-                // 更新搜索计数
-                const searchCount = document.getElementById('searchCount');
-                if (searchCount) {
-                    searchCount.textContent = `共 ${evidenceList.length} 条证据`;
-                }
-                
-                // 显示证据库
-                displayEvidence(evidenceList);
-                
-                // 设置搜索和筛选功能
-                setupSearchFilter(evidenceList);
-                
-                // 更新类型筛选器选项
-                updateTypeFilterOptions(evidenceList);
-            })
-            .catch(error => {
-                console.error('Error loading evidence:', error);
-                const container = document.getElementById('evidence-container');
-                if (container) {
-                    container.innerHTML = `
-                        <div style="text-align:center;padding:40px;color:#ff6b6b;">
-                            <i class="fas fa-exclamation-triangle" style="font-size:24px;"></i>
-                            <p style="margin-top:10px;">证据库加载失败，请刷新页面</p>
-                        </div>
-                    `;
+        loadEvidenceData();
+    }, 800);
+});
+
+// 加载证据库数据
+function loadEvidenceData() {
+    const evidenceContainer = document.getElementById('evidence-container');
+    const searchCount = document.getElementById('searchCount');
+    
+    if (!evidenceContainer) {
+        console.error('找不到证据容器: #evidence-container');
+        return;
+    }
+    
+    // 显示加载状态
+    evidenceContainer.innerHTML = `
+        <div style="text-align:center;padding:40px;color:#888;">
+            <i class="fas fa-spinner fa-spin" style="font-size:24px;"></i>
+            <p style="margin-top:10px;">加载证据库数据...</p>
+        </div>
+    `;
+    
+    if (searchCount) {
+        searchCount.textContent = '加载中...';
+    }
+    
+    // 从 evidence.json 加载数据
+    fetch('data/evidence.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('证据数据加载成功:', data);
+            
+            // 兼容不同格式
+            let evidenceList;
+            if (Array.isArray(data)) {
+                evidenceList = data; // 直接是数组
+            } else if (data.evidence && Array.isArray(data.evidence)) {
+                evidenceList = data.evidence; // 包含evidence字段
+            } else {
+                console.warn('未知的数据格式:', data);
+                evidenceList = [];
+            }
+            
+            // 渲染证据库
+            renderEvidenceTable(evidenceList);
+            
+            // 设置搜索功能
+            setupSearchFunctionality(evidenceList);
+            
+            // 更新计数
+            if (searchCount) {
+                searchCount.textContent = `共 ${evidenceList.length} 条证据`;
+            }
+        })
+        .catch(error => {
+            console.error('加载证据数据失败:', error);
+            
+            // 显示错误信息
+            evidenceContainer.innerHTML = `
+                <div style="text-align:center;padding:40px;color:#ff6b6b;">
+                    <i class="fas fa-exclamation-triangle" style="font-size:24px;"></i>
+                    <p style="margin-top:10px;">证据库加载失败</p>
+                    <p style="font-size:0.9rem;margin-top:5px;color:#aaa;">错误: ${error.message}</p>
+                    <button onclick="loadEvidenceData()" style="margin-top:15px;padding:8px 16px;background:rgba(123,200,248,0.2);border:1px solid rgba(123,200,248,0.4);color:#7bc8f8;border-radius:4px;cursor:pointer;">
+                        重试
+                    </button>
+                </div>
+            `;
+            
+            if (searchCount) {
+                searchCount.textContent = '加载失败';
+            }
+        });
+}
+
+// 渲染证据表格
+function renderEvidenceTable(evidenceList) {
+    const container = document.getElementById('evidence-container');
+    if (!container) return;
+    
+    if (!evidenceList || evidenceList.length === 0) {
+        container.innerHTML = `
+            <div style="text-align:center;padding:40px;color:#888;">
+                <p>暂无证据数据</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // 生成表格HTML
+    let tableHTML = `
+        <h3>数据库目录</h3>
+        <h4>一、核心证据分类</h4>
+        <table class="evidence-table" id="dynamic-evidence-table">
+            <thead>
+                <tr>
+                    <th style="color: #888; font-weight: 500;">文件名称</th>
+                    <th style="color: #888; font-weight: 500;">包含内容建议</th>
+                    <th style="color: #888; font-weight: 500;">对应章节</th>
+                    <th style="color: #888; font-weight: 500;">PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    evidenceList.forEach((evidence, index) => {
+        // 从Google Drive URL提取文件ID
+        const fileId = extractFileId(evidence.driveUrl);
+        
+        // 年份显示
+        const yearHtml = evidence.year ? 
+            `<br><span style="font-size:0.85rem;color:#7bc8f8;">${evidence.year}年</span>` : '';
+        
+        // 类型标签
+        const typeLabel = evidence.type ? 
+            `<span style="display:inline-block;padding:2px 6px;font-size:0.8rem;background:rgba(123,200,248,0.1);color:#7bc8f8;border-radius:4px;margin-bottom:5px;">${evidence.type}</span>` : '';
+        
+        // 标签显示
+        let tagsHtml = '';
+        if (evidence.tags && evidence.tags.length > 0) {
+            tagsHtml = `<div style="margin-top:5px;">${evidence.tags.map(tag => 
+                `<span style="display:inline-block;padding:2px 6px;margin:2px;font-size:0.75rem;background:rgba(76,175,80,0.1);color:#4CAF50;border-radius:3px;">${tag}</span>`
+            ).join('')}</div>`;
+        }
+        
+        // PDF按钮（如果有效）
+        let pdfButtonHtml;
+        if (fileId) {
+            pdfButtonHtml = `
+                <button class="pdf-trigger" data-dynamic="true" 
+                        data-file-id="${fileId}"
+                        data-file-name="${evidence.title}"
+                        style="font-size:1.2rem;background:none;border:none;color:#7bc8f8;cursor:pointer;padding:5px;border-radius:4px;transition:all 0.3s ease;"
+                        title="查看 ${evidence.title}">
+                    📄
+                </button>
+            `;
+        } else {
+            pdfButtonHtml = '<span style="color:#888;font-size:0.9rem;">准备中</span>';
+        }
+        
+        // 生成搜索关键词（用于筛选）
+        const searchKeywords = [
+            evidence.title || '',
+            evidence.description || '',
+            evidence.type || '',
+            evidence.chapterId || '',
+            evidence.year ? evidence.year.toString() : '',
+            evidence.tags ? evidence.tags.join(' ') : ''
+        ].join(' ').toLowerCase().trim();
+        
+        tableHTML += `
+            <tr data-search-keywords="${searchKeywords}" data-type="${evidence.type || ''}">
+                <td>
+                    <strong>${evidence.title || '未命名证据'}</strong>
+                    ${yearHtml}
+                    ${typeLabel}
+                    ${tagsHtml}
+                </td>
+                <td>${evidence.description || ''}</td>
+                <td>${evidence.chapterId ? `第${evidence.chapterId}章` : '通用'}</td>
+                <td>${pdfButtonHtml}</td>
+            </tr>
+        `;
+    });
+    
+    tableHTML += `
+            </tbody>
+        </table>
+        
+        <!-- 关键法证技术点 -->
+        <div class="technical-points">
+            <h4>二、关键法证技术点</h4>
+            <p>• 信令隧道 #777：用于追踪后台数据时间戳，证明手机活动并非驾驶员操作（Exhibit A–D）</p>
+            <p>• 65 psi 高胎压：物理证据，指向爆胎真实成因（Exhibit E–J）</p>
+            <p>• 0.167 秒黑烟：动力学分析关键时间节点（Exhibit K–P）</p>
+        </div>
+        
+        <!-- 核心真相 -->
+        <div class="truth-summary">
+            <h4>三、核心真相（提要）</h4>
+            <p>• 时间差维度：125 秒差异证伪"分心驾驶"（Exhibit A–D）</p>
+            <p>• 物理极限维度：爆胎真相（Exhibit E–J）</p>
+            <p>• 动力学维度：0.29 秒反应窗口（Exhibit K–P）</p>
+            <p>• 证据链偏差：预设结论导致的裁撤（Exhibit Q–R）</p>
+        </div>
+    `;
+    
+    container.innerHTML = tableHTML;
+    
+    // 绑定动态生成的PDF按钮事件
+    setTimeout(() => {
+        bindDynamicPdfButtons();
+    }, 100);
+}
+
+// 设置搜索和筛选功能
+function setupSearchFunctionality(evidenceList) {
+    const searchInput = document.getElementById('evidenceSearch');
+    const typeFilter = document.getElementById('evidence-type-filter');
+    const resultCount = document.getElementById('searchCount');
+    
+    if (!searchInput || !typeFilter) {
+        console.warn('找不到搜索元素');
+        return;
+    }
+    
+    // 搜索函数
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedType = typeFilter.value;
+        
+        const table = document.getElementById('dynamic-evidence-table');
+        if (!table) return;
+        
+        const rows = table.querySelectorAll('tbody tr');
+        let visibleCount = 0;
+        
+        rows.forEach(row => {
+            const searchKeywords = row.getAttribute('data-search-keywords') || '';
+            const evidenceType = row.getAttribute('data-type') || '';
+            
+            // 检查是否匹配搜索词
+            const matchesSearch = !searchTerm || searchKeywords.includes(searchTerm);
+            
+            // 检查是否匹配类型筛选
+            const matchesType = !selectedType || evidenceType === selectedType;
+            
+            // 显示/隐藏行
+            if (matchesSearch && matchesType) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        
+        // 更新结果计数
+        if (resultCount) {
+            const total = rows.length;
+            if (visibleCount === total && !searchTerm && !selectedType) {
+                resultCount.textContent = `共 ${total} 条证据`;
+            } else {
+                resultCount.textContent = `找到 ${visibleCount} / ${total} 条证据`;
+            }
+        }
+    }
+    
+    // 绑定事件
+    searchInput.addEventListener('input', performSearch);
+    typeFilter.addEventListener('change', performSearch);
+    
+    // 初始搜索
+    setTimeout(performSearch, 200);
+}
+
+// 绑定动态生成的PDF按钮事件
+function bindDynamicPdfButtons() {
+    const pdfButtons = document.querySelectorAll('.pdf-trigger[data-dynamic="true"]');
+    
+    pdfButtons.forEach(button => {
+        // 移除可能重复的事件监听器
+        button.replaceWith(button.cloneNode(true));
+    });
+    
+    // 重新获取元素并绑定
+    document.querySelectorAll('.pdf-trigger[data-dynamic="true"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const fileId = this.getAttribute('data-file-id');
+            const fileName = this.getAttribute('data-file-name') || '证据文件';
+            
+            if (!fileId || fileId.trim() === '') {
+                alert(`"${fileName}"正在准备中，敬请期待！`);
+                return;
+            }
+            
+            // 使用页面中已有的showPdfModal函数
+            if (typeof window.showPdfModal === 'function') {
+                window.showPdfModal(fileId, fileName);
+            } else {
+                // 备用方案：直接打开PDF
+                const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                window.open(previewUrl, '_blank');
+            }
+        });
+    });
+}
+
+// 从Google Drive URL提取文件ID
+function extractFileId(driveUrl) {
+    if (!driveUrl || typeof driveUrl !== 'string') return '';
+    
+    // 匹配 /d/FILE_ID/ 格式
+    const match1 = driveUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match1) return match1[1];
+    
+    // 匹配 id=FILE_ID 格式
+    const match2 = driveUrl.match(/id=([a-zA-Z0-9_-]+)/);
+    if (match2) return match2[1];
+    
+    // 尝试直接提取看起来像文件ID的部分
+    const parts = driveUrl.split('/');
+    for (const part of parts) {
+        if (part.length >= 25 && part.length <= 50 && /^[a-zA-Z0-9_-]+$/.test(part)) {
+            return part;
+        }
+    }
+    
+    return '';
+}
+
+// 导出函数供全局使用
+window.loadEvidenceData = loadEvidenceData;
+window.renderEvidenceTable = renderEvidenceTable;
+window.setupSearchFunctionality = setupSearchFunctionality;
+window.bindDynamicPdfButtons = bindDynamicPdfButtons;
+window.extractFileId = extractFileId;                    `;
                 }
             });
     }, 500);
