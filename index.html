@@ -1736,15 +1736,25 @@
                 </details>
                 
                 <!-- 证据库 - 抽屉式 -->
-                <details class="evidence-drawer">
-                    <summary>🌐 证据库 / Evidence Hub</summary>
-                    
-                    <div class="evidence-drawer-content" id="evidenceDrawerContent">
-                        <!-- 搜索框 -->
-                        <div class="evidence-search-container">
-                            <input type="search" id="evidenceSearch" placeholder="搜索证据名称、描述或章节..." autocomplete="off">
-                            <span class="search-count" id="searchCount">共 4 条证据</span>
-                        </div>
+<details class="evidence-drawer">
+<summary>🌐 证据库 / Evidence Hub</summary>
+
+<div class="evidence-drawer-content" id="evidenceDrawerContent">
+<!-- 搜索框 -->
+<div class="evidence-search-container">
+<input type="search" id="evidenceSearch" placeholder="搜索证据名称、描述或章节..." autocomplete="off">
+<select id="evidence-type-filter" style="width:100%;margin-top:10px;padding:10px;background:rgba(20,25,40,0.8);border:1px solid rgba(123,200,248,0.3);border-radius:8px;color:#e0e0e0;font-family:inherit;">
+<option value="">所有类型</option>
+<option value="document">文档</option>
+<option value="report">报告</option>
+<option value="medical">医疗记录</option>
+<option value="academic">学术研究</option>
+<option value="legal">法律文件</option>
+<option value="analysis">分析报告</option>
+<option value="expert">专家意见</option>
+</select>
+<span class="search-count" id="searchCount">加载中...</span>
+</div>
                         
                         <!-- 内容区域 -->
                         <div class="evidence-content">
@@ -1956,7 +1966,8 @@
             <iframe class="pdf-iframe" id="pdfFrame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
         </div>
     </div>
-
+<!-- 动态数据加载器 -->
+<script src="js/data-loader.js"></script>
     <script>
         // 安全防护：防止网站被嵌入到其他页面中
         if (self != top) {
@@ -2098,44 +2109,36 @@
                 return false;
             });
             
-            // 证据库搜索功能
-            if (evidenceSearch && evidenceTable) {
-                const evidenceRows = evidenceTable.querySelectorAll('tbody tr');
-                const totalRows = evidenceRows.length;
-                
-                function updateSearchCount(count) {
-                    searchCount.textContent = count === totalRows ? 
-                        `共 ${totalRows} 条证据` : 
-                        `找到 ${count} / ${totalRows} 条证据`;
-                }
-                
-                updateSearchCount(totalRows);
-                
-                evidenceSearch.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase().trim();
-                    let visibleCount = 0;
-                    
-                    evidenceRows.forEach(row => {
-                        const searchText = row.getAttribute('data-search').toLowerCase();
-                        if (searchTerm === '' || searchText.includes(searchTerm)) {
-                            row.style.display = '';
-                            visibleCount++;
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
-                    
-                    updateSearchCount(visibleCount);
-                });
-                
-                // 搜索框清空按钮
-                evidenceSearch.addEventListener('search', function() {
-                    if (this.value === '') {
-                        evidenceRows.forEach(row => row.style.display = '');
-                        updateSearchCount(totalRows);
-                    }
-                });
+            // 证据库搜索功能 - 由 data-loader.js 处理
+// 这里只保留兼容性代码
+setTimeout(() => {
+    const evidenceSearch = document.getElementById('evidenceSearch');
+    const searchCount = document.getElementById('searchCount');
+    const typeFilter = document.getElementById('evidence-type-filter');
+    
+    if (evidenceSearch && searchCount && typeFilter) {
+        // 初始文本
+        searchCount.textContent = '等待加载...';
+        
+        // 搜索框和类型筛选器的通用处理
+        function updateSearchResults() {
+            // data-loader.js 会处理实际搜索
+            if (typeof window.updateEvidenceSearch === 'function') {
+                window.updateEvidenceSearch();
             }
+        }
+        
+        evidenceSearch.addEventListener('input', updateSearchResults);
+        typeFilter.addEventListener('change', updateSearchResults);
+        
+        // 搜索框清空按钮
+        evidenceSearch.addEventListener('search', function() {
+            if (this.value === '') {
+                updateSearchResults();
+            }
+        });
+    }
+}, 1000);
             
             // PDF模态框功能
             function showPdfModal(fileId, fileName) {
@@ -2164,16 +2167,63 @@
                 }
             }
             
-            // PDF按钮点击事件
-            document.querySelectorAll('.pdf-trigger').forEach(button => {
-                button.addEventListener('click', function() {
-                    const fileId = this.getAttribute('data-file-id');
-                    const fileName = this.getAttribute('data-file-name') || '证据文件';
-                    const chapter = this.getAttribute('data-chapter');
-                    
-                    showPdfModal(fileId, fileName);
-                });
+            // PDF按钮点击事件 - 支持静态和动态内容
+function handlePdfClick(e) {
+    // 检查是否是PDF按钮
+    const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
+        e.target : e.target.closest('.pdf-trigger');
+    
+    if (!pdfTrigger) return;
+    
+    const fileId = pdfTrigger.getAttribute('data-file-id');
+    const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
+    const chapter = pdfTrigger.getAttribute('data-chapter');
+    
+    if (!fileId || fileId.trim() === '') {
+        alert(`"${fileName}"正在准备中，敬请期待！`);
+        return;
+    }
+    
+    // 使用页面中已有的showPdfModal函数
+    if (typeof window.showPdfModal === 'function') {
+        window.showPdfModal(fileId, fileName);
+    } else {
+        // 备用方案：直接打开PDF
+        const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+        window.open(previewUrl, '_blank');
+    }
+    
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// 绑定事件到文档，支持动态生成的内容
+document.addEventListener('click', function(e) {
+    handlePdfClick(e);
+});
+
+// 原有静态PDF按钮的兼容处理（保持原有功能）
+setTimeout(() => {
+    // 原有的章节目录PDF按钮
+    document.querySelectorAll('.chapter-actions .pdf-trigger').forEach(button => {
+        if (!button.hasAttribute('data-listener-bound')) {
+            button.setAttribute('data-listener-bound', 'true');
+            button.addEventListener('click', function(e) {
+                handlePdfClick(e);
             });
+        }
+    });
+    
+    // 原有的证据库PDF按钮
+    document.querySelectorAll('#evidenceTable .pdf-trigger').forEach(button => {
+        if (!button.hasAttribute('data-listener-bound')) {
+            button.setAttribute('data-listener-bound', 'true');
+            button.addEventListener('click', function(e) {
+                handlePdfClick(e);
+            });
+        }
+    });
+}, 500);
             
             // 关闭PDF模态框
             pdfClose.addEventListener('click', closePdfModal);
@@ -2370,3 +2420,4 @@
     </script>
 </body>
 </html>
+
