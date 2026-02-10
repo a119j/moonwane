@@ -1,0 +1,7 @@
+# _config.yml
+title: MoonWane Ink
+permalink: none
+
+# 完全禁用Jekyll对静态文件的处理
+include: [ ]
+exclude: [ ]
