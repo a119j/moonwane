@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《六秒钉六年》封面 | MoonWane Ink</title>
+    
+    <!-- 复用现有样式 -->
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        /* 封面页特有样式 */
+        .cover-container {
+            min-height: 100vh;
+            background-color: #0a0a14;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .cover-image {
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 3rem;
+        }
+        
+        .start-reading-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .start-reading-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .book-title {
+            color: #e0e0e0;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .author-name {
+            color: #a0a0c0;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover-container">
+        <!-- 封面图片 -->
+        <img src="MEITU_20260205_171252361.jpg" alt="《六秒钉六年》封面" class="cover-image">
+        
+        <!-- 标题和作者 -->
+        <div class="book-title">《六秒钉六年》</div>
+        <div class="author-name">墨染月光 | MoonWane.Ink</div>
+        
+        <!-- 开始阅读按钮 -->
+        <button class="start-reading-btn" id="startReadingBtn">
+            开始阅读
+            <i class="fas fa-arrow-right"></i>
+        </button>
+        
+        <!-- 返回首页链接 -->
+        <a href="index.html" style="margin-top: 2rem; color: #667eea; text-decoration: none;">
+            <i class="fas fa-home"></i> 返回首页
+        </a>
+    </div>
+
+    <script>
+        // 开始阅读按钮点击事件
+        document.getElementById('startReadingBtn').addEventListener('click', function() {
+            // 跳转到阅读器，从第一章开始
+            window.location.href = 'reader.html?chapter=1';
+        });
+        
+        // 如果直接访问reader.html时没有章节参数，也可以添加一个回退
+        // 但这部分逻辑应该在reader.html中处理
+    </script>
+</body>
+</html>
