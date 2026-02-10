@@ -20,7 +20,59 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* 这里已有的一些CSS样式... */
+
+/* === 新增：三角符号和书籍图标样式 === */
+.triangle-icon {
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.book-icon {
+  margin-right: 8px;
+}
+
+/* details展开时三角符号旋转 */
+details[open] .triangle-icon {
+  transform: rotate(90deg);
+}
+
+/* 隐藏返回顶部按钮（但不删除CSS，以后可能用） */
+.back-to-top {
+  display: none !important;
+}
+/* === 新增结束 === */
+
+/* 这里还有其他的CSS样式... */
+</style>
+    4.0/css/all.min.css">
+    /* 三角符号和书籍图标样式 */
+.triangle-icon {
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.book-icon {
+  margin-right: 8px;
+}
+
+/* details展开时三角符号旋转 */
+details[open] .triangle-icon {
+  transform: rotate(90deg);
+}
+
+/* 隐藏返回顶部按钮（但不删除CSS，以后可能用） */
+.back-to-top {
+  display: none !important;
+}
     <style>
         * {
             margin: 0;
@@ -1300,14 +1352,21 @@
                 </div>
                 
                 <!-- 三幕章节目录 - 表格形式（带滚动条） -->
-                <details class="chapter-drawer">
-                  <summary>📖 完整章节目录/内容（共18章+番外，约15万字）</summary>
+                <details class="chapter-drawer" id="chapterContents">
+  <summary>
+    <span class="triangle-icon">▶</span>
+    <span class="book-icon">📖</span> 
+    完整章节目录/内容（共18章+番外，约15万字）
+  </summary>
                   <div class="chapter-drawer-content">
                       <div class="inject-content" data-content="
                       <!-- 提示文字 -->
                       <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
-                      </div>
+                      </div><div style='color:#a0c8ff;font-size:0.95rem;margin-bottom:25px;padding:12px 15px;background:rgba(40,60,100,0.2);border-radius:8px;border-left:3px solid #a0c8ff;'>
+  📚 <strong>连载状态说明：</strong>作品正在创作中，各章节将陆续更新上线。目前提供章节预览，完整内容敬请期待！
+</div>
+                          
                       <!-- 章节状态说明 -->
 <div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
     <div style='margin-bottom:5px;'><strong>📋 章节状态说明：</strong></div>
@@ -2004,7 +2063,13 @@
             const menuDropdown = document.getElementById('menuDropdown');
             const supportLink = document.querySelector('.support-link');
             const scriptURL = 'https://script.google.com/macros/s/AKfycbycXq1GoTM56XsQdty7BCvd70Gi12gdmG_mdn0vsVX_rrf6eXvz-CBIQKMXHzTNKDAQMA/exec';
-            
+             const startReadingBtn = document.getElementById('startReadingBtn');
+    if (startReadingBtn) {
+        startReadingBtn.addEventListener('click', function() {
+            // 跳转到首页并自动展开目录
+            window.location.href = 'index.html#open-chapters';
+        });
+    }
             // Wayback存档提醒元素
             const archiveToast = document.getElementById('archiveToast');
             const toastClose = document.getElementById('toastClose');
@@ -2431,8 +2496,23 @@ setTimeout(() => {
             });
         });
     </script>
+<script>
+// 页面加载时检查URL hash
+window.addEventListener('load', function() {
+    // 如果URL中有 #open-chapters 参数，则自动展开目录
+    if (window.location.hash === '#open-chapters') {
+        const chapterDetails = document.getElementById('chapterContents');
+        if (chapterDetails) {
+            chapterDetails.open = true;
+            // 平滑滚动到目录位置
+            chapterDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+});
+</script>
 </body>
 </html>
+
 
 
 
