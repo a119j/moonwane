@@ -1,8 +1,0 @@
-# _config.yml
-title: MoonWane Ink
-baseurl: "/moonwane"
-permalink: none
-include: []
-exclude: []
-theme: null
-plugins: []
