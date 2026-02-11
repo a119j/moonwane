@@ -2288,82 +2288,48 @@ setTimeout(() => {
             });
         });
         
-        // 防盗版防护层 - 延迟加载核心内容
-        setTimeout(() => {
-            // 注入延迟加载的内容
-            document.querySelectorAll('.inject-content').forEach(el => {
-                el.innerHTML = el.getAttribute('data-content');
-            });
-            
-            // 盗版检测：如果从非法域名访问，清空内容
-            const allowedDomains = [
-                'moonwane.ink', 
-                'moonwane.netlify.app', 
-                'localhost', 
-                'web.archive.org', 
-                'archive.org',
-                'meek-crisp-a48f0e.netlify.app',
-                'a119j.github.io',
-                'github.io'
-            ];
-            const currentDomain = window.location.hostname;
-            if (!allowedDomains.some(domain => currentDomain.includes(domain)) && currentDomain !== '') {
-                document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
-            }
-            
-            // 为章节PDF按钮和GitHub链接重新绑定事件（延迟加载）
-            setTimeout(() => {
-                // 章节目录PDF按钮
-                document.querySelectorAll('.chapter-actions .pdf-trigger').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const fileId = this.getAttribute('data-file-id');
-                        const fileName = this.getAttribute('data-file-name') || '章节文件';
-                        const chapter = this.getAttribute('data-chapter');
-                        
-                        if (!fileId || fileId.trim() === '') {
-                            alert(`第${chapter}章正在准备中，敬请期待！`);
-                            return;
-                        }
-                        
-                        // 使用相同的PDF模态框
-                        const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
-                        const pdfFrame = document.getElementById('pdfFrame');
-                        const pdfModal = document.getElementById('pdfModal');
-                        
-                        pdfFrame.src = previewUrl;
-                        pdfModal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                        
-                        // 存储当前焦点元素
-                        pdfModal._previousActiveElement = this;
-                    });
-                });
-                
-                // 章节目录GitHub链接
-                document.querySelectorAll('.chapter-actions .external-link[data-github]').forEach(link => {
-                    link.addEventListener('click', function() {
-                        const chapterId = this.getAttribute('data-chapter');
-                        const githubLink = this.getAttribute('data-github');
-                        
-                        if (githubLink && githubLink.trim() !== '') {
-                            window.open(githubLink, '_blank');
-                        } else {
-                            alert(`第${chapterId}章正在准备中，敬请期待！`);
-                        }
-                    });
-                });
-                
-                
-                // 检查法律免责链接
-                const legalLink = document.querySelector('a[href="legal-disclaimer.html"]');
-                if (legalLink) {
-                    legalLink.addEventListener('click', function(e) {
-                        console.log('法律免责链接点击');
-                        // 正常跳转
-                    });
+       // 防盗版防护层 - 延迟加载核心内容
+// 确保此脚本只在主页(index.html)执行一次
+if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '/moonwane/') {
+    setTimeout(() => {
+        // 防止重复执行
+        if (window.contentAlreadyInjected) return;
+        window.contentAlreadyInjected = true;
+        
+        // 注入延迟加载的内容
+        document.querySelectorAll('.inject-content').forEach(el => {
+            // 安全检查：确保元素还在DOM中且有data-content属性
+            if (el && el.getAttribute) {
+                const content = el.getAttribute('data-content');
+                if (content) {
+                    el.innerHTML = content;
                 }
-            }, 500);
-        }, 800);
+            }
+        });
+        
+        // 盗版检测
+        const allowedDomains = [
+            'moonwane.ink', 
+            'moonwane.netlify.app', 
+            'localhost', 
+            'web.archive.org', 
+            'archive.org',
+            'meek-crisp-a48f0e.netlify.app',
+            'a119j.github.io',
+            'github.io'
+        ];
+        const currentDomain = window.location.hostname;
+        // 仅在非允许域名且非空时清空
+        if (currentDomain && !allowedDomains.some(domain => currentDomain.includes(domain))) {
+            console.warn('盗版域名警告:', currentDomain);
+            document.body.innerHTML = '<div style="text-align:center;padding:100px;color:red;font-size:1.5rem;">▲ 盗版内容警告：请访问官方站点 moonwane.ink</div>';
+            return; // 清空后直接返回，不再执行后续
+        }
+        
+        // ... [保留你原有的其他代码，比如为PDF按钮绑定事件等]
+        
+    }, 800);
+}
         
         // 分享功能
         function shareToSocial(platform) {
@@ -11990,21 +11956,3 @@ window.addEventListener('load', function() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
