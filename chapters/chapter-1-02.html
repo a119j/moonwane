@@ -1,1 +1,289 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章 第二节：电话那端的坍塌 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        /* 样式与第一节完全相同，为节省篇幅此处省略，实际使用时复制第一节的样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Segoe UI', 'Noto Serif SC', 'Georgia', serif;
+            line-height: 1.9;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: #7bc8f8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #4a4a4a;
+            font-style: italic;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: #1a1a1a;
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            border-left: 4px solid #7bc8f8;
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #1a1a1a;
+            margin-bottom: 60px;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 1.2em;
+            text-indent: 2em;
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: 600;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(123,200,248,0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123,200,248,0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(123,200,248,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+        }
+        
+        .nav-link.disabled {
+            color: #888;
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+        
+        .nav-center a {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: #888;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: #7bc8f8;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            
+            .container {
+                padding: 30px 16px 50px;
+            }
+            
+            .chapter-title {
+                font-size: 24px;
+            }
+            
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .chapter-content {
+                font-size: 17px;
+            }
+            
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面图片 -->
+        <div class="chapter-cover">
+            <img src="/MEITU_20260205_171252361.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'">
+        </div>
+        
+        <!-- 章节信息 -->
+        <div class="chapter-info">
+            <div class="chapter-number">第一章</div>
+            <h1 class="chapter-title">六秒与六年的开端</h1>
+            <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
+        </div>
+        
+        <!-- 正文内容 - 第二节 -->
+        <div class="chapter-content">
+            <div class="section-title">第二节 电话那端的坍塌</div>
+            <div class="section-epigraph">—— 灾难不声不响，却总在最不设防时将你击中</div>
+            
+            <p><strong>琴音失准，电话忙音</strong></p>
+            
+            <p>2018年6月12日，下午四点。</p>
+            
+            <p>午后阳光斜斜射入厨房，摄氏26度，湿度56%，空气粘稠，沉在肺里，让呼吸变得闷重。多伦多六月总是这样：明明过了最热时段，闷热仍赖着不走，不肯散去。</p>
+            
+            <p>后院金银花簇拥开放，甜腻花香混着炖红烧肉的味道，被风卷进厨房，带着炙热的压迫感。</p>
+            
+            <p>江若瑶放学回来，坐在钢琴前练拉威尔《水中嬉戏》（Jeux d'eau），音符清澈灵动，水珠般四散。刘思恩在厨房翻炒，锅铲声与琴声交织，今天显得格外凌乱、刺耳。</p>
+            
+            <p>下午五点半，琴声开始粗糙潦草，同一乐段连续弹错。刘思恩停下手："注意指法！第二小节又错了。"</p>
+            
+            <p>琴声仍在继续，错误也没停。</p>
+            
+            <p>她"啪"地砸下锅铲，油星飞溅烫在手背上，却没感觉。几步冲到钢琴前，声音砸下，暴风骤雨："停！听到没有！重新弹一遍！"</p>
+            
+            <p>江若瑶肩膀微颤，眼泪打转。</p>
+            
+            <p>刘思恩抓起手机，指尖冰凉，握得发白："你听不听话？不听话，我马上告诉你爸爸。"</p>
+            
+            <p>下午五点五十分，她拨通江远平的电话。</p>
+            
+            <p>听筒里，"嘟嘟"急促、密集，她的太阳穴被人拿把锤子一下一下地对着敲打。</p>
+            
+            <p>十秒，二十秒，三十秒，无人接听。</p>
+            
+            <p>突然，接通。</p>
+            
+            <p>耳膜瞬间被几叶刀片划破，那是尖利的警笛声，混乱的人声和江远平被风声夹杂着的急促的呼吸：</p>
+            
+            <p>"......我的车......擦到一个骑车的人......"</p>
+            
+            <p>"什么？什么？怎么了......"她声音拔高，几乎撕裂。</p>
+            
+            <p>"警察来了......挂了。"</p>
+            
+            <p>—— "嘟......"</p>
+            
+            <p>忙音猛地捅进她胸口最深处，再狠狠拧了一圈。</p>
+            
+            <p>世界瞬间进入默片模式，只有动作在继续，声音都消失了。</p>
+            
+            <p>锅里的油还在翻炸，细密的气泡不断破裂；金银花的甜香悬
