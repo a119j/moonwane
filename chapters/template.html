@@ -1,1 +1,303 @@
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【章节标题】 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Segoe UI', 'Noto Serif SC', 'Georgia', serif;
+            line-height: 1.9;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        /* 封面图片区域 */
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 章节信息 */
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: #7bc8f8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #4a4a4a;
+            font-style: italic;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+        }
+        
+        /* 小节标题 */
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: #1a1a1a;
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            border-left: 4px solid #7bc8f8;
+            padding-left: 16px;
+        }
+        
+        /* 正文内容 */
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #1a1a1a;
+            margin-bottom: 60px;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 1.2em;
+            text-indent: 2em;
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: 600;
+        }
+        
+        .chapter-content em {
+            font-style: italic;
+        }
+        
+        /* 读者致谢部分 */
+        .reader-note {
+            margin: 50px 0 30px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #7bc8f8;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .reader-note p {
+            margin-bottom: 10px;
+            text-indent: 0;
+        }
+        
+        .reader-note a {
+            color: #7bc8f8;
+            text-decoration: none;
+            border-bottom: 1px dotted #7bc8f8;
+        }
+        
+        .reader-note a:hover {
+            border-bottom: 1px solid #7bc8f8;
+        }
+        
+        /* 章节导航 */
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(123,200,248,0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123,200,248,0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(123,200,248,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+        }
+        
+        .nav-link.disabled {
+            color: #888;
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+        
+        .nav-center a {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 返回首页 */
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: #888;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: #7bc8f8;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            
+            .container {
+                padding: 30px 16px 50px;
+            }
+            
+            .chapter-title {
+                font-size: 24px;
+            }
+            
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .chapter-content {
+                font-size: 17px;
+            }
+            
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .reader-note {
+                padding: 20px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面图片 -->
+        <div class="chapter-cover">
+            <img src="/MEITU_20260205_171252361.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'">
+        </div>
+        
+        <!-- 章节信息 -->
+        <div class="chapter-info">
+            <div class="chapter-number">第一章</div>
+            <h1 class="chapter-title">六秒与六年的开端</h1>
+            <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
+        </div>
+        
+        <!-- 正文内容 - 这里替换为各小节的具体内容 -->
+        <div class="chapter-content">
+            <!-- 各小节内容将放在这里 -->
+        </div>
+        
+        <!-- 章节导航 -->
+        <div class="chapter-navigation">
+            <a href="【上一节链接】" class="nav-link【如果是第一节加 disabled】">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#chapterContents">📖 目录</a>
+            </span>
+            <a href="【下一节链接】" class="nav-link【如果是最后一节加 disabled】">下一节 →</a>
+        </div>
+        
+        <!-- 返回首页 -->
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+</body>
+</html>
