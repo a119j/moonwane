@@ -1289,20 +1289,76 @@
         
         <section class="links-section">
             <div class="links">
-                <!-- 书籍卡片 -->
-                <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card">
-                    《六秒钉六年》<br>
-                    <span style="font-size:0.95rem;opacity:0.7;">Six Seconds, Six Years | 作品已完成，发布形式待定。寻求出版/发表合作</span>
-                    <span class="golden-sentence">六秒数据，钉死六年人生。</span>
-                </a>
+               <!-- 书籍卡片 - 修改为可点击打开抽屉的触发器 -->
+<div id="introDrawerToggle" style="cursor: pointer;">
+    <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
+        <span style="display: flex; align-items: center; gap: 8px;">
+            <span id="introArrow" style="font-size: 1.5rem; color: #ffd700; transition: transform 0.3s ease; display: inline-block;">▶</span>
+            <span>《六秒钉六年》</span>
+        </span>
+        <br>
+        <span style="font-size:0.95rem;opacity:0.7;">Six Seconds, Six Years | 作品已完成，发布形式待定。寻求出版/发表合作</span>
+        <span class="golden-sentence">六秒数据，钉死六年人生。</span>
+    </a>
+</div>
+<!-- 简介抽屉内容 (初始隐藏) -->
+<div id="introDrawer" style="max-width:640px; margin:0 auto 40px auto; overflow: hidden; transition: max-height 0.4s ease-in-out; max-height: 0; background: rgba(20,25,40,0.4); border-radius: 0 0 16px 16px;">
+    <div style="padding: 0 24px 24px 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #7bc8f8 #1a1a2a;">
+      <!-- 故事梗概 -->
+                <div style="font-size: 1.2rem; color: #ffd700; margin: 20px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【故事梗概】</div>
+                <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+                    2018年6月12日，多伦多北郊晴朗午后，冷暖空调技师江远平驾公司工程车下班途中，与一辆同向自行车碰撞。骑车人未戴头盔，送医不治。江远平留现场报警，配合调查。半年无音讯，律师预判或按安省交通法规“疏忽驾驶”处理。
+                    <br><br>
+                    2019年1月10日，警方突袭工作场所，当众手铐带走。六小时审讯、二十四小时拘留后，他被控“刑事疏忽致死”与“危险驾驶致死”，检方建议四年监禁。
+                    <br><br>
+                    指控核心：事故前两分钟一段持续六秒的电信后台数据，被解读为“主动使用手机”分心驾驶。2022年第三方专家报告证明：那是手机自动心跳信令，与人为操作无关。
+                    <br><br>
+                    多项物证被忽略：事故次日实测左前胎气压65 psi（标准50 psi），胎侧爆裂撕裂；行车记录仪慢放显示事故前0.167秒右前胎侧异常黑烟；工程车黑匣子（CDR）以“无事件”为由拒析。(2025年AI模型复核，黑匣子揭示最后两秒右前胎速骤降为零，指向爆胎失控)。
+                    <br><br>
+                    六年间，案件因疫情搁置，两度换律师，三任检察官。丈夫从技术骨干沦为保释犯；妻子从主妇转为业余律师与侦探；11岁女儿在法庭与翻译间长大，最终凭实力获藤校全额助学金。
+                    <br><br>
+                    2024年，检方突然撤回刑事指控，降级交通罚单结案。无道歉、无追责。
+                    <br><br>
+                    这是一部非虚构纪实：六秒数据如何钉住一家三口六年人生——当规则失灵，普通人如何为清白而战。
+                </div>
+                <!-- 关键词 -->
+                <div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
+                    <span style='color:#b8b4b0;font-size:0.95rem;'>关键词：六秒钉六年 · 6 seconds · 平安符 · 靶心与靶环 · 自证清白悖论 · 疑罪从无 · 蚍蜉撼树 · 盲眼钟表匠</span>
+                </div>
+                <!-- 创作背景 -->
+                <div style="font-size: 1.2rem; color: #ffd700; margin: 30px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【创作背景】</div>
+                <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+                    作者为当事人，全程旁听庭审、整理证据、参与辩护准备。技术细节均有法庭文件或第三方报告支撑。为隐私，人物化名、日期地点模糊，但事实链完整。本书不接受删改影视改编，只接受完整授权。欢迎纸质书出版合作（author@moonwane.ink）。
+                </div>
+                <!-- 版权说明 -->
+                <div style="font-size: 1.2rem; color: #ffd700; margin: 30px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【版权说明】</div>
+                <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+                    本作品全文著作权归作者所有。<br>
+                    影视改编、出版合作请联系：author@moonwane.ink<br>
+                    不接受任何形式的免费评估、选项协议。完整授权，一次结清。<br>
+                    未经授权，禁止任何形式的转载、摘编、复制或建立镜像。
+                </div>
+        
+        <!-- 底部链接：目录 和 第一章试读 (保留) -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 1.1rem;">
+            <a href="#" id="introToChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
+            <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📕 第一章试读</a>
+        </div>
+        
+        <!-- 返回顶部链接 (删除) -->
+        <!-- <div style="margin-top: 20px; text-align: right;">
+            <a href="#" id="introDrawerBack" style="color: #888; text-decoration: none; font-size: 0.9rem;">↑ 返回</a>
+        </div> -->
+    </div>
+</div>
                 
-                <!-- 官方简介 - 受保护内容 -->
+                                <!-- 官方简介 - 受保护内容 -->
                 <div style="max-width:640px;margin:40px auto 60px;padding:24px 32px;background:rgba(20,25,40,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:16px;text-align:center;">
                   <p style="font-size:1.25rem;color:#ffd700;margin-bottom:16px;font-weight:500;">
                     官方简介
                   </p>
-                  <div class="inject-content" data-content="基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎<br><br><span style='color:#b8b4b0;font-size:0.95rem;'>关键词：六秒钉六年 · 6 seconds · 平安符 · 靶心与靶环 · 自证清白悖论 · 疑罪从无 · 蚍蜉撼树 · 盲眼钟表匠</span>">
-                    基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎<br><br><span style='color:#b8b4b0;font-size:0.95rem;'>关键词：六秒钉六年 · 6 seconds · 平安符 · 靶心与靶环 · 自证清白悖论 · 疑罪从无 · 蚍蜉撼树 · 盲眼钟表匠</span>
+                  <div class="inject-content" data-content="基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎">
+                    基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎
                   </div>
                 </div>
                 
@@ -2323,6 +2379,42 @@
             console.log('4. "赞助支持"链接:', document.querySelector('.support-link') ? '✓ 存在' : '✗ 缺失');
             console.log('5. "法律免责"链接:', document.querySelector('a[href="legal-disclaimer.html"]') ? '✓ 存在' : '✗ 缺失');
         });
-    </script>
+    // --- 简介抽屉交互逻辑 (简化版，无返回功能) ---
+const introToggle = document.getElementById('introDrawerToggle');
+const introDrawer = document.getElementById('introDrawer');
+const introArrow = document.getElementById('introArrow');
+
+if (introToggle && introDrawer && introArrow) {
+    introToggle.addEventListener('click', function(e) {
+        // 阻止事件冒泡，防止触发父元素的点击
+        e.stopPropagation();
+        
+        // 切换抽屉的展开/收起状态
+        if (introDrawer.style.maxHeight === '0px' || introDrawer.style.maxHeight === '') {
+            // 先设置一个足够大的固定高度来触发过渡
+            introDrawer.style.maxHeight = introDrawer.scrollHeight + 'px';
+            introArrow.style.transform = 'rotate(90deg)';
+        } else {
+            introDrawer.style.maxHeight = '0px';
+            introArrow.style.transform = 'rotate(0deg)';
+        }
+    });
+}
+
+// --- 简介抽屉底部链接的点击事件 (保持不变) ---
+const toChapterLink = document.getElementById('introToChapterLink');
+const toFirstChapterLink = document.getElementById('introToFirstChapterLink');
+const chapterDrawer = document.getElementById('chapterContents');
+
+if (toChapterLink && chapterDrawer) {
+    toChapterLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        chapterDrawer.open = true;
+        chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+}
+
+</script>
 </body>
 </html>
+
