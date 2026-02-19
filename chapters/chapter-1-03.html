@@ -1,1 +1,388 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章 第三节：警灯下的夜归人 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <style>
+        /* 样式与第一节完全相同，为节省篇幅此处省略，实际使用时复制第一节的样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Segoe UI', 'Noto Serif SC', 'Georgia', serif;
+            line-height: 1.9;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: #7bc8f8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #4a4a4a;
+            font-style: italic;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: #1a1a1a;
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            border-left: 4px solid #7bc8f8;
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.9;
+            color: #1a1a1a;
+            margin-bottom: 60px;
+        }
+        
+        .chapter-content p {
+            margin-bottom: 1.2em;
+            text-indent: 2em;
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: 600;
+        }
+        
+        .reader-note {
+            margin: 50px 0 30px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #7bc8f8;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .reader-note p {
+            margin-bottom: 10px;
+            text-indent: 0;
+        }
+        
+        .reader-note a {
+            color: #7bc8f8;
+            text-decoration: none;
+            border-bottom: 1px dotted #7bc8f8;
+        }
+        
+        .reader-note a:hover {
+            border-bottom: 1px solid #7bc8f8;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(123,200,248,0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123,200,248,0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(123,200,248,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+        }
+        
+        .nav-link.disabled {
+            color: #888;
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+        
+        .nav-center a {
+            color: #7bc8f8;
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: #888;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: #7bc8f8;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            
+            .container {
+                padding: 30px 16px 50px;
+            }
+            
+            .chapter-title {
+                font-size: 24px;
+            }
+            
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .chapter-content {
+                font-size: 17px;
+            }
+            
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .reader-note {
+                padding: 20px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面图片 -->
+        <div class="chapter-cover">
+            <img src="/MEITU_20260205_171252361.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'">
+        </div>
+        
+        <!-- 章节信息 -->
+        <div class="chapter-info">
+            <div class="chapter-number">第一章</div>
+            <h1 class="chapter-title">六秒与六年的开端</h1>
+            <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
+        </div>
+        
+        <!-- 正文内容 - 第三节 -->
+        <div class="chapter-content">
+            <div class="section-title">第三节 警灯下的夜归人</div>
+            <div class="section-epigraph">—— 这场车祸会让他们一家万劫不复吗？</div>
+            
+            <p><strong>丈夫终于回家</strong></p>
+            
+            <p>夜色湿闷，压在屋顶、街道和人的胸口。</p>
+            
+            <p>一道红蓝闪烁的警灯停在家门口，光束来回扫，一遍一遍切割着屋子的外墙。</p>
+            
+            <p>江远平从后座缓缓下车，肩膀塌着，脚步在地面拖，发出沉闷摩擦声。</p>
+            
+            <p>街对面遛狗、聊天的邻居全都停下，目光被定格。印度邻居晃着脑袋，小声问："Are you OK？（你还好吗？）"</p>
+            
+            <p>江远平低低含糊了一句，声音哑得几乎听不见，推门进屋。幸好江若瑶已经睡了，没有看到这一幕。</p>
+            
+            <p>门被轻轻合上，红蓝光也被关在门外，屋里顿时黑得发沉。玄关只剩两道呼吸，一轻一重，错位、断裂，撞击着屋内的沉寂。</p>
+            
+            <p>江远平始终低着头，不敢看刘思恩的眼睛："骑自行车的......送到医院了，没戴头盔......没救回来。"</p>
+            
+            <p>声音很低，却摩擦着屋内的空气，刺得人神经发紧。世界从边缘开始被清空：车流声、窗外私语、眼前丈夫、脚下地板，一层层褪色，慢慢变透明，然后逐渐消失。</p>
+            
+            <p>喉咙被塞满了棉花，刘思恩艰难地挤出一句："那你呢？"</p>
+            
+            <p>"我没事。"</p>
+            
+            <p>江远平从口袋里摸出一张皱巴巴的纸条，上面写着案号和负责警官的电话，黑字刺眼，烙在纸上，也烙在他的身上，再也无法抹去。</p>
+            
+            <p>他低头，背抵冰冷墙面，肩膀佝偻成一个问号。刘思恩想伸手抱住他，却被一股无形的力钉在原地。那个拥抱，终究没有给出去。</p>
+            
+            <p>他们站在女儿的三角钢琴旁，薄薄灰尘覆在琴盖上，也在夜灯下漂浮着，悬在空气里，纹丝不动。</p>
+            
+            <p>刘思恩的视线落在琴凳边角，一块粉色小熊橡皮擦掉那里，小熊的嘴角被磨得黑乎乎的。</p>
+            
+            <p>七年前的冬天，江远平拎回一架二手电子琴，有几个键必须用拳头砸才能发声。他边修边哼着跑调的《小星星》，四岁的女儿咯咯直笑，笑声落那间小小的联排屋里，撞击每一面墙，回响满地。</p>
+            
+            <p>从那架破琴，到现在的三角钢琴；从时薪十五加元的小工，到考取五张执照的技师，他们移民十二年，四个纸箱开始，终于有了这间带车库的独立屋。</p>
+            
+            <p>此刻，十二年的辛劳全压在江远平的一呼一吸里，沉重、滚烫、随时可能炸裂。他抬手想扶着钢琴，却停在半空。左手小指因早年工伤弯着伸不直，虎口新贴的创可贴渗着淡黄，指尖沾着今天擦车时留下的黑色油污，还没洗掉。</p>
+            
+            <p>刘思恩的视线则越过他，落在鞋柜。工靴整齐排列，靴筒里塞着报纸保持挺括。一角露出标题："多伦多夏季交通事故上升15%"。那标题抽得她脸颊刺痛，让呼吸停顿。</p>
+            
+            <p>警车终于开走，警灯熄灭，屋里彻底暗下。</p>
+            
+            <p>刘思恩低声问："那人......有家人吗？"</p>
+            
+            <p>江远平肩膀猛一抖，他的胸口被一道无形的绳索紧勒住。他没有回答，慢慢蹲下，额头抵在钢琴踏板冰冷金属支架上，背弯成一个死结。</p>
+            
+            <p>楼上，江若瑶翻了个身，含糊的梦话飘下，那是一只小手，轻轻捂住了楼下两个人的嘴。</p>
+            
+            <p><strong>评论区的审判</strong></p>
+            
+            <p>凌晨两点，主卧卫生间。刘思恩锁上门，蹲在马桶前，屏幕的冷白光照在她脸上，平板，僵硬，毫无表情。</p>
+            
+            <p>警察局推特：今日下午5点半左右，Edgefield Lane与Knob Path交叉路口，发生一起车祸。一骑车人送医院后不治身亡。肇事车辆为一辆白色工程车，司机留在现场协助调查。</p>
+            
+            <p>华人论坛标题更直白：《Toronto骑车人当场身亡，肇事司机疑为华人技师》</p>
+            
+            <p>配图马赛克化：挡风玻璃右侧角落蜘蛛网般裂痕，地上，一辆自行车孤零零躺着。</p>
+            
+            <p>评论区炸开："又一个不守规矩的移民司机？""工程车肯定闯红灯！吊销执照！""这种人就该抓起来坐牢！"</p>
+            
+            <p>每一条消息都刺进眼球、脑门、胸口，痛得无法思考和呼吸。</p>
+            
+            <p>手机突然滑落，"咚"一声砸在马桶盖上，震得耳膜隐隐作痛。江远平猛地惊醒，血丝布满眼睛，眼球被染红。"别看了。"声音低哑，喉咙被沙砾摩擦，可是已经晚了。</p>
+            
+            <p>次日清晨六点十分。琴声准时响起。江若瑶坐在钢琴前，《哈农》（Hanon）第1-20条，音符干净、冰冷、精准，每一下都在空气里划出旋律的痕迹。</p>
+            
+            <p>刘思恩在厨房切苹果，刀尖微微颤抖，一片薄得透光，一片厚得坚硬如砖。她不敢停，怕一停手就拿不稳刀。</p>
+            
+            <p>七点四十五。江若瑶背好书包，站在玄关换鞋，突然抬头，声音轻轻落地，却在整个房里激荡出回响："妈妈，昨天爸爸为什么坐警车回来？警灯一闪一闪，把我房间的墙，都照成了红色，蓝色。"</p>
+            
+            <p>"啪！"刘思恩手里的午餐袋直直坠下，砸在地板上，发出一声闷响。拉链停在中途，没有完全合上。一滴水珠顺着水壶的吸管缓慢下滑，被拉得细长，最终断开，落进午餐袋底部，洇出一个深色的圆点。</p>
+            
+            <p>刘思恩不知道如何回答。时间在房间里停住，只剩下站立、呼吸和等待本身。空气变得沉重，四周安静得没有任何可以转移注意力的地方。</p>
+            
+            <p>"爸爸他......" 刘思恩的声音从极远的地方飘来，干涩，沙哑，"嗯......就是......不小心......"她又卡住了，视线慌乱地扫过地上的午餐带，水壶的吸管、女儿清澈的眼睛。</p>
+            
+            <p>"他......撞了......一个人。"最终，这几个字还是被挤了出来，轻飘飘的，却用尽了她全身的力气。</p>
+            
+            <p>"那爸爸没事吧？"江若瑶的声音又轻轻落下，撞击着屋内每一面墙，每个角落都被压得沉闷。</p>
+            
+            <p>世界静默。厨房水龙头没关紧，水滴砸在不锈钢盆里 —— 哒。哒。哒。每一下都敲击胸口，让心跳加速，让神经压迫着数倒计时。</p>
+            
+            <p>刘思恩看着女儿，那双十一岁的眼睛干净，透亮，是没下过雨的天空。她想说"没事"，舌头先一步拒绝。她只能点头，又摇头，都极轻、极轻。自己亲手把那颗狂跳不安的心，推进了深渊。</p>
+            
+            <p><strong>（未完待续）</strong></p>
+            
+            <p>索赔两百万加元的律师函几乎把他们压扁，公司保险迟迟不给答复。胸口的惶恐从颈项潜入骨髓，冰冷刺骨，窒息感直冲肺腑。站在悬崖边，下一秒随时可能被未知风暴卷走，葬身谷底。</p>
+            
+            <!-- 读者致谢部分 -->
+            <div class="reader-note">
+                <p>📢 <strong>致读者：</strong></p>
+                <p>本作品所涉及的技术细节，已在官方作品站留存备查（证据库）：<br>
+                <a href="https://www.moonwane.ink" target="_blank">https://www.moonwane.ink</a></p>
+                <p>写作过程记录与交流，请关注微信公众号：<strong>墨染月光</strong><br>
+                或通过邮件联系：<a href="mailto:author@moonwane.ink">author@moonwane.ink</a></p>
+                <p>本作品基于真实经历与公开资料创作，所有细节均已做必要匿名处理。</p>
+            </div>
+        </div>
+        
+        <!-- 章节导航 -->
+        <div class="chapter-navigation">
+            <a href="/chapters/chapter-1-02.html" class="nav-link">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#chapterContents">📖 目录</a>
+            </span>
+            <span class="nav-link disabled">下一节 →</span>
+        </div>
+        
+        <!-- 返回首页 -->
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+</body>
+</html>
