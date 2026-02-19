@@ -1342,7 +1342,7 @@
         <!-- 底部链接：目录 和 第一章试读 (保留) -->
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 1.1rem;">
             <a href="#" id="introToChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
-            <a href="#" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📕 第一章试读</a>
+            <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📕 第一章试读</a>
         </div>
         
         <!-- 返回顶部链接 (删除) -->
@@ -2416,12 +2416,13 @@ if (toChapterLink && chapterDrawer) {
 
 if (toFirstChapterLink) {
     toFirstChapterLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = '/chapters/chapter-1.html';
+        // 因为已经在 href 中指定了链接，所以这里不需要 preventDefault
+        // 让浏览器默认行为处理跳转
+        return true;
     });
-}
-</script>
+}</script>
 </body>
 </html>
+
 
 
