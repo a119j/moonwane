@@ -738,18 +738,13 @@
             font-size: 1.2rem; /* PDF图标大小 */
         }
 
-                .external-link {
-            font-size: 1.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 3px 6px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .external-link {
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            font-size: 0.9rem; /* 链接符号小于PDF图标 */
+            padding: 4px 6px;
+            margin-left: 4px;
         }
 
         .pdf-link:hover, .pdf-trigger:hover {
@@ -1317,16 +1312,18 @@
         
         <section class="links-section">
             <div class="links">
-               <!-- 书籍卡片 - 修改为可点击打开抽屉的触发器 -->
+                                                       <!-- 书籍卡片 - 修改为可点击打开抽屉的触发器 -->
 <div id="introDrawerToggle" style="cursor: pointer;">
     <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
         <span style="display: flex; align-items: center; gap: 8px;">
             <span id="introArrow" style="font-size: 1.5rem; color: #ffd700; transition: transform 0.3s ease; display: inline-block;">▶</span>
-            <span>《六秒钉六年》</span>
+            <span style="font-size: 1.5rem;">✍️</span>
+            <span style="font-weight: 700; color: #ffd700; animation: moonGlow 3s ease-in-out infinite;">《六秒钉六年》</span>
         </span>
         <br>
         <span style="font-size:0.95rem;opacity:0.7;">Six Seconds, Six Years | 作品已完成，发布形式待定。寻求出版/发表合作</span>
         <span class="golden-sentence">六秒数据，钉死六年人生。</span>
+        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎</span>
     </a>
 </div>
 <!-- 简介抽屉内容 (初始隐藏) -->
@@ -1379,16 +1376,15 @@
         </div> -->
     </div>
 </div>
-                
-                                <!-- 官方简介 - 受保护内容 -->
-                <div style="max-width:640px;margin:40px auto 60px;padding:24px 32px;background:rgba(20,25,40,0.6);border:1px solid rgba(255,255,255,0.1);border-radius:16px;text-align:center;">
-                  <p style="font-size:1.25rem;color:#ffd700;margin-bottom:16px;font-weight:500;">
-                    官方简介
-                  </p>
-                  <div class="inject-content" data-content="基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎">
-                    基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎
-                  </div>
-                </div>
+
+<style>
+/* 添加月亮光晕动画 */
+@keyframes moonGlow {
+    0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+}
+</style>
                 
                 <!-- 三幕章节目录 - 表格形式（带滚动条） -->
                 <details class="chapter-drawer" id="chapterContents">
@@ -1402,7 +1398,7 @@
                       <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
                           
-                                              <!-- 图标状态说明 - 灰色为准备中，绿色为已就绪 -->
+                       <!-- 图标状态说明 -->
 <div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
     <div style='margin-bottom:5px;'><strong>📋 图标状态说明：</strong></div>
     <div style='display:flex;align-items:center;gap:15px;flex-wrap:wrap;justify-content:center;'>
@@ -1444,9 +1440,8 @@
         <div style='display:inline-flex;align-items:center;gap:5px;'>
             <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>🔗</span>
             <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
-        </div>
     </div>
-    
+</div>
                       <!-- 章节表格 -->
                       <table class='chapter-table'>
                         <thead>
@@ -2685,6 +2680,10 @@
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
