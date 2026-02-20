@@ -2325,27 +2325,43 @@
                 }
             }
             
-            // PDF按钮点击事件
+                        // PDF按钮点击事件 - 增强版，确保能捕获证据库中的按钮
             function handlePdfClick(e) {
-                // 检查是否是PDF按钮
-                const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
-                    e.target : e.target.closest('.pdf-trigger');
+                // 检查是否是PDF按钮或子元素
+                let pdfTrigger = null;
                 
+                // 方法1：直接点击的是pdf-trigger
+                if (e.target.classList.contains('pdf-trigger')) {
+                    pdfTrigger = e.target;
+                } 
+                // 方法2：点击的是pdf-trigger内的子元素（如📄图标本身）
+                else if (e.target.closest) {
+                    pdfTrigger = e.target.closest('.pdf-trigger');
+                }
+                
+                // 如果没找到，返回
                 if (!pdfTrigger) return;
                 
+                // 阻止默认行为和冒泡
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 获取文件信息
                 const fileId = pdfTrigger.getAttribute('data-file-id');
                 const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
                 const chapter = pdfTrigger.getAttribute('data-chapter');
                 
+                // 调试信息
+                console.log('PDF按钮点击:', {fileId, fileName, chapter});
+                
+                // 检查是否有文件ID
                 if (!fileId || fileId.trim() === '') {
                     alert(`"${fileName}"正在准备中，敬请期待！`);
                     return;
                 }
                 
+                // 显示PDF模态框
                 showPdfModal(fileId, fileName);
-                
-                e.preventDefault();
-                e.stopPropagation();
             }
             
             // 绑定事件到文档，支持动态生成的内容
@@ -2698,6 +2714,7 @@
 </script>
 </body>
 </html>
+
 
 
 
