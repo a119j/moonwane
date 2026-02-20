@@ -643,9 +643,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-                                .chapter-table th {
+        .chapter-table th {
             background-color: rgba(30, 35, 60, 0.7);
-            color: #f0f0f0;  /* 改为白色，与三幕标题一致 */
+            color: #ffffff !important; /* 第一幕/第二幕/第三幕改为白色 */
             font-weight: 600;
             font-size: 1.1rem;
             text-align: center;
@@ -672,7 +672,7 @@
         }
         
         .chapter-title {
-            font-weight: 600;
+            font-weight: 400; /* 取消加粗，从600改为400 */
             color: #ffd700;
             margin-bottom: 4px;
             display: block;
@@ -687,28 +687,16 @@
         }
         
         /* PDF和外部链接样式 - 统一大小 */
-                        /* 章节操作图标样式 - 固定两行显示 */
+                /* 章节操作图标样式 */
         .chapter-actions {
             margin-top: 8px;
             padding-top: 8px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            display: grid;
-            grid-template-columns: repeat(4, minmax(32px, 1fr));
+            display: flex;
             gap: 5px;
             align-items: center;
-            justify-items: center;
-        }
-        
-        .chapter-actions button,
-        .chapter-actions .external-link {
-            width: 100%;
-            max-width: 36px;
-            height: 32px;
-            padding: 3px 0 !important;
-            margin: 0 auto;
-            display: inline-flex !important;
-            align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
+            min-height: 40px; /* 确保高度一致，无论一行还是两行 */
         }
             .read-icon, .audio-icon, .video-icon, .external-link {
             font-size: 1.2rem;
@@ -834,10 +822,10 @@
             display: none;
         }
 
-               .chapter-drawer-content {
-            padding: 0 0 5px 0;  /* 减少底部内边距 */
-            max-height: 65vh; /* 稍微降低高度，减少空白 */
-            overflow-y: auto;
+        .chapter-drawer-content {
+            padding: 0;
+            max-height: 70vh; /* 限制高度 */
+            overflow-y: auto; /* 增加垂直滚动条 */
             position: relative;
             scroll-behavior: smooth;
         }
@@ -1275,6 +1263,49 @@
                 max-height: 90vh;
             }
         }
+        /* --- 新增样式以满足最新修改要求 --- */
+
+        /* 1. 强制章节操作图标在一行显示，并允许横向滚动 */
+        .chapter-actions {
+            flex-wrap: nowrap !important; /* 强制不换行 */
+            overflow-x: auto; /* 内容超出时显示横向滚动条 */
+            -webkit-overflow-scrolling: touch; /* 提升移动端滚动体验 */
+            padding-bottom: 4px; /* 为滚动条留出一点空间 */
+        }
+        /* 可选：隐藏滚动条以保持界面简洁，但保留功能 (Webkit浏览器) */
+        .chapter-actions::-webkit-scrollbar {
+            height: 3px; /* 横向滚动条高度 */
+        }
+        .chapter-actions::-webkit-scrollbar-thumb {
+            background: rgba(123, 200, 248, 0.3);
+            border-radius: 3px;
+        }
+
+        /* 2. 证据库说明文字缩小 */
+        .evidence-intro p {
+            font-size: 0.9rem;
+        }
+        /* 确保 strong 标签内的文字也应用缩小，或保持原样，这里选择让它们也缩小 */
+        .evidence-intro strong {
+            font-size: 0.9rem;
+        }
+
+        /* 3. 证据库PDF按钮（已就绪）颜色改为绿色 */
+        .evidence-table .pdf-trigger {
+            color: #4CAF50 !important; /* 绿色 */
+            background: rgba(76, 175, 80, 0.1) !important; /* 绿色背景 */
+            border: 1px solid rgba(76, 175, 80, 0.2) !important; /* 绿色边框 */
+        }
+        .evidence-table .pdf-trigger:hover {
+            background: rgba(76, 175, 80, 0.2) !important;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+        }
+        /* 证据库搜索计数也改为绿色提示 */
+        #searchCount {
+            color: #4CAF50;
+        }
+
+        /* --- 新增样式结束 --- */
     </style>
 </head>
 <body>
@@ -1328,11 +1359,14 @@
                                                               <!-- 书籍卡片 - 修改为可点击打开抽屉的触发器 -->
 <div id="introDrawerToggle" style="cursor: pointer;">
     <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
-                                            <span style="display: flex; align-items: center; gap: 8px;">
+        <span style="display: flex; align-items: center; gap: 8px;">
             <span id="introArrow" style="font-size: 1.1rem; color: #ffd700; transition: transform 0.3s ease; display: inline-block;">▶</span>
             <i class="fa-solid fa-feather-point" style="font-size: 2.4rem; color: #ffffff; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)); transform: rotate(-15deg) scaleX(-1);"></i>
             <span style="font-weight: 700; color: #ffd700; animation: moonGlow 3s ease-in-out infinite;">《六秒钉六年》</span>
         </span>
+        <!-- 调整了与上一行的间距 margin-top:4px，并添加斜体样式 -->
+        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:4px; font-style: italic;">Six Seconds, Six Years | 作品已完成，发布形式待定。寻求出版/发表合作</span>
+        <span class="golden-sentence">六秒数据，钉死六年人生。</span>
         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的纪实文学<br>一场普通车祸如何演变为跨越六年的司法拉锯战<br>一个移民家庭在系统不公与亲情韧性之间的自我&nbsp;救赎</span>
     </a>
 </div>
@@ -1460,7 +1494,7 @@
                         <tbody>
                           <tr>
                             <td>
-                              <span class='act-title'>崩塌</span>
+                              <span class='act-title'>崩塌 ·</span>
                               <span class='act-title-second-line'>当日常被制度击穿</span>
                               <ul>
                                                                 <li>
@@ -1831,49 +1865,43 @@
                             </td>
                           </tr>
                         </tbody>
-                                          </table>
+                      </table>
                       
-                      <!-- 提示文字 - 紧凑显示 -->
-                      <div style='color:#888;font-size:0.85rem;font-style:italic;margin:15px 0 5px;padding:8px 12px;background:rgba(30,30,30,0.3);border-radius:6px;border-left:3px solid #7bc8f8;'>
+                      <!-- 提示文字 - 移动到表格之后，分隔线之前 -->
+                      <div style='color:#888;font-size:0.9rem;font-style:italic;margin:30px 0 20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
                       </div>
                       
-                     <!-- 移除返回顶部按钮，只保留细分隔线 -->
-<div style='margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05);'></div>
+                     <!-- 移除返回顶部按钮，只保留分隔线 -->
+<div style='margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);'></div>
                   </div>
                 </details>
                 
-                <!-- 证据库 - 抽屉式 -->
+                               <!-- 证据库 - 抽屉式 -->
 <details class="evidence-drawer">
 <summary>🌐 证据库 / Evidence Hub</summary>
 
-<div class="evidence-drawer-content" id="evidenceDrawerContent">
-<!-- 搜索框 -->
-<div class="evidence-search-container">
-<input type="search" id="evidenceSearch" placeholder="搜索证据名称、描述或章节..." autocomplete="off">
-<select id="evidence-type-filter" style="width:100%;margin-top:10px;padding:10px;background:rgba(20,25,40,0.8);border:1px solid rgba(123,200,248,0.3);border-radius:8px;color:#e0e0e0;font-family:inherit;">
-<option value="">所有类型</option>
-<option value="document">文档</option>
-<option value="report">报告</option>
-<option value="medical">医疗记录</option>
-<option value="academic">学术研究</option>
-<option value="legal">法律文件</option>
-<option value="analysis">分析报告</option>
-<option value="expert">专家意见</option>
-</select>
-<span class="search-count" id="searchCount">共找到 4 条证据</span>
-</div>
+<!-- 将原来的 evidence-drawer-content 改为一个包装层，其内部再放一个滚动区域 -->
+<div class="evidence-drawer-content" id="evidenceDrawerContent" style="padding: 0; max-height: 70vh; overflow: hidden; display: flex; flex-direction: column;">
+    <!-- 搜索框 - 固定在顶部，不随内容滚动，且移除了类型筛选下拉框 -->
+    <div class="evidence-search-container" style="flex-shrink: 0;">
+        <input type="search" id="evidenceSearch" placeholder="搜索证据名称、描述或章节..." autocomplete="off">
+        <!-- 移除了下面的 select 筛选框 -->
+        <span class="search-count" id="searchCount">共找到 4 条证据（均已就绪）</span>
+    </div>
                         
-                        <!-- 内容区域 -->
-                        <div class="evidence-content">
-                            <!-- 介绍文字 -->
-                            <div class="evidence-intro">
-                                <p><strong>真相隐于微末，而证据永不消逝</strong></p>
-                                <p>________________________________________</p>
-                                <p><strong>如何阅读证据库 / How to Read the Evidence Hub</strong></p>
-                                <p>• 普通读者：可按【章节 → 对应证据】顺序阅读，用于理解叙事中的事实支点。</p>
-                                <p>• 专业读者：可直接查阅各 Exhibit 编号，获取对应的原始数据与技术说明。</p>
-                            </div>
+    <!-- 新的滚动区域：从“数据库目录”开始滚动 -->
+    <div class="evidence-scroll-area" style="overflow-y: auto; padding: 0 32px 20px;">
+        <!-- 内容区域 -->
+        <div class="evidence-content" style="padding: 0;"> <!-- 移除内边距，由父级控制 -->
+            <!-- 介绍文字 -->
+            <div class="evidence-intro" style="margin-top: 0;"> <!-- 调整顶部边距 -->
+                <p><strong>真相隐于微末，而证据永不消逝</strong></p>
+                <p>________________________________________</p>
+                <p><strong>如何阅读证据库 / How to Read the Evidence Hub</strong></p>
+                <p>• 普通读者：可按【章节 → 对应证据】顺序阅读，用于理解叙事中的事实支点。</p>
+                <p>• 专业读者：可直接查阅各 Exhibit 编号，获取对应的原始数据与技术说明。</p>
+            </div>
                             
                             <!-- 数据库目录 -->
                             <h3>数据库目录</h3>
@@ -2011,8 +2039,9 @@
                                 </p>
                             </div>
                         </div> <!-- 关闭: .evidence-content -->
-                    </div> <!-- 关闭: .evidence-drawer-content -->
-                </details>
+                    </div> <!-- 关闭: .evidence-scroll-area -->
+                </div> <!-- 关闭: .evidence-drawer-content -->
+            </details>
                 
                 <!-- 想看按钮 -->
                 <div class="button" id="wantToReadBtn">
@@ -2296,21 +2325,17 @@
                 }
             }
             
-                        // PDF按钮点击事件 - 只处理证据库的PDF按钮
+            // PDF按钮点击事件
             function handlePdfClick(e) {
-                // 检查是否是证据库的PDF按钮（有data-file-id属性的）
+                // 检查是否是PDF按钮
                 const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
                     e.target : e.target.closest('.pdf-trigger');
                 
                 if (!pdfTrigger) return;
                 
-                // 检查是否有data-file-id属性，这是证据库PDF按钮的特征
                 const fileId = pdfTrigger.getAttribute('data-file-id');
-                
-                // 如果没有data-file-id，说明是章节图标，让updateChapterIcons处理
-                if (!fileId) return;
-                
                 const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
+                const chapter = pdfTrigger.getAttribute('data-chapter');
                 
                 if (!fileId || fileId.trim() === '') {
                     alert(`"${fileName}"正在准备中，敬请期待！`);
@@ -2489,6 +2514,33 @@
             });
             console.log('章节链接配置加载成功', chapterLinks);
             
+            // 更新所有章节图标的链接
+            updateChapterIcons();
+        })
+        .catch(error => {
+            console.warn('加载章节配置失败，使用默认链接', error);
+            // 如果 CDN 加载失败，尝试直接从 GitHub 加载
+            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.acts.forEach(act => {
+                        act.chapters.forEach(chapter => {
+                            chapterLinks[chapter.chapterNumber] = {
+                                read: chapter.readLink,
+                                audio: chapter.audioLink,
+                                video: chapter.videoLink,
+                                external: chapter.externalLink
+                            };
+                        });
+                    });
+                    console.log('章节链接配置加载成功（备用）', chapterLinks);
+                    updateChapterIcons();
+                })
+                .catch(err => {
+                    console.error('章节配置加载失败', err);
+                });
+        });
+    
                         // 更新所有章节图标的链接
     function updateChapterIcons() {
         // 章节编号映射函数 - 用于显示友好的章节名称
@@ -2538,32 +2590,26 @@
                 // 更新读故事图标 📖
                 const readIcon = actionsDiv.querySelector('.read-icon');
                 if (readIcon) {
-                    // 移除可能存在的旧事件监听器（通过替换为新元素的方式）
-                    const newReadIcon = readIcon.cloneNode(true);
-                    readIcon.parentNode.replaceChild(newReadIcon, readIcon);
-                    
                     if (links.read && links.read.trim() !== '') {
                         // 有链接：绿色，点击跳转到链接
-                        newReadIcon.style.color = '#4CAF50';
-                        newReadIcon.style.background = 'rgba(76,175,80,0.1)';
-                        newReadIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        newReadIcon.title = '读故事';
+                        readIcon.style.color = '#4CAF50';
+                        readIcon.style.background = 'rgba(76,175,80,0.1)';
+                        readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        readIcon.title = '读故事';
                         // 点击事件：跳转到配置的链接
-                        newReadIcon.onclick = function(e) {
+                        readIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             window.location.href = links.read;
                         };
                     } else {
                         // 无链接：灰色，显示准备中提示
-                        newReadIcon.style.color = '#888';
-                        newReadIcon.style.background = 'rgba(128,128,128,0.1)';
-                        newReadIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        newReadIcon.title = '读故事 (准备中)';
+                        readIcon.style.color = '#888';
+                        readIcon.style.background = 'rgba(128,128,128,0.1)';
+                        readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        readIcon.title = '读故事 (准备中)';
                         // 点击事件：显示章节专属提示
-                        newReadIcon.onclick = function(e) {
+                        readIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2572,29 +2618,24 @@
                 // 更新听故事图标 🎙️
                 const audioIcon = actionsDiv.querySelector('.audio-icon');
                 if (audioIcon) {
-                    const newAudioIcon = audioIcon.cloneNode(true);
-                    audioIcon.parentNode.replaceChild(newAudioIcon, audioIcon);
-                    
                     if (links.audio && links.audio.trim() !== '') {
                         // 有链接：绿色，新窗口打开音频
-                        newAudioIcon.style.color = '#4CAF50';
-                        newAudioIcon.style.background = 'rgba(76,175,80,0.1)';
-                        newAudioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        newAudioIcon.title = '听故事';
-                        newAudioIcon.onclick = function(e) {
+                        audioIcon.style.color = '#4CAF50';
+                        audioIcon.style.background = 'rgba(76,175,80,0.1)';
+                        audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        audioIcon.title = '听故事';
+                        audioIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             window.open(links.audio, '_blank');
                         };
                     } else {
                         // 无链接：灰色，显示准备中提示
-                        newAudioIcon.style.color = '#888';
-                        newAudioIcon.style.background = 'rgba(128,128,128,0.1)';
-                        newAudioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        newAudioIcon.title = '听故事 (准备中)';
-                        newAudioIcon.onclick = function(e) {
+                        audioIcon.style.color = '#888';
+                        audioIcon.style.background = 'rgba(128,128,128,0.1)';
+                        audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        audioIcon.title = '听故事 (准备中)';
+                        audioIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2603,29 +2644,24 @@
                 // 更新看故事图标 🎥
                 const videoIcon = actionsDiv.querySelector('.video-icon');
                 if (videoIcon) {
-                    const newVideoIcon = videoIcon.cloneNode(true);
-                    videoIcon.parentNode.replaceChild(newVideoIcon, videoIcon);
-                    
                     if (links.video && links.video.trim() !== '') {
                         // 有链接：绿色，新窗口打开视频
-                        newVideoIcon.style.color = '#4CAF50';
-                        newVideoIcon.style.background = 'rgba(76,175,80,0.1)';
-                        newVideoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        newVideoIcon.title = '看故事';
-                        newVideoIcon.onclick = function(e) {
+                        videoIcon.style.color = '#4CAF50';
+                        videoIcon.style.background = 'rgba(76,175,80,0.1)';
+                        videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        videoIcon.title = '看故事';
+                        videoIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             window.open(links.video, '_blank');
                         };
                     } else {
                         // 无链接：灰色，显示准备中提示
-                        newVideoIcon.style.color = '#888';
-                        newVideoIcon.style.background = 'rgba(128,128,128,0.1)';
-                        newVideoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        newVideoIcon.title = '看故事 (准备中)';
-                        newVideoIcon.onclick = function(e) {
+                        videoIcon.style.color = '#888';
+                        videoIcon.style.background = 'rgba(128,128,128,0.1)';
+                        videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        videoIcon.title = '看故事 (准备中)';
+                        videoIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2634,29 +2670,24 @@
                 // 更新外部链接图标 🔗
                 const externalIcon = actionsDiv.querySelector('.external-link');
                 if (externalIcon) {
-                    const newExternalIcon = externalIcon.cloneNode(true);
-                    externalIcon.parentNode.replaceChild(newExternalIcon, externalIcon);
-                    
                     if (links.external && links.external.trim() !== '') {
                         // 有链接：绿色，新窗口打开外部链接
-                        newExternalIcon.style.color = '#4CAF50';
-                        newExternalIcon.style.background = 'rgba(76,175,80,0.1)';
-                        newExternalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        newExternalIcon.title = '外部链接';
-                        newExternalIcon.onclick = function(e) {
+                        externalIcon.style.color = '#4CAF50';
+                        externalIcon.style.background = 'rgba(76,175,80,0.1)';
+                        externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        externalIcon.title = '外部链接';
+                        externalIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             window.open(links.external, '_blank');
                         };
                     } else {
                         // 无链接：灰色，显示准备中提示
-                        newExternalIcon.style.color = '#888';
-                        newExternalIcon.style.background = 'rgba(128,128,128,0.1)';
-                        newExternalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        newExternalIcon.title = '外部链接 (准备中)';
-                        newExternalIcon.onclick = function(e) {
+                        externalIcon.style.color = '#888';
+                        externalIcon.style.background = 'rgba(128,128,128,0.1)';
+                        externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        externalIcon.title = '外部链接 (准备中)';
+                        externalIcon.onclick = function(e) {
                             e.preventDefault();
-                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2667,6 +2698,7 @@
 </script>
 </body>
 </html>
+
 
 
 
