@@ -643,9 +643,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .chapter-table th {
+                                .chapter-table th {
             background-color: rgba(30, 35, 60, 0.7);
-            color: #ffd700;
+            color: #f0f0f0;  /* 改为白色，与三幕标题一致 */
             font-weight: 600;
             font-size: 1.1rem;
             text-align: center;
@@ -673,7 +673,7 @@
         
         .chapter-title {
             font-weight: 600;
-            color: #f0f0f0;
+            color: #ffd700;
             margin-bottom: 4px;
             display: block;
         }
@@ -687,15 +687,28 @@
         }
         
         /* PDF和外部链接样式 - 统一大小 */
-                /* 章节操作图标样式 */
+                        /* 章节操作图标样式 - 固定两行显示 */
         .chapter-actions {
             margin-top: 8px;
             padding-top: 8px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(32px, 1fr));
             gap: 5px;
             align-items: center;
-            flex-wrap: wrap;
+            justify-items: center;
+        }
+        
+        .chapter-actions button,
+        .chapter-actions .external-link {
+            width: 100%;
+            max-width: 36px;
+            height: 32px;
+            padding: 3px 0 !important;
+            margin: 0 auto;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
         }
             .read-icon, .audio-icon, .video-icon, .external-link {
             font-size: 1.2rem;
@@ -762,7 +775,7 @@
         .act-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #ffd700;
+            color: #f0f0f0;
             margin-bottom: 4px;
             display: block;
             text-align: center;
@@ -821,10 +834,10 @@
             display: none;
         }
 
-        .chapter-drawer-content {
-            padding: 0;
-            max-height: 70vh; /* 限制高度 */
-            overflow-y: auto; /* 增加垂直滚动条 */
+               .chapter-drawer-content {
+            padding: 0 0 5px 0;  /* 减少底部内边距 */
+            max-height: 65vh; /* 稍微降低高度，减少空白 */
+            overflow-y: auto;
             position: relative;
             scroll-behavior: smooth;
         }
@@ -1383,7 +1396,7 @@
 }
 </style>
                 
-                <!-- 三幕章节目录 - 表格形式（带滚动条） -->
+                               <!-- 三幕章节目录 - 表格形式（带滚动条） -->
                 <details class="chapter-drawer" id="chapterContents">
   <summary>
     <span class="triangle-icon">▶</span>
@@ -1391,11 +1404,7 @@
     完整章节目录/内容（共18章+番外，约15万字）
   </summary>
                   <div class="chapter-drawer-content">
-                      <!-- 提示文字 -->
-                      <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
-                        本文档仅供阅读，不提供下载或二次传播权限。
-                          
-                       <!-- 图标状态说明 -->
+                      <!-- 图标状态说明 -->
 <div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
     <div style='margin-bottom:5px;'><strong>📋 图标状态说明：</strong></div>
     <div style='display:flex;align-items:center;gap:15px;flex-wrap:wrap;justify-content:center;'>
@@ -1451,7 +1460,7 @@
                         <tbody>
                           <tr>
                             <td>
-                              <span class='act-title'>崩塌 ·</span>
+                              <span class='act-title'>崩塌</span>
                               <span class='act-title-second-line'>当日常被制度击穿</span>
                               <ul>
                                                                 <li>
@@ -1822,10 +1831,15 @@
                             </td>
                           </tr>
                         </tbody>
-                      </table>
+                                          </table>
                       
-                     <!-- 移除返回顶部按钮，只保留分隔线 -->
-<div style='margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);'></div>
+                      <!-- 提示文字 - 紧凑显示 -->
+                      <div style='color:#888;font-size:0.85rem;font-style:italic;margin:15px 0 5px;padding:8px 12px;background:rgba(30,30,30,0.3);border-radius:6px;border-left:3px solid #7bc8f8;'>
+                        本文档仅供阅读，不提供下载或二次传播权限。
+                      </div>
+                      
+                     <!-- 移除返回顶部按钮，只保留细分隔线 -->
+<div style='margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05);'></div>
                   </div>
                 </details>
                 
@@ -2282,17 +2296,21 @@
                 }
             }
             
-            // PDF按钮点击事件
+                        // PDF按钮点击事件 - 只处理证据库的PDF按钮
             function handlePdfClick(e) {
-                // 检查是否是PDF按钮
+                // 检查是否是证据库的PDF按钮（有data-file-id属性的）
                 const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
                     e.target : e.target.closest('.pdf-trigger');
                 
                 if (!pdfTrigger) return;
                 
+                // 检查是否有data-file-id属性，这是证据库PDF按钮的特征
                 const fileId = pdfTrigger.getAttribute('data-file-id');
+                
+                // 如果没有data-file-id，说明是章节图标，让updateChapterIcons处理
+                if (!fileId) return;
+                
                 const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
-                const chapter = pdfTrigger.getAttribute('data-chapter');
                 
                 if (!fileId || fileId.trim() === '') {
                     alert(`"${fileName}"正在准备中，敬请期待！`);
@@ -2471,36 +2489,9 @@
             });
             console.log('章节链接配置加载成功', chapterLinks);
             
-            // 更新所有章节图标的链接
-            updateChapterIcons();
-        })
-        .catch(error => {
-            console.warn('加载章节配置失败，使用默认链接', error);
-            // 如果 CDN 加载失败，尝试直接从 GitHub 加载
-            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
-                .then(response => response.json())
-                .then(data => {
-                    data.acts.forEach(act => {
-                        act.chapters.forEach(chapter => {
-                            chapterLinks[chapter.chapterNumber] = {
-                                read: chapter.readLink,
-                                audio: chapter.audioLink,
-                                video: chapter.videoLink,
-                                external: chapter.externalLink
-                            };
-                        });
-                    });
-                    console.log('章节链接配置加载成功（备用）', chapterLinks);
-                    updateChapterIcons();
-                })
-                .catch(err => {
-                    console.error('章节配置加载失败', err);
-                });
-        });
-    
-            // 更新所有章节图标的链接
+                        // 更新所有章节图标的链接
     function updateChapterIcons() {
-        // 章节编号映射函数
+        // 章节编号映射函数 - 用于显示友好的章节名称
         function getChapterDisplayNumber(chapterId) {
             const map = {
                 '1': '1',
@@ -2547,30 +2538,32 @@
                 // 更新读故事图标 📖
                 const readIcon = actionsDiv.querySelector('.read-icon');
                 if (readIcon) {
+                    // 移除可能存在的旧事件监听器（通过替换为新元素的方式）
+                    const newReadIcon = readIcon.cloneNode(true);
+                    readIcon.parentNode.replaceChild(newReadIcon, readIcon);
+                    
                     if (links.read && links.read.trim() !== '') {
-                        // 有链接：绿色
-                        readIcon.style.color = '#4CAF50';
-                        readIcon.style.background = 'rgba(76,175,80,0.1)';
-                        readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        readIcon.style.padding = '3px 6px';
-                        readIcon.style.borderRadius = '4px';
-                        readIcon.title = '读故事';
-                        // 点击事件：跳转
-                        readIcon.onclick = function(e) {
+                        // 有链接：绿色，点击跳转到链接
+                        newReadIcon.style.color = '#4CAF50';
+                        newReadIcon.style.background = 'rgba(76,175,80,0.1)';
+                        newReadIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        newReadIcon.title = '读故事';
+                        // 点击事件：跳转到配置的链接
+                        newReadIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             window.location.href = links.read;
                         };
                     } else {
-                        // 无链接：灰色
-                        readIcon.style.color = '#888';
-                        readIcon.style.background = 'rgba(128,128,128,0.1)';
-                        readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        readIcon.style.padding = '3px 6px';
-                        readIcon.style.borderRadius = '4px';
-                        readIcon.title = '读故事 (准备中)';
-                        // 点击事件：显示提示
-                        readIcon.onclick = function(e) {
+                        // 无链接：灰色，显示准备中提示
+                        newReadIcon.style.color = '#888';
+                        newReadIcon.style.background = 'rgba(128,128,128,0.1)';
+                        newReadIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        newReadIcon.title = '读故事 (准备中)';
+                        // 点击事件：显示章节专属提示
+                        newReadIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2579,30 +2572,29 @@
                 // 更新听故事图标 🎙️
                 const audioIcon = actionsDiv.querySelector('.audio-icon');
                 if (audioIcon) {
+                    const newAudioIcon = audioIcon.cloneNode(true);
+                    audioIcon.parentNode.replaceChild(newAudioIcon, audioIcon);
+                    
                     if (links.audio && links.audio.trim() !== '') {
-                        // 有链接：绿色
-                        audioIcon.style.color = '#4CAF50';
-                        audioIcon.style.background = 'rgba(76,175,80,0.1)';
-                        audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        audioIcon.style.padding = '3px 6px';
-                        audioIcon.style.borderRadius = '4px';
-                        audioIcon.title = '听故事';
-                        // 点击事件：新窗口打开音频
-                        audioIcon.onclick = function(e) {
+                        // 有链接：绿色，新窗口打开音频
+                        newAudioIcon.style.color = '#4CAF50';
+                        newAudioIcon.style.background = 'rgba(76,175,80,0.1)';
+                        newAudioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        newAudioIcon.title = '听故事';
+                        newAudioIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             window.open(links.audio, '_blank');
                         };
                     } else {
-                        // 无链接：灰色
-                        audioIcon.style.color = '#888';
-                        audioIcon.style.background = 'rgba(128,128,128,0.1)';
-                        audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        audioIcon.style.padding = '3px 6px';
-                        audioIcon.style.borderRadius = '4px';
-                        audioIcon.title = '听故事 (准备中)';
-                        // 点击事件：显示提示
-                        audioIcon.onclick = function(e) {
+                        // 无链接：灰色，显示准备中提示
+                        newAudioIcon.style.color = '#888';
+                        newAudioIcon.style.background = 'rgba(128,128,128,0.1)';
+                        newAudioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        newAudioIcon.title = '听故事 (准备中)';
+                        newAudioIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2611,30 +2603,29 @@
                 // 更新看故事图标 🎥
                 const videoIcon = actionsDiv.querySelector('.video-icon');
                 if (videoIcon) {
+                    const newVideoIcon = videoIcon.cloneNode(true);
+                    videoIcon.parentNode.replaceChild(newVideoIcon, videoIcon);
+                    
                     if (links.video && links.video.trim() !== '') {
-                        // 有链接：绿色
-                        videoIcon.style.color = '#4CAF50';
-                        videoIcon.style.background = 'rgba(76,175,80,0.1)';
-                        videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        videoIcon.style.padding = '3px 6px';
-                        videoIcon.style.borderRadius = '4px';
-                        videoIcon.title = '看故事';
-                        // 点击事件：新窗口打开视频
-                        videoIcon.onclick = function(e) {
+                        // 有链接：绿色，新窗口打开视频
+                        newVideoIcon.style.color = '#4CAF50';
+                        newVideoIcon.style.background = 'rgba(76,175,80,0.1)';
+                        newVideoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        newVideoIcon.title = '看故事';
+                        newVideoIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             window.open(links.video, '_blank');
                         };
                     } else {
-                        // 无链接：灰色
-                        videoIcon.style.color = '#888';
-                        videoIcon.style.background = 'rgba(128,128,128,0.1)';
-                        videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        videoIcon.style.padding = '3px 6px';
-                        videoIcon.style.borderRadius = '4px';
-                        videoIcon.title = '看故事 (准备中)';
-                        // 点击事件：显示提示
-                        videoIcon.onclick = function(e) {
+                        // 无链接：灰色，显示准备中提示
+                        newVideoIcon.style.color = '#888';
+                        newVideoIcon.style.background = 'rgba(128,128,128,0.1)';
+                        newVideoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        newVideoIcon.title = '看故事 (准备中)';
+                        newVideoIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2643,30 +2634,29 @@
                 // 更新外部链接图标 🔗
                 const externalIcon = actionsDiv.querySelector('.external-link');
                 if (externalIcon) {
+                    const newExternalIcon = externalIcon.cloneNode(true);
+                    externalIcon.parentNode.replaceChild(newExternalIcon, externalIcon);
+                    
                     if (links.external && links.external.trim() !== '') {
-                        // 有链接：绿色
-                        externalIcon.style.color = '#4CAF50';
-                        externalIcon.style.background = 'rgba(76,175,80,0.1)';
-                        externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        externalIcon.style.padding = '3px 6px';
-                        externalIcon.style.borderRadius = '4px';
-                        externalIcon.title = '外部链接';
-                        // 点击事件：新窗口打开外部链接
-                        externalIcon.onclick = function(e) {
+                        // 有链接：绿色，新窗口打开外部链接
+                        newExternalIcon.style.color = '#4CAF50';
+                        newExternalIcon.style.background = 'rgba(76,175,80,0.1)';
+                        newExternalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        newExternalIcon.title = '外部链接';
+                        newExternalIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             window.open(links.external, '_blank');
                         };
                     } else {
-                        // 无链接：灰色
-                        externalIcon.style.color = '#888';
-                        externalIcon.style.background = 'rgba(128,128,128,0.1)';
-                        externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        externalIcon.style.padding = '3px 6px';
-                        externalIcon.style.borderRadius = '4px';
-                        externalIcon.title = '外部链接 (准备中)';
-                        // 点击事件：显示提示
-                        externalIcon.onclick = function(e) {
+                        // 无链接：灰色，显示准备中提示
+                        newExternalIcon.style.color = '#888';
+                        newExternalIcon.style.background = 'rgba(128,128,128,0.1)';
+                        newExternalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        newExternalIcon.title = '外部链接 (准备中)';
+                        newExternalIcon.onclick = function(e) {
                             e.preventDefault();
+                            e.stopPropagation();
                             alert('第' + displayNum + '章准备中，敬请期待。');
                         };
                     }
@@ -2677,6 +2667,10 @@
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
