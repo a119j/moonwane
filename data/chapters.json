@@ -790,22 +790,14 @@
           "videoLink": "",
          "externalreadLink": "/chapters/chapter-18-02.html"
         },
-        {
-         "chapterNumber": "extra-01",
-           "title":  "奔赴：爱是唯一的导航",
-          "pdfId": "pdf_extra_01",
-           "audioLink": "",
-          "videoLink": "",
-         "externalreadLink": "/chapters/extra-01.html"
-        },
           { 
-          "chapterNumber": "extra-02",
+          "chapterNumber": "extra",
            "title": "番外篇 案子的三个谜",
           "subtitle": "那些系统没有回答，时间也未必能解答的问题",
-          "pdfId": "pdf_extra_02",
+          "pdfId": "pdf_extra",
            "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/extra-02.html"  
+         "externalreadLink": "/chapters/extra.html"  
         }
       ]
     }
