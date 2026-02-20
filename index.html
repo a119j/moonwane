@@ -687,10 +687,33 @@
         }
         
         /* PDF和外部链接样式 - 统一大小 */
+                /* 章节操作图标样式 */
         .chapter-actions {
             margin-top: 8px;
             padding-top: 8px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+            .read-icon, .audio-icon, .video-icon, .external-link {
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .read-icon:hover, .audio-icon:hover, .video-icon:hover, .external-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         .pdf-link, .external-link, .pdf-trigger {
@@ -1374,22 +1397,48 @@
                       <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
                           
-                      <!-- 章节状态说明 -->
+                       <!-- 图标状态说明 -->
 <div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
-    <div style='margin-bottom:5px;'><strong>📋 章节状态说明：</strong></div>
-    <div style='display:flex;align-items:center;gap:10px;flex-wrap:wrap;'>
-        <span style='display:inline-flex;align-items:center;gap:3px;'>
-            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>PDF</span> 准备中
-        </span>
-        <span style='display:inline-flex;align-items:center;gap:3px;'>
-            <span style='padding:2px 6px;font-size:0.9rem;color:#7bc8f8;background:rgba(123,200,248,0.1);border:1px solid rgba(123,200,248,0.2);border-radius:4px;'>PDF</span> 已就绪
-        </span>
-        <span style='display:inline-flex;align-items:center;gap:3px;'>
-            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>LINK</span> 准备中
-        </span>
-        <span style='display:inline-flex;align-items:center;gap:3px;'>
-            <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>LINK</span> 已就绪
-        </span>
+    <div style='margin-bottom:5px;'><strong>📋 图标状态说明：</strong></div>
+    <div style='display:flex;align-items:center;gap:15px;flex-wrap:wrap;justify-content:center;'>
+        <!-- 阅读图标 📖 示例 -->
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>📖</span>
+            <span style='color:#888;font-size:0.9rem;'>准备中</span>
+        </div>
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>📖</span>
+            <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
+        </div>
+        
+        <!-- 听故事图标 🎙️ 示例 -->
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>🎙️</span>
+            <span style='color:#888;font-size:0.9rem;'>准备中</span>
+        </div>
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>🎙️</span>
+            <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
+        </div>
+        
+        <!-- 看故事图标 🎥 示例 -->
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>🎥</span>
+            <span style='color:#888;font-size:0.9rem;'>准备中</span>
+        </div>
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>🎥</span>
+            <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
+        </div>
+        
+        <!-- 外部链接图标 🔗 示例 -->
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#888;background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);border-radius:4px;'>🔗</span>
+            <span style='color:#888;font-size:0.9rem;'>准备中</span>
+        </div>
+        <div style='display:inline-flex;align-items:center;gap:5px;'>
+            <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>🔗</span>
+            <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
     </div>
 </div>
                       <!-- 章节表格 -->
@@ -1407,136 +1456,126 @@
                               <span class='act-title'>崩塌 ·</span>
                               <span class='act-title-second-line'>当日常被制度击穿</span>
                               <ul>
-                                <li>
+                                                                <li>
                                   <span class='chapter-title'>第1章 六秒与六年的开端</span>
                                   <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='1' data-file-id='' data-file-name='第1章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='1' data-github=''>
-                                      🔗
-                                    </button>
+                                      <button class="pdf-trigger read-icon" data-chapter="1" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="1" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="1" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="1" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
                                 <li>
                                   <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
                                   <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='2' data-file-id='' data-file-name='第2章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='2' data-github=''>
-                                      🔗
-                                    </button>
+                                      <button class="pdf-trigger read-icon" data-chapter="2" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="2" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="2" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="2" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
                                 <li>
                                   <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
                                   <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='3' data-file-id='' data-file-name='第3章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='3' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="3" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="3" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="3" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="3" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
-                                <li>
+
+                                                                <li>
                                   <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
                                   <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='4-1' data-file-id='' data-file-name='第4章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='4-1' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="4-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="4-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="4-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="4-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
-                                <li>
+              <li>
                                   <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
                                   <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='4-2' data-file-id='' data-file-name='第4章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='4-2' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="4-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="4-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="4-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="4-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
                                 <li>
                                   <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
                                   <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='5-1' data-file-id='' data-file-name='第5章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='5-1' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="5-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="5-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="5-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="5-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
                                   <span class='chapter-subtitle'>手铐只是换了一种形态</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='5-2' data-file-id='' data-file-name='第5章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='5-2' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="5-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="5-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="5-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="5-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
                                   <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='6' data-file-id='' data-file-name='第6章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='6' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="6" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="6" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="6" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="6" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
                                   <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='7-1' data-file-id='' data-file-name='第7章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='7-1' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="7-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="7-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="7-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="7-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
                                   <span class='chapter-subtitle'>我们不需要被同情</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='7-2' data-file-id='' data-file-name='第7章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='7-2' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="7-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="7-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="7-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="7-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
                               </ul>
                             </td>
                             <td>
@@ -1546,133 +1585,132 @@
                                 <li>
                                   <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
                                   <span class='chapter-subtitle'>数据如何被误读成罪</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='8-1' data-file-id='' data-file-name='第8章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='8-1' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="8-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="8-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="8-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="8-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
                                   <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='8-2' data-file-id='' data-file-name='第8章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='8-2' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="8-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="8-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="8-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="8-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
                                   <span class='chapter-subtitle'>物证与失察的双重真相</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='9-1' data-file-id='' data-file-name='第9章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='9-1' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="9-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="9-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="9-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="9-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
                                 <li>
                                   <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
                                   <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='9-2' data-file-id='' data-file-name='第9章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='9-2' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="9-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="9-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="9-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="9-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
                                   <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='10-1' data-file-id='' data-file-name='第10章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='10-1' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="10-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="10-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="10-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="10-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
                                   <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='10-2' data-file-id='' data-file-name='第10章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='10-2' data-github=''>
-                                      🔗
-                                    </button>
+                                 <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="10-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="10-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="10-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="10-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第11章 临阵换帅</span>
                                   <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='11' data-file-id='' data-file-name='第11章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='11' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="11" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="11" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="11" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="11" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
                                   <span class='chapter-subtitle'>闭环如何形成真相</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='12-1' data-file-id='' data-file-name='第12章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='12-1' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="12-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="12-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="12-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="12-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
                                   <span class='chapter-subtitle'>一句&quot;没必要&quot;，否决一个家庭的命运</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='12-2' data-file-id='' data-file-name='第12章(中).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='12-2' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="12-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="12-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="12-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="12-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
                                   <span class='chapter-subtitle'>五个证人，五个平行世界</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='12-3' data-file-id='' data-file-name='第12章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='12-3' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="12-03" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="12-03" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="12-03" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="12-03" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                               </ul>
                             </td>
                             <td>
@@ -1682,107 +1720,106 @@
                                 <li>
                                   <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
                                   <span class='chapter-subtitle'>律师，在开庭前消失了</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='13' data-file-id='' data-file-name='第13章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='13' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="13" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="13" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="13" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="13" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
                                   <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='14' data-file-id='' data-file-name='第14章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='14' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="14" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="14" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="14" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="14" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第15章 家的天平</span>
                                   <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='15' data-file-id='' data-file-name='第15章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='15' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="15" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="15" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="15" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="15" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
                                   <span class='chapter-subtitle'>六年，换一张交通罚单</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='16' data-file-id='' data-file-name='第16章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='16' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="16" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="16" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="16" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="16" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
-                                  <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='17-1' data-file-id='' data-file-name='第17章(上).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='17-1' data-github=''>
-                                      🔗
-                                    </button>
+                                  <span class='chapter-subtitle'>当司法程序忘记为何而转动</span><div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="17-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="17-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="17-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="17-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第17章（下）后视镜里的六年</span>
                                   <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='17-2' data-file-id='' data-file-name='第17章(下).pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='17-2' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="17-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="17-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="17-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="17-02" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
                                   <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
                                   <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='18' data-file-id='' data-file-name='第18章.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='18' data-github=''>
-                                      🔗
-                                    </button>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                                 <li>
                                   <span class='chapter-title'>番外篇 案子的三个谜</span>
                                   <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
-                                  <div class='chapter-actions'>
-                                    <button class='pdf-trigger' data-chapter='extra' data-file-id='' data-file-name='番外篇.pdf'>
-                                      📄
-                                    </button>
-                                    <!-- 后续在GitHub编辑时添加链接地址：data-github='https://github.com/a119j/moonwane' -->
-                                    <button class='external-link' data-chapter='extra' data-github=''>
-                                      🔗
-                                    </button>
+                                   <div class='chapter-actions'>
+                                      <!-- 四个图标，样式完全一致 -->
+                                      <button class="pdf-trigger read-icon" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读故事 (准备中)">📖</button>
+                                      <button class="pdf-trigger audio-icon" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听故事 (准备中)">🎙️</button>
+                                      <button class="pdf-trigger video-icon" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看故事 (准备中)">🎥</button>
+                                      <button class="external-link" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="外部链接 (准备中)">🔗</button>
                                   </div>
                                 </li>
+
+
                               </ul>
                             </td>
                           </tr>
@@ -2379,50 +2416,273 @@
             console.log('4. "赞助支持"链接:', document.querySelector('.support-link') ? '✓ 存在' : '✗ 缺失');
             console.log('5. "法律免责"链接:', document.querySelector('a[href="legal-disclaimer.html"]') ? '✓ 存在' : '✗ 缺失');
         });
-    // --- 简介抽屉交互逻辑 (简化版，无返回功能) ---
-const introToggle = document.getElementById('introDrawerToggle');
-const introDrawer = document.getElementById('introDrawer');
-const introArrow = document.getElementById('introArrow');
+        // --- 简介抽屉交互逻辑 ---
+    const introToggle = document.getElementById('introDrawerToggle');
+    const introDrawer = document.getElementById('introDrawer');
+    const introArrow = document.getElementById('introArrow');
 
-if (introToggle && introDrawer && introArrow) {
-    introToggle.addEventListener('click', function(e) {
-        // 阻止事件冒泡，防止触发父元素的点击
-        e.stopPropagation();
-        
-        // 切换抽屉的展开/收起状态
-        if (introDrawer.style.maxHeight === '0px' || introDrawer.style.maxHeight === '') {
-            // 先设置一个足够大的固定高度来触发过渡
-            introDrawer.style.maxHeight = introDrawer.scrollHeight + 'px';
-            introArrow.style.transform = 'rotate(90deg)';
-        } else {
-            introDrawer.style.maxHeight = '0px';
-            introArrow.style.transform = 'rotate(0deg)';
+    if (introToggle && introDrawer && introArrow) {
+        introToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (introDrawer.style.maxHeight === '0px' || introDrawer.style.maxHeight === '') {
+                introDrawer.style.maxHeight = introDrawer.scrollHeight + 'px';
+                introArrow.style.transform = 'rotate(90deg)';
+            } else {
+                introDrawer.style.maxHeight = '0px';
+                introArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+
+    // --- 简介抽屉底部链接的点击事件 ---
+    const toChapterLink = document.getElementById('introToChapterLink');
+    const toFirstChapterLink = document.getElementById('introToFirstChapterLink');
+    const chapterDrawer = document.getElementById('chapterContents');
+
+    if (toChapterLink && chapterDrawer) {
+        toChapterLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            chapterDrawer.open = true;
+            chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    // --- 第一章试读链接（直接跳转，不需要 JavaScript 拦截）---
+    // HTML 中已经设置了 href="/chapters/chapter-1-01.html"，所以这里不需要处理
+
+    // ========== 新增：从 chapters.json 加载章节链接 ==========
+    
+    // 加载章节链接配置文件
+    let chapterLinks = {};
+    
+    // 使用 jsDelivr CDN 加载配置文件（全球加速）
+    fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
+        .then(response => response.json())
+        .then(data => {
+            // 将 chapters.json 的结构转换为便于查找的键值对
+            data.acts.forEach(act => {
+                act.chapters.forEach(chapter => {
+                    chapterLinks[chapter.chapterNumber] = {
+                        read: chapter.readLink,
+                        audio: chapter.audioLink,
+                        video: chapter.videoLink,
+                        external: chapter.externalLink
+                    };
+                });
+            });
+            console.log('章节链接配置加载成功', chapterLinks);
+            
+            // 更新所有章节图标的链接
+            updateChapterIcons();
+        })
+        .catch(error => {
+            console.warn('加载章节配置失败，使用默认链接', error);
+            // 如果 CDN 加载失败，尝试直接从 GitHub 加载
+            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.acts.forEach(act => {
+                        act.chapters.forEach(chapter => {
+                            chapterLinks[chapter.chapterNumber] = {
+                                read: chapter.readLink,
+                                audio: chapter.audioLink,
+                                video: chapter.videoLink,
+                                external: chapter.externalLink
+                            };
+                        });
+                    });
+                    console.log('章节链接配置加载成功（备用）', chapterLinks);
+                    updateChapterIcons();
+                })
+                .catch(err => {
+                    console.error('章节配置加载失败', err);
+                });
+        });
+    
+            // 更新所有章节图标的链接
+    function updateChapterIcons() {
+        // 章节编号映射函数
+        function getChapterDisplayNumber(chapterId) {
+            const map = {
+                '1': '1',
+                '2': '2',
+                '3': '3',
+                '4-01': '4（上）',
+                '4-02': '4（下）',
+                '5-01': '5（上）',
+                '5-02': '5（下）',
+                '6': '6',
+                '7-01': '7（上）',
+                '7-02': '7（下）',
+                '8-01': '8（上）',
+                '8-02': '8（下）',
+                '9-01': '9（上）',
+                '9-02': '9（下）',
+                '10-01': '10（上）',
+                '10-02': '10（下）',
+                '11': '11',
+                '12-01': '12（上）',
+                '12-02': '12（中）',
+                '12-03': '12（下）',
+                '13': '13',
+                '14': '14',
+                '15': '15',
+                '16': '16',
+                '17-01': '17（上）',
+                '17-02': '17（下）',
+                '18': '18',
+                'extra': '番外'
+            };
+            return map[chapterId] || chapterId;
         }
-    });
-}
-
-// --- 简介抽屉底部链接的点击事件 (保持不变) ---
-const toChapterLink = document.getElementById('introToChapterLink');
-const toFirstChapterLink = document.getElementById('introToFirstChapterLink');
-const chapterDrawer = document.getElementById('chapterContents');
-
-if (toChapterLink && chapterDrawer) {
-    toChapterLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        chapterDrawer.open = true;
-        chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-}
-
-if (toFirstChapterLink) {
-    toFirstChapterLink.addEventListener('click', function(e) {
-        // 因为已经在 href 中指定了链接，所以这里不需要 preventDefault
-        // 让浏览器默认行为处理跳转
-        return true;
-    });
-}</script>
+        
+        // 获取所有章节行的图标
+        document.querySelectorAll('.chapter-actions').forEach(actionsDiv => {
+            // 获取章节标识（从 data-chapter 属性获取）
+            const chapterId = actionsDiv.closest('li')?.querySelector('[data-chapter]')?.getAttribute('data-chapter');
+            
+            if (chapterId && chapterLinks[chapterId]) {
+                const links = chapterLinks[chapterId];
+                const displayNum = getChapterDisplayNumber(chapterId);
+                
+                // 更新读故事图标 📖
+                const readIcon = actionsDiv.querySelector('.read-icon');
+                if (readIcon) {
+                    if (links.read && links.read.trim() !== '') {
+                        // 有链接：绿色
+                        readIcon.style.color = '#4CAF50';
+                        readIcon.style.background = 'rgba(76,175,80,0.1)';
+                        readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        readIcon.style.padding = '3px 6px';
+                        readIcon.style.borderRadius = '4px';
+                        readIcon.title = '读故事';
+                        // 点击事件：跳转
+                        readIcon.onclick = function(e) {
+                            e.preventDefault();
+                            window.location.href = links.read;
+                        };
+                    } else {
+                        // 无链接：灰色
+                        readIcon.style.color = '#888';
+                        readIcon.style.background = 'rgba(128,128,128,0.1)';
+                        readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        readIcon.style.padding = '3px 6px';
+                        readIcon.style.borderRadius = '4px';
+                        readIcon.title = '读故事 (准备中)';
+                        // 点击事件：显示提示
+                        readIcon.onclick = function(e) {
+                            e.preventDefault();
+                            alert('第' + displayNum + '章准备中，敬请期待。');
+                        };
+                    }
+                }
+                
+                // 更新听故事图标 🎙️
+                const audioIcon = actionsDiv.querySelector('.audio-icon');
+                if (audioIcon) {
+                    if (links.audio && links.audio.trim() !== '') {
+                        // 有链接：绿色
+                        audioIcon.style.color = '#4CAF50';
+                        audioIcon.style.background = 'rgba(76,175,80,0.1)';
+                        audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        audioIcon.style.padding = '3px 6px';
+                        audioIcon.style.borderRadius = '4px';
+                        audioIcon.title = '听故事';
+                        // 点击事件：新窗口打开音频
+                        audioIcon.onclick = function(e) {
+                            e.preventDefault();
+                            window.open(links.audio, '_blank');
+                        };
+                    } else {
+                        // 无链接：灰色
+                        audioIcon.style.color = '#888';
+                        audioIcon.style.background = 'rgba(128,128,128,0.1)';
+                        audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        audioIcon.style.padding = '3px 6px';
+                        audioIcon.style.borderRadius = '4px';
+                        audioIcon.title = '听故事 (准备中)';
+                        // 点击事件：显示提示
+                        audioIcon.onclick = function(e) {
+                            e.preventDefault();
+                            alert('第' + displayNum + '章准备中，敬请期待。');
+                        };
+                    }
+                }
+                
+                // 更新看故事图标 🎥
+                const videoIcon = actionsDiv.querySelector('.video-icon');
+                if (videoIcon) {
+                    if (links.video && links.video.trim() !== '') {
+                        // 有链接：绿色
+                        videoIcon.style.color = '#4CAF50';
+                        videoIcon.style.background = 'rgba(76,175,80,0.1)';
+                        videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        videoIcon.style.padding = '3px 6px';
+                        videoIcon.style.borderRadius = '4px';
+                        videoIcon.title = '看故事';
+                        // 点击事件：新窗口打开视频
+                        videoIcon.onclick = function(e) {
+                            e.preventDefault();
+                            window.open(links.video, '_blank');
+                        };
+                    } else {
+                        // 无链接：灰色
+                        videoIcon.style.color = '#888';
+                        videoIcon.style.background = 'rgba(128,128,128,0.1)';
+                        videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        videoIcon.style.padding = '3px 6px';
+                        videoIcon.style.borderRadius = '4px';
+                        videoIcon.title = '看故事 (准备中)';
+                        // 点击事件：显示提示
+                        videoIcon.onclick = function(e) {
+                            e.preventDefault();
+                            alert('第' + displayNum + '章准备中，敬请期待。');
+                        };
+                    }
+                }
+                
+                // 更新外部链接图标 🔗
+                const externalIcon = actionsDiv.querySelector('.external-link');
+                if (externalIcon) {
+                    if (links.external && links.external.trim() !== '') {
+                        // 有链接：绿色
+                        externalIcon.style.color = '#4CAF50';
+                        externalIcon.style.background = 'rgba(76,175,80,0.1)';
+                        externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                        externalIcon.style.padding = '3px 6px';
+                        externalIcon.style.borderRadius = '4px';
+                        externalIcon.title = '外部链接';
+                        // 点击事件：新窗口打开外部链接
+                        externalIcon.onclick = function(e) {
+                            e.preventDefault();
+                            window.open(links.external, '_blank');
+                        };
+                    } else {
+                        // 无链接：灰色
+                        externalIcon.style.color = '#888';
+                        externalIcon.style.background = 'rgba(128,128,128,0.1)';
+                        externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                        externalIcon.style.padding = '3px 6px';
+                        externalIcon.style.borderRadius = '4px';
+                        externalIcon.title = '外部链接 (准备中)';
+                        // 点击事件：显示提示
+                        externalIcon.onclick = function(e) {
+                            e.preventDefault();
+                            alert('第' + displayNum + '章准备中，敬请期待。');
+                        };
+                    }
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
+
+
+
+
 
 
 
