@@ -118,113 +118,185 @@
          "externalreadLink": "/chapters/chapter-3-04.html",  
         },
         {
-          "chapterNumber": "4-1-01",
+          "chapterNumber": "4-01-01",
           "title": "第4章（上）傍晚五点，逮捕令",
           "subtitle": "碾碎平静的，不是车祸，是手铐",
           "section": "第一节 突如其来的电话",
-          "pdfId": "pdf_004_1_01"
+          "pdfId": "pdf_004_01_01"
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-4_1_01.html",
+         "externalreadLink": "/chapters/chapter-4-01-01.html",
         },
         {
-          "chapterNumber": "4-1-02",
+          "chapterNumber": "4-01-02",
           "title": "第4章（上）傍晚五点，逮捕令",
           "subtitle": "碾碎平静的，不是车祸，是手铐",
           "section": "第二节 今夜丈夫在拘留所",
-          "pdfId": "pdf_004_1_02"
+          "pdfId": "pdf_004_01_02",
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-4_1_02.html",
+         "externalreadLink": "/chapters/chapter-4-01-02.html",
         },
         {
-          "chapterNumber": "4-1-03",
+          "chapterNumber": "4-01-03",
           "title": "第4章（上）傍晚五点，逮捕令",
           "subtitle": "碾碎平静的，不是车祸，是手铐",
           "section": "第三节 缺席的丈夫和父亲",
           "pdfId": "pdf_004_1_03"
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-4_1_03.html",
+         "externalreadLink": "/chapters/chapter-4-1-03.html",
         },
         {
-          "chapterNumber": "4-2-01",
+          "chapterNumber": "4-02-01",
           "title": "第4章（下）两万五千加元，自由价",
           "subtitle": "如果爸爸进监狱，我还能弹琴给他听吗？",
            "section": "第一节 法庭保释",
-          "pdfId": "pdf_004_2_01"，
+          "pdfId": "pdf_004_02_01"，
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-4_2_01.html",
+         "externalreadLink": "/chapters/chapter-4-02-01.html",
         },
         {
           "chapterNumber": "4-2-02",
           "title": "第4章（下）两万五千加元，自由价",
           "subtitle": "如果爸爸进监狱，我还能弹琴给他听吗？",
            "section": "第二节 法庭重逢",
-          "pdfId": "pdf_004_2_02"，
+          "pdfId": "pdf_004_02_02"，
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-4_2_02.html",
+         "externalreadLink": "/chapters/chapter-4-2-02.html",
         },
         {
-          "chapterNumber": "5-1-01",
+          "chapterNumber": "5-01-01",
           "title": "第5章（上）捕·审：国家机器的两副面孔",
           "subtitle": "第一刀，切在众目睽睽之下",
           "section": "第一节 当众被捕，被铐走",
-          "pdfId": "pdf_005_1_01"，
+          "pdfId": "pdf_005_01_01"，
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-5_1_01.html",
+         "externalreadLink": "/chapters/chapter-5-01-01.html",
         },
        {
           "chapterNumber": "5-1-02",
           "title": "第5章（上）捕·审：国家机器的两副面孔",
           "subtitle": "第一刀，切在众目睽睽之下",
           "section": "第二节 审讯室里的心理战",
-          "pdfId": "pdf_005_1_02"，
+          "pdfId": "pdf_005_01_02"，
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-5_1_02.html",
+         "externalreadLink": "/chapters/chapter-5-1-02.html",
         },
         {
-          "chapterNumber": "5-2-01",
+          "chapterNumber": "5-02-01",
           "title": "第5章（下）牢·镣：无形的终生刑期",
           "subtitle": "手铐只是换了一种形态",
          "section": "第一节 警局的拘留所",
-          "pdfId": "pdf_005_2_01"
+          "pdfId": "pdf_005_02_01",
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-5_2_01.html",
+         "externalreadLink": "/chapters/chapter-5-02-01.html",
         },
         {
-          "chapterNumber": "5-2-02",
+          "chapterNumber": "5-02-02",
           "title": "第5章（下）牢·镣：无形的终生刑期",
           "subtitle": "手铐只是换了一种形态",
          "section": "第二节 那声“咔嚓”，从未消失",
-          "pdfId": "pdf_005_2_02"
+          "pdfId": "pdf_005_0_02",
           "audioLink": "",
           "videoLink": "",
-         "externalreadLink": "/chapters/chapter-5_2_02.html",
+         "externalreadLink": "/chapters/chapter-5-02-02.html",
         },
         {
-          "chapterNumber": "6",
+          "chapterNumber": "6-01",
           "title": "第6章 变形：重压之下，一切都会变形",
           "subtitle": "六寸蛋糕只有三颗草莓",
-          "pdfId": "pdf_006"
+          "section": "第一节 没有生日蛋糕",
+          "pdfId": "pdf_006_01",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-6-01.html",
         },
         {
-          "chapterNumber": "7-1",
+          "chapterNumber": "6-02",
+          "title": "第6章 变形：重压之下，一切都会变形",
+          "subtitle": "六寸蛋糕只有三颗草莓",
+          "section": "第二节 方向盘上的尖叫",
+          "pdfId": "pdf_006_02",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-6-02.html",
+        },
+        {
+          "chapterNumber": "6-03",
+          "title": "第6章 变形：重压之下，一切都会变形",
+          "subtitle": "六寸蛋糕只有三颗草莓",
+          "section": "第三节 孩子拨出 911",
+          "pdfId": "pdf_006_03",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-6-03.html",
+        },
+        {
+          "chapterNumber": "7-01-01",
           "title": "第7章（上）挥拳：凭本能挥出一拳",
           "subtitle": "三阳开泰，身体病了，家没病",
-          "pdfId": "pdf_007_1"
+         "section": "第一节 三阳开泰",
+          "pdfId": "pdf_007_01_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-01-01.html",
         },
         {
-          "chapterNumber": "7-2",
+          "chapterNumber": "7-01-02",
+          "title": "第7章（上）挥拳：凭本能挥出一拳",
+          "subtitle": "三阳开泰，身体病了，家没病",
+         "section": "第二节 在语言的夹缝中求生",
+          "pdfId": "pdf_007_01_02"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-01-02.html",
+        },
+        {
+          "chapterNumber": "7-02-01",
           "title": "第7章（下）积蓄：晨光下的裂痕与姿态",
           "subtitle": "我们不需要被同情",
-          "pdfId": "pdf_007_2"
-        }
+          "section": "第一节 晨光下的裂痕",
+          "pdfId": "pdf_007_02_01"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-02-01.html",
+        },
+        {
+          "chapterNumber": "7-02-02",
+          "title": "第7章（下）积蓄：晨光下的裂痕与姿态",
+          "subtitle": "我们不需要被同情",
+          "section": "第二节 毕业日的姿态",
+          "pdfId": "pdf_007_02_02"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-02-02.html",
+        },
+        {
+          "chapterNumber": "7-02-03",
+          "title": "第7章（下）积蓄：晨光下的裂痕与姿态",
+          "subtitle": "我们不需要被同情",
+          "section": "第三节 牛奶凉了，琴声未歇",
+          "pdfId": "pdf_007_02_03"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-02-03.html",
+        },
+        {
+          "chapterNumber": "7-02-04",
+          "title": "第7章（下）积蓄：晨光下的裂痕与姿态",
+          "subtitle": "我们不需要被同情",
+          "section": "第四节 青果",
+          "pdfId": "pdf_007_02_04"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-7-02-04.html",
+        } 
       ]
     },
     {
@@ -233,119 +305,507 @@
       "actSubtitle": "数据、轮胎与系统共同失真",
       "chapters": [
         {
-          "chapterNumber": "8-1",
+          "chapterNumber": "8-01-01",
           "title": "第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？",
           "subtitle": "数据如何被误读成罪",
-          "pdfId": "pdf_008_1"
+          "section": "第一节 流量的陷阱",
+          "pdfId": "pdf_008_01_01"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-8-01-01.html"
         },
         {
-          "chapterNumber": "8-2",
+          "chapterNumber": "8-01-02",
+          "title": "第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？",
+          "subtitle": "数据如何被误读成罪",
+          "section": "第二节  纸牌屋的承重墙",
+          "pdfId": "pdf_008_01_02"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-8-01-02.html"
+        },
+        {
+          "chapterNumber": "8-01-03",
+          "title": "第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？",
+          "subtitle": "数据如何被误读成罪",
+          "section": "第三节 错位的时空",
+          "pdfId": "pdf_008_01_03"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-8-01-03.html"
+        },
+        {
+          "chapterNumber": "8-02-01",
           "title": "第8章（下）定罪的六秒：机器的呼吸与系统的失聪",
           "subtitle": "六秒连接是呼吸，不是冲浪",
-          "pdfId": "pdf_008_2"
+          "section": "第一节 密道 777 的误读"
+          "pdfId": "pdf_008_02_01"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-8-02-01.html"
         },
         {
-          "chapterNumber": "9-1",
+          "chapterNumber": "8-02-02",
+          "title": "第8章（下）定罪的六秒：机器的呼吸与系统的失聪",
+          "subtitle": "六秒连接是呼吸，不是冲浪",
+          "section": "第二节 被编码的罪证"
+          "pdfId": "pdf_008_02_02"，
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-8-02-02.html"
+        },
+        {
+          "chapterNumber": "9-01-01",
           "title": "第9章（上）轮胎不会说谎",
           "subtitle": "物证与失察的双重真相",
-          "pdfId": "pdf_009_1"
+           "section": "第一节 被看见或被选择看不见"
+          "pdfId": "pdf_009_01_01",
+             "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-9-01-01.html"
+        },
+         {
+          "chapterNumber": "9-01-02",
+          "title": "第9章（上）轮胎不会说谎",
+          "subtitle": "物证与失察的双重真相",
+           "section": "第二节 完美的凶器? 踏板与坦克的笑话"
+          "pdfId": "pdf_009_01_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-9-01-02.html"
         },
         {
-          "chapterNumber": "9-2",
+          "chapterNumber": "9-02-01",
           "title": "第9章（下）轮胎不会说谎",
           "subtitle": "爆裂、隐患、误读与被淹没的现场",
-          "pdfId": "pdf_009_2"
+          "section": "第一节 失控的种子：胎压超标的定时炸弹",
+          "pdfId": "pdf_009_02_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-9-01-01.html"
         },
         {
-          "chapterNumber": "10-1",
+          "chapterNumber": "9-02-02",
+          "title": "第9章（下）轮胎不会说谎",
+          "subtitle": "爆裂、隐患、误读与被淹没的现场",
+          "section": "第二节 被篡改的现场：当调查在开始前就已结束",
+          "pdfId": "pdf_009_02_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-9-02-02.html"
+        },
+       
+          "chapterNumber": "9-02-03",
+          "title": "第9章（下）轮胎不会说谎",
+          "subtitle": "爆裂、隐患、误读与被淹没的现场",
+          "section": "第三节 迟到的舌头：失速的三秒与交叉的证明",
+          "pdfId": "pdf_009_02_03",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-9-02-03.html"
+        },
+      {
+          "chapterNumber": "10-01-01",
           "title": "第10章（上）穿越时空，剥茧自证",
           "subtitle": "当物证湮灭，数据开口",
-          "pdfId": "pdf_010_1"
+          "section": "第一节 黑匣子沉默了：“No Event”的隐喻",
+          "pdfId": "pdf_010_01_01",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-01-01.html" 
+        },
+       {
+          "chapterNumber": "10-01-02",
+          "title": "第10章（上）穿越时空，剥茧自证",
+          "subtitle": "当物证湮灭，数据开口",
+          "section": "第二节 间接证据的囚笼：看得见，摸不着",
+          "pdfId": "pdf_010_01_02",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-01-02.html" 
         },
         {
-          "chapterNumber": "10-2",
+          "chapterNumber": "10-01-03",
+          "title": "第10章（上）穿越时空，剥茧自证",
+          "subtitle": "当物证湮灭，数据开口",
+          "section": "第三节 到的舌头：失速的三秒与交叉的证明 ",
+          "pdfId": "pdf_010_01_03",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-01-03.html" 
+        },
+        {
+          "chapterNumber": "10-02-01",
           "title": "第10章（下）穿越时空，剥茧自证",
           "subtitle": "0.167秒的黑烟，撞上专家之墙",
-          "pdfId": "pdf_010_2"
+         ""section": "第一节 帧间密码：0.167秒的叹息",
+          "pdfId": "pdf_010_02_01",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-02-01.html"  
+        },
+       {
+          "chapterNumber": "10-02-02",
+          "title": "第10章（下）穿越时空，剥茧自证",
+          "subtitle": "0.167秒的黑烟，撞上专家之墙",
+         "section": "第二节 真相与证据的深渊：系统不接纳的事实",
+          "pdfId": "pdf_010_02_02",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-02-02.html"  
         },
         {
-          "chapterNumber": "11",
+          "chapterNumber": "10-02-03",
+          "title": "第10章（下）穿越时空，剥茧自证",
+          "subtitle": "0.167秒的黑烟，撞上专家之墙",
+         ""section": "第三节 雪地里的脚印：谁能证明？",
+          "pdfId": "pdf_010_02_03",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-10-02-03.html"  
+        }, 
+        {
+          "chapterNumber": "11-01",
           "title": "第11章 临阵换帅",
           "subtitle": "最信任的舵手成了法官，最脆弱的身体成了证人",
-          "pdfId": "pdf_011"
+          ""section": "第一节 信任的被迫转移：律师的告别",
+          "pdfId": "pdf_011_01"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-11-01.html"  
+        },
+       {
+          "chapterNumber": "11-02",
+          "title": "第11章 临阵换帅",
+          "subtitle": "最信任的舵手成了法官，最脆弱的身体成了证人",
+          ""section": "第二节 头狼的领地：新律师与新规则",
+          "pdfId": "pdf_011_02"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-11-02.html"  
         },
         {
-          "chapterNumber": "12-1",
+          "chapterNumber": "11-03",
+          "title": "第11章 临阵换帅",
+          "subtitle": "最信任的舵手成了法官，最脆弱的身体成了证人",
+          ""section": "第三节 自证其罪：“我以前没这问题”",
+          "pdfId": "pdf_011_03"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-11-03.html"  
+        },
+        {
+          "chapterNumber": "12-01-01",
           "title": "第12章（上）盲转齿轮：罪证靶环的绘制",
           "subtitle": "闭环如何形成真相",
-          "pdfId": "pdf_012_1"
+          "section": "第一节 “无意之恶”的报告",
+          "pdfId": "pdf_012_01_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-01-01.html"  
         },
         {
-          "chapterNumber": "12-2",
+          "chapterNumber": "12-01-02",
+          "title": "第12章（上）盲转齿轮：罪证靶环的绘制",
+          "subtitle": "闭环如何形成真相",
+          "section": "第二节 谎言的惯性是伪证：“专业检测”秀",
+          "pdfId": "pdf_012_01_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-01-02.html"  
+        },{
+          "chapterNumber": "12-01-03",
+          "title": "第12章（上）盲转齿轮：罪证靶环的绘制",
+          "subtitle": "闭环如何形成真相",
+          "section": "第三节 盲转的系统定义了真相",
+          "pdfId": "pdf_012_01_03",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-01-03.html"  
+        },   
+        {
+          "chapterNumber": "12-02-01",
           "title": "第12章（中）锁定靶心：中心轮的冷酷裁决",
           "subtitle": "一句\"没必要\"，否决一个家庭的命运",
-          "pdfId": "pdf_012_2"
+          "section": "第一节 冷漠是系统的选择",
+          "pdfId": "pdf_012_02_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-02-01.html"  
+        },
+         {
+          "chapterNumber": "12-02-02",
+          "title": "第12章（中）锁定靶心：中心轮的冷酷裁决",
+          "subtitle": "一句\"没必要\"，否决一个家庭的命运",
+          "section": "第二节 六秒定罪的逻辑漏洞",
+          "pdfId": "pdf_012_02_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-02-02.html"  
         },
         {
-          "chapterNumber": "12-3",
+          "chapterNumber": "12-02-03",
+          "title": "第12章（中）锁定靶心：中心轮的冷酷裁决",
+          "subtitle": "一句\"没必要\"，否决一个家庭的命运",
+          "section": "第三节 那只推动升级的手",
+          "pdfId": "pdf_012_02_03",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-02-03.html"  
+        },
+       {
+          "chapterNumber": "12-03-01",
           "title": "第12章（下）失焦的探照灯：碎片真相与文明微光",
           "subtitle": "五个证人，五个平行世界",
-          "pdfId": "pdf_012_3"
+          "section": "第一节 五双眼睛，五重镜像",
+          "pdfId": "pdf_012_03_01",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-03-01.html"  
+        },
+     {
+          "chapterNumber": "12-03-02",
+          "title": "第12章（下）失焦的探照灯：碎片真相与文明微光",
+          "subtitle": "五个证人，五个平行世界",
+          "section": "第二节  完美的证人：当专业成为偏见的面具",
+          "pdfId": "pdf_012_03_02",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-03-02.html"  
+        },
+    {
+      "chapterNumber": "12-03-03",
+          "title": "第12章（下）失焦的探照灯：碎片真相与文明微光",
+          "subtitle": "五个证人，五个平行世界",
+          "section": "第三节 疑罪从无：一个很难达成的共识",
+          "pdfId": "pdf_012_03_03",
+         "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-12-03-03.html"  
         }
-      ]
+     ]
     },
     {
       "actNumber": 3,
-      "actTitle": "第三幕：重启",
+      "actTitle": "第三幕：重启",{
       "actSubtitle": "在制度的余震中重建家园",
-      "chapters": [
+      "chapters": [  
         {
-          "chapterNumber": "13",
+          "chapterNumber": "13-01",
           "title": "第13章 头狼离场：信任出现真空",
           "subtitle": "律师，在开庭前消失了",
-          "pdfId": "pdf_013"
+          "section": "第一节 弃众判独",
+          "pdfId": "pdf_013_01"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-13-01.html"
+        },
+       {
+          "chapterNumber": "13-02",
+          "title": "第13章 头狼离场：信任出现真空",
+          "subtitle": "律师，在开庭前消失了",
+           "section": "第二节 狼群易散",
+          "pdfId": "pdf_013_02"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-13-02.html"
         },
         {
-          "chapterNumber": "14",
+          "chapterNumber": "13-03",
+          "title": "第13章 头狼离场：信任出现真空",
+          "subtitle": "律师，在开庭前消失了",
+          "section": "第三节 镀金的空心砖",
+          "pdfId": "pdf_013_03"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-13-03.html"
+        },
+        {
+          "chapterNumber": "14-01",
           "title": "第14章 蚍蜉撼树：一个母亲的觉醒",
           "subtitle": "从旁观到发声，只有一小步",
-          "pdfId": "pdf_014"
+           "section": "第一节 系统的逻辑",
+          "pdfId": "pdf_014_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-14-01.html"
+        }, 
+        {
+          "chapterNumber": "14-02",
+          "title": "第14章 蚍蜉撼树：一个母亲的觉醒",
+          "subtitle": "从旁观到发声，只有一小步",
+           "section": "第二节 电话线上的勇气",
+          "pdfId": "pdf_014_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-14-02.html"
+        },
+         {
+          "chapterNumber": "14-03",
+          "title": "第14章 蚍蜉撼树：一个母亲的觉醒",
+          "subtitle": "从旁观到发声，只有一小步",
+           "section": "第三节 灯塔与风车",
+          "pdfId": "pdf_014_03",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-14-03.html"
         },
         {
-          "chapterNumber": "15",
+          "chapterNumber": "15-01",
           "title": "第15章 家的天平",
           "subtitle": "一头是案子，一头是孩子，中间是摇摇欲坠的生活",
-          "pdfId": "pdf_015"
+          "section": "第一节 数字开始啃噬生活 ",
+          "pdfId": "pdf_015_01",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-15-01.html",
+        },
+         {
+          "chapterNumber": "15-02",
+          "title": "第15章 家的天平",
+          "subtitle": "一头是案子，一头是孩子，中间是摇摇欲坠的生活",
+          "section": "第二节 懂事的代价 ：女儿撕掉了自己的退路",
+          "pdfId": "pdf_015_02",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-15-02.html",
+        },
+         {
+          "chapterNumber": "15-03",
+          "title": "第15章 家的天平",
+          "subtitle": "一头是案子，一头是孩子，中间是摇摇欲坠的生活",
+          "section": "第三节 以渺小之躯，与命运对弈",
+          "pdfId": "pdf_015_03",
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-15-03.html",
         },
         {
-          "chapterNumber": "16",
+          "chapterNumber": "16-01",
           "title": "第16章 刹车：系统决定止损的瞬间",
           "subtitle": "六年，换一张交通罚单",
-          "pdfId": "pdf_016"
+           "section": "第一节 以渺小之躯，与命运对弈",
+          "pdfId": "pdf_016_01",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-16-01.html",
+        },
+       {
+          "chapterNumber": "16-02",
+          "title": "第16章 刹车：系统决定止损的瞬间",
+          "subtitle": "六年，换一张交通罚单",
+           "section": "第二节 交易：系统的自我保护术",
+          "pdfId": "pdf_016_02",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-16-02.html",
+        },
+       {
+          "chapterNumber": "16-03",
+          "title": "第16章 刹车：系统决定止损的瞬间",
+          "subtitle": "六年，换一张交通罚单",
+           "section": "第三节 “我不想女儿有个犯罪的爸爸”",
+          "pdfId": "pdf_016_03",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-16-03.html",
         },
         {
-          "chapterNumber": "17-1",
+          "chapterNumber": "16-04",
+          "title": "第16章 刹车：系统决定止损的瞬间",
+          "subtitle": "六年，换一张交通罚单",
+           "section": "第四节 在神明面前卸下盔甲",
+          "pdfId": "pdf_016_04",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-16-04.html",
+        },
+        {
+          "chapterNumber": "16-05",
+          "title": "第16章 刹车：系统决定止损的瞬间",
+          "subtitle": "六年，换一张交通罚单",
+           "section": "第五节 当庭认罪",
+          "pdfId": "pdf_016_05",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-16-05.html",
+        },
+        {
+          "chapterNumber": "17-01-01",
           "title": "第17章（上）盲眼钟表匠",
           "subtitle": "当司法程序忘记为何而转动",
-          "pdfId": "pdf_017_1"
+           "section": "第一节 最后一次过安检",
+          "pdfId": "pdf_017_01_01"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-17-01-01.html",
+        },
+       {
+          "chapterNumber": "17-01-02",
+          "title": "第17章（上）盲眼钟表匠",
+          "subtitle": "当司法程序忘记为何而转动",
+           "section": "第二节 判决之前：生命的重量与砂纸般的歉意",
+          "pdfId": "pdf_017_01_02"
+          "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-17-01-02.html",
         },
         {
-          "chapterNumber": "17-2",
+          "chapterNumber": "17-02-01",
           "title": "第17章（下）后视镜里的六年",
           "subtitle": "当尘埃落定，光从裂缝照进",
-          "pdfId": "pdf_017_2"
+           "section": "第一节 宣判：为无声者刻下刻度",
+          "pdfId": "pdf_017_02_01",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-17-02-01.html"
         },
         {
-          "chapterNumber": "18",
+          "chapterNumber": "17-02-02",
+          "title": "第17章（下）后视镜里的六年",
+          "subtitle": "当尘埃落定，光从裂缝照进",
+           "section": "第二节 尘埃落定，生活尚未复位",
+          "pdfId": "pdf_017_02_02",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-17-02-02.html"
+        },
+        {
+          "chapterNumber": "18-01",
           "title": "第18章 未来之轮：一切都是最好的安排",
           "subtitle": "车轮驶向未被改写的明天",
-          "pdfId": "pdf_018"
+          "section": "第一节 系统的转向与未尽的余波",
+          "pdfId": "pdf_018_01",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-18-01.html"
+        },
+       {
+          "chapterNumber": "18-02",
+          "title": "第18章 未来之轮：一切都是最好的安排",
+          "subtitle": "车轮驶向未被改写的明天",
+          "section": "第二节 启程：向东向西，皆是前程",
+          "pdfId": "pdf_018_02",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/chapter-18-02.html"
         },
         {
-          "chapterNumber": "extra",
-          "title": "番外篇 案子的三个谜",
+         "chapterNumber": "extra-01",
+           "title":  "奔赴：爱是唯一的导航",
+          "pdfId": "pdf_extra_01",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/extra-01.html"
+        },
+          { 
+          "chapterNumber": "extra-02",
+           "title": "番外篇 案子的三个谜",
           "subtitle": "那些系统没有回答，时间也未必能解答的问题",
-          "pdfId": "pdf_extra"
+          "pdfId": "pdf_extra_02",
+           "audioLink": "",
+          "videoLink": "",
+         "externalreadLink": "/chapters/extra-02.html"  
         }
       ]
     }
