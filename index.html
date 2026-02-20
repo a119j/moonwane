@@ -1933,12 +1933,13 @@
                                             第12章（中）《锁定靶心》
                                         </td>
                                         <td>
-                                            <button class="evidence-pdf-trigger" 
-                                                    data-file-id="1kN1fubR9egn8lBIbsnBlI2HTkMbxymRU"
-                                                    data-file-name="01_手机后台数据.pdf"
-                                                    data-chapter="8">
-                                                📄
-                                            </button>
+                                           <a href="https://github.com/a119j/moonwane/raw/main/pdf/01_mobile_data.pdf" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="pdf-trigger" 
+   title="01_手机后台数据.pdf">
+    📄
+</a>
                                         </td>
                                     </tr>
                                     
@@ -1956,12 +1957,13 @@
                                             第12章（上/中）
                                         </td>
                                         <td>
-                                            <button class="evidence-pdf-trigger" 
-                                                    data-file-id="1pjKshQBHTFNaapvcD28Xrh8OGZWjYBiJ"
-                                                    data-file-name="02_轮胎胎压与侧壁撕裂.pdf"
-                                                    data-chapter="9">
-                                                📄
-                                            </button>
+                                            <a href="https://github.com/a119j/moonwane/raw/main/pdf/02_tire_pressure.pdf" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="pdf-trigger" 
+   title="02_轮胎胎压与侧壁撕裂.pdf" >
+    📄
+</a>
                                         </td>
                                     </tr>
                                     
@@ -1976,12 +1978,13 @@
                                         </td>
                                         <td>第10章（上/下）《穿越时空，剥茧自证》</td>
                                         <td>
-                                            <button class="evidence-pdf-trigger" 
-                                                    data-file-id="16hEl-qC65-Usbo7c7gai1d90-LeN86Zl"
-                                                    data-file-name="03_黑匣子与行车记录仪.pdf"
-                                                    data-chapter="10">
-                                                📄
-                                            </button>
+                                            <a href="https://github.com/a119j/moonwane/raw/main/pdf/03_cdr_dashcam.pdf" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="pdf-trigger" 
+   title="03_黑匣子与行车记录仪.pdf">
+    📄
+</a>
                                         </td>
                                     </tr>
                                     
@@ -1998,12 +2001,13 @@
                                             第12章（下）《失焦的探照灯》
                                         </td>
                                         <td>
-                                            <button class="evidence-pdf-trigger" 
-                                                    data-file-id="1lHrJh3zk245LvqqWDRPJH3mrH8LzViJj"
-                                                    data-file-name="04_警方证据链.pdf"
-                                                    data-chapter="12">
-                                                📄
-                                            </button>
+                                            <a href="https://github.com/a119j/moonwane/raw/main/pdf/04_police_evidence.pdf" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="pdf-trigger" 
+   title="04_警方证据链.pdf">
+    📄
+</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -2107,17 +2111,6 @@
         <div class="recorded-text">感谢，只记录<br>（不收集个人数据）</div>
     </div>
 
-    <!-- PDF模态框 -->
-    <div class="pdf-modal" id="pdfModal">
-        <div class="pdf-modal-content">
-            <div class="pdf-modal-header">
-                <span class="pdf-notice">本PDF由Google Drive提供预览，仅限阅读。如需下载请联系作者。</span>
-                <button class="pdf-close" id="pdfClose">×</button>
-            </div>
-            <iframe class="pdf-iframe" id="pdfFrame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-        </div>
-    </div>
-
     <script>
         // 安全防护：防止网站被嵌入到其他页面中
         if (self != top) {
@@ -2156,9 +2149,9 @@
             const remindLater = document.getElementById('remindLater');
             
             // PDF模态框元素
-            const pdfModal = document.getElementById('pdfModal');
-            const pdfFrame = document.getElementById('pdfFrame');
-            const pdfClose = document.getElementById('pdfClose');
+           // const pdfModal = document.getElementById('pdfModal');
+          // const pdfFrame = document.getElementById('pdfFrame');
+          // const pdfClose = document.getElementById('pdfClose');
             
             // 证据库元素
             const evidenceSearch = document.getElementById('evidenceSearch');
@@ -2299,7 +2292,8 @@
             }
             
             // PDF模态框功能
-            function showPdfModal(fileId, fileName) {
+            /*
+           function showPdfModal(fileId, fileName) {
                 if (!fileId || fileId.trim() === '') {
                     alert(`"${fileName}"正在准备中，敬请期待！`);
                     return;
@@ -2324,9 +2318,10 @@
                     pdfModal._previousActiveElement.focus();
                 }
             }
-            
+            */
                         // PDF按钮点击事件 - 增强版，确保能捕获证据库中的按钮
-            function handlePdfClick(e) {
+           /* 
+          function handlePdfClick(e) {
     // 第一步：检查是否是证据库PDF按钮 (evidence-pdf-trigger)
     let pdfTrigger = null;
     
@@ -2376,24 +2371,25 @@
             document.addEventListener('click', function(e) {
                 handlePdfClick(e);
             });
-            
+            */
             // 关闭PDF模态框
-            pdfClose.addEventListener('click', closePdfModal);
+            /*
+           // pdfClose.addEventListener('click', closePdfModal);
             
             // 点击模态框背景关闭
-            pdfModal.addEventListener('click', function(e) {
-                if (e.target === pdfModal) {
-                    closePdfModal();
-                }
-            });
+            // pdfModal.addEventListener('click', function(e) {
+            //     if (e.target === pdfModal) {
+            //        closePdfModal();
+            //    }
+            //  });
             
             // ESC键关闭模态框
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
-                    closePdfModal();
-                }
-            });
-            
+            //  document.addEventListener('keydown', function(e) {
+            //    if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+           //       closePdfModal();
+          //    }
+          //   });
+            */
             // GitHub链接点击事件
             document.querySelectorAll('.external-link[data-github]').forEach(link => {
                 link.addEventListener('click', function(e) {
