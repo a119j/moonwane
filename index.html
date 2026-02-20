@@ -738,13 +738,18 @@
             font-size: 1.2rem; /* PDF图标大小 */
         }
 
-        .external-link {
-            color: #4CAF50;
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.2);
-            font-size: 0.9rem; /* 链接符号小于PDF图标 */
-            padding: 4px 6px;
-            margin-left: 4px;
+                .external-link {
+            font-size: 1.2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 3px 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .pdf-link:hover, .pdf-trigger:hover {
@@ -1397,7 +1402,7 @@
                       <div style='color:#888;font-size:0.9rem;font-style:italic;margin-bottom:20px;padding:10px 15px;background:rgba(30,30,30,0.3);border-radius:8px;border-left:3px solid #7bc8f8;'>
                         本文档仅供阅读，不提供下载或二次传播权限。
                           
-                       <!-- 图标状态说明 -->
+                                              <!-- 图标状态说明 - 灰色为准备中，绿色为已就绪 -->
 <div style='color:#aaa;font-size:0.85rem;margin-bottom:15px;padding:8px 12px;background:rgba(40,40,40,0.3);border-radius:6px;border:1px dashed rgba(255,255,255,0.1);'>
     <div style='margin-bottom:5px;'><strong>📋 图标状态说明：</strong></div>
     <div style='display:flex;align-items:center;gap:15px;flex-wrap:wrap;justify-content:center;'>
@@ -1439,8 +1444,9 @@
         <div style='display:inline-flex;align-items:center;gap:5px;'>
             <span style='padding:2px 6px;font-size:0.9rem;color:#4CAF50;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2);border-radius:4px;'>🔗</span>
             <span style='color:#4CAF50;font-size:0.9rem;'>已就绪</span>
+        </div>
     </div>
-</div>
+    
                       <!-- 章节表格 -->
                       <table class='chapter-table'>
                         <thead>
@@ -2679,6 +2685,10 @@
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
