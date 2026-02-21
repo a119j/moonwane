@@ -1425,10 +1425,7 @@
             <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 8px 16px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📕 第一章试读</a>
         </div>
         
-        <!-- 返回顶部链接 (删除) -->
-        <!-- <div style="margin-top: 20px; text-align: right;">
-            <a href="#" id="introDrawerBack" style="color: #888; text-decoration: none; font-size: 0.9rem;">↑ 返回</a>
-        </div> -->
+        
     </div>
 </div>
 <style>
@@ -1504,7 +1501,7 @@
                         <tbody>
                           <tr>
                             <td>
-                              <span class='act-title'>崩塌 ·</span>
+                              <span class='act-title'>· 崩塌 ·</span>
                               <span class='act-title-second-line'>当日常被制度击穿</span>
                               <ul>
                                                                 <li>
@@ -1630,7 +1627,7 @@
                               </ul>
                             </td>
                             <td>
-                              <span class='act-title'>抗争 ·</span>
+                              <span class='act-title'>· 抗争 ·</span>
                               <span class='act-title-second-line'>数据、轮胎与系统共同失真</span>
                               <ul>
                                 <li>
@@ -1765,7 +1762,7 @@
                               </ul>
                             </td>
                             <td>
-                              <span class='act-title'>重启 ·</span>
+                              <span class='act-title'>· 重启 ·</span>
                               <span class='act-title-second-line'>在制度的余震中重建家园</span>
                               <ul>
                                 <li>
@@ -2167,10 +2164,6 @@
             const toastClose = document.getElementById('toastClose');
             const remindLater = document.getElementById('remindLater');
             
-            // PDF模态框元素
-           // const pdfModal = document.getElementById('pdfModal');
-          // const pdfFrame = document.getElementById('pdfFrame');
-          // const pdfClose = document.getElementById('pdfClose');
             
             // 证据库元素
             const evidenceSearch = document.getElementById('evidenceSearch');
@@ -2402,106 +2395,8 @@ if (evidenceSearch && searchCount) {
     
     // 初始化搜索计数
     updateSearchResults();
-}
-            // PDF模态框功能
-            /*
-           function showPdfModal(fileId, fileName) {
-                if (!fileId || fileId.trim() === '') {
-                    alert(`"${fileName}"正在准备中，敬请期待！`);
-                    return;
-                }
-                
-                const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
-                pdfFrame.src = previewUrl;
-                pdfModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // 存储当前焦点元素，以便关闭后恢复
-                pdfModal._previousActiveElement = document.activeElement;
-            }
-            
-            function closePdfModal() {
-                pdfModal.classList.remove('active');
-                pdfFrame.src = '';
-                document.body.style.overflow = '';
-                
-                // 恢复焦点到之前点击的按钮
-                if (pdfModal._previousActiveElement) {
-                    pdfModal._previousActiveElement.focus();
-                }
-            }
-            */
-                        // PDF按钮点击事件 - 增强版，确保能捕获证据库中的按钮
-           /* 
-          function handlePdfClick(e) {
-    // 第一步：检查是否是证据库PDF按钮 (evidence-pdf-trigger)
-    let pdfTrigger = null;
-    
-    // 检查 evidence-pdf-trigger
-    if (e.target.classList.contains('evidence-pdf-trigger')) {
-        pdfTrigger = e.target;
-    } else if (e.target.closest) {
-        pdfTrigger = e.target.closest('.evidence-pdf-trigger');
-    }
-    
-    // 第二步：如果找到了 evidence-pdf-trigger，就处理它
-    if (pdfTrigger) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const fileId = pdfTrigger.getAttribute('data-file-id');
-        const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
-        const chapter = pdfTrigger.getAttribute('data-chapter');
-        
-        if (!fileId || fileId.trim() === '') {
-            alert(`"${fileName}"正在准备中，敬请期待！`);
-            return;
-        }
-        
-        showPdfModal(fileId, fileName);
-        return; // 处理完后退出
-    }
-    
-    // 第三步：检查旧类名（可选，用于兼容）
-    let oldPdfTrigger = null;
-    if (e.target.classList.contains('pdf-trigger')) {
-        oldPdfTrigger = e.target;
-    } else if (e.target.closest) {
-        oldPdfTrigger = e.target.closest('.pdf-trigger');
-    }
-    
-    if (oldPdfTrigger) {
-        e.preventDefault();
-        e.stopPropagation();
-        alert('PDF阅读功能已更新，请联系网站管理员。');
-        return;
-    }
-}
-              
-            
-            // 绑定事件到文档，支持动态生成的内容
-            document.addEventListener('click', function(e) {
-                handlePdfClick(e);
-            });
-            */
-            // 关闭PDF模态框
-            /*
-           // pdfClose.addEventListener('click', closePdfModal);
-            
-            // 点击模态框背景关闭
-            // pdfModal.addEventListener('click', function(e) {
-            //     if (e.target === pdfModal) {
-            //        closePdfModal();
-            //    }
-            //  });
-            
-            // ESC键关闭模态框
-            //  document.addEventListener('keydown', function(e) {
-            //    if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
-           //       closePdfModal();
-          //    }
-          //   });
-            */
+}  
+           
             // GitHub链接点击事件
             document.querySelectorAll('.external-link[data-github]').forEach(link => {
                 link.addEventListener('click', function(e) {
