@@ -2609,189 +2609,163 @@ if (evidenceSearch && searchCount) {
             console.log('章节链接配置加载成功', chapterLinks);
             
             // 更新所有章节图标的链接
-            updateChapterIcons();
-        })
-        .catch(error => {
-            console.warn('加载章节配置失败，使用默认链接', error);
-            // 如果 CDN 加载失败，尝试直接从 GitHub 加载
-            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
-                .then(response => response.json())
-                .then(data => {
-                    data.acts.forEach(act => {
-                        act.chapters.forEach(chapter => {
-                            chapterLinks[chapter.chapterNumber] = {
-                                read: chapter.readLink,
-                                audio: chapter.audioLink,
-                                video: chapter.videoLink,
-                                external: chapter.externalLink
-                            };
-                        });
-                    });
-                    console.log('章节链接配置加载成功（备用）', chapterLinks);
-                    updateChapterIcons();
-                })
-                .catch(err => {
-                    console.error('章节配置加载失败', err);
-                });
-        });
+function updateChapterIcons() {
+    // 章节编号映射函数 - 用于显示友好的章节名称
+    function getChapterDisplayNumber(chapterId) {
+        const map = {
+            '1': '1',
+            '2': '2',
+            '3': '3',
+            '4-01': '4（上）',
+            '4-02': '4（下）',
+            '5-01': '5（上）',
+            '5-02': '5（下）',
+            '6': '6',
+            '7-01': '7（上）',
+            '7-02': '7（下）',
+            '8-01': '8（上）',
+            '8-02': '8（下）',
+            '9-01': '9（上）',
+            '9-02': '9（下）',
+            '10-01': '10（上）',
+            '10-02': '10（下）',
+            '11': '11',
+            '12-01': '12（上）',
+            '12-02': '12（中）',
+            '12-03': '12（下）',
+            '13': '13',
+            '14': '14',
+            '15': '15',
+            '16': '16',
+            '17-01': '17（上）',
+            '17-02': '17（下）',
+            '18': '18',
+            'extra': '番外'
+        };
+        return map[chapterId] || chapterId;
+    }
     
-                        // 更新所有章节图标的链接
-    function updateChapterIcons() {
-        // 章节编号映射函数 - 用于显示友好的章节名称
-        function getChapterDisplayNumber(chapterId) {
-            const map = {
-                '1': '1',
-                '2': '2',
-                '3': '3',
-                '4-01': '4（上）',
-                '4-02': '4（下）',
-                '5-01': '5（上）',
-                '5-02': '5（下）',
-                '6': '6',
-                '7-01': '7（上）',
-                '7-02': '7（下）',
-                '8-01': '8（上）',
-                '8-02': '8（下）',
-                '9-01': '9（上）',
-                '9-02': '9（下）',
-                '10-01': '10（上）',
-                '10-02': '10（下）',
-                '11': '11',
-                '12-01': '12（上）',
-                '12-02': '12（中）',
-                '12-03': '12（下）',
-                '13': '13',
-                '14': '14',
-                '15': '15',
-                '16': '16',
-                '17-01': '17（上）',
-                '17-02': '17（下）',
-                '18': '18',
-                'extra': '番外'
-            };
-            return map[chapterId] || chapterId;
-        }
+    // 获取所有章节行的图标
+    document.querySelectorAll('.chapter-actions').forEach(actionsDiv => {
+        // 获取章节标识（从 data-chapter 属性获取）
+        const chapterId = actionsDiv.closest('li')?.querySelector('[data-chapter]')?.getAttribute('data-chapter');
         
-        // 获取所有章节行的图标
-        document.querySelectorAll('.chapter-actions').forEach(actionsDiv => {
-            // 获取章节标识（从 data-chapter 属性获取）
-            const chapterId = actionsDiv.closest('li')?.querySelector('[data-chapter]')?.getAttribute('data-chapter');
+        if (chapterId && chapterLinks[chapterId]) {
+            const links = chapterLinks[chapterId];
+            const displayNum = getChapterDisplayNumber(chapterId);
             
-            if (chapterId && chapterLinks[chapterId]) {
-                const links = chapterLinks[chapterId];
-                const displayNum = getChapterDisplayNumber(chapterId);
-                
-                // 更新读故事图标 📖
-                const readIcon = actionsDiv.querySelector('.read-icon');
-                if (readIcon) {
-                    if (links.read && links.read.trim() !== '') {
-                        // 有链接：绿色，点击跳转到链接
-                        readIcon.style.color = '#4CAF50';
-                        readIcon.style.background = 'rgba(76,175,80,0.1)';
-                        readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        readIcon.title = '读故事';
-                        // 点击事件：跳转到配置的链接
-                        readIcon.onclick = function(e) {
-                            e.preventDefault();
-                            window.location.href = links.read;
-                        };
-                    } else {
-                        // 无链接：灰色，显示准备中提示
-                        readIcon.style.color = '#888';
-                        readIcon.style.background = 'rgba(128,128,128,0.1)';
-                        readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        readIcon.title = '读故事 (准备中)';
-                        // 点击事件：显示章节专属提示
-                        readIcon.onclick = function(e) {
-                            e.preventDefault();
-                            alert('第' + displayNum + '章准备中，敬请期待。');
-                        };
-                    }
-                }
-                
-                // 更新听故事图标 🎙️
-                const audioIcon = actionsDiv.querySelector('.audio-icon');
-                if (audioIcon) {
-                    if (links.audio && links.audio.trim() !== '') {
-                        // 有链接：绿色，新窗口打开音频
-                        audioIcon.style.color = '#4CAF50';
-                        audioIcon.style.background = 'rgba(76,175,80,0.1)';
-                        audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        audioIcon.title = '听故事';
-                        audioIcon.onclick = function(e) {
-                            e.preventDefault();
-                            window.open(links.audio, '_blank');
-                        };
-                    } else {
-                        // 无链接：灰色，显示准备中提示
-                        audioIcon.style.color = '#888';
-                        audioIcon.style.background = 'rgba(128,128,128,0.1)';
-                        audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        audioIcon.title = '听故事 (准备中)';
-                        audioIcon.onclick = function(e) {
-                            e.preventDefault();
-                            alert('第' + displayNum + '章准备中，敬请期待。');
-                        };
-                    }
-                }
-                
-                // 更新看故事图标 🎥
-                const videoIcon = actionsDiv.querySelector('.video-icon');
-                if (videoIcon) {
-                    if (links.video && links.video.trim() !== '') {
-                        // 有链接：绿色，新窗口打开视频
-                        videoIcon.style.color = '#4CAF50';
-                        videoIcon.style.background = 'rgba(76,175,80,0.1)';
-                        videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        videoIcon.title = '看故事';
-                        videoIcon.onclick = function(e) {
-                            e.preventDefault();
-                            window.open(links.video, '_blank');
-                        };
-                    } else {
-                        // 无链接：灰色，显示准备中提示
-                        videoIcon.style.color = '#888';
-                        videoIcon.style.background = 'rgba(128,128,128,0.1)';
-                        videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        videoIcon.title = '看故事 (准备中)';
-                        videoIcon.onclick = function(e) {
-                            e.preventDefault();
-                            alert('第' + displayNum + '章准备中，敬请期待。');
-                        };
-                    }
-                }
-                
-                // 更新外部链接图标 🔗
-                const externalIcon = actionsDiv.querySelector('.external-link');
-                if (externalIcon) {
-                    if (links.external && links.external.trim() !== '') {
-                        // 有链接：绿色，新窗口打开外部链接
-                        externalIcon.style.color = '#4CAF50';
-                        externalIcon.style.background = 'rgba(76,175,80,0.1)';
-                        externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                        externalIcon.title = '外部链接';
-                        externalIcon.onclick = function(e) {
-                            e.preventDefault();
-                            window.open(links.external, '_blank');
-                        };
-                    } else {
-                        // 无链接：灰色，显示准备中提示
-                        externalIcon.style.color = '#888';
-                        externalIcon.style.background = 'rgba(128,128,128,0.1)';
-                        externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                        externalIcon.title = '外部链接 (准备中)';
-                        externalIcon.onclick = function(e) {
-                            e.preventDefault();
-                            alert('第' + displayNum + '章准备中，敬请期待。');
-                        };
-                    }
+            // 更新读故事图标 📖
+            const readIcon = actionsDiv.querySelector('.read-icon');
+            if (readIcon) {
+                if (links.read && links.read.trim() !== '') {
+                    // 有链接：绿色，点击跳转到链接
+                    readIcon.style.color = '#4CAF50';
+                    readIcon.style.background = 'rgba(76,175,80,0.1)';
+                    readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                    readIcon.title = '读故事';
+                    readIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        window.location.href = links.read;
+                    };
+                } else {
+                    // 无链接：灰色，显示准备中提示
+                    readIcon.style.color = '#888';
+                    readIcon.style.background = 'rgba(128,128,128,0.1)';
+                    readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                    readIcon.title = '读故事 (准备中)';
+                    readIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        alert('第' + displayNum + '章准备中，敬请期待。');
+                    };
                 }
             }
-        });
-    }
+            
+            // 更新听故事图标 🎙️
+            const audioIcon = actionsDiv.querySelector('.audio-icon');
+            if (audioIcon) {
+                if (links.audio && links.audio.trim() !== '') {
+                    audioIcon.style.color = '#4CAF50';
+                    audioIcon.style.background = 'rgba(76,175,80,0.1)';
+                    audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                    audioIcon.title = '听故事';
+                    audioIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        window.open(links.audio, '_blank');
+                    };
+                } else {
+                    audioIcon.style.color = '#888';
+                    audioIcon.style.background = 'rgba(128,128,128,0.1)';
+                    audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                    audioIcon.title = '听故事 (准备中)';
+                    audioIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        alert('第' + displayNum + '章准备中，敬请期待。');
+                    };
+                }
+            }
+            
+            // 更新看故事图标 🎥
+            const videoIcon = actionsDiv.querySelector('.video-icon');
+            if (videoIcon) {
+                if (links.video && links.video.trim() !== '') {
+                    videoIcon.style.color = '#4CAF50';
+                    videoIcon.style.background = 'rgba(76,175,80,0.1)';
+                    videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                    videoIcon.title = '看故事';
+                    videoIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        window.open(links.video, '_blank');
+                    };
+                } else {
+                    videoIcon.style.color = '#888';
+                    videoIcon.style.background = 'rgba(128,128,128,0.1)';
+                    videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                    videoIcon.title = '看故事 (准备中)';
+                    videoIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        alert('第' + displayNum + '章准备中，敬请期待。');
+                    };
+                }
+            }
+            
+            // 更新外部链接图标 🔗
+            const externalIcon = actionsDiv.querySelector('.external-link');
+            if (externalIcon) {
+                if (links.external && links.external.trim() !== '') {
+                    externalIcon.style.color = '#4CAF50';
+                    externalIcon.style.background = 'rgba(76,175,80,0.1)';
+                    externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                    externalIcon.title = '外部链接';
+                    externalIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        window.open(links.external, '_blank');
+                    };
+                } else {
+                    externalIcon.style.color = '#888';
+                    externalIcon.style.background = 'rgba(128,128,128,0.1)';
+                    externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                    externalIcon.title = '外部链接 (准备中)';
+                    externalIcon.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();   // 【新增】阻止事件冒泡
+                        alert('第' + displayNum + '章准备中，敬请期待。');
+                    };
+                }
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>
+
 
 
 
