@@ -2045,7 +2045,7 @@
                                             第12章（中）《锁定靶心》
                                         </td>
                                         <td>
-                                          <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/01_mobile_data.pdf" 
+                                          <a href="https://raw.githubusercontent.com/a119j/moonwane/main/pdf/01_mobile_data.pdf" 
    target="_blank" 
    rel="noopener noreferrer" 
    class="pdf-trigger" 
@@ -2563,7 +2563,11 @@ if (evidenceSearch && searchCount) {
                 viewport: viewport
             };
             page.render(renderContext);
-        });
+
+        // 渲染完成后，禁用 canvas 右键
+pdfCanvas.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
         currentPage = num;
         pdfPageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
     }
@@ -2960,6 +2964,7 @@ document.querySelectorAll('.pdf-trigger').forEach(function(btn) {
 </script>
 </body>
 </html>
+
 
 
 
