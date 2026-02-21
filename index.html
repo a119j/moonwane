@@ -2045,13 +2045,13 @@
                                             第12章（中）《锁定靶心》
                                         </td>
                                         <td>
-                                         <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/01_mobile_data.pdf"
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="pdf-trigger" 
-   title="01_手机后台数据.pdf">
-    📄
-</a>
+                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/01_mobile_data.pdf" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               class="pdf-trigger" 
+                                               title="01_手机后台数据.pdf">
+                                                📄
+                                            </a>
                                         </td>
                                     </tr>
                                     
@@ -2070,12 +2070,12 @@
                                         </td>
                                         <td>
                                             <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/02_tire_pressure.pdf" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="pdf-trigger" 
-   title="02_轮胎胎压与侧壁撕裂.pdf">
-    📄
-</a>
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               class="pdf-trigger" 
+                                               title="02_轮胎胎压与侧壁撕裂.pdf">
+                                                📄
+                                            </a>
                                         </td>
                                     </tr>
                                     
@@ -2090,13 +2090,13 @@
                                         </td>
                                         <td>第10章（上/下）《穿越时空，剥茧自证》</td>
                                         <td>
-                                           <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/03_cdr_dashcam.pdf" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="pdf-trigger" 
-   title="03_黑匣子与行车记录仪.pdf">
-    📄
-</a>
+                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/03_cdr_dashcam.pdf" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               class="pdf-trigger" 
+                                               title="03_黑匣子与行车记录仪.pdf">
+                                                📄
+                                            </a>
                                         </td>
                                     </tr>
                                     
@@ -2113,13 +2113,13 @@
                                             第12章（下）《失焦的探照灯》
                                         </td>
                                         <td>
-                                           <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/04_police_evidence.pdf" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   class="pdf-trigger" 
-   title="04_警方证据链.pdf">
-    📄
-</a>
+                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/04_police_evidence.pdf" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer" 
+                                               class="pdf-trigger" 
+                                               title="04_警方证据链.pdf">
+                                                📄
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -2222,24 +2222,16 @@
         <div class="thank-you-text">Thank You</div>
         <div class="recorded-text">感谢，只记录<br>（不收集个人数据）</div>
     </div>
-<!-- PDF 预览模态框（使用 PDF.js） -->
-<div id="pdfModal" class="pdf-modal" style="display: none;">
+<!-- PDF模态框 -->
+<div class="pdf-modal" id="pdfModal">
     <div class="pdf-modal-content">
         <div class="pdf-modal-header">
-            <span class="pdf-title" id="pdfModalTitle">PDF 预览</span>
-            <button class="pdf-close" id="pdfModalClose">&times;</button>
+            <span class="pdf-notice">本PDF由Google Drive提供预览，仅限阅读。如需下载请联系作者。</span>
+            <button class="pdf-close" id="pdfClose">×</button>
         </div>
-        <div class="pdf-modal-body">
-            <canvas id="pdfCanvas"></canvas>
-            <div class="pdf-controls">
-                <button id="pdfPrevPage" class="pdf-nav">上一页</button>
-                <span id="pdfPageInfo">第 1 页 / 共 <span id="pdfTotalPages">0</span> 页</span>
-                <button id="pdfNextPage" class="pdf-nav">下一页</button>     
-            </div>
-        </div>
+        <iframe class="pdf-iframe" id="pdfFrame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
     </div>
-</div>
-    <script>
+</div>    <script>
         // 安全防护：防止网站被嵌入到其他页面中
         if (self != top) {
             top.location = self.location;
@@ -2285,7 +2277,82 @@
             const evidenceSearch = document.getElementById('evidenceSearch');
             const evidenceTable = document.getElementById('evidenceTable');
             const searchCount = document.getElementById('searchCount');
+                        // PDF模态框元素
+            const pdfModal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const pdfClose = document.getElementById('pdfClose');
+
+            // PDF模态框功能
+            function showPdfModal(fileId, fileName) {
+                if (!fileId || fileId.trim() === '') {
+                    alert(`"${fileName}"正在准备中，敬请期待！`);
+                    return;
+                }
+                
+                const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                pdfFrame.src = previewUrl;
+                pdfModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // 存储当前焦点元素，以便关闭后恢复
+                pdfModal._previousActiveElement = document.activeElement;
+            }
             
+            function closePdfModal() {
+                pdfModal.classList.remove('active');
+                pdfFrame.src = '';
+                document.body.style.overflow = '';
+                
+                // 恢复焦点到之前点击的按钮
+                if (pdfModal._previousActiveElement) {
+                    pdfModal._previousActiveElement.focus();
+                }
+            }
+            
+            // PDF按钮点击事件
+            function handlePdfClick(e) {
+                // 检查是否是PDF按钮
+                const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
+                    e.target : e.target.closest('.pdf-trigger');
+                
+                if (!pdfTrigger) return;
+                
+                const fileId = pdfTrigger.getAttribute('data-file-id');
+                const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
+                const chapter = pdfTrigger.getAttribute('data-chapter');
+                
+                if (!fileId || fileId.trim() === '') {
+                    alert(`"${fileName}"正在准备中，敬请期待！`);
+                    return;
+                }
+                
+                showPdfModal(fileId, fileName);
+                
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            // 绑定事件到文档，支持动态生成的内容
+            document.addEventListener('click', function(e) {
+                handlePdfClick(e);
+            });
+            
+            // 关闭PDF模态框
+            pdfClose.addEventListener('click', closePdfModal);
+            
+            // 点击模态框背景关闭
+            pdfModal.addEventListener('click', function(e) {
+                if (e.target === pdfModal) {
+                    closePdfModal();
+                }
+            });
+            
+            // ESC键关闭模态框
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+                    closePdfModal();
+                }
+            });
             let hasTrackedClick = false;
             
             // 点击"想看"按钮
@@ -2529,129 +2596,7 @@ if (evidenceSearch && searchCount) {
                 });
             });
         });
-        // ========== PDF.js 预览功能 ==========
-(function() {
-    const pdfModal = document.getElementById('pdfModal');
-    const pdfModalTitle = document.getElementById('pdfModalTitle');
-    const pdfCanvas = document.getElementById('pdfCanvas');
-    const pdfPrevPage = document.getElementById('pdfPrevPage');
-    const pdfNextPage = document.getElementById('pdfNextPage');
-    const pdfPageInfo = document.getElementById('pdfPageInfo');
-    const pdfTotalPagesSpan = document.getElementById('pdfTotalPages');
-    const pdfDownloadLink = document.getElementById('pdfDownloadLink');
-    const pdfClose = document.getElementById('pdfModalClose');
-
-    // 如果模态框不存在，则退出
-    if (!pdfModal || !pdfCanvas) return;
-
-    let pdfDoc = null;
-    let currentPage = 1;
-    let totalPages = 0;
-
-    // 渲染指定页面
-    function renderPage(num) {
-        if (!pdfDoc) return;
-        pdfDoc.getPage(num).then(page => {
-            const viewport = page.getViewport({ scale: 1.5 }); // 缩放比例
-            const canvas = pdfCanvas;
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
-
-        // 渲染完成后，禁用 canvas 右键
-pdfCanvas.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
-        currentPage = num;
-        pdfPageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
-    }
-
-    // 加载 PDF
-    function loadPdf(url, title) {
-        pdfModalTitle.textContent = title || 'PDF 预览';
-        pdfjsLib.getDocument(url).promise.then(doc => {
-            pdfDoc = doc;
-            totalPages = doc.numPages;
-            pdfTotalPagesSpan.textContent = totalPages;
-            currentPage = 1;
-            renderPage(currentPage);
-
-            // 更新下载链接
-            //  pdfDownloadLink.href = url;
-        }).catch(error => {
-            console.error('PDF 加载失败:', error);
-            alert('PDF 加载失败，请稍后重试或联系管理员。');
-        });
-    }
-
-    // 显示模态框
-    function showPdfModal(url, title) {
-        loadPdf(url, title);
-        pdfModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-
-    // 关闭模态框
-    function closePdfModal() {
-        pdfModal.style.display = 'none';
-        document.body.style.overflow = '';
-        pdfDoc = null; // 释放资源
-    }
-
-    // 上一页
-    pdfPrevPage.addEventListener('click', function() {
-        if (pdfDoc && currentPage > 1) {
-            renderPage(currentPage - 1);
-        }
-    });
-
-    // 下一页
-    pdfNextPage.addEventListener('click', function() {
-        if (pdfDoc && currentPage < totalPages) {
-            renderPage(currentPage + 1);
-        }
-    });
-
-    // 关闭按钮
-    pdfClose.addEventListener('click', closePdfModal);
-
-    // 点击背景关闭
-    pdfModal.addEventListener('click', function(e) {
-        if (e.target === pdfModal) {
-            closePdfModal();
-        }
-    });
-
-    // ESC 键关闭
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && pdfModal.style.display === 'flex') {
-            closePdfModal();
-        }
-    });
-
-   // 绑定所有 PDF 按钮的点击事件
-document.querySelectorAll('.pdf-trigger').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault(); // 阻止链接跳转
-        const url = this.href;
-        const title = this.getAttribute('title') || '证据文件';
-        
-        // --- 新逻辑：判断是否是01文件，如果是，则在新标签页打开 ---
-        if (url.includes('01_mobile_data.pdf')) {
-            window.open(url, '_blank');
-        } else {
-            // 其他三个文件仍用 PDF.js 模态框预览
-            showPdfModal(url, title);
-        }
-        // --- 新逻辑结束 ---
-    });
-});
+       
         // 页面加载时检查URL hash
         window.addEventListener('load', function() {
             // 如果URL中有 #open-chapters 参数，则自动展开目录
@@ -2964,6 +2909,7 @@ document.querySelectorAll('.pdf-trigger').forEach(function(btn) {
 </script>
 </body>
 </html>
+
 
 
 
