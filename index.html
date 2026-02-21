@@ -22,13 +22,6 @@
     
     <!-- Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PDF.js 核心库和样式 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf_viewer.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script>
-    // 配置 PDF.js 的 worker 路径（必须指向 worker 脚本）
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-</script>
     <style>
     /* === 三角符号和书籍图标样式 === */
     .triangle-icon {
@@ -1312,113 +1305,7 @@
         }
 
         /* --- 新增样式结束 --- */
-   /* ---------- PDF 预览模态框样式（新） ---------- */
-.pdf-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pdf-modal-content {
-    background: #1e1e2a;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 900px;
-    height: 90%;
-    max-height: 800px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.5);
-}
-
-.pdf-modal-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffd700;
-}
-
-.pdf-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.pdf-close {
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 0;
-    line-height: 1;
-}
-
-.pdf-close:hover {
-    color: #fff;
-}
-
-.pdf-modal-body {
-    flex: 1;
-    padding: 20px;
-    overflow: auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-#pdfCanvas {
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    background: white;
-}
-
-.pdf-controls {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.pdf-nav, .pdf-download {
-    background: rgba(123, 200, 248, 0.2);
-    border: 1px solid rgba(123, 200, 248, 0.4);
-    color: #7bc8f8;
-    padding: 6px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.pdf-nav:hover, .pdf-download:hover {
-    background: rgba(123, 200, 248, 0.3);
-    box-shadow: 0 0 10px rgba(123, 200, 248, 0.3);
-}
-
-#pdfPageInfo {
-    color: #ccc;
-    font-size: 0.95rem;
-}
-
-/* 隐藏状态 */
-.pdf-modal[style*="display: none"] {
-    display: none !important;
-}
+   
  </style>
 </head>
 <body>
@@ -2045,13 +1932,12 @@
                                             第12章（中）《锁定靶心》
                                         </td>
                                         <td>
-                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/01_mobile_data.pdf" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               class="pdf-trigger" 
-                                               title="01_手机后台数据.pdf">
+                                            <button class="pdf-trigger" 
+                                                    data-file-id="1kN1fubR9egn8lBIbsnBlI2HTkMbxymRU"
+                                                    data-file-name="01_手机后台数据.pdf"
+                                                    data-chapter="8">
                                                 📄
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     
@@ -2069,13 +1955,12 @@
                                             第12章（上/中）
                                         </td>
                                         <td>
-                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/02_tire_pressure.pdf" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               class="pdf-trigger" 
-                                               title="02_轮胎胎压与侧壁撕裂.pdf">
+                                            <button class="pdf-trigger" 
+                                                    data-file-id="1pjKshQBHTFNaapvcD28Xrh8OGZWjYBiJ"
+                                                    data-file-name="02_轮胎胎压与侧壁撕裂.pdf"
+                                                    data-chapter="9">
                                                 📄
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     
@@ -2090,13 +1975,12 @@
                                         </td>
                                         <td>第10章（上/下）《穿越时空，剥茧自证》</td>
                                         <td>
-                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/03_cdr_dashcam.pdf" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               class="pdf-trigger" 
-                                               title="03_黑匣子与行车记录仪.pdf">
+                                            <button class="pdf-trigger" 
+                                                    data-file-id="16hEl-qC65-Usbo7c7gai1d90-LeN86Zl"
+                                                    data-file-name="03_黑匣子与行车记录仪.pdf"
+                                                    data-chapter="10">
                                                 📄
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     
@@ -2113,17 +1997,16 @@
                                             第12章（下）《失焦的探照灯》
                                         </td>
                                         <td>
-                                            <a href="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pdf/04_police_evidence.pdf" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               class="pdf-trigger" 
-                                               title="04_警方证据链.pdf">
+                                            <button class="pdf-trigger" 
+                                                    data-file-id="1lHrJh3zk245LvqqWDRPJH3mrH8LzViJj"
+                                                    data-file-name="04_警方证据链.pdf"
+                                                    data-chapter="12">
                                                 📄
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+             </table>
                             
                             <!-- 关键法证技术点 -->
                             <div class="technical-points">
@@ -2909,6 +2792,7 @@ if (evidenceSearch && searchCount) {
 </script>
 </body>
 </html>
+
 
 
 
