@@ -2234,8 +2234,7 @@
             <div class="pdf-controls">
                 <button id="pdfPrevPage" class="pdf-nav">上一页</button>
                 <span id="pdfPageInfo">第 1 页 / 共 <span id="pdfTotalPages">0</span> 页</span>
-                <button id="pdfNextPage" class="pdf-nav">下一页</button>
-                <a id="pdfDownloadLink" class="pdf-download" target="_blank" rel="noopener noreferrer">下载 PDF</a>
+                <button id="pdfNextPage" class="pdf-nav">下一页</button>     
             </div>
         </div>
     </div>
@@ -2580,7 +2579,7 @@ if (evidenceSearch && searchCount) {
             renderPage(currentPage);
 
             // 更新下载链接
-            pdfDownloadLink.href = url;
+            //  pdfDownloadLink.href = url;
         }).catch(error => {
             console.error('PDF 加载失败:', error);
             alert('PDF 加载失败，请稍后重试或联系管理员。');
@@ -2632,16 +2631,23 @@ if (evidenceSearch && searchCount) {
         }
     });
 
-    // 绑定所有 PDF 按钮的点击事件
-    document.querySelectorAll('.pdf-trigger').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault(); // 阻止链接跳转
-            const url = this.href;
-            const title = this.getAttribute('title') || '证据文件';
+   // 绑定所有 PDF 按钮的点击事件
+document.querySelectorAll('.pdf-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault(); // 阻止链接跳转
+        const url = this.href;
+        const title = this.getAttribute('title') || '证据文件';
+        
+        // --- 新逻辑：判断是否是01文件，如果是，则在新标签页打开 ---
+        if (url.includes('01_mobile_data.pdf')) {
+            window.open(url, '_blank');
+        } else {
+            // 其他三个文件仍用 PDF.js 模态框预览
             showPdfModal(url, title);
-        });
+        }
+        // --- 新逻辑结束 ---
     });
-})();
+});
         // 页面加载时检查URL hash
         window.addEventListener('load', function() {
             // 如果URL中有 #open-chapters 参数，则自动展开目录
