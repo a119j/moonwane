@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>第一章 第三节：警灯下的夜归人 · 六秒钉六年</title>
     
     <!-- 防止缓存 -->
@@ -13,7 +13,40 @@
     <!-- 禁止被搜索引擎收录 -->
     <meta name="robots" content="noindex, nofollow">
     
+    <!-- Font Awesome 图标库（用于深色模式图标） -->
+    <!-- 预连接到 Font Awesome CDN -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <!-- 预加载 Font Awesome 样式 -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
     <style>
+        :root {
+            /* 主色调 RGB 值（方便构建半透明背景） */
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            /* 其他颜色 */
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            /* 字体权重 */
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -21,16 +54,19 @@
         }
         
         body {
-            background-color: #f0f7e6;  /* 淡绿色背景 */
-            color: #1e2f3a;              /* 加深后的正文色 */
-            font-family: 'Segoe UI', 'Noto Serif SC', 'Georgia', serif;
-            line-height: 2.0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
             font-size: 18px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
         
         .container {
@@ -52,16 +88,22 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             loading: lazy;
+            decoding: async;
         }
         
         .chapter-info {
             text-align: center;
             margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .chapter-number {
             font-size: 16px;
-            color: #7bc8f8;
+            color: var(--link-color);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -70,49 +112,52 @@
         .chapter-title {
             font-size: 28px;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-align: center;
-            color: #0f2a3a;
+            color: var(--title-color);
             letter-spacing: 1px;
         }
         
         .chapter-subtitle {
             font-size: 20px;
             font-weight: 400;
-            margin-bottom: 40px;
+            margin-bottom: 0;
             text-align: center;
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             font-style: italic;
-            border-bottom: 1px solid #c0d4b0;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
+            width: 100%;
         }
         
         .section-title {
             font-size: 24px;
             font-weight: 600;
             margin: 40px 0 10px 0;
-            color: #0f2a3a;
+            color: var(--title-color);
         }
         
         .section-epigraph {
             font-style: italic;
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             margin-bottom: 30px;
-            border-left: 4px solid #7bc8f8;
+            border-left: 4px solid var(--link-color);
             padding-left: 16px;
         }
         
         .chapter-content {
             font-size: 18px;
-            line-height: 2.0;
-            color: #1e2f3a;
+            line-height: 1.88;
+            letter-spacing: 0.36px;
+            color: var(--text-color);
             margin-bottom: 60px;
+            hyphens: auto;
         }
         
         .chapter-content p {
-            margin-bottom: 1.5em;
+            margin: 0 0 1.68em;
             text-indent: 2em;
-            color: #1e2f3a;
+            color: var(--text-color);
         }
         
         .chapter-content p.no-indent {
@@ -124,8 +169,8 @@
         }
         
         .chapter-content strong {
-            font-weight: 600;
-            color: #0f2a3a;
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
         }
         
         /* 移除所有小标题的首行缩进 */
@@ -133,24 +178,34 @@
             text-indent: 0;
         }
         
-        /* 下一节提示文字：保持原色 */
+        /* 下一节提示文字：正常模式更醒目，深色模式保持橙色 */
         .chapter-content p:last-of-type span:first-child {
-            color: #1e3c4f !important;
+            color: var(--next-section-blue) !important;
         }
         .chapter-content p:last-of-type span:last-child {
-            color: #2c3e50 !important;
+            color: var(--text-color) !important;
+        }
+        /* 未完待续提示，与下一节同色 */
+.section-tip {
+    color: var(--next-section-blue) !important;
+}
+        /* 预格式文本/代码块横向滚动（前瞻优化） */
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
-        /* 读者致板块：左对齐、无缩进 */
+        /* 读者致谢板块（从03整合，适配深色模式） */
         .reader-note {
             margin: 50px 0 30px;
             padding: 30px;
             background: #e8f0da;
             border-radius: 8px;
-            border-left: 4px solid #7bc8f8;
+            border-left: 4px solid var(--link-color);
             font-size: 16px;
             line-height: 1.8;
-            color: #1e2f3a;
+            color: var(--text-color);
         }
         .reader-note p {
             text-indent: 0 !important;
@@ -158,12 +213,17 @@
             margin-bottom: 10px;
         }
         .reader-note a {
-            color: #7bc8f8;
+            color: var(--link-color);
             text-decoration: none;
-            border-bottom: 1px dotted #7bc8f8;
+            border-bottom: 1px dotted var(--link-color);
         }
         .reader-note a:hover {
-            border-bottom: 1px solid #7bc8f8;
+            border-bottom: 1px solid var(--link-color);
+        }
+        body.dark-mode .reader-note {
+            background: #2a2a3a;
+            color: #d1d5db;
+            border-left-color: #60a5fa;
         }
         
         .chapter-navigation {
@@ -171,30 +231,30 @@
             justify-content: space-between;
             align-items: center;
             padding: 30px 0 20px;
-            border-top: 1px solid #c0d4b0;
-            border-bottom: 1px solid #c0d4b0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             margin-top: 40px;
             font-size: 18px;
         }
         
         .nav-link {
-            color: #7bc8f8;
+            color: var(--link-color);
             text-decoration: none;
             padding: 8px 16px;
-            background: rgba(123,200,248,0.1);
+            background: rgba(var(--link-rgb), 0.1);
             border-radius: 6px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(123,200,248,0.2);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
         }
         
         .nav-link:hover {
-            background: rgba(123,200,248,0.2);
+            background: rgba(var(--link-rgb), 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
         }
         
         .nav-link.disabled {
-            color: #888;
+            color: var(--disabled-color);
             background: rgba(128,128,128,0.1);
             border: 1px solid rgba(128,128,128,0.2);
             pointer-events: none;
@@ -202,12 +262,15 @@
         }
         
         .nav-center {
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .nav-center a {
-            color: #7bc8f8;
+            color: var(--link-color);
             text-decoration: none;
             padding: 0 5px;
         }
@@ -216,20 +279,42 @@
             text-decoration: underline;
         }
         
+        /* 深色模式切换按钮（通用样式） */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
         .back-home {
             text-align: center;
             margin-top: 30px;
         }
         
         .back-home a {
-            color: #888;
+            color: var(--back-home-color);
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
         }
         
         .back-home a:hover {
-            color: #7bc8f8;
+            color: var(--link-color);
         }
         
         /* 阅读进度条 */
@@ -239,7 +324,7 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: #7bc8f8;
+            background: var(--progress-color);
             z-index: 9999;
             transition: width 0.1s ease;
             pointer-events: none;
@@ -252,7 +337,7 @@
             right: 30px;
             width: 48px;
             height: 48px;
-            background: rgba(123, 200, 248, 0.9);
+            background: rgba(var(--link-rgb), 0.9);
             color: white;
             border: none;
             border-radius: 50%;
@@ -275,9 +360,92 @@
         }
         #back-to-top:hover {
             transform: scale(1.1);
-            background: #7bc8f8;
+            background: var(--back-to-top-hover);
         }
         
+        /* ========== 手动深色模式样式 ========== */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+                body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .section-tip {
+            color: #fbbf24 !important;
+        }
+        
+        /* ========== 移动端细化 ========== */
         @media (max-width: 768px) {
             body {
                 font-size: 17px;
@@ -306,6 +474,10 @@
                 width: 100%;
                 text-align: center;
             }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
             .reader-note {
                 padding: 20px;
                 font-size: 15px;
@@ -317,6 +489,36 @@
                 height: 44px;
                 font-size: 24px;
             }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        /* 尊重用户浏览器字体大小设置 */
+        html {
+            font-size: 100%;
         }
     </style>
 </head>
@@ -325,20 +527,24 @@
     <div id="reading-progress"></div>
 
     <div class="container">
-        <!-- 封面图片 -->
+        <!-- 封面图片（第三节使用 conver-2.jpg，与第二节相同，保留原03设定） -->
         <div class="chapter-cover">
-            <img src="/MEITU_20260205_171849868.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'">
+            <img src="/pictures/conver-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
         </div>
         
-        <!-- 章节信息 -->
+        <!-- 章节信息（完全按照01结构，保留内联颜色） -->
         <div class="chapter-info">
             <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第一章</h1>
-            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 10px;">六秒与六年的开端</h2>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">六秒与六年的开端</h2>
+            <!-- 顶部深色模式切换按钮 -->
+            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
         </div>
         
-        <!-- 正文内容 - 第三节 -->
-        <div class="chapter-content">
+        <!-- 正文内容 - 第三节（完整保留小说文本，包括读者致谢） -->
+        <div class="chapter-content" role="main">
             <div class="section-title">第三节 警灯下的夜归人</div>
             <div class="section-epigraph">—— 这场车祸会让他们一家万劫不复吗？</div>
             
@@ -425,12 +631,12 @@
             <p>刘思恩看着女儿，那双十一岁的眼睛干净，透亮，是没下过雨的天空。她想说"没事"，舌头先一步拒绝。她只能点头，又摇头，都极轻、极轻。自己亲手把那颗狂跳不安的心，推进了深渊。</p>
             
             <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
-                <span style="font-weight: 600; color: #1e3c4f;">(未完待续）</span>
-            </p>
+    <span class="section-tip" style="font-weight: 600;">（未完待续）</span>
+</p>
             
             <p>索赔两百万加元的律师函几乎把他们压扁，公司保险迟迟不给答复。胸口的惶恐从颈项潜入骨髓，冰冷刺骨，窒息感直冲肺腑。站在悬崖边，下一秒随时可能被未知风暴卷走，葬身谷底。</p>
             
-            <!-- 读者致谢部分 -->
+            <!-- 读者致谢部分（完全保留03内容） -->
             <div class="reader-note">
                 <p>📢 <strong>致读者：</strong></p>
                 <p>本作品所涉及的技术细节，已在官方作品站留存备查（证据库）：<br>
@@ -439,13 +645,17 @@
                 或通过邮件联系：<a href="mailto:author@moonwane.ink">author@moonwane.ink</a></p>
                 <p>本作品基于真实经历与公开资料创作，所有细节均已做必要匿名处理。</p>
             </div>
-        </div>  <!-- 闭合 chapter-content -->
+        </div>
         
-        <!-- 章节导航 -->
+        <!-- 章节导航（完全按照01结构，链接指向正确，下一章保留原03的“下一章”且禁用） -->
         <div class="chapter-navigation">
             <a href="/chapters/chapter-1-02.html" class="nav-link">← 上一节</a>
             <span class="nav-center">
-                <a href="/index.html#chapterContents">📖 目录</a>
+                <a href="/index.html#open-chapters">📖 目录</a>
+                <!-- 底部深色模式切换按钮 -->
+                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                    <i class="fas fa-moon"></i>
+                </button>
             </span>
             <span class="nav-link disabled">下一章 →</span>
         </div>
@@ -507,6 +717,54 @@
 
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========== 深色模式手动切换（支持多按钮） ==========
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        // 更新所有按钮图标
+        function updateThemeIcons(isDark) {
+            themeToggles.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            });
+        }
+
+        // 初始化主题
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        // 为所有切换按钮绑定点击事件
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
         });
     })();
     </script>
