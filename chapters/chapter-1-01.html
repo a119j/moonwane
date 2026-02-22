@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>第一章 第一节：平常的一天 · 六秒钉六年</title>
     
     <!-- 防止缓存 -->
@@ -58,6 +58,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             loading: lazy;
+            decoding: async;  /* 异步解码优化 */
         }
         
         .chapter-info {
@@ -90,13 +91,13 @@
         .chapter-subtitle {
             font-size: 20px;
             font-weight: 400;
-            margin-bottom: 0;  /* 移除底部边距，由 flex gap 控制 */
+            margin-bottom: 0;
             text-align: center;
             color: #4a6a7a;
             font-style: italic;
             border-bottom: 1px solid #c0d4b0;
             padding-bottom: 20px;
-            width: 100%;       /* 确保副标题独占一行 */
+            width: 100%;
         }
         
         .section-title {
@@ -117,13 +118,14 @@
         .chapter-content {
             font-size: 18px;
             line-height: 1.88;
-            letter-spacing: 0.36px;        /* 增加轻微字距 */
+            letter-spacing: 0.36px;
             color: #1e2f3a;
             margin-bottom: 60px;
+            hyphens: auto;  /* 英文单词自动断词 */
         }
         
         .chapter-content p {
-            margin: 0 0 1.68em;              /* 段间距微调 */
+            margin: 0 0 1.68em;
             text-indent: 2em;
             color: #1e2f3a;
         }
@@ -137,7 +139,7 @@
         }
         
         .chapter-content strong {
-            font-weight: 650;                /* 加粗字重增强 */
+            font-weight: 650;
             color: #0f2a3a;
         }
         
@@ -146,12 +148,19 @@
             text-indent: 0;
         }
         
-               /* 下一节提示文字：正常模式更醒目，深色模式保持橙色 */
+        /* 下一节提示文字：正常模式更醒目，深色模式保持橙色 */
         .chapter-content p:last-of-type span:first-child {
             color: #0066cc !important;   /* 醒目的链接蓝色 */
         }
         .chapter-content p:last-of-type span:last-child {
             color: #2c3e50 !important;
+        }
+        
+        /* 预格式文本/代码块横向滚动（前瞻优化） */
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         .chapter-navigation {
@@ -194,7 +203,7 @@
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 12px;  /* 为切换按钮留出间距 */
+            gap: 12px;
         }
         
         .nav-center a {
@@ -291,7 +300,7 @@
             background: #7bc8f8;
         }
         
-               /* ========== 手动深色模式样式 ========== */
+        /* ========== 手动深色模式样式 ========== */
         body.dark-mode {
             background-color: #1e1e2e;
             color: #d1d5db;
@@ -301,7 +310,7 @@
         body.dark-mode .chapter-content strong {
             color: #f0f0f0;
         }
-        /* 新增：强制覆盖内联样式 */
+        /* 强制覆盖内联样式 */
         body.dark-mode .chapter-title[style*="color"] {
             color: #f0f0f0 !important;
         }
@@ -335,52 +344,11 @@
             background: rgba(96, 165, 250, 0.2);
             box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
         }
-        /* 修改：禁用链接颜色调整为与下一节提示文字一致 */
         body.dark-mode .nav-link.disabled {
             color: #9ca3af !important;
             background: rgba(156, 163, 175, 0.1);
             border-color: rgba(156, 163, 175, 0.2);
         }
-        body.dark-mode .nav-center {
-            color: #9ca3af;
-        }
-        body.dark-mode .nav-center a {
-            color: #60a5fa;
-        }
-        body.dark-mode .back-home a {
-            color: #6b7280;
-        }
-        body.dark-mode .back-home a:hover {
-            color: #60a5fa;
-        }
-        body.dark-mode #reading-progress {
-            background: #60a5fa;
-        }
-        body.dark-mode #back-to-top {
-            background: rgba(96, 165, 250, 0.9);
-        }
-        body.dark-mode #back-to-top:hover {
-            background: #60a5fa;
-        }
-        body.dark-mode .theme-toggle {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
-            border-color: rgba(96, 165, 250, 0.2);
-        }
-        body.dark-mode .theme-toggle:hover {
-            background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
-        }
-        body.dark-mode .nav-link.disabled 
-/* 强制覆盖内联样式，确保深色模式下章节标题可见 */
-body.dark-mode .chapter-title[style*="color"] {
-    color: #f0f0f0 !important;
-}
-{
-    color: #9ca3af !important;                /* 与下一节提示文字颜色一致 */
-    background: rgba(156, 163, 175, 0.1);
-    border-color: rgba(156, 163, 175, 0.2);
-}
         body.dark-mode .nav-center {
             color: #9ca3af;
         }
@@ -486,7 +454,7 @@ body.dark-mode .chapter-title[style*="color"] {
     <div class="container">
         <!-- 封面图片 -->
         <div class="chapter-cover">
-            <img src="/MEITU_20260205_171252361.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'">
+            <img src="/MEITU_20260205_171252361.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
         </div>
         
         <!-- 章节信息 -->
@@ -623,7 +591,7 @@ body.dark-mode .chapter-title[style*="color"] {
             <span class="nav-link disabled">← 上一节</span>
             <span class="nav-center">
                 <a href="/index.html#chapterContents">📖 目录</a>
-                <!-- 底部深色模式切换按钮（保留 id 以便兼容，但 JS 已改为类选择） -->
+                <!-- 底部深色模式切换按钮 -->
                 <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
                     <i class="fas fa-moon"></i>
                 </button>
