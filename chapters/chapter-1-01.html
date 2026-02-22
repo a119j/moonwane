@@ -14,9 +14,33 @@
     <meta name="robots" content="noindex, nofollow">
     
     <!-- Font Awesome 图标库（用于深色模式图标） -->
+<!-- 预连接到 Font Awesome CDN -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
+        <style>
+        :root {
+            /* 主色调 RGB 值（方便构建半透明背景） */
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            /* 其他颜色 */
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -24,19 +48,19 @@
         }
         
         body {
-            background-color: #f0f7e6;  /* 淡绿色背景 */
-            color: #1e2f3a;              /* 加深后的正文色 */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 
                          "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
-            font-weight: 420;            /* 现代阅读字重 */
-            line-height: 1.88;            /* 微调行高 */
+            font-weight: 420;
+            line-height: 1.88;
             font-size: 18px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.2s ease, color 0.2s ease; /* 平滑切换 */
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
         
         .container {
@@ -58,7 +82,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             loading: lazy;
-            decoding: async;  /* 异步解码优化 */
+            decoding: async;
         }
         
         .chapter-info {
@@ -73,7 +97,7 @@
         
         .chapter-number {
             font-size: 16px;
-            color: #7bc8f8;
+            color: var(--link-color);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -84,7 +108,7 @@
             font-weight: 600;
             margin-bottom: 5px;
             text-align: center;
-            color: #0f2a3a;
+            color: var(--title-color);
             letter-spacing: 1px;
         }
         
@@ -93,9 +117,9 @@
             font-weight: 400;
             margin-bottom: 0;
             text-align: center;
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             font-style: italic;
-            border-bottom: 1px solid #c0d4b0;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 20px;
             width: 100%;
         }
@@ -104,14 +128,14 @@
             font-size: 24px;
             font-weight: 600;
             margin: 40px 0 10px 0;
-            color: #0f2a3a;
+            color: var(--title-color);
         }
         
         .section-epigraph {
             font-style: italic;
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             margin-bottom: 30px;
-            border-left: 4px solid #7bc8f8;
+            border-left: 4px solid var(--link-color);
             padding-left: 16px;
         }
         
@@ -119,15 +143,15 @@
             font-size: 18px;
             line-height: 1.88;
             letter-spacing: 0.36px;
-            color: #1e2f3a;
+            color: var(--text-color);
             margin-bottom: 60px;
-            hyphens: auto;  /* 英文单词自动断词 */
+            hyphens: auto;
         }
         
         .chapter-content p {
             margin: 0 0 1.68em;
             text-indent: 2em;
-            color: #1e2f3a;
+            color: var(--text-color);
         }
         
         .chapter-content p.no-indent {
@@ -140,7 +164,7 @@
         
         .chapter-content strong {
             font-weight: 650;
-            color: #0f2a3a;
+            color: var(--title-color);
         }
         
         /* 移除所有小标题的首行缩进 */
@@ -150,10 +174,10 @@
         
         /* 下一节提示文字：正常模式更醒目，深色模式保持橙色 */
         .chapter-content p:last-of-type span:first-child {
-            color: #0066cc !important;   /* 醒目的链接蓝色 */
+            color: var(--next-section-blue) !important;
         }
         .chapter-content p:last-of-type span:last-child {
-            color: #2c3e50 !important;
+            color: var(--text-color) !important;
         }
         
         /* 预格式文本/代码块横向滚动（前瞻优化） */
@@ -168,30 +192,30 @@
             justify-content: space-between;
             align-items: center;
             padding: 30px 0 20px;
-            border-top: 1px solid #c0d4b0;
-            border-bottom: 1px solid #c0d4b0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             margin-top: 40px;
             font-size: 18px;
         }
         
         .nav-link {
-            color: #7bc8f8;
+            color: var(--link-color);
             text-decoration: none;
             padding: 8px 16px;
-            background: rgba(123,200,248,0.1);
+            background: rgba(var(--link-rgb), 0.1);
             border-radius: 6px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(123,200,248,0.2);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
         }
         
         .nav-link:hover {
-            background: rgba(123,200,248,0.2);
+            background: rgba(var(--link-rgb), 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
         }
         
         .nav-link.disabled {
-            color: #888;
+            color: var(--disabled-color);
             background: rgba(128,128,128,0.1);
             border: 1px solid rgba(128,128,128,0.2);
             pointer-events: none;
@@ -199,7 +223,7 @@
         }
         
         .nav-center {
-            color: #4a6a7a;
+            color: var(--subtitle-color);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -207,7 +231,7 @@
         }
         
         .nav-center a {
-            color: #7bc8f8;
+            color: var(--link-color);
             text-decoration: none;
             padding: 0 5px;
         }
@@ -220,7 +244,7 @@
         .theme-toggle {
             background: none;
             border: none;
-            color: #7bc8f8;
+            color: var(--link-color);
             font-size: 1.3rem;
             cursor: pointer;
             padding: 4px 8px;
@@ -229,13 +253,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(123,200,248,0.1);
-            border: 1px solid rgba(123,200,248,0.2);
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
         }
         .theme-toggle:hover {
-            background: rgba(123,200,248,0.2);
+            background: rgba(var(--link-rgb), 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(123,200,248,0.3);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
         }
         
         .back-home {
@@ -244,14 +268,14 @@
         }
         
         .back-home a {
-            color: #888;
+            color: var(--back-home-color);
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
         }
         
         .back-home a:hover {
-            color: #7bc8f8;
+            color: var(--link-color);
         }
         
         /* 阅读进度条 */
@@ -261,7 +285,7 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: #7bc8f8;
+            background: var(--progress-color);
             z-index: 9999;
             transition: width 0.1s ease;
             pointer-events: none;
@@ -274,7 +298,7 @@
             right: 30px;
             width: 48px;
             height: 48px;
-            background: rgba(123, 200, 248, 0.9);
+            background: rgba(var(--link-rgb), 0.9);
             color: white;
             border: none;
             border-radius: 50%;
@@ -297,10 +321,10 @@
         }
         #back-to-top:hover {
             transform: scale(1.1);
-            background: #7bc8f8;
+            background: var(--back-to-top-hover);
         }
         
-        /* ========== 手动深色模式样式 ========== */
+        /* ========== 手动深色模式样式（保持不变） ========== */
         body.dark-mode {
             background-color: #1e1e2e;
             color: #d1d5db;
@@ -380,7 +404,7 @@
             box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
         }
         
-        /* ========== 移动端细化 ========== */
+        /* ========== 移动端细化（保持不变） ========== */
         @media (max-width: 768px) {
             body {
                 font-size: 17px;
@@ -590,12 +614,12 @@
         <div class="chapter-navigation">
             <span class="nav-link disabled">← 上一节</span>
             <span class="nav-center">
-    <a href="#">📖 目录</a>
-    <!-- 底部深色模式切换按钮（保留 id 以便兼容，但 JS 已改为类选择） -->
-    <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
-        <i class="fas fa-moon"></i>
-    </button>
-</span>
+               <a href="/index.html#open-chapters">📖 目录</a>
+                <!-- 底部深色模式切换按钮 -->
+                <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </span>
             <a href="/chapters/chapter-1-02.html" class="nav-link">下一节 →</a>
         </div>
         
@@ -705,32 +729,6 @@
                 }
             });
         });
-    })();
-        // 为所有切换按钮绑定点击事件
-        themeToggles.forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (body.classList.contains('dark-mode')) {
-                    body.classList.remove('dark-mode');
-                    updateThemeIcons(false);
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-mode');
-                    updateThemeIcons(true);
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
-        });
-
-        // 底部导航目录链接点击事件
-        const chapterDrawer = document.getElementById('chapterContents');
-        const bottomChapterLink = document.querySelector('.nav-center a');
-        if (bottomChapterLink && chapterDrawer) {
-            bottomChapterLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                chapterDrawer.open = true;
-                chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        }
     })();
     </script>
 </body>
