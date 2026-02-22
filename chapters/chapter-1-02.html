@@ -14,7 +14,6 @@
     <meta name="robots" content="noindex, nofollow">
     
     <style>
-        /* 样式与第一节完全相同，为节省篇幅此处省略，实际使用时复制第一节的样式 */
         * {
             margin: 0;
             padding: 0;
@@ -23,17 +22,19 @@
         
         body {
             background-color: #f0f7e6;  /* 淡绿色背景 */
-            color: #2c3e50;              /* 深灰蓝色文字，减轻对比度 */
+            color: #1e2f3a;              /* 加深后的正文色（原 #2c3e50） */
             font-family: 'Segoe UI', 'Noto Serif SC', 'Georgia', serif;
-            line-height: 1.9;
+            line-height: 2.0;             /* 微调行高 */
             font-size: 18px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
-            max-width: 700px;
+            max-width: 740px;              /* 稍宽，阅读更舒适 */
             margin: 0 auto;
             padding: 40px 20px 60px;
             width: 100%;
@@ -50,6 +51,7 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;  /* 图片懒加载，提高性能 */
         }
         
         .chapter-info {
@@ -65,19 +67,24 @@
             margin-bottom: 10px;
         }
         
+        /* 标题加深（类样式，但内联样式会覆盖，下面会同步修改内联） */
         .chapter-title {
             font-size: 28px;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #1a1a1a;
+            text-align: center;
+            color: #0f2a3a;              /* 加深后的主标题色（原 #1e3c4f） */
+            letter-spacing: 1px;
         }
         
         .chapter-subtitle {
             font-size: 20px;
             font-weight: 400;
-            color: #4a4a4a;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #4a6a7a;              /* 保持原副标题色 */
             font-style: italic;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid #c0d4b0;
             padding-bottom: 20px;
         }
         
@@ -85,12 +92,12 @@
             font-size: 24px;
             font-weight: 600;
             margin: 40px 0 10px 0;
-            color: #1a1a1a;
+            color: #0f2a3a;              /* 加深后的小标题色 */
         }
         
         .section-epigraph {
             font-style: italic;
-            color: #4a4a4a;
+            color: #4a6a7a;              /* 保持原引文色 */
             margin-bottom: 30px;
             border-left: 4px solid #7bc8f8;
             padding-left: 16px;
@@ -98,14 +105,15 @@
         
         .chapter-content {
             font-size: 18px;
-            line-height: 1.9;
-            color: #1a1a1a;
+            line-height: 2.0;
+            color: #1e2f3a;              /* 加深后正文色 */
             margin-bottom: 60px;
         }
         
         .chapter-content p {
-            margin-bottom: 1.2em;
+            margin-bottom: 1.5em;          /* 段间距微增 */
             text-indent: 2em;
+            color: #1e2f3a;                /* 加深后正文色 */
         }
         
         .chapter-content p.no-indent {
@@ -118,6 +126,18 @@
         
         .chapter-content strong {
             font-weight: 600;
+            color: #0f2a3a;                /* 加深后强调色 */
+        }
+        /* 移除所有小标题的首行缩进 */
+.chapter-content p:has(> strong) {
+    text-indent: 0;
+}
+        /* 下一节提示文字：保持原色（不加深） */
+        .chapter-content p:last-of-type span:first-child {
+            color: #1e3c4f !important;      /* 原“（下一节）”颜色 */
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: #2c3e50 !important;      /* 原正文色，但正文已加深，这里单独保留 */
         }
         
         .chapter-navigation {
@@ -125,81 +145,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 30px 0 20px;
-            border-top: 1px solid #eaeaea;
-            border-bottom: 1px solid #eaeaea;
-            margin-top: 40px;
-            font-size: 18px;
-        }
-                /* 护眼模式增强样式 */
-        .chapter-content {
-            font-size: 18px;
-            line-height: 1.9;
-            color: #2c3e50;              /* 深灰蓝色文字 */
-            margin-bottom: 60px;
-        }
-        
-        .chapter-content p {
-            margin-bottom: 1.2em;
-            text-indent: 2em;
-            color: #2c3e50;
-        }
-        
-        .chapter-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #1e3c4f;              /* 更深的蓝灰色 */
-            letter-spacing: 1px;
-        }
-        
-        .chapter-subtitle {
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 40px;
-            text-align: center;
-            color: #4a6a7a;              /* 柔和的蓝灰色 */
-            font-style: italic;
-            border-bottom: 1px solid #c0d4b0;  /* 淡绿色边框 */
-            padding-bottom: 20px;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 40px 0 10px 0;
-            color: #1e3c4f;
-        }
-        
-        .section-epigraph {
-            font-style: italic;
-            color: #4a6a7a;
-            margin-bottom: 30px;
-            border-left: 4px solid #7bc8f8;
-            padding-left: 16px;
-        }
-        
-        .reader-note {
-            margin: 50px 0 30px;
-            padding: 30px;
-            background: #e8f0da;          /* 稍深一点的淡绿色 */
-            border-radius: 8px;
-            border-left: 4px solid #7bc8f8;
-            font-size: 16px;
-            line-height: 1.8;
-            color: #2c3e50;
-        }
-        
-        .chapter-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 0 20px;
-            border-top: 1px solid #c0d4b0;  /* 淡绿色边框 */
+            border-top: 1px solid #c0d4b0;
             border-bottom: 1px solid #c0d4b0;
             margin-top: 40px;
             font-size: 18px;
         }
+        
         .nav-link {
             color: #7bc8f8;
             text-decoration: none;
@@ -225,7 +176,7 @@
         }
         
         .nav-center {
-            color: #4a4a4a;
+            color: #4a6a7a;
             font-weight: 500;
         }
         
@@ -253,6 +204,52 @@
         
         .back-home a:hover {
             color: #7bc8f8;
+        }
+        
+        /* ---------- 新增：阅读进度条 ---------- */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #7bc8f8;
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;  /* 不阻挡点击 */
+        }
+        
+        /* ---------- 新增：返回顶部按钮 ---------- */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(123, 200, 248, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;  /* 确保可点击 */
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: #7bc8f8;
         }
         
         @media (max-width: 768px) {
@@ -290,10 +287,22 @@
                 width: 100%;
                 text-align: center;
             }
+            
+            /* 移动端调整按钮位置 */
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 阅读进度条 -->
+    <div id="reading-progress"></div>
+
     <div class="container">
         <!-- 封面图片 -->
         <div class="chapter-cover">
@@ -302,8 +311,9 @@
         
         <!-- 章节信息 -->
         <div class="chapter-info">
-            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #1e3c4f; margin-bottom: 5px;">第一章</h1>
-            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #1e3c4f; margin-bottom: 10px;">六秒与六年的开端</h2>
+            <!-- 内联颜色加深为 #0f2a3a -->
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第一章</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 10px;">六秒与六年的开端</h2>
             <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
         </div>
         
@@ -387,17 +397,19 @@
             <p>刘思恩已无心纠正。她转身背对女儿，双手合十抵在额头，嘴唇快速翕动。</p>
             
             <p>窗外阳光依旧，六月的热浪仍在，金银花仍香甜，可屋内，每一方空气都结了冰。</p>
-                   <!-- 添加小钩子：下一节 -->
+            
+            <!-- 添加小钩子：下一节（内联颜色保持原样） -->
             <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
                 <span style="font-weight: 600; color: #1e3c4f;">（下一节）</span> 
                 <span style="color: #2c3e50;">晚上九点多，暮色深重，一道刺眼的车灯终于划破门廊外的昏暗。刘思恩几乎是扑到门前，心在胸腔里狂跳 —— 那不是江远平那辆白色的工程车，一辆红蓝警灯无声旋转的警车，正不偏不倚地停在了她家的车道上...</span>
             </p>
+        </div>  <!-- 闭合 chapter-content -->
         
         <!-- 章节导航 -->
         <div class="chapter-navigation">
             <a href="/chapters/chapter-1-01.html" class="nav-link">← 上一节</a>
             <span class="nav-center">
-                <a href="/index.html#open-chapters" class="...">📖 目录</a>
+                <a href="/index.html#chapterContents">📖 目录</a>
             </span>
             <a href="/chapters/chapter-1-03.html" class="nav-link">下一节 →</a>
         </div>
@@ -407,5 +419,61 @@
             <a href="/index.html">← 返回 MoonWane Ink 主页</a>
         </div>
     </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        // ========== 防盗措施：禁用右键菜单和拖拽 ==========
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // ========== 新增：限制复制长度 ==========
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50; // 允许复制的最大字符数
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+            // 短文本可正常复制
+        });
+
+        // 阅读进度条
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+</script>
 </body>
 </html>
