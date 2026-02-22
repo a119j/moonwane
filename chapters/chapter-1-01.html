@@ -590,12 +590,12 @@
         <div class="chapter-navigation">
             <span class="nav-link disabled">← 上一节</span>
             <span class="nav-center">
-                <a href="/index.html#chapterContents">📖 目录</a>
-                <!-- 底部深色模式切换按钮 -->
-                <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </span>
+    <a href="#">📖 目录</a>
+    <!-- 底部深色模式切换按钮（保留 id 以便兼容，但 JS 已改为类选择） -->
+    <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
+        <i class="fas fa-moon"></i>
+    </button>
+</span>
             <a href="/chapters/chapter-1-02.html" class="nav-link">下一节 →</a>
         </div>
         
@@ -705,6 +705,32 @@
                 }
             });
         });
+    })();
+        // 为所有切换按钮绑定点击事件
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
+        // 底部导航目录链接点击事件
+        const chapterDrawer = document.getElementById('chapterContents');
+        const bottomChapterLink = document.querySelector('.nav-center a');
+        if (bottomChapterLink && chapterDrawer) {
+            bottomChapterLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                chapterDrawer.open = true;
+                chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
     })();
     </script>
 </body>
