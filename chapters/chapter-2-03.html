@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>第二章 第三节：律师的第一封信 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.88;
+            letter-spacing: 0.36px;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            hyphens: auto;
+        }
+        
+        .chapter-content p {
+            margin: 0 0 1.68em;
+            text-indent: 2em;
+            color: var(--text-color);
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* ========== 手动深色模式样式 ========== */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* ========== 移动端细化 ========== */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <div class="chapter-cover">
+            <img src="/pictures/conver-2-3.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        </div>
+        
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第二章</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">碾碎：系统启动的第一声</h2>
+            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="chapter-subtitle">—— 一场车祸，摧毁的不只是车</div>
+        </div>
+        
+        <div class="chapter-content" role="main">
+            <div class="section-title">第三节 律师的第一封信</div>
+            <div class="section-epigraph">—— 沉默是金，亦是最后的防线</div>
+            
+            <p><strong>可能监禁</strong></p>
+            
+            <p>6月16日，星期六</p>
+            <p>车祸后第四天。</p>
+            <p>昨天（6月15日），江远平拨通了老板Miles的电话。<br>"我认识一个律师，Patrick，打高尔夫认识的，专打刑事。"<br>这个名字是黑暗里递过来的火柴，随时可能熄灭，却是唯一。</p>
+            <p>Patrick是律所合伙人，网站介绍简洁：<br><em>Criminal Defence Win Rate: 87%</em> <em>（</em><em>刑事辩护胜诉率：87%）</em><br>其余全是空白。空白就是价格，也是活路。</p>
+            <p>市中心大楼玻璃幕墙反光刺眼，无数锋利切片插入人眼。江远平独自前往，傍晚归来。<br>夕阳透过百叶窗，切成一条条铁栅，印在他脸上。<br>刘思恩递过一杯水，手微微颤抖，水面荡起涟漪。</p>
+            <p>"人还不错。"<br>他说着，每一个字都是字面意思，又带着不确定。<br>"六十岁，白人，合伙人。"<br>说完这三点，他舔了一下下唇，动作迅速，试图抹去未说出的东西。</p>
+            <p>6月21日，星期四</p>
+            <p>车祸后第九天。</p>
+            <p>律师邮件抵达。Patrick亲笔。</p>
+            <p>Subject: 6月19日已和刑警Ivor通话<br>正文<br>Careless Driving Causing Death （疏忽驾驶致死）<br>Highway Traffic Act s.130 《公路交通法》<br>Maximum: 7 years （最高监禁七年）</p>
+            <p>刘思恩盯着那行英文——Maximum: 7 years （最高监禁七年）。她的背心瞬间湿透，紧贴脊梁，冰冷刺入肌肉。</p>
+            <p>江远平干咳一声，视线飘向窗外："这只是......最坏的情况。"<br>声音越来越小，最后只剩气音。</p>
+            <p>再往下，用加粗字体写下了唯一的行动准则：<br><em>From now on, you say nothing except:</em><br><em>"As my lawyer advised me, I do not wish to answer any questions or make a statement at this time."</em><br>（从现在起，你对任何人 —— 无论是警察、保险调查员，还是同事朋友 —— 只能说一句话：'根据我的律师建议，我此时不回答任何问题，也不作任何陈述。'）</p>
+            <p>最后一行加粗小字：<br><em>"Silence is your best friend. 沉默是你最好的朋友。 "</em></p>
+            <p>江远平把这句话读了三遍。<br>声音在空旷客厅里划过空气，穿透骨髓，带来阵阵寒意。</p>
+            <p>夜深了，卧室里里只剩沉默和月光。</p>
+            <p>他躺在床上，睁着眼，对着天花板极轻地来了一句：<br>"原来米兰达警告（Miranda Warning） 是真的。"</p>
+            <p>旁边的刘思恩翻了个身，手指紧扣被角，视线飘向窗外 。<br>窗帘没拉严，冷月光漏进来，落在书桌上打印邮件那行加粗小字：<br><em>"Silence is your best friend. 沉默是你最好的朋友。 "</em></p>
+            
+            <p><strong>律师费</strong></p>
+            
+            <p>晚饭后，刘思恩点开律师费用邮件。</p>
+            <p><strong>Invoice #001</strong><br>• 初谈 1h45m \$398.75<br>• 警官通话 35m \$550<br>• 初步分析  \$1,985<br><strong>Total: \$2,933.75</strong><br>付款日期：June 30, 2018</p>
+            <p>数字钉在屏幕上，一动不动。</p>
+            <p>江远平盯着数字，手指在鼠标垫上慢慢磨。鼠标垫面已经起球，被磨掉一层皮，也磨掉了他仅剩的一点底气。<br>"太贵了......可以考虑申请法律援助。"声音轻得几乎没有重量，刚出口，便融进空气里。</p>
+            <p>刘思恩没说话，只把几张纸，一张一张推到他面前。</p>
+            <p>第一张：钢琴课本学期账单 \$3,880加元<br>第二张：房贷+车贷月供 \$1,812加元<br>第三张：保险涨价通知 年缴\$4,807加元<br>第四张：地税 半年\$3,922加元<br>最后一张：江若瑶下个月卡内基大师班+住宿+机票 \$5,600加元</p>
+            <p>纸张在木桌上摩擦出极细的嘶嘶声。<br>五张白纸码得整整齐齐 ——<br>那是一摞盖得严严实实的棺材板。</p>
+            <p>空气被账单压弯，江远平的声音被压得更轻：<br>"......大师班先别去了？"</p>
+            <p>刘思恩没抬眼，目光落在前方虚空里，声音轻得几乎被空气吞没。</p>
+            <p>"方向盘要是握得稳，现在就不用......"</p>
+            <p>啪 ——<br>在餐桌旁学习的江若瑶手里的笔掉下去，马克笔在作业本上划开，一道红线冲破纸面，刺入视觉神经。</p>
+            <p>江远平缓慢站起，一言不发，同手同脚，走进车库。<br>灯绳被猛地一拉，白光炸亮。</p>
+            <p>工具箱被掀开，扳手、钳子哗啦啦撒了一地，金属声撞击着胸口，心跳加速，呼吸也加快。</p>
+            <p>厨房里，刘思恩抓起一杯凉开水，仰头灌下。<br>水从嘴角溢出来，顺着下巴、脖颈，滴进衣领，也滴在地板上，湿了一大片。<br>她没擦。<br>只盯着地上那滩水 ——<br>形状就是一个刚挖好的坑。</p>
+            <p>楼上，已经上楼的女儿把房门轻轻合上。<br>咔嗒。</p>
+            <p>一楼灯火通明。<br>没有人去关灯。<br>也没有人敢动。</p>
+            
+            <p><strong>床中间那条缝</strong></p>
+            
+            <p>车库里白灯刺眼。</p>
+            <p>江远平半蹲着，膝盖抵着水泥地，寒气钻骨。<br>工具箱敞开，铁皮盖反光，把他的脸照得发青。</p>
+            <p>试电笔。<br>万用表。<br>剥线钳、绝缘手套......<br>金属和塑料在他指尖滑过时发出细响，平时听不见，现在却震得耳膜发烫，太阳穴突起。</p>
+            <p>箱底压着一张折得方方正正的纸。<br>铅笔画：三口之家，苹果树，三个红苹果。<br>旁边一行字已经模糊：<br>Daddy fixes everything.（爸爸什么都会修.)</p>
+            <p>他用拇指轻轻蹭了蹭那行字，又慢慢折回去，放回原处。</p>
+            <p>啪嗒。<br>锁扣合上。<br>声音很轻，却把什么彻底关死了。</p>
+            <p>卧室里一片黑。</p>
+            <p>江远平侧着身，背对刘思恩。肩随呼吸紧缩又放松，每一次吸气都浅，每一次吐气都被阻滞。</p>
+            <p>刘思恩睁着眼。<br>天花板中央风扇叶片上那块灰尘一直钉在那里，一动不动。<br>她抬手，指尖悬在半空，最终收回，攥进被子。</p>
+            <p>床中间那条缝，谁也没越过去。</p>
+            <p>后院那棵苹果树在风里摇，枝叶哗啦哗啦。</p>
+            <p>十年前，江若瑶五岁，小手满是泥，踮脚把树苗扶正。她笑着举手比高度，说长到这里就会结果。<br>江远平当时说："结果了，一人一个。"</p>
+            <p>如今树长大了，果子挂在枝头，夜里看不清颜色，只能看到微弱晃动的黑影。<br>没人去摘。</p>
+            <p>凌晨两点。<br>空气冷得卡在喉咙里。</p>
+            <p>江远平突然开口， 声音哑得不成形：<br>"明天我去问问，有没有同事需要帮忙值班的。"</p>
+            <p>刘思恩没回头，只极轻地"嗯"了一声。<br>那声音一落地就碎了。</p>
+            <p>窗外，苹果树还在摇。<br>摇到天亮，也摇不醒这一夜。</p>
+            
+            <!-- 下一节小钩子 -->
+            <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+                <span style="font-weight: 600; color: #1e3c4f;">（下一节）</span> 
+                <span style="color: #2c3e50;">几天后，一封民事索赔律师函被径直送到家门口。字句锋利，段段都在泼脏水，把所有责任、疏忽、恶意、过错，全都倒在江远平头上。自家的车险公司。回复迅速而冰冷： 概不介入。公司的保险部门那头......杳无音讯。电话没人接，邮件没人回。他们站在一扇漆黑的大门前，无论敲得多响，都只有回声，没有人应。</span>
+            </p>
+        </div>
+        
+        <div class="chapter-navigation">
+            <a href="/chapters/chapter-2-02.html" class="nav-link">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#chapterContents">📖 目录</a>
+                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </span>
+            <a href="/chapters/chapter-2-04.html" class="nav-link">下一节 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+            themeToggles.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            });
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
