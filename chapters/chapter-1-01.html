@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
         <style>
-        :root {
+                :root {
             /* 主色调 RGB 值（方便构建半透明背景） */
             --link-rgb: 123, 200, 248;
             --link-color: rgb(var(--link-rgb));
@@ -41,6 +41,10 @@
             --next-section-blue: #0066cc;
             --disabled-color: #888;
             --back-home-color: #888;
+
+            /* 字体权重 */
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
         }
 
         * {
@@ -54,7 +58,7 @@
             color: var(--text-color);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 
                          "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
-            font-weight: 420;
+            font-weight: var(--font-weight-normal);
             line-height: 1.88;
             font-size: 18px;
             min-height: 100vh;
@@ -164,8 +168,8 @@
             text-indent: 0;
         }
         
-        .chapter-content strong {
-            font-weight: 650;
+               .chapter-content strong {
+            font-weight: var(--font-weight-bold);
             color: var(--title-color);
         }
         
@@ -461,7 +465,13 @@
             }
         }
         
-        @media (max-width: 480px) {
+                @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
             .chapter-content {
                 font-size: 16.8px;
             }
@@ -488,14 +498,14 @@
             <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第一章</h1>
             <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">六秒与六年的开端</h2>
             <!-- 顶部深色模式切换按钮 -->
-            <button class="theme-toggle" aria-label="切换深色模式">
+                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
                 <i class="fas fa-moon"></i>
             </button>
             <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
         </div>
         
         <!-- 正文内容 - 第一节 -->
-        <div class="chapter-content">
+               <div class="chapter-content" role="main">
             <div class="section-title">第一节 平常的一天</div>
             <div class="section-epigraph">—— 嗅到灾难临近的气息，可没能阻止它</div>
             
@@ -618,7 +628,7 @@
             <span class="nav-center">
                <a href="/index.html#open-chapters">📖 目录</a>
                 <!-- 底部深色模式切换按钮 -->
-                <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">
+                 <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式" role="switch" aria-checked="false">
                     <i class="fas fa-moon"></i>
                 </button>
             </span>
@@ -684,7 +694,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ========== 深色模式手动切换（支持多按钮） ==========
+                // ========== 深色模式手动切换（支持多按钮） ==========
         const themeToggles = document.querySelectorAll('.theme-toggle');
         const body = document.body;
 
