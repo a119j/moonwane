@@ -129,7 +129,10 @@
             font-weight: 600;
             color: #0f2a3a;                /* 加深后强调色 */
         }
-        
+        /* 移除所有小标题的首行缩进 */
+.chapter-content p:has(> strong) {
+    text-indent: 0;
+}
         /* 下一节提示文字：保持原色（不加深） */
         .chapter-content p:last-of-type span:first-child {
             color: #1e3c4f !important;      /* 原“（下一节）”颜色，覆盖内联也可 */
@@ -452,35 +455,57 @@
     <button id="back-to-top" aria-label="返回顶部">↑</button>
 
     <script>
-        (function() {
-            // 阅读进度条
-            const progressBar = document.getElementById('reading-progress');
-            const updateProgress = () => {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                progressBar.style.width = progress + '%';
-            };
-            window.addEventListener('scroll', updateProgress);
-            window.addEventListener('resize', updateProgress);
-            updateProgress(); // 初始化
+    (function() {
+        // ========== 防盗措施：禁用右键菜单和拖拽 ==========
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
 
-            // 返回顶部按钮
-            const backToTopBtn = document.getElementById('back-to-top');
-            const toggleBackToTop = () => {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
-                }
-            };
-            window.addEventListener('scroll', toggleBackToTop);
-            toggleBackToTop(); // 初始化
+        // ========== 新增：限制复制长度 ==========
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50; // 允许复制的最大字符数
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+            // 短文本可正常复制
+        });
 
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        })();
-    </script>
+        // 阅读进度条
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+</script>
+
 </body>
 </html>
