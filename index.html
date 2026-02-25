@@ -58,30 +58,28 @@
         --bg-dark-transparent: rgba(11, 14, 23, 0.95);
         --bg-drawer: rgba(20, 25, 40, 0.4);
         --bg-summary: rgba(40, 50, 80, 0.6);
-:root {
-    /* 原有变量保持不变... 在末尾添加以下新变量 */
-    
-    /* 间距变量 */
-    --container-padding: 2rem;
-    --links-margin-bottom: 100px;
-    --drawer-margin-top: 40px;
-    --drawer-margin-bottom: 24px;
-    --drawer-margin-bottom-evidence: 40px;
-    --card-gap: 2rem;
-    --card-padding: 1.5rem;
-    --section-spacing: 60px; /* 保留备用 */
-    
-    /* 阴影变量 */
-    --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
-    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
-    --shadow-lg: 0 12px 32px rgba(0,0,0,0.7);
-    --shadow-blue: 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
-    --shadow-pdf: 0 20px 60px rgba(0,0,0,0.6);
-    --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.3);
-    --shadow-link-hover: 0 12px 32px rgba(0,0,0,0.7), 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
-    --shadow-toast: 0 5px 20px rgba(0,0,0,0.4);
-}        --border-light: rgba(255,255,255,0.1);
+        --border-light: rgba(255,255,255,0.1);
+    }
 
+    /* 间距变量（原有） */
+    :root {
+        --container-padding: 2rem;
+        --links-margin-bottom: 100px;
+        --drawer-margin-top: 40px;
+        --drawer-margin-bottom: 24px;
+        --drawer-margin-bottom-evidence: 40px;
+        --card-gap: 2rem;
+        --card-padding: 1.5rem;
+        --section-spacing: 60px;
+        
+        --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
+        --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+        --shadow-lg: 0 12px 32px rgba(0,0,0,0.7);
+        --shadow-blue: 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
+        --shadow-pdf: 0 20px 60px rgba(0,0,0,0.6);
+        --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.3);
+        --shadow-link-hover: 0 12px 32px rgba(0,0,0,0.7), 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
+        --shadow-toast: 0 5px 20px rgba(0,0,0,0.4);
     }
 
     /* === 三角符号和书籍图标样式 === */
@@ -97,12 +95,10 @@
         margin-right: 8px;
     }
     
-    /* 章节目录展开时三角符号旋转 */
     .chapter-drawer[open] .triangle-icon {
         transform: rotate(90deg);
     }
     
-    /* 证据库展开时三角符号旋转（通过::before实现） */
     .evidence-drawer[open] > summary::before {
         transform: translateY(-50%) rotate(90deg);
     }
@@ -140,10 +136,10 @@
     }
     
     .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--container-padding);
-}
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--container-padding);
+    }
     
     /* === Header & Logo === */
     header {
@@ -256,11 +252,11 @@
     }
     
     .links {
-    max-width: 640px;
-    margin: 0 auto var(--links-margin-bottom);
-    position: relative;
-    z-index: 2;
-}
+        max-width: 640px;
+        margin: 0 auto var(--links-margin-bottom);
+        position: relative;
+        z-index: 2;
+    }
     
     .links a, .links .button {
         display: block;
@@ -310,7 +306,7 @@
     .links a:hover, .links .button:hover {
         background: #1a2d42;
         transform: translateY(-6px);
-       box-shadow: var(--shadow-link-hover);
+        box-shadow: var(--shadow-link-hover);
         color: var(--white-text);
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     }
@@ -350,21 +346,21 @@
     
     /* === Poetry Section === */
     .poetry-section {
-    padding: 100px 20px 40px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    min-height: 40vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0; /* 初始透明 */
-    transition: opacity 0.1s; /* 占位，实际动画由关键帧控制 */
-}
-
-.poetry-section.visible {
-    animation: fadeIn 2s ease-out forwards; /* 播放动画并保持最终状态 */
-}
+        padding: 100px 20px 40px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.1s;
+    }
+    
+    .poetry-section.visible {
+        animation: fadeIn 2s ease-out forwards;
+    }
     
     .poetry {
         font-size: 1.4rem;
@@ -690,14 +686,14 @@
         50% { transform: scale(1.05); }
     }
     
-    /* === 目录卡片网格样式（新增，不覆盖原有） === */
+    /* === 目录卡片网格样式 === */
     .acts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--card-gap);
-    margin: 24px 0 40px;
-    min-width: fit-content;
-}
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--card-gap);
+        margin: 24px 0 40px;
+        min-width: fit-content;
+    }
     
     .act-card {
         background: rgba(20, 25, 40, 0.3);
@@ -712,7 +708,6 @@
         box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
     
-    /* 移动端堆叠 */
     @media (max-width: 768px) {
         .acts-grid {
             grid-template-columns: 1fr;
@@ -720,7 +715,6 @@
         }
     }
     
-    /* 以下原有样式全部保留，确保视觉细节不变 */
     .chapter-title {
         font-weight: 400;
         color: var(--gold);
@@ -841,31 +835,30 @@
         position: relative;
     }
     
-   .chapter-drawer > summary {
-    padding: 20px 32px;
-    background: rgba(30, 30, 30, 0.8);
-    font-size: 1.3rem;
-    color: var(--gold);
-    cursor: pointer;
-    list-style: none;
-    position: relative;
-    font-family: 'Inter', 'Noto Sans SC', sans-serif;
-    aria-expanded: false;
-    transition: all 0.4s ease;
-}
-
+    .chapter-drawer > summary {
+        padding: 20px 32px;
+        background: rgba(30, 30, 30, 0.8);
+        font-size: 1.3rem;
+        color: var(--gold);
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        aria-expanded: false;
+        transition: all 0.4s ease;
+    }
     
     .chapter-drawer > summary::-webkit-details-marker {
         display: none;
     }
     
     .chapter-drawer-content {
-    padding: 0;
-    max-height: 70vh;
-    overflow-y: auto;
-    position: relative;
-    scroll-behavior: smooth;
-}
+        padding: 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        position: relative;
+        scroll-behavior: smooth;
+    }
     
     .evidence-drawer {
         max-width: 640px;
@@ -877,17 +870,17 @@
     }
     
     .evidence-drawer > summary {
-    padding: 20px 32px 20px 60px !important;
-    background: rgba(30, 30, 30, 0.8);
-    font-size: 1.35rem;
-    color: var(--gold);
-    cursor: pointer;
-    list-style: none;
-    position: relative;
-    font-family: 'Inter', 'Noto Sans SC', sans-serif;
-    aria-expanded: false;
-    transition: all 0.4s ease;
-}
+        padding: 20px 32px 20px 60px !important;
+        background: rgba(30, 30, 30, 0.8);
+        font-size: 1.35rem;
+        color: var(--gold);
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        aria-expanded: false;
+        transition: all 0.4s ease;
+    }
     
     .evidence-drawer > summary::-webkit-details-marker {
         display: none;
@@ -918,16 +911,15 @@
         overflow-y: auto;
         position: relative;
         scroll-behavior: smooth;
-
-/* 抽屉摘要悬停效果（与“简介”等链接相同） */
-.chapter-drawer > summary:hover,
-.evidence-drawer > summary:hover {
-    background: #1a2d42;
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-link-hover);
-    color: var(--white-text);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
+    }
+    
+    .chapter-drawer > summary:hover,
+    .evidence-drawer > summary:hover {
+        background: #1a2d42;
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-link-hover);
+        color: var(--white-text);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     }
     
     /* 证据库搜索框 */
@@ -1022,14 +1014,12 @@
         background: rgba(50, 60, 80, 0.3);
     }
     
-    /* 核心证据分类蓝色 */
     .evidence-content h4 {
         color: var(--primary-blue) !important;
         margin: 25px 0 10px !important;
         font-size: 1.1rem;
     }
     
-    /* 技术点和真相提要 */
     .technical-points, .truth-summary {
         margin: 25px 0;
         padding: 15px;
@@ -1044,7 +1034,6 @@
         font-size: 1.1rem;
     }
     
-    /* PDF按钮样式 */
     .pdf-trigger {
         background: none;
         border: none;
@@ -1061,7 +1050,6 @@
         transform: scale(1.1);
     }
     
-    /* 证据库PDF按钮绿色 */
     .evidence-table .pdf-trigger {
         color: var(--green-ready) !important;
         background: rgba(76, 175, 80, 0.1) !important;
@@ -1150,7 +1138,6 @@
         background: #fff;
     }
     
-    /* 强制章节操作图标在一行显示，并允许横向滚动 */
     .chapter-actions {
         flex-wrap: nowrap !important;
         overflow-x: auto;
@@ -1167,13 +1154,12 @@
         border-radius: 3px;
     }
     
-    /* 自定义滚动条样式 */
     #introDrawer > div::-webkit-scrollbar,
-.chapter-drawer-content::-webkit-scrollbar,
-.evidence-scroll-area::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;  /* 添加此行，使水平滚动条高度与垂直滚动条宽度一致 */
-}
+    .chapter-drawer-content::-webkit-scrollbar,
+    .evidence-scroll-area::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
     
     #introDrawer > div::-webkit-scrollbar-track,
     .chapter-drawer-content::-webkit-scrollbar-track,
@@ -1210,25 +1196,25 @@
     .chapter-drawer-content::-webkit-scrollbar-button:vertical:increment,
     .evidence-scroll-area::-webkit-scrollbar-button:vertical:increment {
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="6,11 2,3 10,3" fill="white"/></svg>');
-/* 水平滚动条按钮（左右箭头） */
-#introDrawer > div::-webkit-scrollbar-button:horizontal,
-.chapter-drawer-content::-webkit-scrollbar-button:horizontal,
-.evidence-scroll-area::-webkit-scrollbar-button:horizontal {
-    width: 20px;   /* 水平按钮宽度 */
-    height: 8px;   /* 水平按钮高度（与滚动条厚度一致） */
-}
-
-#introDrawer > div::-webkit-scrollbar-button:horizontal:decrement,
-.chapter-drawer-content::-webkit-scrollbar-button:horizontal:decrement,
-.evidence-scroll-area::-webkit-scrollbar-button:horizontal:decrement {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="1,6 9,2 9,10" fill="white"/></svg>'); /* 左箭头 */
-}
-
-#introDrawer > div::-webkit-scrollbar-button:horizontal:increment,
-.chapter-drawer-content::-webkit-scrollbar-button:horizontal:increment,
-.evidence-scroll-area::-webkit-scrollbar-button:horizontal:increment {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="11,6 3,2 3,10" fill="white"/></svg>'); /* 右箭头 */
-}
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-button:horizontal,
+    .chapter-drawer-content::-webkit-scrollbar-button:horizontal,
+    .evidence-scroll-area::-webkit-scrollbar-button:horizontal {
+        width: 20px;
+        height: 8px;
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-button:horizontal:decrement,
+    .chapter-drawer-content::-webkit-scrollbar-button:horizontal:decrement,
+    .evidence-scroll-area::-webkit-scrollbar-button:horizontal:decrement {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="1,6 9,2 9,10" fill="white"/></svg>');
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-button:horizontal:increment,
+    .chapter-drawer-content::-webkit-scrollbar-button:horizontal:increment,
+    .evidence-scroll-area::-webkit-scrollbar-button:horizontal:increment {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="11,6 3,2 3,10" fill="white"/></svg>');
     }
     
     /* PDF加载专用月亮动画 */
@@ -1257,7 +1243,6 @@
         animation: realphase 15s linear infinite;
     }
     
-    /* PDF模态框加载优化 */
     .pdf-modal-content {
         position: relative;
         display: flex;
@@ -1307,24 +1292,20 @@
         opacity: 1;
     }
     
-    /* 章节标题柔和淡金色 */
     .chapter-title {
         color: var(--soft-gold) !important;
     }
     
-    /* 想看按钮下边距 */
     #wantToReadBtn {
         margin-bottom: 40px;
     }
     
-    /* 自定义焦点指示器 */
     :focus-visible {
         box-shadow: 0 0 0 3px var(--primary-blue), 0 0 0 6px rgba(var(--primary-blue-rgb), 0.3);
         border-radius: inherit;
         outline: none;
     }
     
-    /* 移动端适配保持不变 */
     @media (max-width: 768px) {
         .logo-main { font-size: 3.5rem; }
         .logo-sub { font-size: 2rem; }
@@ -1360,14 +1341,101 @@
     @media (min-width: 769px) and (max-width: 1024px) {
         .pdf-modal-content { width: 92%; height: 90vh; max-width: 92%; max-height: 90vh; }
     }
-/* 抽屉标题悬停效果 - 与“简介”等链接卡片完全一致 */
-.chapter-drawer > summary:hover,
-.evidence-drawer > summary:hover {
-    background: #1a2d42 !important;
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-link-hover);
-    color: var(--white-text);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    
+    .chapter-drawer > summary:hover,
+    .evidence-drawer > summary:hover {
+        background: #1a2d42 !important;
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-link-hover);
+        color: var(--white-text);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    
+    /* === 新增：多链接菜单样式（符合暗黑月光风格） === */
+    .multi-link-menu {
+        position: absolute;
+        background: var(--bg-drawer);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 8px 0;
+        min-width: 180px;
+        z-index: 1000;
+        box-shadow: var(--shadow-md);
+        margin-top: 8px;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    }
+
+    .multi-link-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: var(--arrow-left, 20px);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid var(--bg-drawer);
+        filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.1));
+    }
+
+    .multi-link-menu.position-top::before {
+        top: auto;
+        bottom: -8px;
+        border-top: 8px solid var(--bg-drawer);
+        border-bottom: none;
+        filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    }
+
+    .multi-link-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .multi-link-menu li {
+        min-height: 44px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        color: var(--text-light);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .multi-link-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .multi-link-menu li:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    .multi-link-menu a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+        .multi-link-menu li {
+            min-height: 48px;
+            padding: 14px 18px;
+        }
+        .multi-link-menu a {
+            font-size: 1rem;
+        }
+    }
+@media (max-width: 768px) {
+    #chapterContents,
+    #chapterContents details,
+    #chapterContents summary,
+    .chapter-list,
+    .chapter-actions {
+        overflow-x: hidden !important;
+    }
 }
     </style>
     
@@ -1438,47 +1506,52 @@
                         </span>
                         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:4px; font-style: italic;">Six Seconds, Six Years | 作品已完成，诚寻出版与合作机会。</span>
                         <span class="golden-sentence">六秒数据，钉死六年人生。</span>
-                        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的纪实文学<br>一场普通车祸，引发六年司法拉锯<br>一个移民家庭，在制度边缘与亲情之间寻找清白</span>
+                        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的非虚构纪实<br>六秒数据，六年拉锯 <br>当规则失灵，一个移民家庭被迫自证清白 </span>
+
                     </a>
                 </div>
                 <!-- 简介抽屉内容 (初始隐藏) -->
                 <div id="introDrawer" style="max-width:640px; margin:0 auto 40px auto; overflow: hidden; transition: max-height 0.4s ease-in-out; max-height: 0; background: rgba(20,25,40,0.4); border-radius: 0 0 16px 16px;">
-                    <div style="padding: 0 24px 24px 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto;">
+                    <div style="padding: 0 24px 0 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto;">
                         <div style="font-size: 1.2rem; color: #ffd700; margin: 20px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【故事梗概】</div>
                         <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
-    2018年6月12日，多伦多北郊。<br>晴朗的下午，一场碰撞改变了轨迹。<br>冷暖空调技师江远平驾驶工程车下班途中，与同向骑行的自行车相撞。骑车人未戴头盔，送医不治。<br>他留在现场，报警，配合调查。<br>此后半年，没有任何消息。律师预判，或按“疏忽驾驶”处理。<br>2019年1月10日，警方突袭其工作场所，当众将他铐走。<br>六小时审讯，二十四小时拘留。<br>随后，他被控“刑事疏忽致死”与“危险驾驶致死”。<br>检方建议刑期四年。<br>指控的核心，是手机事故前两分钟内一段六秒的电信后台数据。<br>检方据此认定为“主动使用手机”的分心驾驶。<br>2022年，第三方专家报告指出：<br>那只是手机后台自动信令，如同心跳，与人为操作无关。<br>多项物证亦被忽略：<br>事故次日实测，左前胎气压65 psi（标准50 psi），右前胎侧壁爆裂撕裂。<br>行车记录仪慢放画面显示，事故前0.167秒，右前胎侧壁闪现异常黑烟。<br>工程车黑匣子（CDR）数据被警方以“无事件”为由拒绝进一步分析。<br>直到2025年，经AI模型复核，黑匣子揭示：<br>事故前最后两秒，右前胎速骤降为零——指向爆胎失控。<br>六年间，案件因疫情停摆，三易检察官，两度换律。<br>丈夫从技术骨干沦为限制驾驶的保释人；<br>妻子从家庭主妇自学法律与取证；<br>十一岁的女儿，在法庭翻译与沉重学业之间长大，最终赢得藤校全额助学金。<br>2024年，检方突然撤回刑事指控，降级为交通罚单结案。<br>无道歉，无追责。<br>这是一部非虚构纪实。<br>六秒数据，钉住一家三口六年人生——<br>当规则失灵，普通人如何守住清白。
+    2018年6月12日，多伦多北郊。<br>晴朗的下午，一场碰撞改变了轨迹。<br>冷暖空调技师江远平驾驶工程车下班途中，与同向骑行的自行车相撞。骑车人未戴头盔，送医不治。<br>他留在现场，报警，配合调查。<br>此后半年，没有任何消息。律师预判，或按交通条列的“疏忽驾驶”处理。<br>2019年1月10日，警方突袭其工作场所，当众将他铐走。<br>六小时审讯，二十四小时拘留。<br>随后，他被控“刑事疏忽致死”与“危险驾驶致死”。<br>检方建议刑期四年。<br>指控的核心，是事故发生两分钟之前手机有六秒的电信后台连接。<br>检方据此认定为其“主动使用手机”，属分心驾驶。<br>2022年，第三方专家报告指出：<br>那只是手机后台自动信令，如同心跳和呼吸，与人为操作无关。<br>此案件多项物证亦被忽略：<br>事故次日实测，左前胎气压尚有65 psi（标准为50 psi），右前胎侧壁有撕裂大洞。<br>行车记录仪慢放画面显示，碰撞发生前，右前胎侧壁闪现异常黑烟。持续0.167秒。<br>工程车黑匣子（CDR）数据被警方以“无事件”为由拒绝进做一步分析。<br>直到2025年，经AI模型复核，黑匣子数据揭示：<br>事故前最后两秒，右前胎速骤降为零——指向爆胎失控。<br>六年间，案件因疫情停摆，三易检察官，两度换律师。<br>丈夫从技术骨干沦为限制驾驶的保释犯；<br>妻子以家庭主妇的身份自学法律与取证；<br>十一岁的女儿，在法庭翻译与沉重学业之间长大，最终赢得藤校全额助学金。<br>2024年，检方突然撤回刑事指控，将案件降级为交通违规结案。<br>无解释，无道歉，更无追责。<br>这是一部非虚构纪实。<br>六秒数据连接，钉住了一家三口六年人生——<br>当规则失灵，普通人还能守住清白吗？
 </div>
                         <!-- 关键词 -->
-                        <div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
-                            <div style="color: #7bc8f8; font-weight: bold; margin-bottom: 8px;">关键词：</div>
-                            <div style="color: #b8b4b0; font-size: 0.95rem; line-height: 1.8;">
-                                <span style="display: inline-block; white-space: nowrap;">六秒与六年</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">车祸与刑事指控</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">逮捕与保释</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">车祸与刑事指控</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">司法拉锯战</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">数字取证</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">自证清白与疑罪从无</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">小个体与大系统</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">制度性偏差</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">移民家庭</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">靶心与靶环</span> · 
-                                <span style="display: inline-block; white-space: nowrap;">盲眼钟表匠</span>
-                            </div>
-                        </div>
+<div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
+    <div style="color: #7bc8f8; font-weight: bold; margin-bottom: 8px;">关键词：</div>
+    <div style="color: #b8b4b0; font-size: 0.95rem; line-height: 1.8;">
+        <div style="white-space: nowrap;">六秒与六年（The 6 Seconds vs. The 6 Years）</div>
+        <div style="white-space: nowrap;">车祸与刑事指控（Car Crash & Criminal Charge）</div>
+        <div style="white-space: nowrap;">司法持久战（Judicial War of Attrition）</div>
+        <div style="white-space: nowrap;">移民家庭（Immigrant Family）</div>
+        <div style="white-space: nowrap;">小个体与大系统（The Individual vs. The System）</div>
+    </div>
+</div>
                         <!-- 创作背景 -->
-                        <div style="font-size: 1.2rem; color: #ffd700; margin: 30px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【创作背景】</div>
-                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
-                            作者为当事人，全程旁听庭审、整理证据、参与辩护准备。技术细节均有法庭文件或第三方报告支撑。为隐私，人物化名、日期地点模糊，但事实链完整。本书不接受删改影视改编，只接受完整授权。欢迎纸质书出版和商务合作。（author@moonwane.ink）。
-                        </div>
-                        <!-- 版权说明 -->
-                        <div style="font-size: 1.2rem; color: #ffd700; margin: 30px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【版权说明】</div>
-                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
-                            本作品全文著作权归作者所有。<br>
-                            影视改编、出版合作请联系：author@moonwane.ink<br>
-                            不接受任何形式的免费评估、选项协议。完整授权，一次结清。<br>
-                            未经授权，禁止任何形式的转载、摘编、复制或建立镜像。
-                        </div>
+<div style="font-size: 1.2rem; color: #ffd700; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">
+  【创作背景】
+</div>
+
+<div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;">
+  作者为当事人，全程旁听庭审、整理证据、参与案件资料准备。<br>
+  书中技术细节均有法庭文件或第三方报告支撑。<br>
+  为保护隐私，人物化名、日期与部分地点作技术性处理，但事实链完整。
+</div><!-- 版权说明 -->
+<div style="font-size: 1.2rem; color: #ffd700; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">
+  【版权说明】
+</div>
+<div style="font-size: 1rem; line-height: 1.8; margin-bottom: 5px;">
+  本作品全文著作权归作者所有。<br>
+  欢迎纸质书出版及商务合作。<br>
+  影视改编仅接受完整授权。<br>
+  未经授权，禁止转载、摘编或建立镜像。<br>
+  
+  <div style="display: flex; align-items: center; white-space: nowrap; margin-top: 2px; line-height: 1.2;">
+    合作请联系：<a href="mailto:author@moonwane.ink" style="color: #ffd700; text-decoration: none; font-size: 0.95rem; margin-left: 0; outline: none;">author@moonwane.ink →</a>
+  </div>
+</div>
+
                 
                         <!-- 底部链接：目录 和 第一章试读 (保留) -->
                         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 0.85rem;">
@@ -1497,9 +1570,13 @@
                     </summary>
                     <div class="chapter-drawer-content" style="max-height: 70vh; overflow-y: auto; padding: 0 32px 20px;">
                         <div style="color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:0 16px;">📚 总章数：18章+番外 · 约15万字</div>
-                                            <div style='color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:8px 16px; background:rgba(40,40,40,0.3); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);'>
-                            📖读全文 · 🎧听精彩瞬间 · 🎬看视频片段 · 🔗更多资讯
-                        </div>
+                                         <div style='color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:8px 16px; background:rgba(40,40,40,0.3); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);'>
+    📖读全文 · 🎧听精彩瞬间 · 🎬看视频片段 · 🔗更多资讯
+    
+    <small style="color:#aaa; display:block; margin:8px 0 0 0; text-align:left;">
+        ↩音频/视频将在新标签页打开，听/看完后关闭标签即可返回本站继续浏览。
+    </small>
+</div>
                         
                         <!-- 卡片网格开始 -->
                         <div class="acts-grid">
@@ -1551,6 +1628,7 @@
                                     <li><span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span><span class='chapter-subtitle'>车轮驶向未被改写的明天</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第18章正在准备中，敬请期待。'); return false;" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第18章正在准备中，敬请期待。'); return false;" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" onclick="alert('第18章正在准备中，敬请期待。'); return false;" data-chapter="18" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
                                     <li><span class='chapter-title'>番外篇 案子的三个谜</span><span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('番外篇正在准备中，敬请期待。'); return false;" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('番外篇正在准备中，敬请期待。'); return false;" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" onclick="alert('番外篇正在准备中，敬请期待。'); return false;" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
                                 </ul>
+
                             </div>
                         </div>
                         <!-- 卡片网格结束 -->
@@ -1736,14 +1814,13 @@
         // GitHub Pages部署问题解决：添加错误处理
         window.addEventListener('error', function(e) {
             console.warn('页面加载错误:', e.message);
-            // 忽略非关键错误
         });
         
         // Wayback触发计数器
         let menuClickCount = 0;
         let menuClickTimer = null;
-        let currentPdfFileId = null;      // 当前显示的 PDF 文件 ID
-        let currentPdfLoaded = false;     // 当前文件是否已加载完成
+        let currentPdfFileId = null;
+        let currentPdfLoaded = false;
         
         // 章节编号显示名称映射
         const chapterDisplayMap = {
@@ -1789,26 +1866,19 @@
             const supportLink = document.querySelector('.support-link');
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwG07Yt5QMXsk5wvvnUsNcvMzG8XKgsUYnzd1F36ixiZvLU2-lNLz24v0km6aNU1oKk/exec';
             
-            // Wayback存档提醒元素
             const archiveToast = document.getElementById('archiveToast');
             const toastClose = document.getElementById('toastClose');
             const remindLater = document.getElementById('remindLater');
-            
-            // 证据库元素
             const evidenceSearch = document.getElementById('evidenceSearch');
             const evidenceTable = document.getElementById('evidenceTable');
             const searchCount = document.getElementById('searchCount');
-            
-            // PDF模态框元素
             const pdfModal = document.getElementById('pdfModal');
             const pdfFrame = document.getElementById('pdfFrame');
             const pdfClose = document.getElementById('pdfClose');
-            
-            // 抽屉元素（用于 aria-expanded 动态更新）
             const chapterDrawer = document.getElementById('chapterContents');
             const evidenceDrawer = document.querySelector('.evidence-drawer');
             
-            // 为抽屉添加 toggle 事件，更新 aria-expanded
+            // 原有抽屉Aria设置
             function setupDrawerAria(drawer) {
                 if (!drawer) return;
                 const summary = drawer.querySelector('summary');
@@ -1816,7 +1886,6 @@
                 drawer.addEventListener('toggle', function() {
                     summary.setAttribute('aria-expanded', drawer.open);
                 });
-                // 初始设置
                 summary.setAttribute('aria-expanded', drawer.open);
             }
             setupDrawerAria(chapterDrawer);
@@ -1825,65 +1894,50 @@
             // 焦点陷阱相关变量
             let focusTrapHandler = null;
             
-            // PDF模态框功能
+            // PDF模态框功能（完全不变）
             function showPdfModal(fileId, fileName) {
                 if (!fileId || fileId.trim() === '') {
-                    // 如果没有 fileId，可能是章节图标，显示章节提示
-                    // 注意：这里的 pdfTrigger 在调用时传入，但此处无法获取，需要从调用处传入 chapter
-                    // 实际上在 handlePdfClick 中会先判断，所以这里不会执行到这个分支
                     alert('文件不存在');
                     return;
                 }
-                
                 const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
                 const pdfFrame = document.getElementById('pdfFrame');
                 const pdfLoading = document.getElementById('pdfLoading');
                 const pdfModal = document.getElementById('pdfModal');
                 
-                // 显示模态框
                 pdfModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
-                // 如果已经加载过相同文件且已完成，直接显示 iframe，无需重新加载
                 if (currentPdfFileId === fileId && currentPdfLoaded) {
                     pdfLoading.classList.add('hidden');
                     pdfFrame.classList.add('visible');
-                    // 设置焦点陷阱
                     setupFocusTrap();
                     return;
                 }
                 
-                // 否则，准备加载新文件
                 pdfLoading.classList.remove('hidden');
                 pdfFrame.classList.remove('visible');
-                
                 currentPdfFileId = fileId;
                 currentPdfLoaded = false;
-                
                 pdfFrame.src = previewUrl;
                 
                 pdfFrame.onload = function() {
                     currentPdfLoaded = true;
                     pdfLoading.classList.add('hidden');
                     pdfFrame.classList.add('visible');
-                    // 加载完成后设置焦点陷阱
                     setupFocusTrap();
                 };
                 
-                // 记录上一个焦点元素（用于关闭后恢复）
                 pdfModal._previousActiveElement = document.activeElement;
                 
-                // 设置焦点陷阱
                 function setupFocusTrap() {
                     if (focusTrapHandler) {
                         document.removeEventListener('keydown', focusTrapHandler);
                     }
                     focusTrapHandler = function(e) {
                         if (e.key !== 'Tab') return;
-                        
                         const focusableElements = pdfModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                         if (focusableElements.length === 0) return;
-                        
                         const firstElement = focusableElements[0];
                         const lastElement = focusableElements[focusableElements.length - 1];
                         
@@ -1900,27 +1954,18 @@
                         }
                     };
                     document.addEventListener('keydown', focusTrapHandler);
-                    // 将焦点移动到模态框内的第一个可聚焦元素
                     const firstFocusable = pdfModal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                     if (firstFocusable) firstFocusable.focus();
                 }
             }
             
             function closePdfModal() {
-                const pdfModal = document.getElementById('pdfModal');
-                const pdfFrame = document.getElementById('pdfFrame');
-                const pdfLoading = document.getElementById('pdfLoading');
-                
                 pdfModal.classList.remove('active');
                 document.body.style.overflow = '';
-                
-                // 移除焦点陷阱
                 if (focusTrapHandler) {
                     document.removeEventListener('keydown', focusTrapHandler);
                     focusTrapHandler = null;
                 }
-                
-                // 恢复焦点
                 if (pdfModal._previousActiveElement) {
                     pdfModal._previousActiveElement.focus();
                 }
@@ -1930,9 +1975,7 @@
             function handlePdfClick(e) {
                 const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
                     e.target : e.target.closest('.pdf-trigger');
-                
                 if (!pdfTrigger) return;
-                
                 const fileId = pdfTrigger.getAttribute('data-file-id');
                 const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
                 const chapter = pdfTrigger.getAttribute('data-chapter');
@@ -1946,61 +1989,43 @@
                     }
                     return;
                 }
-                
                 showPdfModal(fileId, fileName);
-                
                 e.preventDefault();
                 e.stopPropagation();
             }
             
-            // 绑定事件到文档，支持动态生成的内容
             document.addEventListener('click', function(e) {
                 handlePdfClick(e);
             });
             
-            // 关闭PDF模态框
             pdfClose.addEventListener('click', closePdfModal);
-            
-            // 点击模态框背景关闭
             pdfModal.addEventListener('click', function(e) {
                 if (e.target === pdfModal) {
                     closePdfModal();
                 }
             });
-            
-            // ESC键关闭模态框
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
                     closePdfModal();
                 }
             });
             
+            // "想看"按钮功能
             let hasTrackedClick = false;
-            
-            // 点击"想看"按钮
             wantToReadBtn.addEventListener('click', function() {
                 moonOverlay.classList.add('active');
-                
                 if (!hasTrackedClick) {
                     fetch(scriptURL, {
                         method: 'POST',
                         mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    }).catch(err => {
-                        // 静默失败
-                    });
-                    
+                        headers: { 'Content-Type': 'application/json' }
+                    }).catch(err => {});
                     hasTrackedClick = true;
                 }
-                
                 setTimeout(function() {
                     moonOverlay.classList.remove('active');
                 }, 3000);
             });
-            
-            // 点击覆盖层也可以关闭
             moonOverlay.addEventListener('click', function() {
                 moonOverlay.classList.remove('active');
             });
@@ -2008,282 +2033,383 @@
             // 右上角菜单功能
             menuToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                
                 menuDropdown.classList.toggle('active');
-                
                 menuClickCount++;
-                
                 if (menuClickTimer) {
                     clearTimeout(menuClickTimer);
                 }
-                
                 menuClickTimer = setTimeout(function() {
                     menuClickCount = 0;
                 }, 4000);
-                
                 if (menuClickCount >= 3) {
                     archiveToast.classList.add('active');
                     menuClickCount = 0;
                 }
             });
-            
-            // 点击页面其他地方关闭菜单
             document.addEventListener('click', function() {
                 menuDropdown.classList.remove('active');
             });
             
             // 赞助支持链接优化
-            supportLink.addEventListener('click', function(e) {
-                // 直接跳转，不添加任何延迟
-            });
-            // 懒加载诗区动画（优化版）
-if ('IntersectionObserver' in window) {
-    const poetrySection = document.querySelector('.poetry-section');
-    if (poetrySection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+            supportLink.addEventListener('click', function(e) {});
+            
+            // 懒加载诗区动画
+            if ('IntersectionObserver' in window) {
+                const poetrySection = document.querySelector('.poetry-section');
+                if (poetrySection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0, rootMargin: '50px' });
+                    observer.observe(poetrySection);
                 }
-            });
-        }, { 
-            threshold: 0,
-            rootMargin: '50px'
-        });
-        observer.observe(poetrySection);
-    }
-} else {
-    // 降级：直接显示动画
-    document.querySelector('.poetry-section')?.classList.add('visible');
-}
-            // Wayback存档提醒功能
-            function checkArchiveReminder() {
-                // 默认不显示提醒，除非通过特殊方式触发
+            } else {
+                document.querySelector('.poetry-section')?.classList.add('visible');
             }
             
-            // 关闭提醒
+            // Wayback存档提醒功能
+            function checkArchiveReminder() {}
             toastClose.addEventListener('click', function() {
                 archiveToast.classList.remove('active');
                 localStorage.setItem('lastArchiveReminder', Date.now());
             });
-            
-            // 稍后提醒
             remindLater.addEventListener('click', function() {
                 archiveToast.classList.remove('active');
                 localStorage.setItem('lastArchiveReminder', Date.now() - (15 * 24 * 60 * 60 * 1000));
             });
-            
-            // 页面加载时检查是否需要显示提醒
             checkArchiveReminder();
             
-            // 内容保护措施 - 已放宽：允许复制必要信息
+            // 内容保护措施
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
                 return false;
             });
-            
-            // 禁用拖拽
             document.addEventListener('dragstart', function(e) {
                 e.preventDefault();
                 return false;
             });
             
-            // 延迟执行非关键任务
-            function initNonCritical() {
-                // 证据库搜索功能
-                if (evidenceSearch && searchCount) {
-                    function updateSearchResults() {
-                        const searchTerm = evidenceSearch.value.toLowerCase();
-                        const rows = evidenceTable.querySelectorAll('tbody tr');
-                        let visibleCount = 0;
-                        
-                        rows.forEach(row => {
-                            const searchText = row.getAttribute('data-search') ? row.getAttribute('data-search').toLowerCase() : '';
-                            const matchesSearch = searchTerm === '' || searchText.includes(searchTerm);
-                            
-                            if (matchesSearch) {
-                                row.style.display = '';
-                                visibleCount++;
-                            } else {
-                                row.style.display = 'none';
-                            }
-                        });
-                        
-                        searchCount.textContent = `共找到 ${visibleCount} 条证据`;
-                    }
+            // 证据库搜索功能
+            if (evidenceSearch && searchCount) {
+                function updateSearchResults() {
+                    const searchTerm = evidenceSearch.value.toLowerCase();
+                    const rows = evidenceTable.querySelectorAll('tbody tr');
+                    let visibleCount = 0;
+                    rows.forEach(row => {
+                        const searchText = row.getAttribute('data-search') ? row.getAttribute('data-search').toLowerCase() : '';
+                        const matchesSearch = searchTerm === '' || searchText.includes(searchTerm);
+                        row.style.display = matchesSearch ? '' : 'none';
+                        if (matchesSearch) visibleCount++;
+                    });
+                    searchCount.textContent = `共找到 ${visibleCount} 条证据`;
+                }
+                evidenceSearch.addEventListener('input', updateSearchResults);
+                updateSearchResults();
+            }
+            
+            // ========== 新增：多链接数据结构及处理函数 ==========
+            window.chapterLinksData = {};
+            
+            function normalizeLinks(linksArray, singleLink, defaultTitle) {
+                if (linksArray && Array.isArray(linksArray) && linksArray.length > 0) {
+                    return linksArray;
+                }
+                if (singleLink && typeof singleLink === 'string' && singleLink.trim() !== '') {
+                    return [{ title: defaultTitle, url: singleLink }];
+                }
+                return [];
+            }
+            
+            function handleLinkClick(links, event) {
+                if (links.length === 0) {
+                    alert('此资源正在准备中，敬请期待！');
+                } else if (links.length === 1) {
+                    window.open(links[0].url, '_blank');
+                } else {
+                    showLinkMenu(event, links);
+                }
+            }
+            
+            function showLinkMenu(event, links) {
+                const existingMenu = document.querySelector('.multi-link-menu');
+                if (existingMenu) existingMenu.remove();
+                
+                const icon = event.currentTarget;
+                const iconRect = icon.getBoundingClientRect();
+                
+                const menu = document.createElement('div');
+                menu.className = 'multi-link-menu';
+                menu.setAttribute('role', 'menu');
+                
+                const ul = document.createElement('ul');
+                links.forEach((link, index) => {
+                    const li = document.createElement('li');
+                    li.setAttribute('role', 'menuitem');
+                    li.tabIndex = index === 0 ? 0 : -1;
+                    li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.title}</a>`;
                     
-                    evidenceSearch.addEventListener('input', updateSearchResults);
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        window.open(link.url, '_blank');
+                        menu.remove();
+                    });
                     
-                    // 初始化搜索计数
-                    updateSearchResults();
+                    li.addEventListener('keydown', handleMenuKeydown);
+                    ul.appendChild(li);
+                });
+                menu.appendChild(ul);
+                document.body.appendChild(menu);
+                
+                const menuWidth = menu.offsetWidth;
+                const menuHeight = menu.offsetHeight;
+                
+                let left = iconRect.left + window.scrollX;
+                let top = iconRect.bottom + window.scrollY + 5;
+                let positionClass = '';
+                
+                if (top + menuHeight > window.innerHeight + window.scrollY) {
+                    top = iconRect.top + window.scrollY - menuHeight - 5;
+                    positionClass = 'position-top';
                 }
                 
-                // 加载章节链接配置文件
-                let chapterLinks = {};
+                if (left + menuWidth > window.innerWidth + window.scrollX) {
+                    left = window.innerWidth + window.scrollX - menuWidth - 10;
+                }
+                if (left < window.scrollX) {
+                    left = window.scrollX + 5;
+                }
                 
-                function fetchChapters() {
-                    fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
-                        .then(response => response.json())
-                        .then(data => {
-                            data.acts.forEach(act => {
-                                act.chapters.forEach(chapter => {
-                                    chapterLinks[chapter.chapterNumber] = {
-                                        read: chapter.readLink,
-                                        audio: chapter.audioLink,
-                                        video: chapter.videoLink,
-                                        external: chapter.externalLink
-                                    };
-                                });
+                menu.style.left = left + 'px';
+                menu.style.top = top + 'px';
+                if (positionClass) {
+                    menu.classList.add(positionClass);
+                }
+                
+                const arrowLeft = (iconRect.left + iconRect.width/2) - left - 8;
+                menu.style.setProperty('--arrow-left', arrowLeft + 'px');
+                
+                ul.firstChild.focus();
+                
+                function outsideClickHandler(e) {
+                    if (!menu.contains(e.target) && e.target !== icon) {
+                        menu.remove();
+                        document.removeEventListener('click', outsideClickHandler);
+                        document.removeEventListener('keydown', escHandler);
+                    }
+                }
+                
+                function escHandler(e) {
+                    if (e.key === 'Escape') {
+                        menu.remove();
+                        document.removeEventListener('click', outsideClickHandler);
+                        document.removeEventListener('keydown', escHandler);
+                        icon.focus();
+                    }
+                }
+                
+                setTimeout(() => {
+                    document.addEventListener('click', outsideClickHandler);
+                    document.addEventListener('keydown', escHandler);
+                }, 0);
+            }
+            
+            function handleMenuKeydown(e) {
+                const menu = e.target.closest('.multi-link-menu');
+                if (!menu) return;
+                
+                const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+                const currentIndex = items.indexOf(e.target);
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextIndex = (currentIndex + 1) % items.length;
+                    items[nextIndex].focus();
+                    items[nextIndex].tabIndex = 0;
+                    e.target.tabIndex = -1;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+                    items[prevIndex].focus();
+                    items[prevIndex].tabIndex = 0;
+                    e.target.tabIndex = -1;
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.target.click();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    menu.remove();
+                }
+            }
+            
+            // ========== 修改 fetchChapters 函数，支持多链接数据 ==========
+            function fetchChapters() {
+                fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.acts.forEach(act => {
+                            act.chapters.forEach(chapter => {
+                                const chapterId = chapter.chapterNumber;
+                                window.chapterLinksData[chapterId] = {
+                                    read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                    audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                    video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                    external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                };
                             });
-                            // 不再输出 console.log
-                            
-                            function updateChapterIcons() {
-                                // 直接使用外部函数 getChapterDisplayNumber
-                                document.querySelectorAll('.chapter-actions').forEach(actionsDiv => {
-                                    const chapterId = actionsDiv.closest('li')?.querySelector('[data-chapter]')?.getAttribute('data-chapter');
+                        });
+                        
+                        function updateChapterIcons() {
+                            document.querySelectorAll('.chapter-actions').forEach(actionsDiv => {
+                                const chapterId = actionsDiv.closest('li')?.querySelector('[data-chapter]')?.getAttribute('data-chapter');
+                                if (chapterId && window.chapterLinksData[chapterId]) {
+                                    const links = window.chapterLinksData[chapterId];
+                                    const displayNum = getChapterDisplayNumber(chapterId);
                                     
-                                    if (chapterId && chapterLinks[chapterId]) {
-                                        const links = chapterLinks[chapterId];
-                                        const displayNum = getChapterDisplayNumber(chapterId);
-                                        
-                                        const readIcon = actionsDiv.querySelector('.read-icon');
-                                        if (readIcon) {
-                                            if (links.read && links.read.trim() !== '') {
-                                                readIcon.style.color = '#4CAF50';
-                                                readIcon.style.background = 'rgba(76,175,80,0.1)';
-                                                readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                                                readIcon.title = '读故事';
-                                                readIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    window.location.href = links.read;
-                                                };
-                                            } else {
-                                                readIcon.style.color = '#888';
-                                                readIcon.style.background = 'rgba(128,128,128,0.1)';
-                                                readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                                                readIcon.title = '读故事 (准备中)';
-                                                readIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    alert('第' + displayNum + '章准备中，敬请期待。');
-                                                };
-                                            }
-                                        }
-                                        
-                                        const audioIcon = actionsDiv.querySelector('.audio-icon');
-                                        if (audioIcon) {
-                                            if (links.audio && links.audio.trim() !== '') {
-                                                audioIcon.style.color = '#4CAF50';
-                                                audioIcon.style.background = 'rgba(76,175,80,0.1)';
-                                                audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                                                audioIcon.title = '听故事';
-                                                audioIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    window.open(links.audio, '_blank');
-                                                };
-                                            } else {
-                                                audioIcon.style.color = '#888';
-                                                audioIcon.style.background = 'rgba(128,128,128,0.1)';
-                                                audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                                                audioIcon.title = '听故事 (准备中)';
-                                                audioIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    alert('第' + displayNum + '章准备中，敬请期待。');
-                                                };
-                                            }
-                                        }
-                                        
-                                        const videoIcon = actionsDiv.querySelector('.video-icon');
-                                        if (videoIcon) {
-                                            if (links.video && links.video.trim() !== '') {
-                                                videoIcon.style.color = '#4CAF50';
-                                                videoIcon.style.background = 'rgba(76,175,80,0.1)';
-                                                videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                                                videoIcon.title = '看故事';
-                                                videoIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    window.open(links.video, '_blank');
-                                                };
-                                            } else {
-                                                videoIcon.style.color = '#888';
-                                                videoIcon.style.background = 'rgba(128,128,128,0.1)';
-                                                videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                                                videoIcon.title = '看故事 (准备中)';
-                                                videoIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    alert('第' + displayNum + '章准备中，敬请期待。');
-                                                };
-                                            }
-                                        }
-                                        
-                                        const externalIcon = actionsDiv.querySelector('.external-link');
-                                        if (externalIcon) {
-                                            if (links.external && links.external.trim() !== '') {
-                                                externalIcon.style.color = '#4CAF50';
-                                                externalIcon.style.background = 'rgba(76,175,80,0.1)';
-                                                externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
-                                                externalIcon.title = '外部链接';
-                                                externalIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    window.open(links.external, '_blank');
-                                                };
-                                            } else {
-                                                externalIcon.style.color = '#888';
-                                                externalIcon.style.background = 'rgba(128,128,128,0.1)';
-                                                externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
-                                                externalIcon.title = '外部链接 (准备中)';
-                                                externalIcon.onclick = function(e) {
-                                                    e.preventDefault();
-                                                    e.stopPropagation();
-                                                    alert('第' + displayNum + '章准备中，敬请期待。');
-                                                };
-                                            }
+                                    const readIcon = actionsDiv.querySelector('.read-icon');
+                                    if (readIcon) {
+                                        const readLinks = links.read;
+                                        if (readLinks.length > 0) {
+                                            readIcon.style.color = '#4CAF50';
+                                            readIcon.style.background = 'rgba(76,175,80,0.1)';
+                                            readIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                                            readIcon.title = readLinks.length > 1 ? '选择阅读链接' : '读故事（在新标签页打开，听完/看完后关闭标签即可返回这里继续浏览）';
+                                            readIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleLinkClick(readLinks, e);
+                                            };
+                                        } else {
+                                            readIcon.style.color = '#888';
+                                            readIcon.style.background = 'rgba(128,128,128,0.1)';
+                                            readIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                                            readIcon.title = '读故事 (准备中)，新标签打开方式将在上线后启用）';
+                                            readIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                alert('第' + displayNum + '章准备中，敬请期待。\n（未来上线后将在新标签页打开，听完/看完关闭标签即可返回继续浏览）');
+                                            };
                                         }
                                     }
-                                });
-                            }
-                            
-                            updateChapterIcons();
-                        })
-                        .catch(error => {
-                            // 静默失败，不输出错误
-                            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
-                                .then(response => response.json())
-                                .then(data => {
-                                    data.acts.forEach(act => {
-                                        act.chapters.forEach(chapter => {
-                                            chapterLinks[chapter.chapterNumber] = {
-                                                read: chapter.readLink,
-                                                audio: chapter.audioLink,
-                                                video: chapter.videoLink,
-                                                external: chapter.externalLink
+                                    
+                                    const audioIcon = actionsDiv.querySelector('.audio-icon');
+                                    if (audioIcon) {
+                                        const audioLinks = links.audio;
+                                        if (audioLinks.length > 0) {
+                                            audioIcon.style.color = '#4CAF50';
+                                            audioIcon.style.background = 'rgba(76,175,80,0.1)';
+                                            audioIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                                            audioIcon.title = audioLinks.length > 1 ? '选择音频链接' : '听精彩瞬间（在新标签页打开，听完/看完后关闭标签即可返回这里继续浏览）';
+                                            audioIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleLinkClick(audioLinks, e);
                                             };
-                                        });
+                                        } else {
+                                            audioIcon.style.color = '#888';
+                                            audioIcon.style.background = 'rgba(128,128,128,0.1)';
+                                            audioIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                                            audioIcon.title = '听精彩瞬间（准备中，新标签打开方式将在上线后启用）';
+                                            audioIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                alert('第' + displayNum + '章准备中，敬请期待。\n（未来上线后将在新标签页打开，听完/看完关闭标签即可返回继续浏览）');
+                                            };
+                                        }
+                                    }
+                                    
+                                    const videoIcon = actionsDiv.querySelector('.video-icon');
+                                    if (videoIcon) {
+                                        const videoLinks = links.video;
+                                        if (videoLinks.length > 0) {
+                                            videoIcon.style.color = '#4CAF50';
+                                            videoIcon.style.background = 'rgba(76,175,80,0.1)';
+                                            videoIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                                            videoIcon.title = videoLinks.length > 1 ? '选择视频链接' : '看视频片段（在新标签页打开，听完/看完后关闭标签即可返回这里继续浏览）';
+                                            videoIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleLinkClick(videoLinks, e);
+                                            };
+                                        } else {
+                                            videoIcon.style.color = '#888';
+                                            videoIcon.style.background = 'rgba(128,128,128,0.1)';
+                                            videoIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                                            videoIcon.title = '看视频片段 (准备中)，新标签打开方式将在上线后启用）';
+                                            videoIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                alert('第' + displayNum + '章准备中，敬请期待。\n（未来上线后将在新标签页打开，听完/看完关闭标签即可返回继续浏览）');
+                                            };
+                                        }
+                                    }
+                                    
+                                    const externalIcon = actionsDiv.querySelector('.external-link');
+                                    if (externalIcon) {
+                                        const externalLinks = links.external;
+                                        if (externalLinks.length > 0) {
+                                            externalIcon.style.color = '#4CAF50';
+                                            externalIcon.style.background = 'rgba(76,175,80,0.1)';
+                                            externalIcon.style.border = '1px solid rgba(76,175,80,0.2)';
+                                            externalIcon.title = externalLinks.length > 1 ? '选择外部链接' : '更多资讯（在新标签页打开，听完/看完后关闭标签即可返回这里继续浏览）';
+                                            externalIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleLinkClick(externalLinks, e);
+                                            };
+                                        } else {
+                                            externalIcon.style.color = '#888';
+                                            externalIcon.style.background = 'rgba(128,128,128,0.1)';
+                                            externalIcon.style.border = '1px solid rgba(128,128,128,0.2)';
+                                            externalIcon.title = '更多资讯 (准备中)，新标签打开方式将在上线后启用）';
+                                            externalIcon.onclick = function(e) {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                alert('第' + displayNum + '章准备中，敬请期待。\n（未来上线后将在新标签页打开，听完关闭标签即可返回继续浏览）');
+                                            };
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                        
+                        updateChapterIcons();
+                    })
+                    .catch(error => {
+                        fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+                            .then(response => response.json())
+                            .then(data => {
+                                data.acts.forEach(act => {
+                                    act.chapters.forEach(chapter => {
+                                        const chapterId = chapter.chapterNumber;
+                                        window.chapterLinksData[chapterId] = {
+                                            read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                            audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                            video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                            external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                        };
                                     });
-                                    updateChapterIcons();
-                                })
-                                .catch(() => {});
-                        });
-                }
-                
+                                });
+                                updateChapterIcons();
+                            })
+                            .catch(() => {});
+                    });
+            }
+            
+            function initNonCritical() {
                 fetchChapters();
             }
             
-            // 使用 requestIdleCallback 延迟执行非关键任务
             if ('requestIdleCallback' in window) {
                 requestIdleCallback(initNonCritical, { timeout: 2000 });
             } else {
                 setTimeout(initNonCritical, 100);
             }
             
-            // GitHub链接点击事件（原样保留）
+            // GitHub链接点击事件
             document.querySelectorAll('.external-link[data-github]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -2321,16 +2447,10 @@ if ('IntersectionObserver' in window) {
             switch(platform) {
                 case 'share':
                     if (navigator.share) {
-                        navigator.share({
-                            title: title,
-                            text: text,
-                            url: url
-                        });
+                        navigator.share({ title, text, url });
                     } else {
                         if (navigator.clipboard && window.isSecureContext) {
-                            navigator.clipboard.writeText(url).then(() => {
-                                alert('链接已复制到剪贴板！');
-                            });
+                            navigator.clipboard.writeText(url).then(() => alert('链接已复制到剪贴板！'));
                         } else {
                             const textArea = document.createElement('textarea');
                             textArea.value = url;
@@ -2350,20 +2470,17 @@ if ('IntersectionObserver' in window) {
                 case 'saveas':
                     alert('另存为功能');
                     break;
-                default:
-                    // 静默
+                default: break;
             }
         }
         
-        // --- 简介抽屉交互逻辑 ---
+        // 简介抽屉交互逻辑
         const introToggle = document.getElementById('introDrawerToggle');
         const introDrawer = document.getElementById('introDrawer');
         const introArrow = document.getElementById('introArrow');
-        
         if (introToggle && introDrawer && introArrow) {
             introToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
-                
                 if (introDrawer.style.maxHeight === '0px' || introDrawer.style.maxHeight === '') {
                     introDrawer.style.maxHeight = introDrawer.scrollHeight + 'px';
                     introArrow.style.transform = 'rotate(90deg)';
@@ -2374,22 +2491,20 @@ if ('IntersectionObserver' in window) {
             });
         }
         
-        // --- 简介抽屉底部链接的点击事件 ---
         const toChapterLink = document.getElementById('introToChapterLink');
         const toFirstChapterLink = document.getElementById('introToFirstChapterLink');
         const chapterDrawer = document.getElementById('chapterContents');
-        
         if (toChapterLink && chapterDrawer) {
             toChapterLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 chapterDrawer.open = true;
                 chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
             });
         }
     </script>
 </body>
 </html>
+
 
 
 
