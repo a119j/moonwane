@@ -468,6 +468,34 @@
         html {
             font-size: 100%;
         }
+/* 浅色模式：按钮背景加深，灯泡白色发光 */
+body:not(.dark-mode) .theme-toggle {
+    background: rgba(30, 100, 200, 0.4) !important;   /* 加深背景，增强对比 */
+    border-color: rgba(30, 100, 200, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);        /* 轻微外阴影 */
+}
+
+body:not(.dark-mode) .theme-toggle i {
+    color: #ffffff;
+    text-shadow: 
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 24px rgba(255, 255, 255, 0.8),
+        0 0 36px rgba(255, 255, 255, 0.6);            /* 三层光晕，柔和明亮 */
+}
+
+/* 深色模式：灯泡橙色发光（覆盖原有蓝色） */
+body.dark-mode .theme-toggle i {
+    color: #f39c12;
+    text-shadow: 
+        0 0 8px #f39c12,
+        0 0 16px #f39c12,
+        0 0 24px #f39c12;                              /* 橙色光晕，温暖柔和 */
+}
+
+/* 悬停效果（通用） */
+.theme-toggle:hover i {
+    filter: brightness(1.2);
+}
     </style>
 </head>
 <body>
@@ -475,15 +503,16 @@
 
     <div class="container">
         <div class="chapter-cover">
-            <img src="/pictures/conver-2-1.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+            <img src="/pictures/conver-1.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
         </div>
         
         <div class="chapter-info">
             <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第二章</h1>
             <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">碾碎：系统启动的第一声</h2>
-            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
-                <i class="fas fa-moon"></i>
-            </button>
+            <!-- 顶部按钮（位于 chapter-info 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
             <div class="chapter-subtitle">—— 一场车祸，摧毁的不只是车</div>
         </div>
         
@@ -540,9 +569,10 @@
             <a href="/chapters/chapter-1-03.html" class="nav-link">← 上一节</a>
             <span class="nav-center">
                <a href="/index.html#open-chapters">📖 目录</a>
-                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <!-- 底部按钮（位于 nav-center 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
             </span>
             <a href="/chapters/chapter-2-02.html" class="nav-link">下一节 →</a>
         </div>
@@ -604,13 +634,13 @@
         const body = document.body;
 
         function updateThemeIcons(isDark) {
-            themeToggles.forEach(btn => {
-                const icon = btn.querySelector('i');
-                if (icon) {
-                    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-                }
-            });
+    themeToggles.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = 'fas fa-lightbulb';   // 固定为实心灯泡
         }
+    });
+}
 
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
