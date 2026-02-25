@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>第一章 第一节：平常的一天 · 六秒钉六年</title>
+    <title>第一章 第二节：电话那端的坍塌 · 六秒钉六年</title>
     
     <!-- 防止缓存 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -13,16 +13,12 @@
     <!-- 禁止被搜索引擎收录 -->
     <meta name="robots" content="noindex, nofollow">
     
-       <!-- Font Awesome 图标库（用于深色模式图标） -->
-<!-- 预连接到 Font Awesome CDN -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<!-- 预加载 Font Awesome 样式 -->
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
-        <style>
-                :root {
-            /* 主色调 RGB 值（方便构建半透明背景） */
+    <style>
+        :root {
             --link-rgb: 123, 200, 248;
             --link-color: rgb(var(--link-rgb));
             --link-hover-bg: rgba(var(--link-rgb), 0.2);
@@ -32,7 +28,6 @@
             --back-to-top-hover: rgb(var(--link-rgb));
             --progress-color: rgb(var(--link-rgb));
 
-            /* 其他颜色 */
             --bg-color: #f0f7e6;
             --text-color: #1e2f3a;
             --title-color: #0f2a3a;
@@ -42,7 +37,6 @@
             --disabled-color: #888;
             --back-home-color: #888;
 
-            /* 字体权重 */
             --font-weight-normal: 420;
             --font-weight-bold: 650;
         }
@@ -168,17 +162,15 @@
             text-indent: 0;
         }
         
-               .chapter-content strong {
+        .chapter-content strong {
             font-weight: var(--font-weight-bold);
             color: var(--title-color);
         }
         
-        /* 移除所有小标题的首行缩进 */
         .chapter-content p:has(> strong) {
             text-indent: 0;
         }
         
-        /* 下一节提示文字：正常模式更醒目，深色模式保持橙色 */
         .chapter-content p:last-of-type span:first-child {
             color: var(--next-section-blue) !important;
         }
@@ -186,7 +178,6 @@
             color: var(--text-color) !important;
         }
         
-        /* 预格式文本/代码块横向滚动（前瞻优化） */
         pre, code {
             overflow-x: auto;
             white-space: pre-wrap;
@@ -246,7 +237,6 @@
             text-decoration: underline;
         }
         
-        /* 深色模式切换按钮（通用样式） */
         .theme-toggle {
             background: none;
             border: none;
@@ -284,7 +274,6 @@
             color: var(--link-color);
         }
         
-        /* 阅读进度条 */
         #reading-progress {
             position: fixed;
             top: 0;
@@ -297,7 +286,6 @@
             pointer-events: none;
         }
         
-        /* 返回顶部按钮 */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -330,7 +318,7 @@
             background: var(--back-to-top-hover);
         }
         
-        /* ========== 手动深色模式样式（保持不变） ========== */
+        /* ========== 手动深色模式样式 ========== */
         body.dark-mode {
             background-color: #1e1e2e;
             color: #d1d5db;
@@ -340,7 +328,6 @@
         body.dark-mode .chapter-content strong {
             color: #f0f0f0;
         }
-        /* 强制覆盖内联样式 */
         body.dark-mode .chapter-title[style*="color"] {
             color: #f0f0f0 !important;
         }
@@ -410,7 +397,7 @@
             box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
         }
         
-        /* ========== 移动端细化（保持不变） ========== */
+        /* ========== 移动端细化 ========== */
         @media (max-width: 768px) {
             body {
                 font-size: 17px;
@@ -465,7 +452,7 @@
             }
         }
         
-                @media (max-width: 480px) {
+        @media (max-width: 480px) {
             .container {
                 padding: 30px 12px 50px;
             }
@@ -477,7 +464,6 @@
             }
         }
         
-        /* 尊重用户浏览器字体大小设置 */
         html {
             font-size: 100%;
         }
@@ -512,16 +498,14 @@ body.dark-mode .theme-toggle i {
     </style>
 </head>
 <body>
-    <!-- 阅读进度条 -->
     <div id="reading-progress"></div>
 
     <div class="container">
-        <!-- 封面图片 -->
         <div class="chapter-cover">
-            <img src="/pictures/conver-1.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+            <img src="/pictures/conver-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+
         </div>
         
-        <!-- 章节信息 -->
         <div class="chapter-info">
             <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第一章</h1>
             <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">六秒与六年的开端</h2>
@@ -529,152 +513,99 @@ body.dark-mode .theme-toggle i {
 <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
     <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
 </button>
-            <div class="chapter-subtitle">无法阻挡的车祸，与无法重启的人生</div>
+            <div class="chapter-subtitle">—— 无法阻挡的车祸，与无法重启的人生</div>
         </div>
         
-        <!-- 正文内容 - 第一节 -->
-               <div class="chapter-content" role="main">
-            <div class="section-title">第一节 平常的一天</div>
-            <div class="section-epigraph">—— 嗅到灾难临近的气息，可没能阻止它</div>
+        <div class="chapter-content" role="main">
+            <div class="section-title">第二节 电话那端的坍塌</div>
+            <div class="section-epigraph">—— "灾难不声不响，却总在最不设防时将你击中"</div>
             
-            <p><strong>晨曦与阴霾</strong></p>
+            <p><strong>琴音失准，电话忙音</strong></p>
             
-            <p>2018年6月12日，星期二。</p>
+            <p>2018年6月12日，下午四点。</p>
+            <p>午后阳光斜斜射入厨房，摄氏26度，湿度56%，空气粘稠，沉在肺里，让呼吸变得闷重。多伦多六月总是这样：明明过了最热时段，闷热仍赖着不走，不肯散去。</p>
+            <p>后院金银花簇拥开放，甜腻花香混着炖红烧肉的味道，被风卷进厨房，带着炙热的压迫感。</p>
+            <p>江若瑶放学回来，坐在钢琴前练拉威尔《水中嬉戏》（Jeux d'eau），音符清澈灵动，水珠般四散。刘思恩在厨房翻炒，锅铲声与琴声交织，今天显得格外凌乱、刺耳。</p>
+            <p>下午五点半，琴声开始粗糙潦草，同一乐段连续弹错。刘思恩停下手："注意指法！第二小节又错了。"</p>
+            <p>琴声仍在继续，错误也没停。</p>
+            <p>她"啪"地砸下锅铲，油星飞溅烫在手背上，却没感觉。几步冲到钢琴前，声音砸下，暴风骤雨："停！听到没有！重新弹一遍！"</p>
+            <p>江若瑶肩膀微颤，眼泪打转。</p>
+            <p>刘思恩抓起手机，指尖冰凉，握得发白："你听不听话？不听话，我马上告诉你爸爸。"</p>
+            <p>下午五点五十分，她拨通江远平的电话。</p>
+            <p>听筒里，"嘟嘟"急促、密集，她的太阳穴被人拿把锤子一下一下地对着敲打。</p>
+            <p>十秒，二十秒，三十秒，</p>
+            <p>无人接听。</p>
+            <p>突然，接通。</p>
+            <p>耳膜瞬间被几叶刀片划破，那是尖利的警笛声，混乱的人声和江远平被风声夹杂着的急促的呼吸：</p>
+            <p>"......我的车......擦到一个骑车的人......"</p>
+            <p>"什么？什么？怎么了......"她声音拔高，几乎撕裂。</p>
+            <p>"警察来了......挂了。"</p>
+            <p>------ "嘟......"</p>
+            <p>忙音猛地捅进她胸口最深处，再狠狠拧了一圈。</p>
+            <p>世界瞬间进入默片模式，只有动作在继续，声音都消失了。</p>
+            <p>锅里的油还在翻炸，细密的气泡不断破裂；金银花的甜香悬在空气里，没有散去。可这些都不再发声。所有的声波被电话那头的忙音截断、吸收，只剩下一种重复而单一的回响。</p>
+            <p>"嘟------嘟------嘟------"</p>
+            <p>那是此刻世界唯一的声源。</p>
+            <p>刘思恩站在原地，握着手机。掌心发烫，热意顺着指腹往上蔓延，指尖开始失去温度的判断。她没有换手，也没有把手机拿开。</p>
+            <p>忙音把她固定在原地，无法前进，也无法退后。</p>
+            <p>每一次响起，她的胸腔都会短暂收紧，呼吸被迫停顿。心脏被拉离原有的节奏，又重重落下，撞击在体内某个坚硬的位置。疼痛没有扩散，只是一遍一遍地出现。</p>
             
-            <p>多伦多初夏的晨光炽烈，高纬度的日光沿屋檐、枫树、车顶削落，在街道上铺下一片片锋利的光斑。晨风带着安大略湖的水汽，尚未被早高峰的车流搅浑。</p>
+            <p><strong>琴声乱，心更乱</strong></p>
             
-            <p>客厅里，十一岁的江若瑶坐在三角钢琴前，十指在琴键上轻快跳跃，《车尔尼练习曲》（Czerny Op.740）的音符一路滚落，冰凉、清脆，在键盘上溅开细碎的光。</p>
+            <p>忙音不仅在耳膜里轰炸。</p>
+            <p>还化成一根冰冷的铁丝，勒进她的脖子里，一圈紧似一圈。</p>
+            <p>刘思恩就那么站在客厅中央，手机贴在耳边。</p>
+            <p>时间被按下0.25倍慢速键：</p>
+            <p>早晨江远平挥手的弧度缓缓拉长；</p>
+            <p>平安符绳索先被拉伸、再绷紧、最终断裂，丝线迟滞卷曲；</p>
+            <p>锅里油星飞溅，弧线在空气中悬浮；</p>
+            <p>金银花的甜香在空气里凝结、结晶；</p>
+            <p>红烧肉的咕嘟声冻结在热气中；</p>
+            <p>瓷砖上溅落的油星逐渐失去光泽；</p>
+            <p>全都卡住，一帧一帧，残忍而缓慢。</p>
+            <p>窗外驶过的车声也被拉长，刺进胸腔，让心脏随着那些拉长的节奏痉挛抽动。</p>
+            <p>江若瑶的泪早已停，哭声也消散了。</p>
+            <p>眼睛一眨不眨，瞳孔里映着母亲微微晃动的影子。</p>
+            <p>她的双手，一分钟前还在黑白键上嬉戏，此刻僵硬，骨节顶着皮肤，透出缺血的白。</p>
+            <p>寒意沿她的指尖缓慢蔓延，也锁住了她的四肢。</p>
+            <p>刘思恩深吸一口气，声音被撕成两半，前半截飘在空气里，后半截沉进胃里：</p>
+            <p>"爸爸可能出了点车祸，不过听起来他自己没事。你要乖哈。"</p>
+            <p>江若瑶似懂非懂地点点头，手指试探着重新融入音乐。拉威尔《水中嬉戏》的水珠再次滚落，</p>
+            <p>却在水面乱撞，溅得到处都是，节奏杂乱，旋律支离。</p>
+            <p>刘思恩已无心纠正。</p>
+            <p>她转身背对女儿，双手合十抵在额头，嘴唇快速翕动。</p>
+            <p>窗外阳光依旧，六月的热浪仍在，金银花仍香甜，</p>
+            <p>可屋内，每一方空气都结了冰。</p>
             
-            <p>母亲刘思恩坐在旁边，手指搭在谱边，跟随乐句轻轻翻页。</p>
-            
-            <p>"节奏快了。" 她用指尖轻轻点了点谱面，力度让女儿的手腕微微一紧。</p>
-            
-            <p>江若瑶嘟了嘟嘴，把节拍器拨回92。清脆的"哒、哒"声再次响起，节奏稳了。刘思恩嘴角微微弯起，眼底闪过极浅的亮：再攒几年钱，这架基本款的三角钢琴，就可以分期付款换斯坦威了。</p>
-            
-            <p>车库里，江远平穿着那身深蓝色的工装，布料在清晨的光里略显沉重。他弯身将工具箱放入后备厢，金属相触，发出一声干净的叮响。关上后备厢后，他绕到驾驶位，顺手摸上方向盘，指尖稳稳贴上去，确认着那份早已熟悉的重量与温度。</p>
-            
-            <p>6:50，转身准备出门时，他胳膊夹着咖啡保温杯，手里提着垃圾袋和工具箱，侧身推门喊道："老婆，我走啦，乖女儿，听妈妈的话哦。"</p>
-            
-            <p>琴声正流淌到快速音阶，江若瑶只用鼻音"嗯"回应一声，指尖弹出几个跳跃音符，代替向父亲挥手。</p>
-            
-            <p>随后，屋外车库门吱咯作响合上，工程车低鸣，与屋内琴声在清冽空气里短暂交织。刘思恩耳朵听着女儿的琴声，眼睛透过门廊玻璃看向丈夫。她看见江远平正在倒车驶上街道，并习惯性向她抬手挥挥。她便用口型无声说一句："小心开车。"</p>
-            
-            <p>江远平则照例咧嘴回应："知道。"</p>
-            
-            <p>晨光穿过树荫照过来，落在江远平的脸上。</p>
-            
-            <p>眉弓与眼窝之间压着一道极暗的阴影，沉沉地挂在那里，不动，也不散。</p>
-            
-            <p>刘思恩心口猛地一坠。她冲出门廊，一把拧开门把手，掌心在玻璃上摁出湿漉漉的雾痕。</p>
-            
-            <p>车随即踩下刹车，江远平探头问："落东西了？"</p>
-            
-            <p>刘思恩快步到驾驶座旁，距离不到半米，那种沉郁的感觉却又模糊了。</p>
-            
-            <p>"拦住他"的念头刚刚冒起，理智的冷水便泼下来，把这火苗当场压灭。</p>
-            
-            <p>她张了张嘴："你今天别去上班了。"</p>
-            
-            <p>这句话已经到了嘴边，被卡住，咽了回去，最终化作："没事......就是注意安全，开车小心点。"</p>
-            
-            <p>江远平松了口气，摆摆手："知道啦。今天还得去给工程车做维护，太晚了赶不上 service calls（工作安排），收入就少了。女儿还等着换施坦威呢。"</p>
-            
-            <p>话音未落，他把手从方向盘上移开半寸，推入挡位，指节在微光里绷着。</p>
-            
-            <p>他侧头朝刘思恩笑了一下，笑意浅得几乎看不见。然后脚下发力，油门被狠狠踩下。</p>
-            
-            <p>白色工程车冲向街角的枫树浓荫，轮胎贴着路面滑过去，留下一道断断续续的痕迹。没多久，便被阳光晒得干干净净。</p>
-            
-            <p>屋里的琴声仍在继续，十六分音符一串串落下，敲开空气，清脆、明亮，流畅。</p>
-            
-            <p>晨光铺在屋顶、街面、以及工程车愈开愈远的车身。几缕光线透过挡风玻璃窜进工程车驾驶座，那份温暖落下时，却在江远平的脸上停不住。</p>
-            
-            <p>眉弓与眼窝之间压着的那块被光遗落的冷意，紧紧嵌着，封住了他脸上表情的温度。</p>
-            
-            <p>没有消失，也没有松动。只是沉在那里，把整条街的亮光都悄悄拿走了一角。</p>
-            
-            <p><strong>断线的平安符</strong></p>
-            
-            <p>刘思恩仍站在门廊。工程车的汽油味已经散去，初夏的风带着湖面的潮气，贴着她的耳廓滑过。</p>
-            
-            <p>一根冰丝从心口升起，顺着血管一路缠到指尖，寒意在末端收紧。</p>
-            
-            <p>她狠狠打了个冷战，肩膀猛地缩起，脖颈的肌肉一下绷紧起来。</p>
-            
-            <p>移民十二年，她怕过没钱、怕过签证下不来、怕过女儿在学校被霸凌；可没有哪一次的反应像这样直接——心口被一只看不见的手猛地往下扯，力量在胸骨下方用力，让她的呼吸当场断了线。</p>
-            
-            <p>就一秒。</p>
-            
-            <p>工程车已经拐过街角，身体里的那只手却还留在原地，死死拉扯着她的五脏六非，让她呼吸不畅。</p>
-            
-            <p>她摇摇头，逼自己笑了一下："多伦多就是这样，不按常理出牌 —— 昨天还穿着冬衣，今天就要穿短袖了。"</p>
-            
-            <p>晨光此时猛地刺下来，门前树叶上的露珠被照得一片亮白。光点骤然炸开，无数细小的寒光从明亮处反射过来，直直扎进她的视线里。</p>
-            
-            <p>她顺势宽慰自己：都是光影的错觉。</p>
-            
-            <p>多年后，她总会回想起这个早晨。老人说的"印堂发黑，不宜出门"，或许并非无稽。只是十二年的移民生活，让直觉疲软，嗅觉迟钝，只剩下机械的奔波。</p>
-            
-            <p>推门进屋。</p>
-            
-            <p>"啪。"</p>
-            
-            <p>极轻的一声，某个细节在空气中断开了。</p>
-            
-            <p>她低头一看，门把手上那根红绳——香港黄大仙庙求来的平安符——已断。</p>
-            
-            <p>红线陈旧，颜色发暗，断口参差，边缘卷着时间磨出的毛刺。</p>
-            
-            <p>从抽屉里取出一段新的红线，蹲下，重新系上。</p>
-            
-            <p>新绳鲜红，线纤维紧实，在打结的一瞬间却显出一丝别扭，怎么看都别扭。</p>
-            
-            <p>客厅里，琴声仍在流淌，却已被无形风洞穿 —— 音符变轻，音节变薄，句子透明，余音在空气中缓缓消散。最后一个十六分音符漂在半空，然后也悄无声息地碎了。</p>
-            
-            <p>江若瑶的手停在键盘上，回头看向母亲，询问道："妈妈？"</p>
-            
-            <p>刘思恩站在玄关，新系的红绳还在门把手上摇晃。</p>
-            
-            <p>她想回答女儿，却吐不出来一个字。</p>
-            
-            <p>那一刻，屋里所有声音都停了。连节拍器的"哒、哒"都被掐住脖子，僵在空气里。</p>
-            
-            <p>阳光在，琴声在，红绳在，</p>
-            
-            <p>可她知道 —— 有什么东西已经断了，再也接不回去了。</p>
-            
-            <!-- 添加小钩子：下一节 -->
+     
+            <!-- 下一节小钩子 -->
             <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
                 <span style="font-weight: 600; color: #1e3c4f;">（下一节）</span> 
-                <span style="color: #2c3e50;">那个本该如往常响起的电话，却迟迟无人接听。当刘思恩终于听到电话那头的声音时，迎来的却是晴天霹雳......</span>
+                <span style="color: #2c3e50;">晚上九点多，暮色深重，一道刺眼的车灯终于划破门廊外的昏暗。刘思恩几乎是扑到门前，心在胸腔里狂跳 —— 那不是江远平那辆白色的工程车，一辆红蓝警灯无声旋转的警车，正不偏不倚地停在了她家的车道上……</span>
             </p>
         </div>
         
-        <!-- 章节导航 -->
         <div class="chapter-navigation">
-            <span class="nav-link disabled">← 上一节</span>
+            <a href="/chapters/chapter-1-01.html" class="nav-link">← 上一节</a>
             <span class="nav-center">
-               <a href="/index.html#open-chapters">📖 目录</a>
+                <a href="/index.html#chapterContents">📖 目录</a>
                 <!-- 底部按钮（位于 nav-center 内） -->
 <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
     <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
 </button>
             </span>
-            <a href="/chapters/chapter-1-02.html" class="nav-link">下一节 →</a>
+            <a href="/chapters/chapter-1-03.html" class="nav-link">下一节 →</a>
         </div>
         
-        <!-- 返回首页 -->
         <div class="back-home">
             <a href="/index.html">← 返回 MoonWane Ink 主页</a>
         </div>
     </div>
 
-    <!-- 返回顶部按钮 -->
     <button id="back-to-top" aria-label="返回顶部">↑</button>
 
     <script>
     (function() {
-        // 防盗措施：禁用右键菜单和拖拽
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
@@ -684,7 +615,6 @@ body.dark-mode .theme-toggle i {
             return false;
         });
 
-        // 限制复制长度（50字符）
         document.addEventListener('copy', function(e) {
             const selectedText = window.getSelection().toString().trim();
             const maxLength = 50;
@@ -694,7 +624,6 @@ body.dark-mode .theme-toggle i {
             }
         });
 
-        // 阅读进度条
         const progressBar = document.getElementById('reading-progress');
         const updateProgress = () => {
             const scrollTop = window.scrollY;
@@ -706,7 +635,6 @@ body.dark-mode .theme-toggle i {
         window.addEventListener('resize', updateProgress);
         updateProgress();
 
-        // 返回顶部按钮
         const backToTopBtn = document.getElementById('back-to-top');
         const toggleBackToTop = () => {
             if (window.scrollY > 300) {
@@ -722,11 +650,9 @@ body.dark-mode .theme-toggle i {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-                // ========== 深色模式手动切换（支持多按钮） ==========
         const themeToggles = document.querySelectorAll('.theme-toggle');
         const body = document.body;
 
-        // 更新所有按钮图标
         function updateThemeIcons(isDark) {
     themeToggles.forEach(btn => {
         const icon = btn.querySelector('i');
@@ -735,7 +661,7 @@ body.dark-mode .theme-toggle i {
         }
     });
 }
-        // 初始化主题
+
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             body.classList.add('dark-mode');
@@ -754,7 +680,6 @@ body.dark-mode .theme-toggle i {
             }
         }
 
-        // 为所有切换按钮绑定点击事件
         themeToggles.forEach(btn => {
             btn.addEventListener('click', function() {
                 if (body.classList.contains('dark-mode')) {
