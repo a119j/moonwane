@@ -146,12 +146,14 @@
             color: var(--text-color);
             margin-bottom: 60px;
             hyphens: auto;
+            text-align: left;          /* ← 加这一行，确保正文左对齐 */
         }
         
         .chapter-content p {
             margin: 0 0 1.68em;
             text-indent: 2em;
             color: var(--text-color);
+            text-align: left;          /* ← 加这一行，确保正文左对齐 */
         }
         
         .chapter-content p.no-indent {
@@ -543,8 +545,9 @@ body.dark-mode .theme-toggle i {
     <div class="container">
         <div class="chapter-cover">
             <img src="/pictures/cover-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
-        </div>
-        
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+</div>
         <div class="chapter-info">
             <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第二章</h1>
             <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">碾碎：系统启动的第一声</h2>
