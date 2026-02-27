@@ -2314,7 +2314,7 @@
                 setTimeout(initNonCritical, 100);
             }
             
-            // GitHub链接点击事件
+                        // GitHub链接点击事件
             document.querySelectorAll('.external-link[data-github]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -2328,31 +2328,33 @@
                     }
                 });
             });
-        // ===== 在这里插入统一监听 data-chapter 按钮的代码 =====
-document.addEventListener('click', function(e) {
-    const target = e.target.closest('[data-chapter]');
-    if (!target) return;
-    const chapterId = target.getAttribute('data-chapter');
-    const type = target.classList.contains('read-icon') ? 'read' :
-                 target.classList.contains('audio-icon') ? 'audio' :
-                 target.classList.contains('video-icon') ? 'video' :
-                 target.classList.contains('external-link') ? 'external' : null;
-    if (!type) return;
-    e.preventDefault();
-    e.stopPropagation();
-    const links = window.chapterLinksData[chapterId]?.[type];
-    if (!links || links.length === 0) {
-        const displayNum = getChapterDisplayNumber(chapterId);
-        alert(`第${displayNum}章正在准备中，敬请期待。`);
-        return;
-    }
-    if (links.length === 1) {
-        window.open(links[0].url, '_blank');
-    } else {
-        showLinkMenu(e, links);
-    }
-});
-});
+            
+            // ===== 统一监听 data-chapter 按钮的代码（移到正确位置）=====
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('[data-chapter]');
+                if (!target) return;
+                const chapterId = target.getAttribute('data-chapter');
+                const type = target.classList.contains('read-icon') ? 'read' :
+                             target.classList.contains('audio-icon') ? 'audio' :
+                             target.classList.contains('video-icon') ? 'video' :
+                             target.classList.contains('external-link') ? 'external' : null;
+                if (!type) return;
+                e.preventDefault();
+                e.stopPropagation();
+                const links = window.chapterLinksData[chapterId]?.[type];
+                if (!links || links.length === 0) {
+                    const displayNum = getChapterDisplayNumber(chapterId);
+                    alert(`第${displayNum}章正在准备中，敬请期待。`);
+                    return;
+                }
+                if (links.length === 1) {
+                    window.open(links[0].url, '_blank');
+                } else {
+                    showLinkMenu(e, links);
+                }
+            });
+            
+        });  // <--- DOMContentLoaded 结束括号
         // 页面加载时检查URL hash
         window.addEventListener('load', function() {
             if (window.location.hash === '#open-chapters') {
@@ -2432,6 +2434,7 @@ document.addEventListener('click', function(e) {
     </script>
 </body>
 </html>
+
 
 
 
