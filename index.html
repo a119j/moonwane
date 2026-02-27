@@ -1860,13 +1860,14 @@
         }
         
         document.addEventListener('DOMContentLoaded', function() {
-    // ===== 新增：捕获阶段拦截读全文按钮 =====
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.pdf-trigger.read-icon')) {
-            e.preventDefault();           // 强制阻止默认
-            e.stopPropagation();          // 阻止冒泡
-        }
-    }, { capture: true });  // 用捕获阶段，优先于其他监听器执行
+ // ===== 新增：捕获阶段拦截读全文按钮 =====
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.pdf-trigger.read-icon')) {
+        e.preventDefault();           // 只阻止默认跳转，不阻止事件传播
+        // 删除 e.stopPropagation()  ← 让事件继续传递给后面的监听器
+    }
+}, { capture: true }); 
+            // 用捕获阶段，优先于其他监听器执行
             const wantToReadBtn = document.getElementById('wantToReadBtn');
             const moonOverlay = document.getElementById('moonOverlay');
             const menuToggle = document.getElementById('menuToggle');
@@ -2447,6 +2448,7 @@ document.addEventListener('click', function(e) {
     </script>
 </body>
 </html>
+
 
 
 
