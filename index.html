@@ -1825,50 +1825,60 @@
         
         // 章节编号显示名称映射
         const chapterDisplayMap = {
-            '1': '1',
-            '2': '2',
-            '3': '3',
-            '4-01': '4（上）',
-            '4-02': '4（下）',
-            '5-01': '5（上）',
-            '5-02': '5（下）',
-            '6': '6',
-            '7-01': '7（上）',
-            '7-02': '7（下）',
-            '8-01': '8（上）',
-            '8-02': '8（下）',
-            '9-01': '9（上）',
-            '9-02': '9（下）',
-            '10-01': '10（上）',
-            '10-02': '10（下）',
-            '11': '11',
-            '12-01': '12（上）',
-            '12-02': '12（中）',
-            '12-03': '12（下）',
-            '13': '13',
-            '14': '14',
-            '15': '15',
-            '16': '16',
-            '17-01': '17（上）',
-            '17-02': '17（下）',
-            '18': '18',
-            'extra': '番外'
-        };
+    '1': '1',
+    '1-01': '1',        // 新增
+    '2': '2',
+    '2-01': '2',        // 新增
+    '3': '3',
+    '3-01': '3',        // 新增
+    '4-01': '4（上）',
+    '4-02': '4（下）',
+    '5-01': '5（上）',
+    '5-02': '5（下）',
+    '6': '6',
+    '6-01': '6',        // 新增
+    '7-01': '7（上）',
+    '7-02': '7（下）',
+    '8-01': '8（上）',
+    '8-02': '8（下）',
+    '9-01': '9（上）',
+    '9-02': '9（下）',
+    '10-01': '10（上）',
+    '10-02': '10（下）',
+    '11': '11',
+    '11-01': '11',      // 新增
+    '12-01': '12（上）',
+    '12-02': '12（中）',
+    '12-03': '12（下）',
+    '13': '13',
+    '13-01': '13',      // 新增
+    '14': '14',
+    '14-01': '14',      // 新增
+    '15': '15',
+    '15-01': '15',      // 新增
+    '16': '16',
+    '16-01': '16',      // 新增
+    '17-01': '17（上）',
+    '17-02': '17（下）',
+    '18': '18',
+    '18-01': '18',      // 新增
+    'extra': '番外'
+};
         
         function getChapterDisplayNumber(chapterId) {
             return chapterDisplayMap[chapterId] || chapterId;
         }
         
         document.addEventListener('DOMContentLoaded', function() {
- // ===== 新增：捕获阶段拦截读全文按钮 =====
+// ===== 新增：捕获阶段拦截读全文按钮 =====
+// ===== 新增：捕获阶段拦截读全文按钮 =====
 document.addEventListener('click', function(e) {
     if (e.target.closest('.pdf-trigger.read-icon')) {
-        e.preventDefault();           // 只阻止默认跳转，不阻止事件传播
-        // 删除 e.stopPropagation()  ← 让事件继续传递给后面的监听器
+        e.preventDefault();  // 只阻止默认跳转
+        // 不要加 e.stopPropagation()！
     }
-}, { capture: true }); 
-            // 用捕获阶段，优先于其他监听器执行
-            const wantToReadBtn = document.getElementById('wantToReadBtn');
+}, { capture: true });           
+           const wantToReadBtn = document.getElementById('wantToReadBtn');
             const moonOverlay = document.getElementById('moonOverlay');
             const menuToggle = document.getElementById('menuToggle');
             const menuDropdown = document.getElementById('menuDropdown');
@@ -2344,8 +2354,7 @@ document.addEventListener('click', function(e) {
     
     // 立即阻止默认行为和冒泡
     e.preventDefault();
-    e.stopPropagation();
-    
+      
     const chapterId = target.getAttribute('data-chapter');
     const type = target.classList.contains('read-icon') ? 'read' :
                  target.classList.contains('audio-icon') ? 'audio' :
@@ -2448,6 +2457,7 @@ document.addEventListener('click', function(e) {
     </script>
 </body>
 </html>
+
 
 
 
