@@ -2492,27 +2492,14 @@ fetch('/data/evidence.json')
                 }
             }
             
-                                    // ========== 章节按钮动态控制（基于 button-status.json） - 调试加强版 ==========
-            const chapterOrder = [
-                '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
-                '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
-                '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
-                '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
-            ];
-
-            // 尝试两种路径加载（GitHub Pages 常见问题）
-            const statusUrl = window.location.hostname.includes('github.io') 
-                ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json' 
-                : '/data/button-status.json';
-
-            fetch(statusUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error('JSON 加载失败: ' + response.status);
-                    return response.json();
+                                                // ========== 章节按钮动态控制（基于 button-status.json） - 最终稳定版 ==========
+            // 始终使用 raw.githubusercontent.com 路径，避免自定义域名缓存/路径问题
+            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json')
+                .then(r => {
+                    if (!r.ok) throw new Error('Status JSON load failed');
+                    return r.json();
                 })
                 .then(data => {
-                    console.log('button-status.json 加载成功:', data); // 调试：打开控制台查看
-
                     const statusMap = {};
                     data.chapters.forEach(item => {
                         statusMap[item.chapterId] = {
@@ -2528,38 +2515,28 @@ fetch('/data/evidence.json')
                         let lastGreenIndex = -1;
                         chapterOrder.forEach((chapterId, index) => {
                             const link = statusMap[chapterId]?.[type] || '';
-                            // 兼容 <a> 或 <button> 或任何 [data-chapter][data-type]
-                            const selectors = [
-                                `[data-chapter="${chapterId}"][data-type="${type}"]`,
-                                `.${type}-icon[data-chapter="${chapterId}"]`
-                            ];
-                            let buttons = [];
-                            selectors.forEach(sel => {
-                                buttons = [...buttons, ...document.querySelectorAll(sel)];
-                            });
-
-                            if (buttons.length === 0) {
-                                console.warn(`未找到按钮: ${chapterId} ${type}`);
-                                return;
-                            }
+                            // 最宽松选择器，兼容所有可能标签
+                            const buttons = document.querySelectorAll(`[data-chapter="${chapterId}"][data-type="${type}"]`);
+                            if (buttons.length === 0) return;
 
                             buttons.forEach(btn => {
-                                // 移除旧类
                                 btn.classList.remove('status-ready', 'status-coming', 'status-preparing');
 
                                 if (link) {
-                                    // 绿色就绪（强制 !important 样式与证据库PDF一致）
+                                    // 绿色就绪（与证据库PDF完全一致的样式）
                                     btn.classList.add('status-ready');
                                     if (btn.tagName === 'A') btn.href = link;
                                     btn.removeAttribute('title');
                                     btn.onclick = null;
                                     lastGreenIndex = index;
                                 } else if (lastGreenIndex !== -1 && index > lastGreenIndex) {
+                                    // 黄色
                                     btn.classList.add('status-coming');
                                     if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
                                     btn.title = '下周上线';
                                     btn.onclick = e => { e.preventDefault(); alert(`${getChapterDisplayNumber(chapterId)} 下周上线。`); };
                                 } else {
+                                    // 灰色
                                     btn.classList.add('status-preparing');
                                     if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
                                     btn.title = '准备中';
@@ -2569,21 +2546,19 @@ fetch('/data/evidence.json')
                         });
                     });
                 })
-                .catch(error => {
-                    console.error('button-status 加载失败:', error);
-                    // fallback 灰色
-                    document.querySelectorAll('[data-chapter][data-type], .read-icon, .audio-icon, .video-icon, .external-link').forEach(btn => {
+                .catch(err => {
+                    console.error('button-status.json 加载失败，使用灰色备用', err);
+                    document.querySelectorAll('[data-chapter][data-type]').forEach(btn => {
                         btn.classList.add('status-preparing');
                         if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
                         btn.title = '准备中';
                         btn.onclick = e => {
                             e.preventDefault();
-                            const ch = btn.getAttribute('data-chapter') || '未知';
+                            const ch = btn.getAttribute('data-chapter') || '章节';
                             alert(`${getChapterDisplayNumber(ch)} 正在准备中，敬请期待。`);
                         };
                     });
                 });
-            
             // ========== 多链接菜单数据获取 ==========
             function fetchChapters() {
                 fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
@@ -2758,6 +2733,7 @@ fetch('/data/evidence.json')
     </script>
 </body>
 </html>
+
 
 
 
