@@ -1,0 +1,32 @@
+{
+  "chapters": [
+    { "chapterId": "1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "3-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "4-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "4-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "5-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "5-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "6-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "7-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "7-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "8-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "8-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "9-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "9-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "10-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "10-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "11-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "12-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "12-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "12-3-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "13-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "14-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "15-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "16-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "17-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "17-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "18-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
+    { "chapterId": "extra", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" }
+  ]
+}
