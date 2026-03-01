@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>证据04：警方证据链 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 添加 referrer 策略 -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Font Awesome CDN (jsDelivr) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        /* === 完全复制 evidence_02 的所有样式（保持视觉细节100%不变） === */
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, "Times New Roman", serif, sans-serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: left;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.88;
+            letter-spacing: 0.32px;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            hyphens: auto;
+        }
+        
+        .chapter-content p {
+            margin: 0 0 1.68em;
+            text-indent: 2em;
+            color: var(--text-color);
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 0;
+        }
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+            white-space: nowrap;
+        }
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* 深色模式样式 */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation,
+        body.dark-mode .evidence-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        /* 深色模式下表格数据文字颜色 */
+        body.dark-mode .evidence-table td {
+            color: #d1d5db;
+        }
+        /* 事件年表表格第三列（证据/程序矛盾点）换行优化 */
+        .timeline-table td:last-child {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation,
+            .evidence-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                white-space: normal;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+        }
+        
+        /* 浅色模式灯泡发光 */
+        body:not(.dark-mode) .theme-toggle {
+            background: rgba(30, 100, 200, 0.4) !important;
+            border-color: rgba(30, 100, 200, 0.5) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        body:not(.dark-mode) .theme-toggle i {
+            color: #ffffff;
+            text-shadow: 
+                0 0 12px rgba(255, 255, 255, 1),
+                0 0 24px rgba(255, 255, 255, 0.8),
+                0 0 36px rgba(255, 255, 255, 0.6);
+        }
+        
+        body.dark-mode .theme-toggle i {
+            color: #f39c12;
+            text-shadow: 
+                0 0 8px #f39c12,
+                0 0 16px #f39c12,
+                0 0 24px #f39c12;
+        }
+        
+        .theme-toggle:hover i {
+            filter: brightness(1.2);
+        }
+
+        /* === 证据页面专用样式（与 evidence_02 完全一致） === */
+        .evidence-image {
+            display: block;
+            max-width: 100%;
+            margin: 30px auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .evidence-image:hover {
+            transform: scale(1.02);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10001;
+        }
+        .lightbox-close:hover {
+            color: #ccc;
+        }
+
+        .evidence-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0 10px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .evidence-table th {
+            background: rgba(70, 90, 120, 0.25);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        body.dark-mode .evidence-table th {
+            color: #f0f0f0;
+            background: rgba(90, 110, 140, 0.4);
+        }
+        .evidence-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+            vertical-align: top;
+            color: var(--text-color);
+        }
+        .evidence-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .evidence-meta {
+            text-align: left;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #888888;
+            margin: 5px 0 25px 0;
+            padding-left: 5px;
+        }
+        body.dark-mode .evidence-meta {
+            color: #aaaaaa;
+        }
+        .evidence-meta p {
+            margin: 2px 0;
+            text-indent: 0;
+        }
+        .evidence-meta .evidence-name {
+            font-weight: 500;
+            color: #6a6a6a;
+        }
+        body.dark-mode .evidence-meta .evidence-name {
+            color: #c0c0c0;
+        }
+
+        .section-title {
+            margin-top: 50px;
+        }
+        .section-title:first-of-type {
+            margin-top: 20px;
+        }
+        .chapter-content h2, 
+        .chapter-content h3 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        hr {
+            margin: 50px 0;
+        }
+
+        .evidence-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        .evidence-navigation .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+            white-space: nowrap;
+            text-align: center;
+        }
+        .evidence-navigation .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        .evidence-navigation .nav-link:first-child {
+            justify-self: start;
+        }
+        .evidence-navigation .nav-link:last-child {
+            justify-self: end;
+        }
+        .evidence-navigation .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .evidence-navigation .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+            white-space: nowrap;
+        }
+        .evidence-navigation .nav-center a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .evidence-navigation {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .evidence-navigation .nav-link {
+                width: 100%;
+                white-space: normal;
+            }
+            .evidence-navigation .nav-center {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <!-- 封面图片 -->
+        <div class="chapter-cover">
+            <img src="/pictures/cover-5.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        </div>
+        <!-- 版权信息 -->
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+        </div>
+        
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">证据04</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">警方证据链</h2>
+            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                <i class="fas fa-lightbulb"></i>
+            </button>
+            <div class="chapter-subtitle">The Police Chain of Evidence</div>
+        </div>
+        
+        <div class="chapter-content" role="main">
+            <!-- 案卷说明 -->
+            <div class="section-title">案卷说明</div>
+            <div class="section-epigraph">—— 原始证据如何在预设的结论下被裁撤和锁定</div>
+            
+            <p><strong>【终极对垒：证据靶心对比表】</strong><br>以下为关键证据的对照分析</p>
+            
+            <!-- 证据靶心对比表 -->
+            <table class="evidence-table">
+                <thead>
+                    <tr><th style="white-space: nowrap;">争议靶心</th><th>原始物证数据（真相）</th><th>警方的解释/处理方式</th><th>辩方技术结论</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td style="white-space: nowrap;">手机连接</td><td>17:36:15 连接结束</td><td>试图关联至 17:38:20 车祸发生</td><td>车祸125秒前，手机已任何无操作</td></tr>
+                    <tr><td style="white-space: nowrap;">轮胎裂口</td><td>侧壁爆炸性撕裂，钢丝外露</td><td>现场无照片，事后在停车场补拍，判定为“自行车踏板刺穿”</td><td>踏板无痕，物理逻辑不通</td></tr>
+                    <tr><td style="white-space: nowrap;">前轮胎压异常</td><td>左前车祸第二天胎压为65 PSI，仍超标30%</td><td>主观否定与车祸和右前轮爆胎侧壁爆裂相关</td><td>车祸前，右前胎压超标</td></tr>
+                    <tr><td style="white-space: nowrap;">黑匣子（CDR）数据</td><td>右前轮轮速一秒内骤降，直至为零坠落。窗口期最多为0.29秒</td><td>记录为“No event”，便不做分析</td><td>爆胎导致不可逆偏航</td></tr>
+                    <tr><td style="white-space: nowrap;">行车记录仪慢速截图</td><td>0.167 秒黑烟</td><td>没有逐帧分析</td><td>高压爆胎，导致的轮胎体空气瞬间释放，喷出橡胶微粒和粉尘</td></tr>
+                    <tr><td style="white-space: nowrap;">路面拖痕</td><td>30米深色瘪胎拖痕</td><td>标注为“自行车轮胎印记”</td><td>工程车爆胎后的物理轨迹</td></tr>
+                    <tr><td style="white-space: nowrap;">工程车右侧车门黑色痕迹</td><td>黑色痕迹为纵向，放射状</td><td>自行车轮胎造成</td><td>自行车前后轮胎相对于车门运行轨迹时水平方向。自行车前后轮胎均无明显痕迹。</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence-meta">
+                <p class="evidence-name">04_1 Police Evidence Inventory List</p>
+                <p>[档案号：MW-CASE-EXHIBIT-Q (已脱敏) | Ref: MW-CASE-EXHIBIT-Q]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <p><strong>【125秒：消失的证据链】</strong><br>这125秒的空档期，在物理上无法支持“分心驾驶”导致事故的指控。</p>
+            <ul>
+                <li><strong>起点：</strong>17:36:15 —— 手机后台最后一次数据交换（连接结束）。</li>
+                <li><strong>终点：</strong>17:38:20 —— 黑匣子（CDR）记录的碰撞瞬间。</li>
+                <li><strong>物理事实：</strong>两个时间点之间存在长达 125秒 的完全真空期。</li>
+            </ul>
+            <div style="font-size:0.85rem; color:var(--subtitle-color); text-align: left;">01_2 Carrier Billing Statement<br>[档案号：MW-CASE-EXHIBIT-B (已脱敏) | Ref: MW-CASE-EXHIBIT-B]</div>
+            
+            <p><strong>【警方在证据解读中存在以下几处关键盲点 】</strong></p>
+            <ol>
+                <li><strong>依赖主观观察而非客观测量：</strong>多项结论缺乏实测数据支持。</li>
+                <li><strong>预设“分心驾驶”为事故原因：</strong>导致对关键物理变量（如左前胎压65 PSI，超标30%）的忽略。</li>
+                <li><strong>未对车门痕迹进行材质分析：</strong>错误认定其为自行车轮胎痕迹，而非爆胎喷出的橡胶粉尘。</li>
+            </ol>
+            <p>靶心预设，证据为环。需重审“beyond reasonable doubt”。</p>
+            
+            <p><strong>【警方证据链失焦的三个维度 】</strong></p>
+            <ol>
+                <li><strong>物理逻辑的坍塌：警方坚持“自行车踏板刺穿”论。</strong><br>反驳依据：踏板完好无损（Ref: EXHIBIT-H），在物理上不可能撕裂工程车多层钢丝帘线。</li>
+                <li><strong>电子证据的误读：警方认定“手机操作导致分心”。</strong><br>反驳依据：手机后台显示 17:36:15 连接已结束（Ref: EXHIBIT-B），距离 17:38:20 事故发生有长达 125秒的清白间隙。</li>
+                <li><strong>时空对齐的缺失：警方记录为 “No event”。</strong><br>反驳依据：0.167 秒黑烟与轮速0.29的窗口期跌幅 100% 对齐，证明失压在前，碰撞在后。</li>
+            </ol>
+            
+            <hr style="margin:40px 0; border-color:var(--border-color);">
+            
+            <p><strong>【警方证据链失焦的关键事件年表】</strong><br>这不仅是数据的解密，更是对系统性失聪的长达七年的博弈。</p>
+            
+            <!-- 关键事件年表 -->
+            <table class="evidence-table timeline-table">
+                <thead>
+                    <tr><th style="white-space: nowrap;">时间节点</th><th>关键事件 / 证词细节</th><th>证据状态与“失焦”表现</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td style="white-space: nowrap;">2018-06-12<br>17:38</td><td>车祸发生</td><td>第一现场警方未拍摄胎洞照片，更未做任何尺寸测量。行车记录仪记录到爆胎瞬间。警方获得行车记录仪，但未逐帧分析。</td></tr>
+                    <tr><td style="white-space: nowrap;">2018-06-13</td><td>初步胎压检测</td><td>右前 0 PSI，左前 65 PSI。超标 30% 的致命高压被视为无关变量，未计入事故分析。</td></tr>
+                    <tr><td style="white-space: nowrap;">2018-06-15</td><td>所谓“机械检测”</td><td>检测“无数据、无记录、无照片、无专业工具”。车辆在核心物证未取样前被草率发还，导致关键证据轮胎被毁。</td></tr>
+                    <tr><td style="white-space: nowrap;">2018-07 月底</td><td>指控升级</td><td>刑警Ivor会见检察官后，刑事指控在无任何新证据、新数据的情况下被正式升级。决定性的“车祸前125秒清白间隙”已被警方卷宗冷落。</td></tr>
+                    <tr><td style="white-space: nowrap;">2019-01-10</td><td>补写定罪报告</td><td>警员 Angus 补写报告，忽略高胎压物理事实，在没有任何测量数据支持下判定为碰撞造成裂口。</td></tr>
+                    <tr><td style="white-space: nowrap;">2022-01-06</td><td>预审听证会</td><td>警员Ivor、 Kenneth、Angus的证词暴露出对数据后台交换，爆胎物理逻辑和黑匣子（CDR）数据的严重盲区。</td></tr>
+                    <tr><td style="white-space: nowrap;">2022 后续</td><td>目击证人听证</td><td>证人们各执一词，证词呈现“罗生门”，暴露了预设偏见对记忆的干扰。</td></tr>
+                    <tr><td style="white-space: nowrap;">2025-11</td><td>文明的重审</td><td>虽然此案在司法程序上已然终结，但基于上述证据链中存在的系统性失焦与物理逻辑的断裂，现有结论远未达到“排除合理怀疑”的证明标准。真相不应被预设的靶心所禁锢，公正更不能止步于程序的闭环。对此案证据进行基于科学与逻辑的文明重审，不仅是对个体命运的负责，更是对法律本身“以事实为依据”这一基石的根本捍卫。</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence-meta">
+                <p class="evidence-name">04_2 Timeline of the Police Evidence Chain</p>
+                <p>[档案号：MW-CASE-EXHIBIT-R (已脱敏) | Ref: MW-CASE-EXHIBIT-R]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <!-- 没有下一证据小钩子（因为是最后一个证据） -->
+        </div>
+        
+        <!-- 证据页面导航（证据04：有上一个证据，指向03；没有下一个证据，隐藏） -->
+        <div class="evidence-navigation">
+            <!-- 上一个证据：指向证据03 -->
+            <a href="/evidences/evidence_03_Black_Box_CDR_and_Dashcam.html" class="nav-link">← 上一个证据</a>
+            <span class="nav-center">
+                <a href="/index.html#open-evidence">🌐证据库/Evidence Hub</a>
+                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                    <i class="fas fa-lightbulb"></i>
+                </button>
+            </span>
+            <!-- 下一个证据：隐藏（用于对称占位） -->
+            <a href="#" class="nav-link" style="opacity:0; pointer-events:none;">下一个证据 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        // 复制保护
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        // 阅读进度条
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // 返回顶部
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 深色模式切换
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+            themeToggles.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-lightbulb';
+                }
+            });
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
+        // 图片点击放大（本页无图片，保留函数以备后续添加）
+        const images = document.querySelectorAll('.evidence-image');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                const lightbox = document.createElement('div');
+                lightbox.className = 'lightbox';
+                lightbox.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${this.src}" alt="${this.alt}">
+                `;
+                document.body.appendChild(lightbox);
+                document.body.style.overflow = 'hidden';
+
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                        lightbox.remove();
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
