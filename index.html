@@ -741,18 +741,68 @@
         min-height: 40px;
     }
     
-    .read-icon, .audio-icon, .video-icon, .external-link {
-        font-size: 1.2rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 3px 6px;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+  /* 强制紧凑按钮尺寸 - 覆盖所有可能干扰，确保恢复多链接.txt 的小方块 */
+.pdf-trigger,
+.read-icon,
+.audio-icon,
+.video-icon,
+.external-link,
+.chapter-list .read-icon,
+.chapter-list .audio-icon,
+.chapter-list .video-icon,
+.chapter-list .external-link {
+    font-size: 1.1rem !important;          /* 稍小一点，更紧凑 */
+    min-width: 28px !important;             /* 核心：强制小方块宽度 */
+    min-height: 28px !important;            /* 核心：强制小方块高度 */
+    padding: 2px 5px !important;            /* 更紧的内边距 */
+    margin: 0 2px !important;               /* 按钮之间间距也收紧 */
+    border-radius: 4px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
+}
+
+/* 外部链接特殊处理（保持绿色背景但尺寸一致） */
+.external-link {
+    color: var(--green-ready) !important;
+    background: rgba(76, 175, 80, 0.12) !important;
+    border: 1px solid rgba(76, 175, 80, 0.25) !important;
+    font-size: 0.95rem !important;
+    min-width: 28px !important;
+    padding: 2px 5px !important;
+    margin-left: 3px !important;
+}
+
+/* 状态类不影响尺寸，只改颜色 */
+.status-ready    { color: var(--green-ready) !important; }
+.status-coming   { color: #f39c12 !important; }          /* 黄色下周 */
+.status-preparing{ color: #95a5a6 !important; }          /* 灰色准备中 */
+    /* 状态类：绿色（就绪） */
+    .status-ready {
+        background: rgba(50,205,50,0.25) !important;
+        border: 2px solid #32CD32 !important;
+        color: #32CD32 !important;
+    }
+    
+    /* 状态类：黄色（下周上线） */
+    .status-coming {
+        background: rgba(244,161,0,0.25) !important;
+        border: 2px solid #F4A100 !important;
+        color: #F4A100 !important;
+    }
+    
+    /* 状态类：灰色（准备中）- 复用原有灰色样式 */
+    .status-preparing {
+        color: #888 !important;
+        background: rgba(128,128,128,0.1) !important;
+        border: 1px solid rgba(128,128,128,0.2) !important;
     }
     
     .read-icon:hover, .audio-icon:hover, .video-icon:hover, .external-link:hover {
@@ -760,32 +810,10 @@
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     
-    .pdf-trigger {
-        border: none;
-        background: rgba(var(--primary-blue-rgb), 0.1);
-        color: var(--primary-blue);
-        font-size: 1.2rem;
-    }
-    
     .external-link {
-        color: var(--green-ready);
-        background: rgba(76, 175, 80, 0.1);
-        border: 1px solid rgba(76, 175, 80, 0.2);
         font-size: 0.9rem;
         padding: 4px 6px;
         margin-left: 4px;
-    }
-    
-    .pdf-link:hover, .pdf-trigger:hover {
-        background: rgba(var(--primary-blue-rgb), 0.2);
-        box-shadow: 0 0 10px rgba(var(--primary-blue-rgb), 0.3);
-        transform: translateY(-2px);
-    }
-    
-    .external-link:hover {
-        background: rgba(76, 175, 80, 0.2);
-        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
-        transform: translateY(-2px);
     }
     
     .act-title {
@@ -799,15 +827,15 @@
     }
     
     .act-title-second-line {
-    font-size: 1rem;
-    color: #d0d0d0;
-    margin-bottom: 12px;
-    display: block;
-    text-align: center;
-    font-style: italic;
-    line-height: 1.3;
-    white-space: nowrap;  /* 添加这一行，强制不换行 */
-}
+        font-size: 1rem;
+        color: #d0d0d0;
+        margin-bottom: 12px;
+        display: block;
+        text-align: center;
+        font-style: italic;
+        line-height: 1.3;
+        white-space: nowrap;
+    }
     
     /* 页脚法律声明链接 */
     .legal-link {
@@ -845,7 +873,6 @@
         list-style: none;
         position: relative;
         font-family: 'Inter', 'Noto Sans SC', sans-serif;
-        aria-expanded: false;
         transition: all 0.4s ease;
     }
     
@@ -879,7 +906,6 @@
         list-style: none;
         position: relative;
         font-family: 'Inter', 'Noto Sans SC', sans-serif;
-        aria-expanded: false;
         transition: all 0.4s ease;
     }
     
@@ -900,10 +926,6 @@
     
     .evidence-drawer[open] > summary::before {
         transform: translateY(-50%) rotate(90deg);
-    }
-    
-    .evidence-drawer > summary::after {
-        display: none;
     }
     
     .evidence-drawer-content {
@@ -1016,10 +1038,10 @@
     }
     
     .evidence-content h4 {
-    color: #5a9acf !important;  /* 比 #7bc8f8 稍暗，但保持蓝调 */
-    margin: 25px 0 10px !important;
-    font-size: 1.1rem;
-}
+        color: #5a9acf !important;
+        margin: 25px 0 10px !important;
+        font-size: 1.1rem;
+    }
     
     .technical-points, .truth-summary {
         margin: 25px 0;
@@ -1035,34 +1057,7 @@
         font-size: 1.1rem;
     }
     
-    .pdf-trigger {
-        background: none;
-        border: none;
-        color: var(--primary-blue);
-        font-size: 1.2rem;
-        cursor: pointer;
-        padding: 5px;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-    }
-    
-    .pdf-trigger:hover {
-        background: rgba(var(--primary-blue-rgb), 0.1);
-        transform: scale(1.1);
-    }
-    
-    .evidence-table .pdf-trigger {
-        color: var(--green-ready) !important;
-        background: rgba(76, 175, 80, 0.1) !important;
-        border: 1px solid rgba(76, 175, 80, 0.2) !important;
-    }
-    
-    .evidence-table .pdf-trigger:hover {
-        background: rgba(76, 175, 80, 0.2) !important;
-        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
-    }
-    
-    /* PDF模态框 */
+    /* PDF模态框（保持不变） */
     .pdf-modal {
         position: fixed;
         top: 0;
@@ -1187,37 +1182,6 @@
         background-size: 12px 12px;
     }
     
-    #introDrawer > div::-webkit-scrollbar-button:vertical:decrement,
-    .chapter-drawer-content::-webkit-scrollbar-button:vertical:decrement,
-    .evidence-scroll-area::-webkit-scrollbar-button:vertical:decrement {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="6,1 10,9 2,9" fill="white"/></svg>');
-    }
-    
-    #introDrawer > div::-webkit-scrollbar-button:vertical:increment,
-    .chapter-drawer-content::-webkit-scrollbar-button:vertical:increment,
-    .evidence-scroll-area::-webkit-scrollbar-button:vertical:increment {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="6,11 2,3 10,3" fill="white"/></svg>');
-    }
-    
-    #introDrawer > div::-webkit-scrollbar-button:horizontal,
-    .chapter-drawer-content::-webkit-scrollbar-button:horizontal,
-    .evidence-scroll-area::-webkit-scrollbar-button:horizontal {
-        width: 20px;
-        height: 8px;
-    }
-    
-    #introDrawer > div::-webkit-scrollbar-button:horizontal:decrement,
-    .chapter-drawer-content::-webkit-scrollbar-button:horizontal:decrement,
-    .evidence-scroll-area::-webkit-scrollbar-button:horizontal:decrement {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="1,6 9,2 9,10" fill="white"/></svg>');
-    }
-    
-    #introDrawer > div::-webkit-scrollbar-button:horizontal:increment,
-    .chapter-drawer-content::-webkit-scrollbar-button:horizontal:increment,
-    .evidence-scroll-area::-webkit-scrollbar-button:horizontal:increment {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><polygon points="11,6 3,2 3,10" fill="white"/></svg>');
-    }
-    
     /* PDF加载专用月亮动画 */
     .pdf-moon-animation {
         width: 60px;
@@ -1242,13 +1206,6 @@
         background: var(--dark-accent);
         border-radius: 50%;
         animation: realphase 15s linear infinite;
-    }
-    
-    .pdf-modal-content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
     }
     
     .pdf-viewer-area {
@@ -1293,10 +1250,6 @@
         opacity: 1;
     }
     
-    .chapter-title {
-        color: var(--soft-gold) !important;
-    }
-    
     #wantToReadBtn {
         margin-bottom: 40px;
     }
@@ -1329,7 +1282,6 @@
         .chapter-table th { font-size: 1rem; }
         .act-title { font-size: 1.1rem; }
         .act-title-second-line { font-size: 0.9rem; }
-        .pdf-trigger { font-size: 1.1rem; padding: 4px; }
         .external-link { font-size: 0.8rem; padding: 3px 5px; }
         .chapter-drawer > summary { padding: 15px 20px; font-size: 1.2rem; }
         .chapter-drawer-content { max-height: 60vh; }
@@ -1343,16 +1295,7 @@
         .pdf-modal-content { width: 92%; height: 90vh; max-width: 92%; max-height: 90vh; }
     }
     
-    .chapter-drawer > summary:hover,
-    .evidence-drawer > summary:hover {
-        background: #1a2d42 !important;
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-link-hover);
-        color: var(--white-text);
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-    
-    /* === 新增：多链接菜单样式（符合暗黑月光风格） === */
+    /* 多链接菜单样式（保持不变） */
     .multi-link-menu {
         position: absolute;
         background: var(--bg-drawer);
@@ -1429,15 +1372,15 @@
             font-size: 1rem;
         }
     }
-@media (max-width: 768px) {
-    #chapterContents,
-    #chapterContents details,
-    #chapterContents summary,
-    .chapter-list,
-    .chapter-actions {
-        overflow-x: hidden !important;
+    @media (max-width: 768px) {
+        #chapterContents,
+        #chapterContents details,
+        #chapterContents summary,
+        .chapter-list,
+        .chapter-actions {
+            overflow-x: hidden !important;
+        }
     }
-}
     </style>
     
     <!-- 额外的内联样式（月亮光晕动画） -->
@@ -1497,7 +1440,7 @@
         
         <section class="links-section">
             <div class="links">
-                <!-- 书籍卡片 - 修改为可点击打开抽屉的触发器 -->
+                <!-- 书籍卡片 - 可点击打开抽屉的触发器 -->
                 <div id="introDrawerToggle" style="cursor: pointer;">
                     <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
                         <span style="display: flex; align-items: center; gap: 8px;">
@@ -1508,57 +1451,44 @@
                         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:4px; font-style: italic;">Six Seconds, Six Years | 作品已完成，诚寻出版与合作机会。</span>
                         <span class="golden-sentence">六秒数据，钉死六年人生。</span>
                         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的非虚构纪实<br>六秒数据，六年拉锯 <br>当规则失灵，一个移民家庭被迫自证清白 </span>
-
                     </a>
                 </div>
                 <!-- 简介抽屉内容 (初始隐藏) -->
                 <div id="introDrawer" style="max-width:640px; margin:0 auto 40px auto; overflow: hidden; transition: max-height 0.4s ease-in-out; max-height: 0; background: rgba(20,25,40,0.4); border-radius: 0 0 16px 16px;">
                     <div style="padding: 0 24px 0 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto;">
+                        <!-- 故事梗概等内容保持不变 -->
                         <div style="font-size: 1.2rem; color: #e6c68e; margin: 20px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【故事梗概】</div>
                         <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
-    2018年6月12日，多伦多北郊。<br>晴朗的下午，一场碰撞改变了轨迹。<br>冷暖空调技师江远平驾驶工程车下班途中，与同向骑行的自行车相撞。骑车人未戴头盔，送医不治。<br>他留在现场，报警，配合调查。<br>此后半年，没有任何消息。律师预判，或按交通条列的“疏忽驾驶”处理。<br>2019年1月10日，警方突袭其工作场所，当众将他铐走。<br>六小时审讯，二十四小时拘留。<br>随后，他被控“刑事疏忽致死”与“危险驾驶致死”。<br>检方建议刑期四年。<br>指控的核心，是事故发生两分钟之前手机有六秒的电信后台连接。<br>检方据此认定为其“主动使用手机”，属分心驾驶。<br>2022年，第三方专家报告指出：<br>那只是手机后台自动信令，如同心跳和呼吸，与人为操作无关。<br>此案件多项物证亦被忽略：<br>事故次日实测，左前胎气压尚有65 psi（标准为50 psi），右前胎侧壁有撕裂大洞。<br>行车记录仪慢放画面显示，碰撞发生前，右前胎侧壁闪现异常黑烟。持续0.167秒。<br>工程车黑匣子（CDR）数据被警方以“无事件”为由拒绝进做一步分析。<br>直到2025年，经AI模型复核，黑匣子数据揭示：<br>事故前最后两秒，右前胎速骤降为零——指向爆胎失控。<br>六年间，案件因疫情停摆，三易检察官，两度换律师。<br>丈夫从技术骨干沦为限制驾驶的保释犯；<br>妻子以家庭主妇的身份自学法律与取证；<br>十一岁的女儿，在法庭翻译与沉重学业之间长大，最终赢得藤校全额助学金。<br>2024年，检方突然撤回刑事指控，将案件降级为交通违规结案。<br>无解释，无道歉，更无追责。<br>这是一部非虚构纪实。<br>六秒数据连接，钉住了一家三口六年人生——<br>当规则失灵，普通人还能守住清白吗？
-</div>
+                            2018年6月12日，多伦多北郊。<br>晴朗的下午，一场碰撞改变了轨迹。<br>冷暖空调技师江远平驾驶工程车下班途中，与同向骑行的自行车相撞。骑车人未戴头盔，送医不治。<br>他留在现场，报警，配合调查。<br>此后半年，没有任何消息。律师预判，或按交通条列的“疏忽驾驶”处理。<br>2019年1月10日，警方突袭其工作场所，当众将他铐走。<br>六小时审讯，二十四小时拘留。<br>随后，他被控“刑事疏忽致死”与“危险驾驶致死”。<br>检方建议刑期四年。<br>指控的核心，是事故发生两分钟之前手机有六秒的电信后台连接。<br>检方据此认定为其“主动使用手机”，属分心驾驶。<br>2022年，第三方专家报告指出：<br>那只是手机后台自动信令，如同心跳和呼吸，与人为操作无关。<br>此案件多项物证亦被忽略：<br>事故次日实测，左前胎气压尚有65 psi（标准为50 psi），右前胎侧壁有撕裂大洞。<br>行车记录仪慢放画面显示，碰撞发生前，右前胎侧壁闪现异常黑烟。持续0.167秒。<br>工程车黑匣子（CDR）数据被警方以“无事件”为由拒绝进做一步分析。<br>直到2025年，经AI模型复核，黑匣子数据揭示：<br>事故前最后两秒，右前胎速骤降为零——指向爆胎失控。<br>六年间，案件因疫情停摆，三易检察官，两度换律师。<br>丈夫从技术骨干沦为限制驾驶的保释犯；<br>妻子以家庭主妇的身份自学法律与取证；<br>十一岁的女儿，在法庭翻译与沉重学业之间长大，最终赢得藤校全额助学金。<br>2024年，检方突然撤回刑事指控，将案件降级为交通违规结案。<br>无解释，无道歉，更无追责。<br>这是一部非虚构纪实。<br>六秒数据连接，钉住了一家三口六年人生——<br>当规则失灵，普通人还能守住清白吗？
+                        </div>
                         <!-- 关键词 -->
-<div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
-    <div style="color: #5a9acf; font-weight: bold; margin-bottom: 8px;">关键词：</div>
-    <div style="color: #b8b4b0; font-size: 0.95rem; line-height: 1.8;">
-        <div style="white-space: nowrap;">六秒与六年（The 6 Seconds vs. The 6 Years）</div>
-        <div style="white-space: nowrap;">车祸与刑事指控（Car Crash & Criminal Charge）</div>
-        <div style="white-space: nowrap;">司法持久战（Judicial War of Attrition）</div>
-        <div style="white-space: nowrap;">移民家庭（Immigrant Family）</div>
-        <div style="white-space: nowrap;">小个体与大系统（The Individual vs. The System）</div>
-    </div>
-</div>
+                        <div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
+                            <div style="color: #5a9acf; font-weight: bold; margin-bottom: 8px;">关键词：</div>
+                            <div style="color: #b8b4b0; font-size: 0.95rem; line-height: 1.8;">
+                                <div style="white-space: nowrap;">六秒与六年（The 6 Seconds vs. The 6 Years）</div>
+                                <div style="white-space: nowrap;">车祸与刑事指控（Car Crash & Criminal Charge）</div>
+                                <div style="white-space: nowrap;">司法持久战（Judicial War of Attrition）</div>
+                                <div style="white-space: nowrap;">移民家庭（Immigrant Family）</div>
+                                <div style="white-space: nowrap;">小个体与大系统（The Individual vs. The System）</div>
+                            </div>
+                        </div>
                         <!-- 创作背景 -->
-<div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">
-  【创作背景】
-</div>
-
-<div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;color: #b8b4b0;">
-  作者为当事人，全程旁听庭审、整理证据、参与案件资料准备。<br>
-  书中技术细节均有法庭文件或第三方报告支撑。<br>
-  为保护隐私，人物化名、日期与部分地点作技术性处理，但事实链完整。
-</div><!-- 版权说明 -->
-<div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">
-  【版权说明】
-</div>
-<div style="font-size: 1rem; line-height: 1.8; margin-bottom: 5px;color: #b8b4b0;">
-  本作品全文著作权归作者所有。<br>
-  欢迎纸质书出版及商务合作。<br>
-  影视改编仅接受完整授权。<br>
-  未经授权，禁止转载、摘编或建立镜像。<br>
-
-  <div style="margin-top: 10px; font-size: 0.9rem; color: #a0a0a0; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 8px;">
-    中国版权登记：国作登字-2026-A-00006464<br>
-    加拿大国际版权登记：1239217
-  </div>
-  
-  <div style="display: flex; align-items: center; white-space: nowrap; margin-top: 2px; line-height: 1.2;">
-    合作请联系：<a href="mailto:author@moonwane.ink" style="color: #e6c68e; text-decoration: none; font-size: 0.95rem; margin-left: 0; outline: none;">author@moonwane.ink →</a>
-  </div>
-</div>
-                
-                        <!-- 底部链接：目录 和 第一章试读 (保留) -->
+                        <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【创作背景】</div>
+                        <div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;color: #b8b4b0;">
+                            作者为当事人，全程旁听庭审、整理证据、参与案件资料准备。<br>书中技术细节均有法庭文件或第三方报告支撑。<br>为保护隐私，人物化名、日期与部分地点作技术性处理，但事实链完整。
+                        </div>
+                        <!-- 版权说明 -->
+                        <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【版权说明】</div>
+                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 5px;color: #b8b4b0;">
+                            本作品全文著作权归作者所有。<br>欢迎纸质书出版及商务合作。<br>影视改编仅接受完整授权。<br>未经授权，禁止转载、摘编或建立镜像。<br>
+                            <div style="margin-top: 10px; font-size: 0.9rem; color: #a0a0a0; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 8px;">
+                                中国版权登记：国作登字-2026-A-00006464<br>加拿大国际版权登记：1239217
+                            </div>
+                            <div style="display: flex; align-items: center; white-space: nowrap; margin-top: 2px; line-height: 1.2;">
+                                合作请联系：<a href="mailto:author@moonwane.ink" style="color: #e6c68e; text-decoration: none; font-size: 0.95rem; margin-left: 0; outline: none;">author@moonwane.ink →</a>
+                            </div>
+                        </div>
+                        <!-- 底部链接：目录 和 第一章试读 -->
                         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 0.85rem;">
                             <a href="#" id="introToChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
                             <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📘 第一章试读</a>
@@ -1566,7 +1496,7 @@
                     </div>
                 </div>
                 
-                <!-- 三幕章节目录 - 卡片网格（替换原表格） -->
+                <!-- 三幕章节目录 - 卡片网格 -->
                 <details class="chapter-drawer" id="chapterContents">
                     <summary aria-expanded="false">
                         <span class="triangle-icon">▶</span>
@@ -1575,13 +1505,12 @@
                     </summary>
                     <div class="chapter-drawer-content" style="max-height: 70vh; overflow-y: auto; padding: 0 32px 20px;">
                         <div style="color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:0 16px;">📚 总章数：18章+番外 · 约15万字</div>
-                                         <div style='color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:8px 16px; background:rgba(40,40,40,0.3); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);'>
-    📖读全文 · 🎧听精彩瞬间 · 🎬看视频片段 · 🔗更多资讯
-    
-    <small style="color:#aaa; display:block; margin:8px 0 0 0; text-align:left;">
-        ↩音频/视频将在新标签页打开，听/看完后关闭标签即可返回本站继续浏览。
-    </small>
-</div>
+                        <div style='color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:8px 16px; background:rgba(40,40,40,0.3); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);'>
+                            📖读全文 · 🎧听精彩瞬间 · 🎬看视频片段 · 🔗更多资讯
+                            <small style="color:#aaa; display:block; margin:8px 0 0 0; text-align:left;">
+                                ↩音频/视频将在新标签页打开，听/看完后关闭标签即可返回本站继续浏览。
+                            </small>
+                        </div>
                         
                         <!-- 卡片网格开始 -->
                         <div class="acts-grid">
@@ -1589,51 +1518,330 @@
                             <div class="act-card">
                                 <span class="act-title">· 崩塌 ·</span>
                                 <span class="act-title-second-line">当日常被制度击穿</span>
-                                                                                                                               <ul class="chapter-list">
-                                    <li><span class='chapter-title'>第1章 六秒与六年的开端</span><span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="1-01" style="font-size:1.2rem !important; background:rgba(50,205,50,0.25) !important; border:2px solid #32CD32 !important; color:#32CD32 !important; cursor:pointer !important; padding:3px 6px !important; border-radius:4px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; min-width:32px !important; font-weight:bold !important; text-shadow:0 0 5px rgba(50,205,50,0.5) !important;" title="读全文">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第2章 碾碎：系统启动的第一声</span><span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="2-01" style="font-size:1.2rem !important; background:rgba(50,205,50,0.25) !important; border:2px solid #32CD32 !important; color:#32CD32 !important; cursor:pointer !important; padding:3px 6px !important; border-radius:4px !important; display:inline-flex !important; align-items:center !important; justify-content:center !important; min-width:32px !important; font-weight:bold !important; text-shadow:0 0 5px rgba(50,205,50,0.5) !important;" title="读全文">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第3章 拔河：资本、人性与保单</span><span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span><span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="4-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="4-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="4-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="4-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第4章（下）两万五千加元，自由价</span><span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="4-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="4-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="4-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="4-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span><span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="5-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="5-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="5-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="5-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span><span class='chapter-subtitle'>手铐只是换了一种形态</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="5-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="5-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="5-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="5-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span><span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="6-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="6-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="6-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="6-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span><span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="7-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="7-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="7-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="7-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span><span class='chapter-subtitle'>我们不需要被同情</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="7-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" data-chapter="7-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" data-chapter="7-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="7-2-01" style=""font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
+                                <ul class="chapter-list">
+                                    <!-- 第1章 -->
+                                    <li>
+                                        <span class='chapter-title'>第1章 六秒与六年的开端</span>
+                                        <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第2章 -->
+                                    <li>
+                                        <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
+                                        <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第3章 -->
+                                    <li>
+                                        <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
+                                        <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="3-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="3-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="3-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="3-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第4章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
+                                        <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="4-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="4-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="4-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="4-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第4章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
+                                        <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="4-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="4-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="4-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="4-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第5章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
+                                        <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="5-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="5-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="5-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="5-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第5章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
+                                        <span class='chapter-subtitle'>手铐只是换了一种形态</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="5-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="5-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="5-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="5-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第6章 -->
+                                    <li>
+                                        <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
+                                        <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="6-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="6-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="6-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="6-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第7章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
+                                        <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="7-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="7-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="7-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="7-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第7章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
+                                        <span class='chapter-subtitle'>我们不需要被同情</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="7-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="7-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="7-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="7-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- 第二幕 -->
                             <div class="act-card">
                                 <span class="act-title">· 抗争 ·</span>
                                 <span class="act-title-second-line">数据、轮胎与系统共同失真</span>
-                                                               <ul class="chapter-list">
-                                    <li><span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span><span class='chapter-subtitle'>数据如何被误读成罪</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="8-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第8章（上）正在准备中，敬请期待。'); return false;" data-chapter="8-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第8章（上）正在准备中，敬请期待。'); return false;" data-chapter="8-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="8-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span><span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="8-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第8章（下）正在准备中，敬请期待。'); return false;" data-chapter="8-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第8章（下）正在准备中，敬请期待。'); return false;" data-chapter="8-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="8-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第9章（上）轮胎不会说谎</span><span class='chapter-subtitle'>物证与失察的双重真相</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="9-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第9章（上）正在准备中，敬请期待。'); return false;" data-chapter="9-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第9章（上）正在准备中，敬请期待。'); return false;" data-chapter="9-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="9-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第9章（下）轮胎不会说谎</span><span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="9-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第9章（下）正在准备中，敬请期待。'); return false;" data-chapter="9-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第9章（下）正在准备中，敬请期待。'); return false;" data-chapter="9-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="9-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span><span class='chapter-subtitle'>当物证湮灭，数据开口</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="10-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第10章（上）正在准备中，敬请期待。'); return false;" data-chapter="10-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第10章（上）正在准备中，敬请期待。'); return false;" data-chapter="10-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="10-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span><span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="10-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第10章（下）正在准备中，敬请期待。'); return false;" data-chapter="10-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第10章（下）正在准备中，敬请期待。'); return false;" data-chapter="10-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="10-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第11章 临阵换帅</span><span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="11-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第11章正在准备中，敬请期待。'); return false;" data-chapter="11-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第11章正在准备中，敬请期待。'); return false;" data-chapter="11-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="11-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span><span class='chapter-subtitle'>闭环如何形成真相</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="12-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第12章（上）正在准备中，敬请期待。'); return false;" data-chapter="12-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第12章（上）正在准备中，敬请期待。'); return false;" data-chapter="12-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="12-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span><span class='chapter-subtitle'>一句"没必要"，否决一个家庭的命运</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="12-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第12章（中）正在准备中，敬请期待。'); return false;" data-chapter="12-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第12章（中）正在准备中，敬请期待。'); return false;" data-chapter="12-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="12-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span><span class='chapter-subtitle'>五个证人，五个平行世界</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="12-3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第12章（下）正在准备中，敬请期待。'); return false;" data-chapter="12-3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第12章（下）正在准备中，敬请期待。'); return false;" data-chapter="12-3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="12-3-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
+                                <ul class="chapter-list">
+                                    <!-- 第8章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
+                                        <span class='chapter-subtitle'>数据如何被误读成罪</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="8-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="8-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="8-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="8-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第8章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
+                                        <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="8-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="8-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="8-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="8-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第9章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
+                                        <span class='chapter-subtitle'>物证与失察的双重真相</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="9-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="9-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="9-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="9-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第9章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
+                                        <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="9-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="9-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="9-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="9-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第10章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
+                                        <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="10-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="10-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="10-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="10-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第10章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
+                                        <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="10-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="10-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="10-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="10-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第11章 -->
+                                    <li>
+                                        <span class='chapter-title'>第11章 临阵换帅</span>
+                                        <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="11-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="11-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="11-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="11-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
+                                        <span class='chapter-subtitle'>闭环如何形成真相</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（中） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
+                                        <span class='chapter-subtitle'>一句"没必要"，否决一个家庭的命运</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
+                                        <span class='chapter-subtitle'>五个证人，五个平行世界</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-3-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-3-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-3-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-3-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- 第三幕 -->
                             <div class="act-card">
                                 <span class="act-title">· 重启 ·</span>
                                 <span class="act-title-second-line">在制度的余震中重建家园</span>
-                                                                <ul class="chapter-list">
-                                    <li><span class='chapter-title'>第13章 头狼离场：信任出现真空</span><span class='chapter-subtitle'>律师，在开庭前消失了</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="13-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第13章正在准备中，敬请期待。'); return false;" data-chapter="13-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第13章正在准备中，敬请期待。'); return false;" data-chapter="13-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="13-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span><span class='chapter-subtitle'>从旁观到发声，只有一小步</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="14-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第14章正在准备中，敬请期待。'); return false;" data-chapter="14-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第14章正在准备中，敬请期待。'); return false;" data-chapter="14-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="14-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第15章 家的天平</span><span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="15-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第15章正在准备中，敬请期待。'); return false;" data-chapter="15-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第15章正在准备中，敬请期待。'); return false;" data-chapter="15-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="15-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span><span class='chapter-subtitle'>六年，换一张交通罚单</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="16-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第16章正在准备中，敬请期待。'); return false;" data-chapter="16-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第16章正在准备中，敬请期待。'); return false;" data-chapter="16-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="16-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第17章（上）盲眼钟表匠</span><span class='chapter-subtitle'>当司法程序忘记为何而转动</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="17-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第17章（上）正在准备中，敬请期待。'); return false;" data-chapter="17-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第17章（上）正在准备中，敬请期待。'); return false;" data-chapter="17-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="17-1-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第17章（下）后视镜里的六年</span><span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="17-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第17章（下）正在准备中，敬请期待。'); return false;" data-chapter="17-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第17章（下）正在准备中，敬请期待。'); return false;" data-chapter="17-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="17-2-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span><span class='chapter-subtitle'>车轮驶向未被改写的明天</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="18-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('第18章正在准备中，敬请期待。'); return false;" data-chapter="18-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('第18章正在准备中，敬请期待。'); return false;" data-chapter="18-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="18-01" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
-                                    <li><span class='chapter-title'>番外篇 案子的三个谜</span><span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span><div class='chapter-actions'><a class="pdf-trigger read-icon" href="#" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="读全文 (准备中)">📖</a><a class="pdf-trigger audio-icon" href="#" onclick="alert('番外篇正在准备中，敬请期待。'); return false;" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="听精彩瞬间 (准备中)">🎧</a><a class="pdf-trigger video-icon" href="#" onclick="alert('番外篇正在准备中，敬请期待。'); return false;" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="看视频片段 (准备中)">🎬</a><a class="external-link" href="#" data-chapter="extra" style="font-size:1.2rem; background:none; border:none; cursor:pointer; padding:3px 6px; border-radius:4px; display:inline-flex; align-items:center; justify-content:center; min-width:32px; color:#888; background:rgba(128,128,128,0.1); border:1px solid rgba(128,128,128,0.2);" title="更多资讯 (准备中)">🔗</a></div></li>
+                                <ul class="chapter-list">
+                                    <!-- 第13章 -->
+                                    <li>
+                                        <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
+                                        <span class='chapter-subtitle'>律师，在开庭前消失了</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="13-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="13-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="13-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="13-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第14章 -->
+                                    <li>
+                                        <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
+                                        <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="14-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="14-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="14-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="14-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第15章 -->
+                                    <li>
+                                        <span class='chapter-title'>第15章 家的天平</span>
+                                        <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="15-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="15-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="15-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="15-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第16章 -->
+                                    <li>
+                                        <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
+                                        <span class='chapter-subtitle'>六年，换一张交通罚单</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="16-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="16-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="16-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="16-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第17章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
+                                        <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="17-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="17-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="17-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="17-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第17章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第17章（下）后视镜里的六年</span>
+                                        <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="17-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="17-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="17-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="17-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第18章 -->
+                                    <li>
+                                        <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
+                                        <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="18-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="18-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="18-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="18-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 番外篇 -->
+                                    <li>
+                                        <span class='chapter-title'>番外篇 案子的三个谜</span>
+                                        <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="extra" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="extra" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="extra" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="extra" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
                                 </ul>
-
                             </div>
                         </div>
                         <!-- 卡片网格结束 -->
@@ -1672,25 +1880,25 @@
                                                 <td style="color: #e6c68e;">01_ 手机后台数据</td>
                                                 <td>• 电信日志（含 17:36:09–15 后台心跳数据、信令隧道 #777 重连记录）<br>• 125 秒时间差与距离计算<br>• 《CFI 法证报告》</td>
                                                 <td>第8章（上/下）《定罪的六秒》<br>第12章（上）《盲转齿轮》<br>第12章（中）《锁定靶心》</td>
-                                                <td><button class="pdf-trigger" data-file-id="1ld-NzjYo9EcfSUDge7MbQBv8qCYNErXV" data-file-name="01_手机后台数据.pdf" data-chapter="8">📄</button></td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="1" title="稍后统一开放">📄</a></td>
                                             </tr>
                                             <tr data-search="02_ 轮胎胎压 侧壁 撕裂 爆胎 刺穿 第9章">
                                                 <td style="color: #e6c68e;">02_ 轮胎胎压与侧壁撕裂</td>
                                                 <td>• 车祸次日实测 65 psi 胎压<br>• 侧壁爆炸性撕裂特征<br>• "踏板戳穿说"的伪证分析<br>• 现场路面拖痕逻辑</td>
                                                 <td>第9章（上/下）《轮胎不会说谎》<br>第12章（上/中）</td>
-                                                <td><button class="pdf-trigger" data-file-id="1e2IinQvKAveKlh943_VjYh0NP1eP-5BA" data-file-name="02_轮胎胎压与侧壁撕裂.pdf" data-chapter="9">📄</button></td>
+                                               <td><a href="#" class="pdf-trigger disabled" data-evidence-id="2" title="稍后统一开放">📄</a></td>
                                             </tr>
                                             <tr data-search="03_ 黑匣子 CDR 行车记录仪 动力学 第10章">
                                                 <td style="color: #e6c68e;">03_ 黑匣子（CDR）与行车记录仪</td>
                                                 <td>• CDR 原始数据（轮速、油门、方向角、刹车）<br>• 行车记录仪慢速截图与 0.167 秒黑烟计算<br>• 高压应激下的人体反应极限<br>• 美国佛州类似案例</td>
                                                 <td>第10章（上/下）《穿越时空，剥茧自证》</td>
-                                                <td><button class="pdf-trigger" data-file-id="1coKKxg3kdJUVzgX00v3E3V_sOZzSmkfR" data-file-name="03_黑匣子与行车记录仪.pdf" data-chapter="10">📄</button></td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="3" title="稍后统一开放">📄</a></td>
                                             </tr>
                                             <tr data-search="04_ 警方 证据链 裁撤 封印 第12章">
                                                 <td style="color: #e6c68e;">04_ 警方的证据链</td>
                                                 <td>• 证据链细节与时间线<br>• 选择性裁撤的分析</td>
                                                 <td>第12章（上）《盲转齿轮》<br>第12章（中）《锁定靶心》<br>第12章（下）《失焦的探照灯》</td>
-                                                <td><button class="pdf-trigger" data-file-id="14RHWr5mhla9X0eJ6xMTcxbmCJY2REs4y" data-file-name="04_警方证据链.pdf" data-chapter="12">📄</button></td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="4" title="稍后统一开放">📄</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1737,32 +1945,32 @@
     </div>
     
     <section class="poetry-section">
-    <div class="poetry">
-        <div class="poetry-english">Ink for every phase of the moon.</div>
-        <div class="poetry-chinese">月盈月缺，以墨为记</div>
-    </div>
-    <footer>
-        <div class="contact-email">
-            <a href="mailto:author@moonwane.ink">
-                <i class="fas fa-envelope envelope-icon"></i>
-                author@moonwane.ink
-                <span class="email-arrow">→</span>
-            </a>
+        <div class="poetry">
+            <div class="poetry-english">Ink for every phase of the moon.</div>
+            <div class="poetry-chinese">月盈月缺，以墨为记</div>
         </div>
-        <div class="copyright">
-            © 2025 墨染月光 · MoonWane.Ink
-        </div>
-        <div class="book-info">
-            《六秒钉六年》（Six Seconds, Six Years） | 中国版权保护登记号：国作登字-2026-A-00006464 | 加拿大国际版权登记：1239217
-        </div>
-        <div style="margin-top: 20px;">
-            <a href="legal-disclaimer.html" class="legal-link">
-                <i class="fas fa-balance-scale" style="margin-right: 5px;"></i>
-                法律免责声明 ｜ Legal Disclaimer
-            </a>
-        </div>
-    </footer>
-</section>
+        <footer>
+            <div class="contact-email">
+                <a href="mailto:author@moonwane.ink">
+                    <i class="fas fa-envelope envelope-icon"></i>
+                    author@moonwane.ink
+                    <span class="email-arrow">→</span>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2025 墨染月光 · MoonWane.Ink
+            </div>
+            <div class="book-info">
+                《六秒钉六年》（Six Seconds, Six Years） | 中国版权保护登记号：国作登字-2026-A-00006464 | 加拿大国际版权登记：1239217
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="legal-disclaimer.html" class="legal-link">
+                    <i class="fas fa-balance-scale" style="margin-right: 5px;"></i>
+                    法律免责声明 ｜ Legal Disclaimer
+                </a>
+            </div>
+        </footer>
+    </section>
 
     <!-- 月亮动画覆盖层 -->
     <div class="moon-overlay" id="moonOverlay">
@@ -1827,62 +2035,44 @@
         let currentPdfFileId = null;
         let currentPdfLoaded = false;
         
-        // 章节编号显示名称映射
+        // 章节编号显示名称映射（扩展以支持分章）
         const chapterDisplayMap = {
-    '1': '1',
-    '1-01': '1',        // 新增
-    '2': '2',
-    '2-01': '2',        // 新增
-    '3': '3',
-    '3-01': '3',        // 新增
-    '4-01': '4（上）',
-    '4-02': '4（下）',
-    '5-01': '5（上）',
-    '5-02': '5（下）',
-    '6': '6',
-    '6-01': '6',        // 新增
-    '7-01': '7（上）',
-    '7-02': '7（下）',
-    '8-01': '8（上）',
-    '8-02': '8（下）',
-    '9-01': '9（上）',
-    '9-02': '9（下）',
-    '10-01': '10（上）',
-    '10-02': '10（下）',
-    '11': '11',
-    '11-01': '11',      // 新增
-    '12-01': '12（上）',
-    '12-02': '12（中）',
-    '12-03': '12（下）',
-    '13': '13',
-    '13-01': '13',      // 新增
-    '14': '14',
-    '14-01': '14',      // 新增
-    '15': '15',
-    '15-01': '15',      // 新增
-    '16': '16',
-    '16-01': '16',      // 新增
-    '17-01': '17（上）',
-    '17-02': '17（下）',
-    '18': '18',
-    '18-01': '18',      // 新增
-    'extra': '番外'
-};
+            '1-01': '第1章',
+            '2-01': '第2章',
+            '3-01': '第3章',
+            '4-1-01': '第4章（上）',
+            '4-2-01': '第4章（下）',
+            '5-1-01': '第5章（上）',
+            '5-2-01': '第5章（下）',
+            '6-01': '第6章',
+            '7-1-01': '第7章（上）',
+            '7-2-01': '第7章（下）',
+            '8-1-01': '第8章（上）',
+            '8-2-01': '第8章（下）',
+            '9-1-01': '第9章（上）',
+            '9-2-01': '第9章（下）',
+            '10-1-01': '第10章（上）',
+            '10-2-01': '第10章（下）',
+            '11-01': '第11章',
+            '12-1-01': '第12章（上）',
+            '12-2-01': '第12章（中）',
+            '12-3-01': '第12章（下）',
+            '13-01': '第13章',
+            '14-01': '第14章',
+            '15-01': '第15章',
+            '16-01': '第16章',
+            '17-1-01': '第17章（上）',
+            '17-2-01': '第17章（下）',
+            '18-01': '第18章',
+            'extra': '番外'
+        };
         
         function getChapterDisplayNumber(chapterId) {
             return chapterDisplayMap[chapterId] || chapterId;
         }
         
         document.addEventListener('DOMContentLoaded', function() {
-// ===== 新增：捕获阶段拦截读全文按钮 =====
-// ===== 新增：捕获阶段拦截读全文按钮 =====
-document.addEventListener('click', function(e) {
-    if (e.target.closest('.pdf-trigger.read-icon')) {
-        e.preventDefault();  // 只阻止默认跳转
-        // 不要加 e.stopPropagation()！
-    }
-}, { capture: true });           
-           const wantToReadBtn = document.getElementById('wantToReadBtn');
+            const wantToReadBtn = document.getElementById('wantToReadBtn');
             const moonOverlay = document.getElementById('moonOverlay');
             const menuToggle = document.getElementById('menuToggle');
             const menuDropdown = document.getElementById('menuDropdown');
@@ -1994,38 +2184,19 @@ document.addEventListener('click', function(e) {
                 }
             }
             
-            // PDF按钮点击事件
-           function handlePdfClick(e) {
-    const pdfTrigger = e.target.classList.contains('pdf-trigger') ? 
-        e.target : e.target.closest('.pdf-trigger');
-    if (!pdfTrigger) return;
-    
-    // 新增：如果是读全文按钮，交给统一监听器处理
-    if (pdfTrigger.classList.contains('read-icon')) {
-        return; // 让事件继续冒泡到统一监听器
-    }
-    
-    const fileId = pdfTrigger.getAttribute('data-file-id');
-    const fileName = pdfTrigger.getAttribute('data-file-name') || '证据文件';
-    const chapter = pdfTrigger.getAttribute('data-chapter');
-    
-    if (!fileId || fileId.trim() === '') {
-        if (chapter) {
-            const displayNum = getChapterDisplayNumber(chapter);
-            alert(`第${displayNum}章正在准备中，敬请期待。`);
-        } else {
-            alert(`"${fileName}"正在准备中，敬请期待！`);
-        }
-        return;
-    }
-    showPdfModal(fileId, fileName);
-    e.preventDefault();
-    e.stopPropagation();
-}
+            // PDF按钮点击事件（处理证据库）
+            function handlePdfClick(e) {
+                const pdfTrigger = e.target.closest('.pdf-trigger');
+                if (!pdfTrigger) return;
+                // 只处理证据库按钮（有 data-file-id）
+                const fileId = pdfTrigger.getAttribute('data-file-id');
+                if (!fileId) return; // 章节按钮无 data-file-id，忽略
+                
+                e.preventDefault();
+                showPdfModal(fileId, pdfTrigger.getAttribute('data-file-name') || '证据文件');
+            }
             
-            document.addEventListener('click', function(e) {
-                handlePdfClick(e);
-            });
+            document.addEventListener('click', handlePdfClick);
             
             pdfClose.addEventListener('click', closePdfModal);
             pdfModal.addEventListener('click', function(e) {
@@ -2037,7 +2208,54 @@ document.addEventListener('click', function(e) {
                 if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
                     closePdfModal();
                 }
-            });
+            });// ========== 证据库按钮动态控制（基于 evidence.json） ==========
+fetch('/data/evidence.json')
+    .then(response => response.json())
+    .then(evidenceData => {
+        // 构建证据链接映射表：evidenceId -> pdfLink
+        const evidenceMap = {};
+        evidenceData.evidences.forEach(item => {
+            evidenceMap[item.id] = item.pdfLink || '';
+        });
+
+        // 遍历所有证据按钮
+        document.querySelectorAll('[data-evidence-id]').forEach(btn => {
+            const evidenceId = btn.getAttribute('data-evidence-id');
+            const link = evidenceMap[evidenceId];
+
+            if (link && link.trim() !== '') {
+                // 绿色：链接非空
+                btn.classList.remove('disabled', 'status-preparing');
+                btn.classList.add('status-ready');
+                btn.href = link;
+                btn.removeAttribute('title');
+                btn.onclick = null; // 移除任何旧点击事件
+            } else {
+                // 灰色：链接为空
+                btn.classList.remove('status-ready');
+                btn.classList.add('disabled', 'status-preparing');
+                btn.href = 'javascript:void(0)';
+                btn.title = '稍后统一开放';
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    alert('在全书完结后统一开放，敬请期待。');
+                };
+            }
+        });
+    })
+    .catch(error => {
+        console.error('加载证据状态失败，使用默认灰色', error);
+        // 降级：所有证据按钮保持灰色
+        document.querySelectorAll('[data-evidence-id]').forEach(btn => {
+            btn.classList.add('disabled', 'status-preparing');
+            btn.href = 'javascript:void(0)';
+            btn.title = '稍后统一开放';
+            btn.onclick = function(e) {
+                e.preventDefault();
+                alert('在全书完结后统一开放，敬请期待。');
+            };
+        });
+    });
             
             // "想看"按钮功能
             let hasTrackedClick = false;
@@ -2121,6 +2339,14 @@ document.addEventListener('click', function(e) {
                 e.preventDefault();
                 return false;
             });
+            document.addEventListener('copy', function(e) {
+                const selectedText = window.getSelection().toString().trim();
+                const maxLength = 50;
+                if (selectedText.length > maxLength) {
+                    e.preventDefault();
+                    alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+                }
+            });
             
             // 证据库搜索功能
             if (evidenceSearch && searchCount) {
@@ -2140,7 +2366,7 @@ document.addEventListener('click', function(e) {
                 updateSearchResults();
             }
             
-            // ========== 新增：多链接数据结构及处理函数 ==========
+            // ========== 多链接数据结构及处理函数（保持不变） ==========
             window.chapterLinksData = {};
             
             function normalizeLinks(linksArray, singleLink, defaultTitle) {
@@ -2151,16 +2377,6 @@ document.addEventListener('click', function(e) {
                     return [{ title: defaultTitle, url: singleLink }];
                 }
                 return [];
-            }
-            
-            function handleLinkClick(links, event) {
-                if (links.length === 0) {
-                    alert('此资源正在准备中，敬请期待！');
-                } else if (links.length === 1) {
-                    window.open(links[0].url, '_blank');
-                } else {
-                    showLinkMenu(event, links);
-                }
             }
             
             function showLinkMenu(event, links) {
@@ -2274,58 +2490,149 @@ document.addEventListener('click', function(e) {
                 }
             }
             
-            // ========== 修改 fetchChapters 函数，支持多链接数据 ==========
-           function fetchChapters() {
-    fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
-        .then(response => response.json())
-        .then(data => {
-            data.acts.forEach(act => {
-                act.chapters.forEach(chapter => {
-                    // 将 externalreadLink 映射到 readLink
-                    if (chapter.externalreadLink) {
-                        chapter.readLink = chapter.externalreadLink;
-                    }
-                    const chapterId = chapter.chapterNumber;
-                    window.chapterLinksData[chapterId] = {
-                        read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
-                        audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
-                        video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
-                        external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
-                    };
-                });
-            });
-            // 数据加载完成后，更新按钮样式（如果有 updateChapterIcons 则调用）
-            if (typeof updateChapterIcons === 'function') {
-                updateChapterIcons();
-            }
-        })
-        .catch(error => {
-            // 备用 CDN 同样处理
-            fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+            // ========== 章节按钮动态控制（基于 button-status.json） ==========
+            
+            // 定义章节顺序（只包含第一节）
+            const chapterOrder = [
+                '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
+                '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
+                '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
+                '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
+            ];
+            
+            // 加载按钮状态 JSON
+            fetch('/data/button-status.json')
                 .then(response => response.json())
                 .then(data => {
-                    data.acts.forEach(act => {
-                        act.chapters.forEach(chapter => {
-                            if (chapter.externalreadLink) {
-                                chapter.readLink = chapter.externalreadLink;
+                    // 构建查找表：chapterId -> { readLink, audioLink, videoLink, externalLink }
+                    const statusMap = {};
+                    data.chapters.forEach(item => {
+                        statusMap[item.chapterId] = {
+                            read: item.readLink || '',
+                            audio: item.audioLink || '',
+                            video: item.videoLink || '',
+                            external: item.externalLink || ''
+                        };
+                    });
+                    
+                    // 对四种按钮类型分别处理
+                    const types = ['read', 'audio', 'video', 'external'];
+                    types.forEach(type => {
+                        let lastGreenIndex = -1; // 上一个绿色按钮在 chapterOrder 中的索引
+                        chapterOrder.forEach((chapterId, index) => {
+                            const link = statusMap[chapterId]?.[type] || '';
+                            // 查找页面上所有对应章节和类型的按钮
+                            const buttons = document.querySelectorAll(`[data-chapter="${chapterId}"][data-type="${type}"]`);
+                            if (buttons.length === 0) return;
+                            
+                            if (link) {
+                                // 绿色：链接非空
+                                buttons.forEach(btn => {
+                                    btn.classList.remove('status-coming', 'status-preparing');
+                                    btn.classList.add('status-ready');
+                                    btn.href = link;
+                                    btn.removeAttribute('title');
+                                    // 移除之前可能绑定的点击事件（通过克隆替换来清除旧监听，或者直接覆盖）
+                                    // 简单做法：先移除所有点击监听，再添加新的
+                                    btn.onclick = null; // 移除任何 onclick
+                                    // 添加新点击：直接跳转
+                                    btn.addEventListener('click', function(e) {
+                                        // 如果链接有效，允许跳转
+                                    }, { once: true }); // 注意：多次调用会添加多个监听，但这里我们只设置一次
+                                    // 更安全：使用新监听，但不阻止默认
+                                });
+                                lastGreenIndex = index;
+                            } else {
+                                // 链接为空，判断是黄色还是灰色
+                                if (lastGreenIndex !== -1) {
+                                    // 存在上一个绿色 → 黄色
+                                    buttons.forEach(btn => {
+                                        btn.classList.remove('status-ready', 'status-preparing');
+                                        btn.classList.add('status-coming');
+                                        btn.href = 'javascript:void(0)';
+                                        btn.title = '下周上线';
+                                        btn.onclick = null;
+                                        btn.addEventListener('click', function(e) {
+                                            e.preventDefault();
+                                            alert(`${getChapterDisplayNumber(chapterId)}下周上线。`);
+                                        });
+                                    });
+                                } else {
+                                    // 无上一个绿色 → 灰色
+                                    buttons.forEach(btn => {
+                                        btn.classList.remove('status-ready', 'status-coming');
+                                        btn.classList.add('status-preparing');
+                                        btn.href = 'javascript:void(0)';
+                                        btn.title = '准备中';
+                                        btn.onclick = null;
+                                        btn.addEventListener('click', function(e) {
+                                            e.preventDefault();
+                                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
+                                        });
+                                    });
+                                }
                             }
-                            const chapterId = chapter.chapterNumber;
-                            window.chapterLinksData[chapterId] = {
-                                read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
-                                audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
-                                video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
-                                external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
-                            };
                         });
                     });
-                    if (typeof updateChapterIcons === 'function') {
-                        updateChapterIcons();
-                    }
                 })
-                .catch(() => {});
-        });
-}
-
+                .catch(error => {
+                    console.error('加载按钮状态失败，使用默认灰色', error);
+                    // 降级：所有按钮设为灰色
+                    document.querySelectorAll('[data-chapter][data-type]').forEach(btn => {
+                        btn.classList.add('status-preparing');
+                        btn.href = 'javascript:void(0)';
+                        btn.title = '准备中';
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const chapterId = btn.getAttribute('data-chapter');
+                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
+                        });
+                    });
+                });
+            
+            // ========== 多链接菜单数据获取 ==========
+            function fetchChapters() {
+                fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.acts.forEach(act => {
+                            act.chapters.forEach(chapter => {
+                                if (chapter.externalreadLink) {
+                                    chapter.readLink = chapter.externalreadLink;
+                                }
+                                const chapterId = chapter.chapterNumber;
+                                window.chapterLinksData[chapterId] = {
+                                    read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                    audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                    video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                    external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                };
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+                            .then(response => response.json())
+                            .then(data => {
+                                data.acts.forEach(act => {
+                                    act.chapters.forEach(chapter => {
+                                        if (chapter.externalreadLink) {
+                                            chapter.readLink = chapter.externalreadLink;
+                                        }
+                                        const chapterId = chapter.chapterNumber;
+                                        window.chapterLinksData[chapterId] = {
+                                            read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                            audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                            video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                            external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                        };
+                                    });
+                                });
+                            })
+                            .catch(() => {});
+                    });
+            }
+            
             function initNonCritical() {
                 fetchChapters();
             }
@@ -2336,52 +2643,41 @@ document.addEventListener('click', function(e) {
                 setTimeout(initNonCritical, 100);
             }
             
-                      // GitHub链接点击事件
-            document.querySelectorAll('.external-link[data-github]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const chapterId = this.getAttribute('data-chapter');
-                    const githubLink = this.getAttribute('data-github');
-                    
-                    if (githubLink && githubLink.trim() !== '') {
-                        window.open(githubLink, '_blank');
-                    } else {
-                        alert(`第${chapterId}章正在准备中，敬请期待！`);
-                    }
-                });
+            // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('[data-chapter]');
+                if (!target) return;
+                // 只处理没有 data-type 的元素（多链接菜单）
+                if (target.hasAttribute('data-type')) return;
+                
+                e.preventDefault();
+                
+                const chapterId = target.getAttribute('data-chapter');
+                // 根据类名推断类型（兼容旧代码）
+                let type = null;
+                if (target.classList.contains('read-icon')) type = 'read';
+                else if (target.classList.contains('audio-icon')) type = 'audio';
+                else if (target.classList.contains('video-icon')) type = 'video';
+                else if (target.classList.contains('external-link')) type = 'external';
+                if (!type) return;
+                
+                const links = window.chapterLinksData?.[chapterId]?.[type];
+                
+                if (!links || links.length === 0) {
+                    const displayNum = getChapterDisplayNumber(chapterId);
+                    alert(`第${displayNum}章正在准备中，敬请期待。`);
+                    return;
+                }
+                
+                if (links.length === 1) {
+                    window.open(links[0].url, '_blank');
+                } else {
+                    showLinkMenu(e, links);
+                }
             });
             
-          // ===== 统一监听 data-chapter 按钮的代码 =====
-document.addEventListener('click', function(e) {
-    const target = e.target.closest('[data-chapter]');
-    if (!target) return;
-    
-    // 立即阻止默认行为和冒泡
-    e.preventDefault();
-      
-    const chapterId = target.getAttribute('data-chapter');
-    const type = target.classList.contains('read-icon') ? 'read' :
-                 target.classList.contains('audio-icon') ? 'audio' :
-                 target.classList.contains('video-icon') ? 'video' :
-                 target.classList.contains('external-link') ? 'external' : null;
-    if (!type) return;
-    
-    const links = window.chapterLinksData?.[chapterId]?.[type];
-    
-    if (!links || links.length === 0) {
-        const displayNum = getChapterDisplayNumber(chapterId);
-        alert(`第${displayNum}章正在准备中，敬请期待。`);
-        return;
-    }
-    
-    if (links.length === 1) {
-        window.open(links[0].url, '_blank');
-    } else {
-        showLinkMenu(e, links);
-    }
-});
-            
-        });  // <--- DOMContentLoaded 结束括号
+        });  // DOMContentLoaded 结束
+        
         // 页面加载时检查URL hash
         window.addEventListener('load', function() {
             if (window.location.hash === '#open-chapters') {
@@ -2461,6 +2757,7 @@ document.addEventListener('click', function(e) {
     </script>
 </body>
 </html>
+
 
 
 
