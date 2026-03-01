@@ -777,38 +777,30 @@
     padding: 2px 5px !important;
     margin-left: 3px !important;
 }
-       /* 状态类：绿色（就绪） */
-    .status-ready {
-        background: rgba(50,205,50,0.25) !important;
-        border: 2px solid #32CD32 !important;
-        color: #32CD32 !important;
-    }
-    
-    /* 状态类：黄色（下周上线） */
-    .status-coming {
-        background: rgba(244,161,0,0.25) !important;
-        border: 2px solid #F4A100 !important;
-        color: #F4A100 !important;
-    }
-    
-    /* 状态类：灰色（准备中）- 复用原有灰色样式 */
-    .status-preparing {
-        color: #888 !important;
-        background: rgba(128,128,128,0.1) !important;
-        border: 1px solid rgba(128,128,128,0.2) !important;
-        cursor: not-allowed !important;
-    }
-    
-    .read-icon:hover, .audio-icon:hover, .video-icon:hover, .external-link:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    
-    .external-link {
-        font-size: 0.9rem;
-        padding: 4px 6px;
-        margin-left: 4px;
-    }
+
+/* 邮箱链接紧凑样式（与章节按钮完全一致，解决 author@moonwane.ink → 浮块过大问题） */
+#introDrawer a[href^="mailto:"] {
+    font-size: 0.95rem !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    padding: 2px 5px !important;
+    margin: 0 2px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(230, 198, 142, 0.1) !important;
+    border: 1px solid rgba(230, 198, 142, 0.3) !important;
+    color: #e6c68e !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+#introDrawer a[href^="mailto:"]:hover {
+    background: rgba(230, 198, 142, 0.2) !important;
+    transform: translateY(-1px) !important;
+}
     
     .act-title {
         font-size: 1.2rem;
@@ -2767,6 +2759,7 @@ fetch(statusUrl)
     </script>
 </body>
 </html>
+
 
 
 
