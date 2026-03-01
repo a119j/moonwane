@@ -702,135 +702,139 @@ body.dark-mode .theme-toggle i {
     <button id="back-to-top" aria-label="返回顶部">↑</button>
 
     <script>
-    (function() {
-        // 防盗措施：禁用右键菜单和拖拽
-        document.addEventListener('contextmenu', function(e) {
+(function() {
+    // 复制保护
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    document.addEventListener('copy', function(e) {
+        const selectedText = window.getSelection().toString().trim();
+        const maxLength = 50;
+        if (selectedText.length > maxLength) {
             e.preventDefault();
-            return false;
-        });
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // 限制复制长度（50字符）
-        document.addEventListener('copy', function(e) {
-            const selectedText = window.getSelection().toString().trim();
-            const maxLength = 50;
-            if (selectedText.length > maxLength) {
-                e.preventDefault();
-                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
-            }
-        });
-
-        // 阅读进度条
-        const progressBar = document.getElementById('reading-progress');
-        const updateProgress = () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressBar.style.width = progress + '%';
-        };
-        window.addEventListener('scroll', updateProgress);
-        window.addEventListener('resize', updateProgress);
-        updateProgress();
-
-        // 返回顶部按钮
-        const backToTopBtn = document.getElementById('back-to-top');
-        const toggleBackToTop = () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        };
-        window.addEventListener('scroll', toggleBackToTop);
-        toggleBackToTop();
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ========== 深色模式手动切换（支持多按钮） ==========
-        const themeToggles = document.querySelectorAll('.theme-toggle');
-        const body = document.body;
-
-        // 更新所有按钮图标
-        function updateThemeIcons(isDark) {
-    themeToggles.forEach(btn => {
-        const icon = btn.querySelector('i');
-        if (icon) {
-            icon.className = 'fas fa-lightbulb';   // 固定为实心灯泡
+            alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
         }
     });
-}
 
-        // 初始化主题
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
+    // 阅读进度条
+    const progressBar = document.getElementById('reading-progress');
+    const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
+    };
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    // 返回顶部按钮
+    const backToTopBtn = document.getElementById('back-to-top');
+    const toggleBackToTop = () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    };
+    window.addEventListener('scroll', toggleBackToTop);
+    toggleBackToTop();
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ========== 深色模式手动切换（支持多按钮） ==========
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    const body = document.body;
+
+    function updateThemeIcons(isDark) {
+        themeToggles.forEach(btn => {
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-lightbulb';
+            }
+        });
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        updateThemeIcons(true);
+    } else if (savedTheme === 'light') {
+        body.classList.remove('dark-mode');
+        updateThemeIcons(false);
+    } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
             body.classList.add('dark-mode');
             updateThemeIcons(true);
-        } else if (savedTheme === 'light') {
+        } else {
             body.classList.remove('dark-mode');
             updateThemeIcons(false);
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                body.classList.add('dark-mode');
-                updateThemeIcons(true);
-            } else {
+        }
+    }
+
+    themeToggles.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (body.classList.contains('dark-mode')) {
                 body.classList.remove('dark-mode');
                 updateThemeIcons(false);
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+                localStorage.setItem('theme', 'dark');
             }
-        }
-
-        // 为所有切换按钮绑定点击事件
-        themeToggles.forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (body.classList.contains('dark-mode')) {
-                    body.classList.remove('dark-mode');
-                    updateThemeIcons(false);
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-mode');
-                    updateThemeIcons(true);
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
         });
-                          
-    })();
-    </script>
-<script>
-// 根据 button-status.json 控制“下一章”链接
-fetch('/data/button-status.json')
-    .then(response => response.json())
-    .then(data => {
-        // 查找第二章的状态
-        const chapter2 = data.chapters.find(c => c.chapterId === '2-01');
-        // 获取“下一章”链接（使用精确的 href 匹配）
-        const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-2-01.html"]');
-        if (!nextLink) return;
+    });
 
-        if (chapter2 && chapter2.readLink) {
-            // 已开放：确保链接正确（硬编码本来就是对的，无需修改）
-            console.log('第二章已开放，链接保持正常');
-        } else {
-            // 未开放：禁用链接
-            nextLink.href = 'javascript:void(0)';
-            nextLink.style.pointerEvents = 'none';
-            nextLink.style.opacity = '0.5';
-            nextLink.style.cursor = 'default';
-            nextLink.title = '第二章准备中，敬请期待';
-            nextLink.removeAttribute('onclick'); // 移除可能的内联事件
-            // 添加点击提示（pointer-events: none 会阻止点击，但保留以防万一）
-            nextLink.addEventListener('click', e => {
-                e.preventDefault();
-                alert('第二章正在准备中，敬请期待。');
-            });
-        }
-    })
-    .catch(err => console.error('加载状态失败', err));
+    // ========== 根据 button-status.json 控制“下一章”链接 ==========
+    // 本页面是第一章第三节，下一章指向第二章第一节（2-01）
+    fetch('/data/button-status.json')
+        .then(response => response.json())
+        .then(data => {
+            // 查找第二章（2-01）的状态
+            const chapter2 = data.chapters.find(item => item.chapterId === '2-01');
+            // 获取“下一章”链接（使用精确的 href 匹配，避免误选）
+            const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-2-01.html"]');
+            if (!nextLink) return;
+
+            if (chapter2 && chapter2.readLink) {
+                // 第二章已开放：确保链接正常（移除可能添加的禁用标记）
+                nextLink.classList.remove('disabled');
+                nextLink.style.pointerEvents = '';
+                nextLink.style.opacity = '';
+                nextLink.style.cursor = '';
+                nextLink.href = '/chapters/chapter-2-01.html'; // 确保地址正确
+                nextLink.title = '';
+                // 移除自定义点击事件（克隆替换，彻底清除）
+                const newLink = nextLink.cloneNode(true);
+                nextLink.parentNode.replaceChild(newLink, nextLink);
+            } else {
+                // 第二章未开放：禁用链接
+                nextLink.classList.add('disabled'); // 复用主页灰色样式
+                nextLink.style.pointerEvents = 'none'; // 彻底禁止点击
+                nextLink.style.opacity = '0.5';
+                nextLink.style.cursor = 'default';
+                nextLink.href = 'javascript:void(0)';
+                nextLink.title = '第二章准备中，敬请期待';
+                // 绑定点击事件（作为后备，但 pointer-events: none 会阻止触发）
+                nextLink.onclick = function(e) {
+                    e.preventDefault();
+                    alert('第二章正在准备中，敬请期待。');
+                };
+            }
+        })
+        .catch(err => {
+            console.error('加载 button-status.json 失败，不影响导航', err);
+        });
+})();
 </script>
         </body>
 </html>
+
