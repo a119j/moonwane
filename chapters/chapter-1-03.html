@@ -798,47 +798,39 @@ body.dark-mode .theme-toggle i {
                 }
             });
         });
-                        // ===== 根据 button-status.json 控制“下一章”链接（可靠版） =====
-        fetch('/data/button-status.json')
-            .then(response => response.json())
-            .then(data => {
-                // 查找第二章（2-01）的 readLink
-                const chapter2 = data.chapters.find(item => item.chapterId === '2-01');
-                // 获取“下一章”链接（假设它是导航中最后一个 a 标签）
-                const nextLink = document.querySelector('.chapter-navigation a[href*="chapter-2-01"]');
-                if (!nextLink) return; // 防止未找到
-
-                if (!chapter2 || !chapter2.readLink) {
-                    // 未开放：禁用链接
-                    nextLink.href = 'javascript:void(0)';
-                    nextLink.style.pointerEvents = 'none';
-                    nextLink.style.opacity = '0.6';
-                    nextLink.style.cursor = 'default';
-                    nextLink.setAttribute('data-disabled', 'true');
-                    nextLink.title = '第二章准备中，敬请期待';
-                    // 移除原有点击事件，绑定新事件
-                    nextLink.removeEventListener('click', function(){}); // 先移除所有
-                    nextLink.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        alert('第二章正在准备中，敬请期待。');
-                    });
-                } else {
-                    // 已开放：恢复链接
-                    nextLink.href = '/chapters/chapter-2-01.html';
-                    nextLink.style.pointerEvents = '';
-                    nextLink.style.opacity = '';
-                    nextLink.style.cursor = '';
-                    nextLink.removeAttribute('data-disabled');
-                    nextLink.title = '';
-                    // 移除自定义点击事件（通过克隆替换来彻底清除事件）
-                    const newLink = nextLink.cloneNode(true);
-                    nextLink.parentNode.replaceChild(newLink, nextLink);
-                }
-            })
-            .catch(error => {
-                console.error('加载 button-status.json 失败，不影响导航', error);
-            });   
+                          
     })();
     </script>
-</body>
+<script>
+// 根据 button-status.json 控制“下一章”链接
+fetch('/data/button-status.json')
+    .then(response => response.json())
+    .then(data => {
+        // 查找第二章的状态
+        const chapter2 = data.chapters.find(c => c.chapterId === '2-01');
+        // 获取“下一章”链接（使用精确的 href 匹配）
+        const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-2-01.html"]');
+        if (!nextLink) return;
+
+        if (chapter2 && chapter2.readLink) {
+            // 已开放：确保链接正确（硬编码本来就是对的，无需修改）
+            console.log('第二章已开放，链接保持正常');
+        } else {
+            // 未开放：禁用链接
+            nextLink.href = 'javascript:void(0)';
+            nextLink.style.pointerEvents = 'none';
+            nextLink.style.opacity = '0.5';
+            nextLink.style.cursor = 'default';
+            nextLink.title = '第二章准备中，敬请期待';
+            nextLink.removeAttribute('onclick'); // 移除可能的内联事件
+            // 添加点击提示（pointer-events: none 会阻止点击，但保留以防万一）
+            nextLink.addEventListener('click', e => {
+                e.preventDefault();
+                alert('第二章正在准备中，敬请期待。');
+            });
+        }
+    })
+    .catch(err => console.error('加载状态失败', err));
+</script>
+        </body>
 </html>
