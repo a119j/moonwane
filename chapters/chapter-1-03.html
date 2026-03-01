@@ -798,48 +798,35 @@ body.dark-mode .theme-toggle i {
                 }
             });
         });
-                // ===== 根据 button-status.json 控制“下一章”链接 =====
+                  // ===== 根据 button-status.json 控制“下一章”链接 =====
         fetch('/data/button-status.json')
             .then(response => response.json())
             .then(data => {
-                // 查找第二章（2-01）的 readLink
+                // 查找第二章（2-01）的状态
                 const chapter2 = data.chapters.find(item => item.chapterId === '2-01');
-                const nextLink = document.querySelector('.chapter-navigation a:last-of-type'); // 获取“下一章”链接
+                const nextLink = document.querySelector('.chapter-navigation a:last-child'); // 获取“下一章”链接
+                if (!nextLink) return;
+
                 if (!chapter2 || !chapter2.readLink) {
-                    // 未开放：修改链接行为
-                    if (nextLink) {
-                        nextLink.href = 'javascript:void(0)';
-                        nextLink.style.color = '#888';
-                        nextLink.style.backgroundColor = 'rgba(128,128,128,0.1)';
-                        nextLink.style.borderColor = 'rgba(128,128,128,0.2)';
-                        nextLink.style.cursor = 'not-allowed';
-                        nextLink.title = '第二章准备中，敬请期待';
-                        // 移除原有 hover 效果
-                        nextLink.onmouseover = null;
-                        nextLink.onmouseout = null;
-                        // 绑定点击事件
-                        nextLink.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            alert('第二章正在准备中，敬请期待。');
-                        });
-                    }
+                    // 未开放：禁用链接，改为灰色并弹出提示
+                    nextLink.href = 'javascript:void(0)';
+                    nextLink.classList.add('disabled'); // 复用现有 disabled 样式
+                    nextLink.title = '第二章准备中，敬请期待';
+                    nextLink.onclick = function(e) {
+                        e.preventDefault();
+                        alert('第二章正在准备中，敬请期待。');
+                    };
                 } else {
-                    // 已开放：确保链接正确（恢复默认样式，防止之前被修改过）
-                    if (nextLink) {
-                        nextLink.style.color = '';
-                        nextLink.style.backgroundColor = '';
-                        nextLink.style.borderColor = '';
-                        nextLink.style.cursor = '';
-                        nextLink.title = '';
-                        // 移除我们绑定的点击事件（克隆替换）
-                        const newLink = nextLink.cloneNode(true);
-                        nextLink.parentNode.replaceChild(newLink, nextLink);
-                    }
+                    // 已开放：确保链接正确，移除禁用状态
+                    nextLink.href = '/chapters/chapter-2-01.html';
+                    nextLink.classList.remove('disabled');
+                    nextLink.title = '';
+                    nextLink.onclick = null; // 移除自定义点击事件
                 }
             })
             .catch(error => {
                 console.error('加载 button-status.json 失败，不影响导航', error);
-            });
+            });     
     })();
     </script>
 </body>
