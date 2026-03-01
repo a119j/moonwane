@@ -1,7 +1,7 @@
 {
   "chapters": [
     { "chapterId": "1-01", "readLink": "/chapters/chapter-1-01.html", "audioLink": "", "videoLink": "", "externalLink": "" },
-    "chapterId": "2-01", "readLink": "/chapters/chapter-2-01.html", "audioLink": "", "videoLink": "", "externalLink": "" },
+    {"chapterId": "2-01", "readLink": "/chapters/chapter-2-01.html", "audioLink": "", "videoLink": "", "externalLink": "" },
     { "chapterId": "3-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
     { "chapterId": "4-1-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
     { "chapterId": "4-2-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
