@@ -2534,11 +2534,8 @@ fetch('/data/evidence.json')
                                     btn.removeAttribute('title');
                                     // 移除之前可能绑定的点击事件（通过克隆替换来清除旧监听，或者直接覆盖）
                                     // 简单做法：先移除所有点击监听，再添加新的
-                                    btn.onclick = null; // 移除任何 onclick
-                                    // 添加新点击：直接跳转
-                                    btn.addEventListener('click', function(e) {
-                                        // 如果链接有效，允许跳转
-                                    }, { once: true }); // 注意：多次调用会添加多个监听，但这里我们只设置一次
+                                   btn.onclick = null; // 移除任何 onclick
+                                    // 注意：多次调用会添加多个监听，但这里我们只设置一次
                                     // 更安全：使用新监听，但不阻止默认
                                 });
                                 lastGreenIndex = index;
@@ -2680,14 +2677,21 @@ fetch('/data/evidence.json')
         
         // 页面加载时检查URL hash
         window.addEventListener('load', function() {
-            if (window.location.hash === '#open-chapters') {
-                const chapterDetails = document.getElementById('chapterContents');
-                if (chapterDetails) {
-                    chapterDetails.open = true;
-                    chapterDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
+    if (window.location.hash === '#open-chapters') {
+        const chapterDetails = document.getElementById('chapterContents');
+        if (chapterDetails) {
+            chapterDetails.open = true;
+            chapterDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    if (window.location.hash === '#open-evidence') {
+        const evidenceDrawer = document.querySelector('.evidence-drawer');
+        if (evidenceDrawer) {
+            evidenceDrawer.open = true;
+            evidenceDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+});
         
         // 分享功能
         function shareToSocial(platform) {
@@ -2757,6 +2761,7 @@ fetch('/data/evidence.json')
     </script>
 </body>
 </html>
+
 
 
 
