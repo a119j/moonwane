@@ -2,976 +2,2758 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>证据02：轮胎胎压与侧壁撕裂 · 六秒钉六年</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoonWane Ink | 墨染月光（月笼沙）</title>
     
-    <!-- 防止缓存 -->
+    <!-- SEO优化和防护meta标签 -->
+    <meta name="description" content="MoonWane Ink | 墨染月光（月笼沙） - Stories etched in fading moonlight. 《六秒钉六年》作者个人站点。">
+    <meta name="keywords" content="MoonWane, 墨染月光, 月笼沙, 六秒钉六年, Six Seconds Six Years, 文学创作, 加拿大作家">
+    <meta name="author" content="墨染月光（月笼沙）">
+    <meta name="robots" content="noarchive,noindex,nofollow">
+    <meta name="copyright" content="MoonWane Ink - 版权所有，侵权必究">
+    
+    <!-- 解决GitHub Pages缓存问题 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     
-    <!-- 禁止被搜索引擎收录 -->
-    <meta name="robots" content="noindex, nofollow">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
     
-    <!-- 添加 referrer 策略 -->
-    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Open Graph 元标签（完善） -->
+    <meta property="og:title" content="MoonWane Ink | 墨染月光（月笼沙）">
+    <meta property="og:description" content="Stories etched in fading moonlight. 《六秒钉六年》作者个人站点。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moonwane.ink">
+    <meta property="og:image" content="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image:type" content="image/svg+xml">
     
-    <!-- Font Awesome CDN (jsDelivr) -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Font Awesome图标库 - jsDelivr + 预加载 -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+    
+    <!-- 预取 chapters.json（提升后续加载速度） -->
+    <link rel="prefetch" href="https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json" as="fetch">
+    <link rel="prefetch" href="https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json" as="fetch">
     
     <style>
-        /* === 完全复制 evidence_01 的所有样式（保持视觉细节100%不变） === */
-        :root {
-            --link-rgb: 123, 200, 248;
-            --link-color: rgb(var(--link-rgb));
-            --link-hover-bg: rgba(var(--link-rgb), 0.2);
-            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
-            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
-            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
-            --back-to-top-hover: rgb(var(--link-rgb));
-            --progress-color: rgb(var(--link-rgb));
+    /* === CSS 变量 === */
+    :root {
+        --dark-bg: #0a0a14;
+        --text-light: #e0e0e0;
+        --primary-blue: #7bc8f8;
+        --primary-blue-rgb: 123, 200, 248;
+        --gold: #ffd700;
+        --soft-gold: #e6c68e;
+        --moon-light: #d4d0cb;
+        --moon-shadow: #b0acaa;
+        --dark-accent: #0b0e17;
+        --gray-text: #a8a4a0;
+        --border-gray: #888;
+        --light-gray: #aaa;
+        --white-text: #ffffff;
+        --red-heart: #ff6b6b;
+        --green-ready: #4CAF50;
+        --bg-dark-transparent: rgba(11, 14, 23, 0.95);
+        --bg-drawer: rgba(20, 25, 40, 0.4);
+        --bg-summary: rgba(40, 50, 80, 0.6);
+        --border-light: rgba(255,255,255,0.1);
+    }
 
-            --bg-color: #f0f7e6;
-            --text-color: #1e2f3a;
-            --title-color: #0f2a3a;
-            --subtitle-color: #4a6a7a;
-            --border-color: #c0d4b0;
-            --next-section-blue: #0066cc;
-            --disabled-color: #888;
-            --back-home-color: #888;
+    /* 间距变量（原有） */
+    :root {
+        --container-padding: 2rem;
+        --links-margin-bottom: 100px;
+        --drawer-margin-top: 40px;
+        --drawer-margin-bottom: 24px;
+        --drawer-margin-bottom-evidence: 40px;
+        --card-gap: 2rem;
+        --card-padding: 1.5rem;
+        --section-spacing: 60px;
+        
+        --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
+        --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+        --shadow-lg: 0 12px 32px rgba(0,0,0,0.7);
+        --shadow-blue: 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
+        --shadow-pdf: 0 20px 60px rgba(0,0,0,0.6);
+        --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.3);
+        --shadow-link-hover: 0 12px 32px rgba(0,0,0,0.7), 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
+        --shadow-toast: 0 5px 20px rgba(0,0,0,0.4);
+    }
 
-            --font-weight-normal: 420;
-            --font-weight-bold: 650;
+    /* === 三角符号和书籍图标样式 === */
+    .triangle-icon {
+        display: inline-block;
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+        color: inherit;
+        font-size: 0.9em;
+    }
+    
+    .book-icon {
+        margin-right: 8px;
+    }
+    
+    .chapter-drawer[open] .triangle-icon {
+        transform: rotate(90deg);
+    }
+    
+    .evidence-drawer[open] > summary::before {
+        transform: translateY(-50%) rotate(90deg);
+    }
+    
+    /* === 全局重置 === */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(28, 28, 50, 0.3) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(40, 40, 70, 0.3) 0%, transparent 20%);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .links a, .links .button, .links span,
+    header, footer, .poetry-section {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--container-padding);
+    }
+    
+    /* === Header & Logo === */
+    header {
+        text-align: center;
+        padding: 160px 20px 80px;
+        position: relative;
+        z-index: 2;
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        animation: fadeIn 1.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        animation: fadeIn 1.8s ease-out;
+    }
+    
+    .logo-main {
+        font-size: 4.5rem;
+        font-weight: 300;
+        letter-spacing: 3px;
+        color: #f0f0f0;
+    }
+    
+    .logo-sub {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-left: 1rem;
+        color: #f8f8f8;
+    }
+    
+    .title-moon {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: var(--moon-light);
+        box-shadow: 0 0 28px var(--moon-shadow);
+        overflow: hidden;
+        margin: 0 12px;
+        will-change: transform, opacity;
+    }
+    
+    .title-moon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--dark-accent);
+        border-radius: 50%;
+        animation: realphase 36s linear infinite;
+    }
+    
+    @keyframes realphase {
+        0% { transform: translateX(100%); }
+        12.5% { transform: translateX(60%); }
+        25% { transform: translateX(0%); }
+        50% { transform: translateX(-100%); }
+        75% { transform: translateX(0%); }
+        87.5% { transform: translateX(40%); }
+        100% { transform: translateX(100%); }
+    }
+    
+    .tagline {
+        font-size: 1.5rem;
+        opacity: 0.92;
+        margin: 36px 0 12px;
+        line-height: 1.5;
+        font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+        animation: fadeIn 2s ease-out;
+    }
+    
+    .tagline-translation {
+        font-size: 1.1rem;
+        color: #d0d0d0;
+        margin-bottom: 24px;
+        line-height: 1.5;
+        font-family: 'Noto Serif SC', serif;
+        animation: fadeIn 2.2s ease-out;
+    }
+    
+    .author-credit {
+        font-size: 1.1rem;
+        opacity: 0.85;
+        margin: 0;
+        line-height: 1.5;
+        font-family: 'Noto Serif SC', serif;
+        animation: fadeIn 2.4s ease-out;
+    }
+    
+    /* === Links Section === */
+    .links-section {
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .links {
+        max-width: 640px;
+        margin: 0 auto var(--links-margin-bottom);
+        position: relative;
+        z-index: 2;
+    }
+    
+    .links a, .links .button {
+        display: block;
+        margin: 24px auto;
+        padding: 24px 24px 24px 80px;
+        position: relative;
+        background: rgba(30, 30, 30, 0.8);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--moon-light);
+        transition: all 0.4s ease;
+        font-size: 1.35rem;
+        text-align: left;
+        cursor: pointer;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        animation: fadeIn 0.8s ease-out;
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .links a::before, .links .button::before {
+        position: absolute;
+        left: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.6rem;
+        transition: all 0.3s ease;
+    }
+    
+    .links a.book-card::before { 
+        content: "✑";
+        color: var(--moon-light);
+    }
+    
+    .links .button::before {
+        content: "❤️";
+        color: var(--red-heart);
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    
+    .links a.support-link::before { 
+        content: "☕";
+        color: var(--gray-text);
+    }
+    
+    .links a:hover, .links .button:hover {
+        background: #1a2d42;
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-link-hover);
+        color: var(--white-text);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    
+    .links a.support-link {
+        transition: all 0.1s ease !important;
+    }
+    
+    .links a.book-card::before, 
+    .links a.patreon-link::before,
+    .links .button::before,
+    .links a.support-link::before {
+        transition: all 0.3s ease;
+    }
+    
+    .links a.book-card:hover::before {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+    }
+    
+    .links .button:hover::before {
+        text-shadow: 0 0 15px rgba(255, 107, 107, 0.9);
+    }
+    
+    .links a.support-link:hover::before {
+        text-shadow: 0 0 15px rgba(160, 160, 160, 0.8);
+    }
+    
+    .golden-sentence {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--gold);
+        margin-top: 10px;
+        display: block;
+        letter-spacing: 0.5px;
+        font-family: 'Noto Serif SC', serif;
+    }
+    
+    /* === Poetry Section === */
+    .poetry-section {
+        padding: 100px 20px 40px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.1s;
+    }
+    
+    .poetry-section.visible {
+        animation: fadeIn 2s ease-out forwards;
+    }
+    
+    .poetry {
+        font-size: 1.4rem;
+        line-height: 1.8;
+        margin-bottom: 60px;
+        font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+        animation: fadeIn 2s ease-out;
+    }
+    
+    .poetry-english {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+    }
+    
+    .poetry-chinese {
+        font-size: 1.1rem;
+        color: #cccccc;
+    }
+    
+    /* === Footer === */
+    footer {
+        padding: 40px 20px 60px;
+        text-align: center;
+        opacity: 0.92;
+        font-size: 1rem;
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .contact-email {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contact-email a {
+        color: #e8e6e3;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background: rgba(30, 30, 30, 0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .contact-email a:hover {
+        color: var(--white-text);
+        background: rgba(50, 50, 70, 0.5);
+        box-shadow: 0 0 15px rgba(var(--primary-blue-rgb), 0.5);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    
+    .envelope-icon {
+        margin-right: 8px;
+        font-size: 1.2rem;
+        color: var(--moon-light);
+        transition: all 0.3s ease;
+    }
+    
+    .contact-email a:hover .envelope-icon {
+        text-shadow: 0 0 10px rgba(212, 208, 203, 0.9);
+        transform: scale(1.1);
+    }
+    
+    .email-arrow {
+        margin-left: 8px;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .contact-email a:hover .email-arrow {
+        transform: translateX(5px);
+    }
+    
+    .copyright {
+        font-size: 0.9rem;
+        opacity: 0.85;
+        color: #e8e6e3;
+        margin-bottom: 8px;
+    }
+    
+    .name-parts {
+        display: inline-flex;
+        gap: 0.3em;
+    }
+    
+    .book-info {
+        color: #e8e6e3;
+        font-size: 0.95rem;
+        font-style: italic;
+        opacity: 0.85;
+        margin-bottom: 8px;
+    }
+    
+    .copyright-protection {
+        color: #e8e6e3;
+        font-size: 0.85rem;
+        opacity: 0.6;
+    }
+    
+    /* === 右上角分享菜单 === */
+    .share-menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    .menu-toggle {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--moon-light);
+        font-size: 18px;
+    }
+    
+    .menu-toggle:hover {
+        background: rgba(255,255,255,0.1);
+        transform: scale(1.05);
+    }
+    
+    .menu-dropdown {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: var(--bg-dark-transparent);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: 10px 0;
+        min-width: 150px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+    }
+    
+    .menu-dropdown.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .menu-item {
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        color: var(--moon-light);
+        text-decoration: none;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        font-family: inherit;
+        font-size: 14px;
+    }
+    
+    .menu-item:hover {
+        background: rgba(255,255,255,0.05);
+    }
+    
+    .menu-item i {
+        margin-right: 10px;
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+    }
+    
+    /* === Wayback存档提醒 === */
+    .archive-toast {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: var(--bg-dark-transparent);
+        border: 1px solid rgba(var(--primary-blue-rgb), 0.3);
+        border-radius: 8px;
+        padding: 15px;
+        max-width: 300px;
+        z-index: 1001;
+        box-shadow: var(--shadow-toast);
+        backdrop-filter: blur(10px);
+        transform: translateX(400px);
+        transition: transform 0.4s ease;
+        font-size: 0.9rem;
+    }
+    
+    .archive-toast.active {
+        transform: translateX(0);
+    }
+    
+    .toast-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .toast-title {
+        font-weight: 600;
+        color: var(--primary-blue);
+        font-size: 1rem;
+    }
+    
+    .toast-close {
+        background: none;
+        border: none;
+        color: var(--moon-light);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0;
+        margin-left: auto;
+    }
+    
+    .toast-content {
+        color: var(--moon-light);
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    .toast-button {
+        background: rgba(var(--primary-blue-rgb), 0.2);
+        border: 1px solid rgba(var(--primary-blue-rgb), 0.4);
+        color: var(--primary-blue);
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .toast-button:hover {
+        background: rgba(var(--primary-blue-rgb), 0.3);
+        box-shadow: 0 0 10px rgba(var(--primary-blue-rgb), 0.3);
+    }
+    
+    .toast-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    /* === 月亮覆盖层 === */
+    .moon-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-dark-transparent);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .moon-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        will-change: opacity;
+    }
+    
+    .moon-animation {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--moon-light);
+        box-shadow: 0 0 40px var(--moon-shadow), 0 0 80px rgba(180, 176, 170, 0.5);
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+        animation: moonPulse 3s ease-in-out infinite;
+        will-change: transform, opacity;
+    }
+    
+    .moon-animation::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--dark-accent);
+        border-radius: 50%;
+        animation: realphase 15s linear infinite;
+    }
+    
+    .thank-you-text {
+        font-size: 1.8rem;
+        color: var(--moon-light);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .recorded-text {
+        font-size: 1.2rem;
+        color: var(--gray-text);
+        text-align: center;
+        max-width: 80%;
+        line-height: 1.5;
+    }
+    
+    @keyframes moonPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    
+    /* === 目录卡片网格样式 === */
+    .acts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--card-gap);
+        margin: 24px 0 40px;
+        min-width: fit-content;
+    }
+    
+    .act-card {
+        background: rgba(20, 25, 40, 0.3);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .act-card:hover {
+        background: rgba(30, 35, 50, 0.45);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .acts-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
-                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, "Times New Roman", serif, sans-serif;
-            font-weight: var(--font-weight-normal);
-            line-height: 1.88;
-            font-size: 18px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        
-        .container {
-            max-width: 740px;
-            margin: 0 auto;
-            padding: 40px 20px 60px;
-            width: 100%;
-        }
-        
-        .chapter-cover {
-            width: 100%;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .chapter-cover img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            loading: lazy;
-            decoding: async;
-        }
-        
-        .chapter-info {
-            text-align: center;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .chapter-number {
-            font-size: 16px;
-            color: var(--link-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        
-        .chapter-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            text-align: left;
-            color: var(--title-color);
-            letter-spacing: 1px;
-        }
-        
-        .chapter-subtitle {
-            font-size: 20px;
-            font-weight: 400;
-            margin-bottom: 0;
-            text-align: center;
-            color: var(--subtitle-color);
-            font-style: italic;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-            width: 100%;
-        }
-        
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 40px 0 10px 0;
-            color: var(--title-color);
-        }
-        
-        .section-epigraph {
-            font-style: italic;
-            color: var(--subtitle-color);
-            margin-bottom: 30px;
-            border-left: 4px solid var(--link-color);
-            padding-left: 16px;
-        }
-        
-        .chapter-content {
-            font-size: 18px;
-            line-height: 1.88;
-            letter-spacing: 0.32px;
-            text-align: justify;
-            text-justify: inter-ideograph;
-            color: var(--text-color);
-            margin-bottom: 60px;
-            hyphens: auto;
-        }
-        
-        .chapter-content p {
-            margin: 0 0 1.68em;
-            text-indent: 2em;
-            color: var(--text-color);
-        }
-        
-        .chapter-content p.no-indent {
-            text-indent: 0;
-        }
-        
-        .chapter-content p:first-of-type {
-            text-indent: 0;
-        }
-        
-        .chapter-content strong {
-            font-weight: var(--font-weight-bold);
-            color: var(--title-color);
-        }
-        
-        .chapter-content p:has(> strong) {
-            text-indent: 0;
-        }
-        
-        .chapter-content p:last-of-type span:first-child {
-            color: var(--next-section-blue) !important;
-        }
-        .chapter-content p:last-of-type span:last-child {
-            color: var(--text-color) !important;
-        }
-        
-        pre, code {
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        
-        .chapter-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 0 20px;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-top: 40px;
-            font-size: 18px;
-        }
-        
-        .nav-link {
-            color: var(--link-color);
-            text-decoration: none;
-            padding: 8px 16px;
-            background: rgba(var(--link-rgb), 0.1);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(var(--link-rgb), 0.2);
-            white-space: nowrap;
-        }
-        
-        .nav-link:hover {
-            background: rgba(var(--link-rgb), 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
-        }
-        
-        .nav-link.disabled {
-            color: var(--disabled-color);
-            background: rgba(128,128,128,0.1);
-            border: 1px solid rgba(128,128,128,0.2);
-            pointer-events: none;
-            cursor: default;
-        }
-        
-        .nav-center {
-            color: var(--subtitle-color);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            justify-content: center;
-            flex: 1 1 auto;
-            text-align: center;
-            min-width: 0;
-        }
-        .nav-center a {
-            color: var(--link-color);
-            text-decoration: none;
-            padding: 0 5px;
-            white-space: nowrap;
-        }
-        .nav-center a:hover {
-            text-decoration: underline;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--link-color);
-            font-size: 1.3rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(var(--link-rgb), 0.1);
-            border: 1px solid rgba(var(--link-rgb), 0.2);
-        }
-        .theme-toggle:hover {
-            background: rgba(var(--link-rgb), 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
-        }
-        
-        .back-home {
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .back-home a {
-            color: var(--back-home-color);
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-        
-        .back-home a:hover {
-            color: var(--link-color);
-        }
-        
-        #reading-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: var(--progress-color);
-            z-index: 9999;
-            transition: width 0.1s ease;
-            pointer-events: none;
-        }
-        
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            background: rgba(var(--link-rgb), 0.9);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 28px;
-            line-height: 1;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-        }
-        #back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        #back-to-top:hover {
-            transform: scale(1.1);
-            background: var(--back-to-top-hover);
-        }
-        
-        /* 深色模式样式 */
-        body.dark-mode {
-            background-color: #1e1e2e;
-            color: #d1d5db;
-        }
-        body.dark-mode .chapter-title,
-        body.dark-mode .section-title,
-        body.dark-mode .chapter-content strong {
-            color: #f0f0f0;
-        }
-        body.dark-mode .chapter-title[style*="color"] {
-            color: #f0f0f0 !important;
-        }
-        body.dark-mode .chapter-subtitle {
-            color: #9ca3af;
-            border-bottom-color: #374151;
-        }
-        body.dark-mode .section-epigraph {
-            color: #9ca3af;
-            border-left-color: #60a5fa;
-        }
-        body.dark-mode .chapter-content,
-        body.dark-mode .chapter-content p {
-            color: #d1d5db;
-        }
-        body.dark-mode .chapter-content p:last-of-type span:first-child {
-            color: #fbbf24 !important;
-        }
-        body.dark-mode .chapter-content p:last-of-type span:last-child {
-            color: #9ca3af !important;
-        }
-        body.dark-mode .chapter-navigation,
-        body.dark-mode .evidence-navigation {
-            border-color: #374151;
-        }
-        body.dark-mode .nav-link {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
-            border-color: rgba(96, 165, 250, 0.2);
-        }
-        body.dark-mode .nav-link:hover {
-            background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
-        }
-        body.dark-mode .nav-link.disabled {
-            color: #9ca3af !important;
-            background: rgba(156, 163, 175, 0.1);
-            border-color: rgba(156, 163, 175, 0.2);
-        }
-        body.dark-mode .nav-center {
-            color: #9ca3af;
-        }
-        body.dark-mode .nav-center a {
-            color: #60a5fa;
-        }
-        body.dark-mode .back-home a {
-            color: #6b7280;
-        }
-        body.dark-mode .back-home a:hover {
-            color: #60a5fa;
-        }
-        body.dark-mode #reading-progress {
-            background: #60a5fa;
-        }
-        body.dark-mode #back-to-top {
-            background: rgba(96, 165, 250, 0.9);
-        }
-        body.dark-mode #back-to-top:hover {
-            background: #60a5fa;
-        }
-        body.dark-mode .theme-toggle {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
-            border-color: rgba(96, 165, 250, 0.2);
-        }
-        body.dark-mode .theme-toggle:hover {
-            background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
-        }
-/* 深色模式下表格数据文字颜色 */
-body.dark-mode .evidence-table td {
-    color: #d1d5db;  /* 与深色模式正文颜色一致，确保可见 */
+    }
+    
+    .chapter-title {
+        font-weight: 400;
+        color: var(--gold);
+        margin-bottom: 4px;
+        display: block;
+    }
+    
+    .chapter-subtitle {
+        font-size: 0.9rem;
+        color: #b8b4b0;
+        display: block;
+        margin-top: 2px;
+        line-height: 1.4;
+    }
+    
+    .chapter-actions {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        flex-wrap: wrap;
+        min-height: 40px;
+    }
+    
+  /* 强制紧凑按钮尺寸 - 覆盖所有可能干扰，确保恢复多链接.txt 的小方块 */
+.pdf-trigger,
+.read-icon,
+.audio-icon,
+.video-icon,
+.external-link,
+.chapter-list .read-icon,
+.chapter-list .audio-icon,
+.chapter-list .video-icon,
+.chapter-list .external-link {
+    font-size: 1.1rem !important;          /* 稍小一点，更紧凑 */
+    min-width: 28px !important;             /* 核心：强制小方块宽度 */
+    min-height: 28px !important;            /* 核心：强制小方块高度 */
+    padding: 2px 5px !important;            /* 更紧的内边距 */
+    margin: 0 2px !important;               /* 按钮之间间距也收紧 */
+    border-radius: 4px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
 }
-/* 事件年表表格第三列（证据/程序矛盾点）换行优化 */
-.timeline-table td:last-child {
-    word-break: break-word;      /* 允许长单词/URL 断开换行 */
-    overflow-wrap: break-word;   /* 兼容性更好 */
+
+/* 外部链接特殊处理（保持绿色背景但尺寸一致） */
+.external-link {
+    color: var(--green-ready) !important;
+    background: rgba(76, 175, 80, 0.12) !important;
+    border: 1px solid rgba(76, 175, 80, 0.25) !important;
+    font-size: 0.95rem !important;
+    min-width: 28px !important;
+    padding: 2px 5px !important;
+    margin-left: 3px !important;
 }
-        
-        /* 移动端响应式 */
-        @media (max-width: 768px) {
-            body {
-                font-size: 17px;
-            }
-            .container {
-                padding: 30px 16px 50px;
-            }
-            .chapter-title {
-                font-size: 24px;
-            }
-            .chapter-subtitle {
-                font-size: 18px;
-            }
-            .section-title {
-                font-size: 22px;
-            }
-            .chapter-content {
-                font-size: 17px;
-            }
-            .chapter-navigation,
-            .evidence-navigation {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .nav-link {
-                width: 100%;
-                text-align: center;
-                white-space: normal;
-            }
-            .nav-center {
-                justify-content: center;
-                flex-wrap: wrap;
-                width: 100%;
-            }
-            #back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 44px;
-                height: 44px;
-                font-size: 24px;
-            }
-            .chapter-info {
-                gap: 8px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            body {
-                font-size: 16.5px;
-            }
-            .chapter-content {
-                font-size: 17px;
-                line-height: 1.92;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 12px 50px;
-            }
-            body {
-                overscroll-behavior: none;
-            }
-            .chapter-content {
-                font-size: 16.8px;
-            }
-        }
-        
-        html {
-            font-size: 100%;
-        }
-        
-        /* 浅色模式灯泡发光 */
-        body:not(.dark-mode) .theme-toggle {
-            background: rgba(30, 100, 200, 0.4) !important;
-            border-color: rgba(30, 100, 200, 0.5) !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        body:not(.dark-mode) .theme-toggle i {
-            color: #ffffff;
-            text-shadow: 
-                0 0 12px rgba(255, 255, 255, 1),
-                0 0 24px rgba(255, 255, 255, 0.8),
-                0 0 36px rgba(255, 255, 255, 0.6);
-        }
-        
-        body.dark-mode .theme-toggle i {
-            color: #f39c12;
-            text-shadow: 
-                0 0 8px #f39c12,
-                0 0 16px #f39c12,
-                0 0 24px #f39c12;
-        }
-        
-        .theme-toggle:hover i {
-            filter: brightness(1.2);
-        }
 
-        /* === 证据页面专用样式（与 evidence_01 完全一致） === */
-        .evidence-image {
-            display: block;
-            max-width: 100%;
-            margin: 30px auto 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .evidence-image:hover {
-            transform: scale(1.02);
-        }
+/* 状态类不影响尺寸，只改颜色 */
+.status-ready    { color: var(--green-ready) !important; }
+.status-coming   { color: #f39c12 !important; }          /* 黄色下周 */
+.status-preparing{ color: #95a5a6 !important; }          /* 灰色准备中 */
+    /* 状态类：绿色（就绪） */
+    .status-ready {
+        background: rgba(50,205,50,0.25) !important;
+        border: 2px solid #32CD32 !important;
+        color: #32CD32 !important;
+    }
+    
+    /* 状态类：黄色（下周上线） */
+    .status-coming {
+        background: rgba(244,161,0,0.25) !important;
+        border: 2px solid #F4A100 !important;
+        color: #F4A100 !important;
+    }
+    
+    /* 状态类：灰色（准备中）- 复用原有灰色样式 */
+    .status-preparing {
+        color: #888 !important;
+        background: rgba(128,128,128,0.1) !important;
+        border: 1px solid rgba(128,128,128,0.2) !important;
+    }
+    
+    .read-icon:hover, .audio-icon:hover, .video-icon:hover, .external-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .external-link {
+        font-size: 0.9rem;
+        padding: 4px 6px;
+        margin-left: 4px;
+    }
+    
+    .act-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #f0f0f0;
+        margin-bottom: 4px;
+        display: block;
+        text-align: center;
+        line-height: 1.3;
+    }
+    
+    .act-title-second-line {
+        font-size: 1rem;
+        color: #d0d0d0;
+        margin-bottom: 12px;
+        display: block;
+        text-align: center;
+        font-style: italic;
+        line-height: 1.3;
+        white-space: nowrap;
+    }
+    
+    /* 页脚法律声明链接 */
+    .legal-link {
+        color: var(--border-gray);
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: inline-block;
+        margin-top: 15px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .legal-link:hover {
+        color: var(--primary-blue);
+        background: rgba(var(--primary-blue-rgb), 0.1);
+    }
+    
+    /* === 抽屉样式 === */
+    .chapter-drawer {
+        max-width: 640px;
+        margin: 40px auto 24px;
+        background: var(--bg-drawer);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .chapter-drawer > summary {
+        padding: 20px 32px;
+        background: rgba(30, 30, 30, 0.8);
+        font-size: 1.3rem;
+        color: var(--gold);
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        transition: all 0.4s ease;
+    }
+    
+    .chapter-drawer > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .chapter-drawer-content {
+        padding: 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        position: relative;
+        scroll-behavior: smooth;
+    }
+    
+    .evidence-drawer {
+        max-width: 640px;
+        margin: 40px auto 40px;
+        background: var(--bg-drawer);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .evidence-drawer > summary {
+        padding: 20px 32px 20px 60px !important;
+        background: rgba(30, 30, 30, 0.8);
+        font-size: 1.35rem;
+        color: #7bc8f8;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        transition: all 0.4s ease;
+    }
+    
+    .evidence-drawer > summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .evidence-drawer > summary::before {
+        content: "▶";
+        position: absolute;
+        left: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+        color: var(--primary-blue);
+        font-size: 1.35rem;
+    }
+    
+    .evidence-drawer[open] > summary::before {
+        transform: translateY(-50%) rotate(90deg);
+    }
+    
+    .evidence-drawer-content {
+        padding: 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        position: relative;
+        scroll-behavior: smooth;
+    }
+    
+    .chapter-drawer > summary:hover,
+    .evidence-drawer > summary:hover {
+        background: #1a2d42;
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-link-hover);
+        color: var(--white-text);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+    
+    /* 证据库搜索框 */
+    .evidence-search-container {
+        padding: 20px 32px 15px;
+        background: rgba(30, 35, 50, 0.6);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .evidence-search-container input[type="search"] {
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(20, 25, 40, 0.8);
+        border: 1px solid rgba(var(--primary-blue-rgb), 0.3);
+        border-radius: 8px;
+        color: var(--text-light);
+        font-size: 1rem;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        transition: all 0.3s ease;
+    }
+    
+    .evidence-search-container input[type="search"]:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        box-shadow: 0 0 0 2px rgba(var(--primary-blue-rgb), 0.2);
+    }
+    
+    .evidence-search-container input[type="search"]::placeholder {
+        color: var(--border-gray);
+    }
+    
+    .search-count {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: var(--light-gray);
+        text-align: right;
+    }
+    
+    /* 证据库内容区域 */
+    .evidence-content {
+        padding: 0 32px 20px;
+    }
+    
+    .evidence-intro {
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(30, 35, 50, 0.3);
+        border-radius: 8px;
+        border-left: 3px solid var(--primary-blue);
+    }
+    
+    .evidence-intro p {
+        margin-bottom: 10px;
+        color: var(--text-light);
+        line-height: 1.6;
+        font-size: 0.9rem;
+    }
+    
+    .evidence-intro strong {
+        font-size: 0.9rem;
+    }
+    
+    /* 证据表格 */
+    .evidence-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.95rem;
+    }
+    
+    .evidence-table th {
+        background: rgba(40, 50, 70, 0.7);
+        color: var(--gold);
+        padding: 12px;
+        text-align: left;
+        border: 1px solid rgba(255,255,255,0.1);
+        font-weight: 600;
+    }
+    
+    .evidence-table td {
+        padding: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+        vertical-align: top;
+        color: #d0d0d0;
+    }
+    
+    .evidence-table tr:hover {
+        background: rgba(50, 60, 80, 0.3);
+    }
+    
+    .evidence-content h4 {
+        color: #5a9acf !important;
+        margin: 25px 0 10px !important;
+        font-size: 1.1rem;
+    }
+    
+    .technical-points, .truth-summary {
+        margin: 25px 0;
+        padding: 15px;
+        background: rgba(30, 35, 50, 0.2);
+        border-radius: 8px;
+        border-left: 3px solid var(--primary-blue);
+    }
+    
+    .technical-points h4, .truth-summary h4 {
+        color: var(--primary-blue);
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    
+    /* PDF模态框（保持不变） */
+    .pdf-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(11, 14, 23, 0.95);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .pdf-modal.active {
+        display: flex;
+        opacity: 1;
+    }
+    
+    .pdf-modal-content {
+        position: relative;
+        width: 96%;
+        height: 94vh;
+        max-width: 90%;
+        max-height: 88vh;
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow-pdf);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .pdf-modal-header {
+        padding: 15px 20px;
+        background: rgba(30, 35, 50, 0.9);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .pdf-notice {
+        color: #aaa;
+        font-size: 0.85rem;
+    }
+    
+    .pdf-close {
+        background: none;
+        border: none;
+        color: var(--moon-light);
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+    
+    .pdf-close:hover {
+        background: rgba(255,255,255,0.1);
+        transform: scale(1.1);
+    }
+    
+    .pdf-iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+        background: #fff;
+    }
+    
+    .chapter-actions {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+    }
+    
+    .chapter-actions::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .chapter-actions::-webkit-scrollbar-thumb {
+        background: rgba(var(--primary-blue-rgb), 0.3);
+        border-radius: 3px;
+    }
+    
+    #introDrawer > div::-webkit-scrollbar,
+    .chapter-drawer-content::-webkit-scrollbar,
+    .evidence-scroll-area::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-track,
+    .chapter-drawer-content::-webkit-scrollbar-track,
+    .evidence-scroll-area::-webkit-scrollbar-track {
+        background: #e0f0ff;
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-thumb,
+    .chapter-drawer-content::-webkit-scrollbar-thumb,
+    .evidence-scroll-area::-webkit-scrollbar-thumb {
+        background: var(--primary-blue);
+        border-radius: 3px;
+    }
+    
+    #introDrawer > div::-webkit-scrollbar-button,
+    .chapter-drawer-content::-webkit-scrollbar-button,
+    .evidence-scroll-area::-webkit-scrollbar-button {
+        background: var(--primary-blue);
+        height: 20px;
+        width: 8px;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 12px 12px;
+    }
+    
+    /* PDF加载专用月亮动画 */
+    .pdf-moon-animation {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--primary-blue);
+        box-shadow: 0 0 40px var(--primary-blue), 0 0 80px rgba(var(--primary-blue-rgb), 0.5);
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        animation: moonPulse 3s ease-in-out infinite;
+        will-change: transform, opacity;
+    }
+    
+    .pdf-moon-animation::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--dark-accent);
+        border-radius: 50%;
+        animation: realphase 15s linear infinite;
+    }
+    
+    .pdf-viewer-area {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        background: #111;
+    }
+    
+    .pdf-loading,
+    .pdf-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.3s ease;
+    }
+    
+    .pdf-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #111;
+        z-index: 2;
+        opacity: 1;
+        pointer-events: none;
+    }
+    
+    .pdf-iframe {
+        border: none;
+        background: #fff;
+        z-index: 1;
+        opacity: 0;
+    }
+    
+    .pdf-loading.hidden {
+        opacity: 0;
+    }
+    
+    .pdf-iframe.visible {
+        opacity: 1;
+    }
+    
+    #wantToReadBtn {
+        margin-bottom: 40px;
+    }
+    
+    :focus-visible {
+        box-shadow: 0 0 0 3px var(--primary-blue), 0 0 0 6px rgba(var(--primary-blue-rgb), 0.3);
+        border-radius: inherit;
+        outline: none;
+    }
+    
+    @media (max-width: 768px) {
+        .logo-main { font-size: 3.5rem; }
+        .logo-sub { font-size: 2rem; }
+        .title-moon { width: 32px; height: 32px; }
+        .tagline { font-size: 1.3rem; }
+        .tagline-translation { font-size: 1rem; }
+        .author-credit { font-size: 1rem; }
+        .links a, .links .button { font-size: 1.38rem; padding: 24px 18px 24px 76px; }
+        .links a::before, .links .button::before { left: 20px; }
+        .moon-animation { width: 100px; height: 100px; }
+        .thank-you-text { font-size: 1.5rem; }
+        .recorded-text { font-size: 1.1rem; }
+        .menu-dropdown { min-width: 140px; }
+        .poetry { font-size: 1.2rem; }
+        .poetry-english { font-size: 1.3rem; }
+        .poetry-chinese { font-size: 1rem; }
+        .archive-toast { top: 70px; right: 10px; left: 10px; max-width: none; }
+        .chapter-table, .evidence-table { display: block; overflow-x: auto; }
+        .chapter-table th, .chapter-table td, .evidence-table th, .evidence-table td { min-width: 280px; padding: 12px 10px; }
+        .chapter-table th { font-size: 1rem; }
+        .act-title { font-size: 1.1rem; }
+        .act-title-second-line { font-size: 0.9rem; }
+        .external-link { font-size: 0.8rem; padding: 3px 5px; }
+        .chapter-drawer > summary { padding: 15px 20px; font-size: 1.2rem; }
+        .chapter-drawer-content { max-height: 60vh; }
+        .evidence-drawer > summary { padding: 15px 20px 15px 50px !important; font-size: 1.2rem; }
+        .evidence-drawer > summary::before { left: 15px; font-size: 1.2rem; }
+        .evidence-search-container, .evidence-content { padding: 15px 20px; }
+        .pdf-modal-content { width: 98%; height: 96vh; max-width: 96%; max-height: 94vh; }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .pdf-modal-content { width: 92%; height: 90vh; max-width: 92%; max-height: 90vh; }
+    }
+    
+    /* 多链接菜单样式（保持不变） */
+    .multi-link-menu {
+        position: absolute;
+        background: var(--bg-drawer);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 8px 0;
+        min-width: 180px;
+        z-index: 1000;
+        box-shadow: var(--shadow-md);
+        margin-top: 8px;
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    }
 
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(255,255,255,0.1);
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            color: #fff;
-            cursor: pointer;
-            user-select: none;
-            z-index: 10001;
-        }
-        .lightbox-close:hover {
-            color: #ccc;
-        }
+    .multi-link-menu::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: var(--arrow-left, 20px);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid var(--bg-drawer);
+        filter: drop-shadow(0 -2px 2px rgba(0,0,0,0.1));
+    }
 
-        .evidence-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0 10px 0;
-            font-size: 0.92rem;
-            line-height: 1.65;
-            border: 1px solid rgba(128, 128, 128, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .evidence-table th {
-            background: rgba(70, 90, 120, 0.25);
-            color: #ffffff;
-            font-weight: 600;
-            padding: 12px 10px;
-            text-align: left;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 0.9rem;
-        }
-        body.dark-mode .evidence-table th {
-            color: #f0f0f0;
-            background: rgba(90, 110, 140, 0.4);
-        }
-        .evidence-table td {
-            padding: 12px 10px;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.15);
-            vertical-align: top;
-            color: var(--text-color);
-        }
-        .evidence-table tr:last-child td {
-            border-bottom: none;
-        }
+    .multi-link-menu.position-top::before {
+        top: auto;
+        bottom: -8px;
+        border-top: 8px solid var(--bg-drawer);
+        border-bottom: none;
+        filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+    }
 
-        .evidence-meta {
-            text-align: left;
-            font-size: 0.8rem;
-            line-height: 1.5;
-            color: #888888;
-            margin: 5px 0 25px 0;
-            padding-left: 5px;
-        }
-        body.dark-mode .evidence-meta {
-            color: #aaaaaa;
-        }
-        .evidence-meta p {
-            margin: 2px 0;
-            text-indent: 0;
-        }
-        .evidence-meta .evidence-name {
-            font-weight: 500;
-            color: #6a6a6a;
-        }
-        body.dark-mode .evidence-meta .evidence-name {
-            color: #c0c0c0;
-        }
+    .multi-link-menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-        .section-title {
-            margin-top: 50px;
-        }
-        .section-title:first-of-type {
-            margin-top: 20px;
-        }
-        .chapter-content h2, 
-        .chapter-content h3 {
-            margin-top: 40px;
-            margin-bottom: 15px;
-        }
-        hr {
-            margin: 50px 0;
-        }
+    .multi-link-menu li {
+        min-height: 44px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        color: var(--text-light);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
 
-        .evidence-navigation {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            padding: 30px 0 20px;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-top: 40px;
-            font-size: 18px;
+    .multi-link-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .multi-link-menu li:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    .multi-link-menu a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+        .multi-link-menu li {
+            min-height: 48px;
+            padding: 14px 18px;
         }
-        .evidence-navigation .nav-link {
-            color: var(--link-color);
-            text-decoration: none;
-            padding: 8px 16px;
-            background: rgba(var(--link-rgb), 0.1);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(var(--link-rgb), 0.2);
-            white-space: nowrap;
-            text-align: center;
+        .multi-link-menu a {
+            font-size: 1rem;
         }
-        .evidence-navigation .nav-link:hover {
-            background: rgba(var(--link-rgb), 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+    }
+    @media (max-width: 768px) {
+        #chapterContents,
+        #chapterContents details,
+        #chapterContents summary,
+        .chapter-list,
+        .chapter-actions {
+            overflow-x: hidden !important;
         }
-        .evidence-navigation .nav-link:first-child {
-            justify-self: start;
-        }
-        .evidence-navigation .nav-link:last-child {
-            justify-self: end;
-        }
-        .evidence-navigation .nav-center {
-            color: var(--subtitle-color);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            justify-content: center;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .evidence-navigation .nav-center a {
-            color: var(--link-color);
-            text-decoration: none;
-            padding: 0 5px;
-            white-space: nowrap;
-        }
-        .evidence-navigation .nav-center a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 768px) {
-            .evidence-navigation {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .evidence-navigation .nav-link {
-                width: 100%;
-                white-space: normal;
-            }
-            .evidence-navigation .nav-center {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-        }
+    }
+    </style>
+    
+    <!-- 额外的内联样式（月亮光晕动画） -->
+    <style>
+    @keyframes moonGlow {
+        0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+        50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
+    }
     </style>
 </head>
 <body>
-    <div id="reading-progress"></div>
-
-    <div class="container">
-        <!-- 封面图片 -->
-        <div class="chapter-cover">
-            <img src="/pictures/cover-5.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
-        </div>
-        <!-- 版权信息 -->
-        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-            © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
-        </div>
-        
-        <div class="chapter-info">
-            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">证据02</h1>
-            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">轮胎胎压与侧壁撕裂</h2>
-            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
-                <i class="fas fa-lightbulb"></i>
+    <!-- 右上角分享菜单 -->
+    <div class="share-menu">
+        <div class="menu-toggle" id="menuToggle">⋯</div>
+        <div class="menu-dropdown" id="menuDropdown">
+            <button class="menu-item" onclick="shareToSocial('share')">
+                <i class="fas fa-share-alt"></i> 分享
             </button>
-            <div class="chapter-subtitle">Tire Pressure & Sidewall Tear</div>
-        </div>
-        
-        <div class="chapter-content" role="main">
-            <!-- 案卷说明 -->
-            <div class="section-title">案卷说明</div>
-            <div class="section-epigraph">—— 自行车踏板如何被定义为武器</div>
-            
-            <p><strong>【高压炸弹：胎压数据一览表】</strong></p>
-            
-            <!-- 胎压数据表格 -->
-            <table class="evidence-table">
-                <thead>
-                    <tr><th>轮胎位置</th><th>标准胎压（手册）</th><th>警方实测（2018-06-13）</th><th>超标比例</th><th>备注</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>左前轮</td><td>50 psi</td><td>65 psi</td><td>+30% (+15 psi)</td><td>严重过充</td></tr>
-                    <tr><td>右前轮</td><td>50 psi</td><td>0 psi</td><td>彻底失压</td><td style="white-space: nowrap;">侧壁撕裂大洞，钢丝外露</td></tr>
-                    <tr><td>右后轮</td><td>78 psi</td><td>76 psi</td><td>接近正常</td><td></td></tr>
-                    <tr><td>左后轮</td><td>78 psi</td><td>78 psi</td><td>正常</td><td></td></tr>
-                </tbody>
-            </table>
-            <!-- 证据说明 -->
-            <div class="evidence-meta">
-                <p class="evidence-name">02_1 Tire Pressure Measurements</p>
-                <p>[档案号：MW-CASE-EXHIBIT-E (已脱敏) | Ref: MW-CASE-EXHIBIT-E]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <!-- 图片：Tire and Loading Specifications -->
-            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/02_2%20Tire%20and%20Loading%20Specifications.jpg" alt="02_2 Tire and Loading Specifications" class="evidence-image" loading="lazy">
-            <div class="evidence-meta">
-                <p class="evidence-name">02_2 Tire and Loading Specifications</p>
-                <p>[档案号：MW-CASE-EXHIBIT-F (已脱敏) | Ref: MW-CASE-EXHIBIT-F]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <!-- 图片：Service Center Inspection Receipt -->
-            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/02_3%20Service%20Center%20Inspection%20Receipt.png" alt="02_3 Service Center Inspection Receipt" class="evidence-image" loading="lazy">
-            <div class="evidence-meta">
-                <p class="evidence-name">02_3 Service Center Inspection Receipt</p>
-                <p>[档案号：MW-CASE-EXHIBIT-G (已脱敏) | Ref: MW-CASE-EXHIBIT-G]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <p><strong>技术结论：</strong></p>
-            <ul>
-                <li>过充根源：左前轮超标 30% 疑似由于当天早上（2018-06-12）服务中心保养时（EXHIBIT-G）混淆了前后轮标准（前轮 50/后轮 80）所致。</li>
-                <li>致命风险：根据车辆原厂用户手册（Ford F-550工程车）以及米其林《Truck Tire Service Manual》，胎压超标 25% 以上，侧壁应力将增加数倍，爆裂风险提升 8–10 倍。</li>
-            </ul>
-            
-            <p><strong>真实的物理场景：</strong> 事故当天下午 17:38，气温 26.4℃，湿度 51%。在深色沥青路面长时间吸收热量后，路面温度保守估计在 40–47℃ 区间，实际可达 50–60℃。在滚烫的路面上，原本已严重过充（65 psi）的轮胎会进一步膨胀增加 5–10 psi，内部应力剧增，使原有微小损伤迅速演变为致命爆裂。</p>
-            
-            <hr style="margin:40px 0; border-color:var(--border-color);">
-            
-            <p><strong>【物理逻辑：拆解“自行车踏板”神话】</strong></p>
-            
-            <!-- 图片：Sidewall Tear and Bicycle Pedal -->
-            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/02_4%20Sidewall%20Tear%20and%20Bicycle%20Pedal%20.jpg" alt="02_4 Sidewall Tear and Bicycle Pedal" class="evidence-image" loading="lazy">
-            <div class="evidence-meta">
-                <p class="evidence-name">02_4 Sidewall Tear and Bicycle Pedal</p>
-                <p>[档案号：MW-CASE-EXHIBIT-H (已脱敏) | Ref: MW-CASE-EXHIBIT-H]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <!-- 图片：Tire Marks on the Road Surface -->
-            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/02_5%20Tire%20Marks%20on%20the%20Road%20Surface.jpg" alt="02_5 Tire Marks on the Road Surface" class="evidence-image" loading="lazy">
-            <div class="evidence-meta">
-                <p class="evidence-name">02_5 Tire Marks on the Road Surface</p>
-                <p>[档案号：MW-CASE-EXHIBIT-I (已脱敏) | Ref: MW-CASE-EXHIBIT-I]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <p><strong>技术结论：</strong></p>
-            <ul>
-                <li><strong>材质强度不对等</strong>：自行车踏板（铝合金+橡胶层）无法刺穿工程车多层钢丝帘线的侧壁。</li>
-                <li><strong>无痕奇迹</strong>：Exhibit-H 证实自行车踏板无划痕、无变形，这在物理上根本无法撕裂多层帘线层。</li>
-                <li><strong>现场骗局</strong>：Exhibit-I 警方将路面上 30 米的深色瘪胎拖痕标注为“自行车印记”。实际上，这是右前轮爆裂后失速、失控偏航的真实轨迹：①漏气深色胎痕 → ②放射状刮擦 → ③瘪胎拖痕，顺序是先爆后撞。</li>
-                <li><strong>掩盖真相</strong>：警方从未测量过胎洞的尺寸，且现场照片中裂口刚好被杂草遮挡。警方用“完美凶器——自行车踏板”掩盖了真正的元凶——“高压炸弹”。</li>
-            </ul>
-            
-            <hr style="margin:40px 0; border-color:var(--border-color);">
-            
-            <p><strong>【《轮胎不会说谎》关键事件年表】</strong></p>
-            
-            <!-- 事件年表表格 -->
-            <table class="evidence-table timeline-table">
-                <thead>
-                    <tr><th>时间节点</th><th>关键事件与证据细节</th><th>证据/程序矛盾点</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>2018年6月12日</td><td>12:40 车辆在服务中心保养后离开。<br>17:38:19–20 事故发生，记录仪显示车辆突然向右偏航。</td><td>疑似前轮被误充至 80 psi；现场照片中轮胎裂口刚好被杂草遮挡。</td></tr>
-                    <tr><td>2018年6月13日</td><td>警方首次测量胎压（9:20–9:48）：右前轮 0 psi，左前轮 65 psi，后轮 78/76 psi。</td><td>侦探 Kenneth 在已知高压的情况下，仍坚持“踏板刺破”论。</td></tr>
-                    <tr><td>2018年6月18日</td><td>江远平取车，发现侧壁大洞并拍照留证。</td><td>此时车辆已被扣押 6 天，无人举升、无人拆胎检测。</td></tr>
-                    <tr><td>2019年1月15日</td><td>事故后第 212 天，警员 Angus 补写仅两行字的报告。</td><td>“裂口似乎直接与碰撞相关”，无数据、无照片编号，却成为“官方结论”。</td></tr>
-                    <tr><td>2021–2025</td><td>锁定美国 2011 年类似爆胎偏航案例（汽车黑匣子 EDR 数据记录爆胎在前）。</td><td>核心物证（轮胎、踏板、车辆）已被销毁或失踪。</td></tr>
-                </tbody>
-            </table>
-            <div class="evidence-meta">
-                <p class="evidence-name">02_6 Chapter 2 Timeline Reconstruction</p>
-                <p>[档案号：MW-CASE-EXHIBIT-J (已脱敏) | Ref: MW-CASE-EXHIBIT-J]</p>
-                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
-            </div>
-            
-            <!-- 下一节小钩子 -->
-            <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
-                <span style="font-weight: 600; color: #1e3c4f;">（下一证据）</span> 
-                <span style="color: #2c3e50;">黑匣子与行车记录仪 —— 当物证湮灭，数据开口。</span>
-            </p>
-        </div>
-        
-        <!-- 证据页面导航（证据02：有上一个证据，指向01；下一个指向03） -->
-        <div class="evidence-navigation">
-            <!-- 上一个证据：指向证据01 -->
-            <a href="/evidences/evidence_01_Mobile_Phone_Background_Data.html" class="nav-link">← 上一个证据</a>
-            <span class="nav-center">
-                <a href="/index.html#open-evidence">🌐证据库/Evidence Hub</a>
-                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
-                    <i class="fas fa-lightbulb"></i>
-                </button>
-            </span>
-            <!-- 下一个证据：指向证据03（硬编码，页面暂不存在） -->
-            <a href="/evidences/evidence_03_Black_Box_CDR.html" class="nav-link">下一个证据 →</a>
-        </div>
-        
-        <div class="back-home">
-            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+            <button class="menu-item" onclick="shareToSocial('save')">
+                <i class="fas fa-save"></i> 保存
+            </button>
+            <button class="menu-item" onclick="shareToSocial('saveas')">
+                <i class="fas fa-download"></i> 另存为
+            </button>
         </div>
     </div>
 
-    <button id="back-to-top" aria-label="返回顶部">↑</button>
+    <!-- Wayback存档提醒 -->
+    <div class="archive-toast" id="archiveToast">
+        <div class="toast-header">
+            <div class="toast-title">
+                <i class="fas fa-archive"></i> Wayback存档提醒
+            </div>
+            <button class="toast-close" id="toastClose">&times;</button>
+        </div>
+        <div class="toast-content">
+            距离上次存档已超过30天，建议更新Wayback Machine存档以保护您的版权。
+        </div>
+        <div class="toast-actions">
+            <a href="https://web.archive.org/save/" target="_blank" rel="noopener noreferrer nofollow" class="toast-button">立即存档</a>
+            <button class="toast-button" id="remindLater">稍后提醒</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1 class="logo-main">MoonWane</h1>
+                <div class="title-moon"></div>
+                <h2 class="logo-sub">Ink</h2>
+            </div>
+            <p class="tagline">Stories etched in fading moonlight.</p>
+            <p class="tagline-translation">月光渐逝，人生海海，刻即是记。</p>
+            <p class="author-credit">— 墨染月光（又名月笼沙） 作品站 —</p>
+        </header>
+        
+        <section class="links-section">
+            <div class="links">
+                <!-- 书籍卡片 - 可点击打开抽屉的触发器 -->
+                <div id="introDrawerToggle" style="cursor: pointer;">
+                    <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
+                        <span style="display: flex; align-items: center; gap: 8px;">
+                            <span id="introArrow" style="font-size: 1.1rem; color: #ffd700; transition: transform 0.3s ease; display: inline-block;">▶</span>
+                            <i class="fa-solid fa-feather-point" style="font-size: 2.4rem; color: #ffffff; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)); transform: rotate(-15deg) scaleX(-1);"></i>
+                            <span style="font-weight: 700; color: #ffd700; animation: moonGlow 3s ease-in-out infinite;">《六秒钉六年》</span>
+                        </span>
+                        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:4px; font-style: italic;">Six Seconds, Six Years | 作品已完成，诚寻出版与合作机会。</span>
+                        <span class="golden-sentence">六秒数据，钉死六年人生。</span>
+                        <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的非虚构纪实<br>六秒数据，六年拉锯 <br>当规则失灵，一个移民家庭被迫自证清白 </span>
+                    </a>
+                </div>
+                <!-- 简介抽屉内容 (初始隐藏) -->
+                <div id="introDrawer" style="max-width:640px; margin:0 auto 40px auto; overflow: hidden; transition: max-height 0.4s ease-in-out; max-height: 0; background: rgba(20,25,40,0.4); border-radius: 0 0 16px 16px;">
+                    <div style="padding: 0 24px 0 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto;">
+                        <!-- 故事梗概等内容保持不变 -->
+                        <div style="font-size: 1.2rem; color: #e6c68e; margin: 20px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【故事梗概】</div>
+                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+                            2018年6月12日，多伦多北郊。<br>晴朗的下午，一场碰撞改变了轨迹。<br>冷暖空调技师江远平驾驶工程车下班途中，与同向骑行的自行车相撞。骑车人未戴头盔，送医不治。<br>他留在现场，报警，配合调查。<br>此后半年，没有任何消息。律师预判，或按交通条列的“疏忽驾驶”处理。<br>2019年1月10日，警方突袭其工作场所，当众将他铐走。<br>六小时审讯，二十四小时拘留。<br>随后，他被控“刑事疏忽致死”与“危险驾驶致死”。<br>检方建议刑期四年。<br>指控的核心，是事故发生两分钟之前手机有六秒的电信后台连接。<br>检方据此认定为其“主动使用手机”，属分心驾驶。<br>2022年，第三方专家报告指出：<br>那只是手机后台自动信令，如同心跳和呼吸，与人为操作无关。<br>此案件多项物证亦被忽略：<br>事故次日实测，左前胎气压尚有65 psi（标准为50 psi），右前胎侧壁有撕裂大洞。<br>行车记录仪慢放画面显示，碰撞发生前，右前胎侧壁闪现异常黑烟。持续0.167秒。<br>工程车黑匣子（CDR）数据被警方以“无事件”为由拒绝进做一步分析。<br>直到2025年，经AI模型复核，黑匣子数据揭示：<br>事故前最后两秒，右前胎速骤降为零——指向爆胎失控。<br>六年间，案件因疫情停摆，三易检察官，两度换律师。<br>丈夫从技术骨干沦为限制驾驶的保释犯；<br>妻子以家庭主妇的身份自学法律与取证；<br>十一岁的女儿，在法庭翻译与沉重学业之间长大，最终赢得藤校全额助学金。<br>2024年，检方突然撤回刑事指控，将案件降级为交通违规结案。<br>无解释，无道歉，更无追责。<br>这是一部非虚构纪实。<br>六秒数据连接，钉住了一家三口六年人生——<br>当规则失灵，普通人还能守住清白吗？
+                        </div>
+                        <!-- 关键词 -->
+                        <div style="margin: 20px 0; padding: 15px; background: rgba(30, 35, 50, 0.3); border-radius: 8px; border-left: 3px solid #7bc8f8;">
+                            <div style="color: #5a9acf; font-weight: bold; margin-bottom: 8px;">关键词：</div>
+                            <div style="color: #b8b4b0; font-size: 0.95rem; line-height: 1.8;">
+                                <div style="white-space: nowrap;">六秒与六年（The 6 Seconds vs. The 6 Years）</div>
+                                <div style="white-space: nowrap;">车祸与刑事指控（Car Crash & Criminal Charge）</div>
+                                <div style="white-space: nowrap;">司法持久战（Judicial War of Attrition）</div>
+                                <div style="white-space: nowrap;">移民家庭（Immigrant Family）</div>
+                                <div style="white-space: nowrap;">小个体与大系统（The Individual vs. The System）</div>
+                            </div>
+                        </div>
+                        <!-- 创作背景 -->
+                        <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【创作背景】</div>
+                        <div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;color: #b8b4b0;">
+                            作者为当事人，全程旁听庭审、整理证据、参与案件资料准备。<br>书中技术细节均有法庭文件或第三方报告支撑。<br>为保护隐私，人物化名、日期与部分地点作技术性处理，但事实链完整。
+                        </div>
+                        <!-- 版权说明 -->
+                        <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【版权说明】</div>
+                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 5px;color: #b8b4b0;">
+                            本作品全文著作权归作者所有。<br>欢迎纸质书出版及商务合作。<br>影视改编仅接受完整授权。<br>未经授权，禁止转载、摘编或建立镜像。<br>
+                            <div style="margin-top: 10px; font-size: 0.9rem; color: #a0a0a0; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 8px;">
+                                中国版权登记：国作登字-2026-A-00006464<br>加拿大国际版权登记：1239217
+                            </div>
+                            <div style="display: flex; align-items: center; white-space: nowrap; margin-top: 2px; line-height: 1.2;">
+                                合作请联系：<a href="mailto:author@moonwane.ink" style="color: #e6c68e; text-decoration: none; font-size: 0.95rem; margin-left: 0; outline: none;">author@moonwane.ink →</a>
+                            </div>
+                        </div>
+                        <!-- 底部链接：目录 和 第一章试读 -->
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 0.85rem;">
+                            <a href="#" id="introToChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
+                            <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📘 第一章试读</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 三幕章节目录 - 卡片网格 -->
+                <details class="chapter-drawer" id="chapterContents">
+                    <summary aria-expanded="false">
+                        <span class="triangle-icon">▶</span>
+                        <span class="book-icon">📖</span> 
+                        完整目录 / Table of Contents
+                    </summary>
+                    <div class="chapter-drawer-content" style="max-height: 70vh; overflow-y: auto; padding: 0 32px 20px;">
+                        <div style="color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:0 16px;">📚 总章数：18章+番外 · 约15万字</div>
+                        <div style='color:#aaa; font-size:0.85rem; margin-bottom:15px; padding:8px 16px; background:rgba(40,40,40,0.3); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);'>
+                            📖读全文 · 🎧听精彩瞬间 · 🎬看视频片段 · 🔗更多资讯
+                            <small style="color:#aaa; display:block; margin:8px 0 0 0; text-align:left;">
+                                ↩音频/视频将在新标签页打开，听/看完后关闭标签即可返回本站继续浏览。
+                            </small>
+                        </div>
+                        
+                        <!-- 卡片网格开始 -->
+                        <div class="acts-grid">
+                            <!-- 第一幕 -->
+                            <div class="act-card">
+                                <span class="act-title">· 崩塌 ·</span>
+                                <span class="act-title-second-line">当日常被制度击穿</span>
+                                <ul class="chapter-list">
+                                    <!-- 第1章 -->
+                                    <li>
+                                        <span class='chapter-title'>第1章 六秒与六年的开端</span>
+                                        <span class='chapter-subtitle'>无法阻挡的车祸，与无法重启的人生</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第2章 -->
+                                    <li>
+                                        <span class='chapter-title'>第2章 碾碎：系统启动的第一声</span>
+                                        <span class='chapter-subtitle'>一场车祸，摧毁的不只是车</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第3章 -->
+                                    <li>
+                                        <span class='chapter-title'>第3章 拔河：资本、人性与保单</span>
+                                        <span class='chapter-subtitle'>系统已开始运转，他们还能笑吗？</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="3-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="3-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="3-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="3-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第4章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第4章（上）傍晚五点，逮捕令</span>
+                                        <span class='chapter-subtitle'>碾碎平静的，不是车祸，是手铐</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="4-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="4-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="4-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="4-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第4章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第4章（下）两万五千加元，自由价</span>
+                                        <span class='chapter-subtitle'>如果爸爸进监狱，我还能弹琴给他听吗？</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="4-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="4-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="4-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="4-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第5章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第5章（上）捕·审：国家机器的两副面孔</span>
+                                        <span class='chapter-subtitle'>第一刀，切在众目睽睽之下</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="5-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="5-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="5-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="5-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第5章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第5章（下）牢·镣：无形的终生刑期</span>
+                                        <span class='chapter-subtitle'>手铐只是换了一种形态</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="5-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="5-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="5-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="5-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第6章 -->
+                                    <li>
+                                        <span class='chapter-title'>第6章 变形：重压之下，一切都会变形</span>
+                                        <span class='chapter-subtitle'>六寸蛋糕只有三颗草莓</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="6-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="6-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="6-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="6-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第7章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第7章（上） 挥拳：凭本能挥出一拳</span>
+                                        <span class='chapter-subtitle'>三阳开泰，身体病了，家没病</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="7-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="7-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="7-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="7-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第7章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第7章（下） 积蓄：晨光下的裂痕与姿态</span>
+                                        <span class='chapter-subtitle'>我们不需要被同情</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="7-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="7-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="7-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="7-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 第二幕 -->
+                            <div class="act-card">
+                                <span class="act-title">· 抗争 ·</span>
+                                <span class="act-title-second-line">数据、轮胎与系统共同失真</span>
+                                <ul class="chapter-list">
+                                    <!-- 第8章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第8章（上）定罪的六秒：是致命六秒，还是虚构两分钟？</span>
+                                        <span class='chapter-subtitle'>数据如何被误读成罪</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="8-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="8-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="8-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="8-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第8章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第8章（下）定罪的六秒：机器的呼吸与系统的失聪</span>
+                                        <span class='chapter-subtitle'>六秒连接是呼吸，不是冲浪</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="8-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="8-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="8-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="8-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第9章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第9章（上）轮胎不会说谎</span>
+                                        <span class='chapter-subtitle'>物证与失察的双重真相</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="9-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="9-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="9-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="9-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第9章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第9章（下）轮胎不会说谎</span>
+                                        <span class='chapter-subtitle'>爆裂、隐患、误读与被淹没的现场</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="9-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="9-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="9-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="9-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第10章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第10章（上）穿越时空，剥茧自证</span>
+                                        <span class='chapter-subtitle'>当物证湮灭，数据开口</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="10-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="10-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="10-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="10-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第10章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第10章（下）穿越时空，剥茧自证</span>
+                                        <span class='chapter-subtitle'>0.167秒的黑烟，撞上专家之墙</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="10-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="10-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="10-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="10-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第11章 -->
+                                    <li>
+                                        <span class='chapter-title'>第11章 临阵换帅</span>
+                                        <span class='chapter-subtitle'>最信任的舵手成了法官，最脆弱的身体成了证人</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="11-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="11-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="11-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="11-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（上）盲转齿轮：罪证靶环的绘制</span>
+                                        <span class='chapter-subtitle'>闭环如何形成真相</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（中） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（中）锁定靶心：中心轮的冷酷裁决</span>
+                                        <span class='chapter-subtitle'>一句"没必要"，否决一个家庭的命运</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第12章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第12章（下）失焦的探照灯：碎片真相与文明微光</span>
+                                        <span class='chapter-subtitle'>五个证人，五个平行世界</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="12-3-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="12-3-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="12-3-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="12-3-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 第三幕 -->
+                            <div class="act-card">
+                                <span class="act-title">· 重启 ·</span>
+                                <span class="act-title-second-line">在制度的余震中重建家园</span>
+                                <ul class="chapter-list">
+                                    <!-- 第13章 -->
+                                    <li>
+                                        <span class='chapter-title'>第13章 头狼离场：信任出现真空</span>
+                                        <span class='chapter-subtitle'>律师，在开庭前消失了</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="13-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="13-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="13-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="13-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第14章 -->
+                                    <li>
+                                        <span class='chapter-title'>第14章 蚍蜉撼树：一个母亲的觉醒</span>
+                                        <span class='chapter-subtitle'>从旁观到发声，只有一小步</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="14-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="14-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="14-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="14-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第15章 -->
+                                    <li>
+                                        <span class='chapter-title'>第15章 家的天平</span>
+                                        <span class='chapter-subtitle'>一头是案子，一头是孩子，中间是摇摇欲坠的生活</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="15-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="15-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="15-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="15-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第16章 -->
+                                    <li>
+                                        <span class='chapter-title'>第16章 刹车：系统决定止损的瞬间</span>
+                                        <span class='chapter-subtitle'>六年，换一张交通罚单</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="16-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="16-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="16-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="16-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第17章（上） -->
+                                    <li>
+                                        <span class='chapter-title'>第17章（上）盲眼钟表匠</span>
+                                        <span class='chapter-subtitle'>当司法程序忘记为何而转动</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="17-1-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="17-1-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="17-1-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="17-1-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第17章（下） -->
+                                    <li>
+                                        <span class='chapter-title'>第17章（下）后视镜里的六年</span>
+                                        <span class='chapter-subtitle'>当尘埃落定，光从裂缝照进</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="17-2-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="17-2-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="17-2-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="17-2-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 第18章 -->
+                                    <li>
+                                        <span class='chapter-title'>第18章 未来之轮：一切都是最好的安排</span>
+                                        <span class='chapter-subtitle'>车轮驶向未被改写的明天</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="18-01" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="18-01" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="18-01" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="18-01" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                    <!-- 番外篇 -->
+                                    <li>
+                                        <span class='chapter-title'>番外篇 案子的三个谜</span>
+                                        <span class='chapter-subtitle'>那些系统没有回答，时间也未必能解答的问题</span>
+                                        <div class='chapter-actions'>
+                                            <a class="pdf-trigger read-icon" data-chapter="extra" data-type="read" href="#" title="读全文">📖</a>
+                                            <a class="pdf-trigger audio-icon" data-chapter="extra" data-type="audio" href="#" title="听精彩瞬间">🎧</a>
+                                            <a class="pdf-trigger video-icon" data-chapter="extra" data-type="video" href="#" title="看视频片段">🎬</a>
+                                            <a class="external-link" data-chapter="extra" data-type="external" href="#" title="更多资讯">🔗</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- 卡片网格结束 -->
+                        
+                        <div style='color:#888; font-size:0.9rem; font-style:italic; margin:30px 0 20px; padding:10px 15px; background:rgba(30,30,30,0.3); border-radius:8px; border-left:3px solid #7bc8f8;'>
+                            本文档仅供阅读，不提供下载或二次传播权限。
+                        </div>
+                    </div>
+                </details>
+                
+                <!-- 证据库 - 抽屉式 -->
+                <details class="evidence-drawer">
+                    <summary aria-expanded="false">🌐 证据库 / Evidence Hub</summary>
+                    <div class="evidence-drawer-content" id="evidenceDrawerContent" style="padding: 0; max-height: 70vh; overflow: hidden; display: flex; flex-direction: column;">
+                        <div class="evidence-search-container" style="flex-shrink: 0;">
+                            <input type="search" id="evidenceSearch" placeholder="搜索证据名称、描述或章节..." autocomplete="off" aria-label="搜索证据库">
+                            <span class="search-count" id="searchCount">共找到 4 条证据（均已就绪）</span>
+                        </div>
+                        <div class="evidence-scroll-area" style="overflow-y: auto; padding: 0 32px 20px;">
+                            <div class="evidence-content" style="padding: 0;">
+                                <div class="evidence-intro" style="margin-top: 0;">
+                                    <span class="golden-sentence" style="color: #e6c68e;">真相隐于微末，而证据永不消逝。</span>
+                                    <p>________________________________________</p>
+                                   <p style="color: #b8b4b0;"><strong>如何阅读证据库 / How to Read the Evidence Hub</strong></p>
+<p style="color: #b8b4b0;">• 休闲阅读：可按【章节 → 对应证据】顺序阅读，用于理解叙事中的事实支点。</p>
+<p style="color: #b8b4b0;">• 深入研究：可直接查阅各 Exhibit 编号，获取对应的原始数据与技术说明。</p>
+                                </div>
+                                <h4>一、核心证据分类</h4>
+                                <div style="border-left: 3px solid #7bc8f8; padding-left: 15px; margin-bottom: 25px; border-radius: 8px;">
+                                    <table class="evidence-table" id="evidenceTable">
+                                        <thead>
+                                            <tr><th style="color: #888; font-weight: 500;">文件名称</th><th style="color: #888; font-weight: 500;">包含内容建议</th><th style="color: #888; font-weight: 500;">对应章节</th><th style="color: #888; font-weight: 500;">PDF</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-search="01_ 手机后台数据 电信 信令 心跳 数据 第8章">
+                                                <td style="color: #e6c68e;">01_ 手机后台数据</td>
+                                                <td>• 电信日志（含 17:36:09–15 后台心跳数据、信令隧道 #777 重连记录）<br>• 125 秒时间差与距离计算<br>• 《CFI 法证报告》</td>
+                                                <td>第8章（上/下）《定罪的六秒》<br>第12章（上）《盲转齿轮》<br>第12章（中）《锁定靶心》</td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="1" title="稍后统一开放">📄</a></td>
+                                            </tr>
+                                            <tr data-search="02_ 轮胎胎压 侧壁 撕裂 爆胎 刺穿 第9章">
+                                                <td style="color: #e6c68e;">02_ 轮胎胎压与侧壁撕裂</td>
+                                                <td>• 车祸次日实测 65 psi 胎压<br>• 侧壁爆炸性撕裂特征<br>• "踏板戳穿说"的伪证分析<br>• 现场路面拖痕逻辑</td>
+                                                <td>第9章（上/下）《轮胎不会说谎》<br>第12章（上/中）</td>
+                                               <td><a href="#" class="pdf-trigger disabled" data-evidence-id="2" title="稍后统一开放">📄</a></td>
+                                            </tr>
+                                            <tr data-search="03_ 黑匣子 CDR 行车记录仪 动力学 第10章">
+                                                <td style="color: #e6c68e;">03_ 黑匣子（CDR）与行车记录仪</td>
+                                                <td>• CDR 原始数据（轮速、油门、方向角、刹车）<br>• 行车记录仪慢速截图与 0.167 秒黑烟计算<br>• 高压应激下的人体反应极限<br>• 美国佛州类似案例</td>
+                                                <td>第10章（上/下）《穿越时空，剥茧自证》</td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="3" title="稍后统一开放">📄</a></td>
+                                            </tr>
+                                            <tr data-search="04_ 警方 证据链 裁撤 封印 第12章">
+                                                <td style="color: #e6c68e;">04_ 警方的证据链</td>
+                                                <td>• 证据链细节与时间线<br>• 选择性裁撤的分析</td>
+                                                <td>第12章（上）《盲转齿轮》<br>第12章（中）《锁定靶心》<br>第12章（下）《失焦的探照灯》</td>
+                                                <td><a href="#" class="pdf-trigger disabled" data-evidence-id="4" title="稍后统一开放">📄</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="technical-points">
+                                    <h4>二、关键法证技术点</h4>
+                                    <p>• 信令隧道 #777：用于追踪后台数据时间戳，证明手机活动并非驾驶员操作（Exhibit A-D）</p>
+                                    <p>• 65 psi 高胎压：物理证据，指向爆胎真实成因（Exhibit E-J）</p>
+                                    <p>• 0.167 秒黑烟：动力学分析关键时间节点（Exhibit K-P）</p>
+                                </div>
+                                <div class="truth-summary">
+                                    <h4>三、核心真相（提要）</h4>
+                                    <p>• 时间差维度：125 秒差异证伪"分心驾驶"（Exhibit A-D）</p>
+                                    <p>• 物理极限维度：爆胎真相（Exhibit E-J）</p>
+                                    <p>• 动力学维度：0.29 秒反应窗口（Exhibit K-P）</p>
+                                    <p>• 证据链偏差：预设结论导致的裁撤（Exhibit Q-R）</p>
+                                </div>
+                                <div style="font-size:11px; color:#777; line-height:1.2; margin-top:40px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.05); text-align:center;">
+                                    <p style="margin:2px 0; text-align: left;">以上图表/资料仅用于《六秒钉六年》作品之事实佐证，未经授权禁止用于商业转载。部分数据已根据隐私法（Privacy Act）进行脱敏处理。</p>
+<p style="margin:2px 0; text-align: left; font-style: italic;">Copyright & Legal Notice: The images above are provided solely as factual evidence for Six Seconds, Six Years. Unauthorized commercial use is prohibited. Certain data has been redacted in compliance with the Privacy Act.</p>
+<p style="margin:2px 0; font-size:10px; color:#666; text-align: left;">© Moonwane Project • 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                
+                <!-- 喜欢按钮 -->
+                <div class="button" id="wantToReadBtn">
+                    喜欢 / Like<br>
+                    <span style="font-size:0.95rem;opacity:0.7;">点击表达兴趣，帮助我们了解读者需求</span>
+                </div>
+                
+                <!-- 赞助支持 - 带安全属性 -->
+                <a href="https://ko-fi.com/moonwaneink" class="support-link" target="_blank" rel="noopener noreferrer nofollow">
+                    赞助支持 / Support<br>
+                    <span style="font-size:0.95rem;opacity:0.7;">
+                        💳 支持 PayPal / 信用卡<br>
+                        🇨🇦 多伦多作者，感谢支持创作！
+                    </span>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <section class="poetry-section">
+        <div class="poetry">
+            <div class="poetry-english">Ink for every phase of the moon.</div>
+            <div class="poetry-chinese">月盈月缺，以墨为记</div>
+        </div>
+        <footer>
+            <div class="contact-email">
+                <a href="mailto:author@moonwane.ink">
+                    <i class="fas fa-envelope envelope-icon"></i>
+                    author@moonwane.ink
+                    <span class="email-arrow">→</span>
+                </a>
+            </div>
+            <div class="copyright">
+                © 2025 墨染月光 · MoonWane.Ink
+            </div>
+            <div class="book-info">
+                《六秒钉六年》（Six Seconds, Six Years） | 中国版权保护登记号：国作登字-2026-A-00006464 | 加拿大国际版权登记：1239217
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="legal-disclaimer.html" class="legal-link">
+                    <i class="fas fa-balance-scale" style="margin-right: 5px;"></i>
+                    法律免责声明 ｜ Legal Disclaimer
+                </a>
+            </div>
+        </footer>
+    </section>
+
+    <!-- 月亮动画覆盖层 -->
+    <div class="moon-overlay" id="moonOverlay">
+        <div class="moon-animation"></div>
+        <div class="thank-you-text">Thank You</div>
+        <div class="recorded-text">感谢，只记录<br>（不收集个人数据）</div>
+    </div>
+    
+    <!-- PDF模态框 -->
+    <div class="pdf-modal" id="pdfModal" role="dialog" aria-modal="true" aria-label="PDF预览">
+        <div class="pdf-modal-content">
+            <div class="pdf-modal-header">
+                <span class="pdf-notice">本PDF由Google Drive提供预览，仅限阅读。如需下载请联系作者。</span>
+                <button class="pdf-close" id="pdfClose" aria-label="关闭 PDF 预览">×</button>
+            </div>
+            <div class="pdf-viewer-area">
+                <div class="pdf-loading" id="pdfLoading">
+                    <div class="pdf-moon-animation"></div>
+                    <span>加载中，请稍候...</span>
+                </div>
+                <iframe class="pdf-iframe" id="pdfFrame" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结构化数据 JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": "六秒钉六年",
+        "alternateName": "Six Seconds, Six Years",
+        "author": {
+            "@type": "Person",
+            "name": "墨染月光"
+        },
+        "description": "基于真实家庭经历的纪实文学，讲述一场普通车祸如何演变为跨越六年的司法拉锯战，一个移民家庭在系统不公与亲情韧性之间的自我救赎。",
+        "keywords": "六秒与六年, 车祸与刑事指控, 逮捕与保释, 司法拉锯战, 数字取证, 自证清白与疑罪从无, 小个体与大系统, 制度性偏差, 移民家庭",
+        "inLanguage": ["zh", "en"],
+        "copyrightYear": "2025",
+        "copyrightHolder": {
+            "@type": "Person",
+            "name": "墨染月光"
+        }
+    }
+    </script>
 
     <script>
-    (function() {
-        // 复制保护
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        document.addEventListener('copy', function(e) {
-            const selectedText = window.getSelection().toString().trim();
-            const maxLength = 50;
-            if (selectedText.length > maxLength) {
-                e.preventDefault();
-                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
-            }
-        });
-
-        // 阅读进度条
-        const progressBar = document.getElementById('reading-progress');
-        const updateProgress = () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressBar.style.width = progress + '%';
-        };
-        window.addEventListener('scroll', updateProgress);
-        window.addEventListener('resize', updateProgress);
-        updateProgress();
-
-        // 返回顶部
-        const backToTopBtn = document.getElementById('back-to-top');
-        const toggleBackToTop = () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        };
-        window.addEventListener('scroll', toggleBackToTop);
-        toggleBackToTop();
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 深色模式切换
-        const themeToggles = document.querySelectorAll('.theme-toggle');
-        const body = document.body;
-
-        function updateThemeIcons(isDark) {
-            themeToggles.forEach(btn => {
-                const icon = btn.querySelector('i');
-                if (icon) {
-                    icon.className = 'fas fa-lightbulb';
-                }
-            });
+        // 安全防护：防止网站被嵌入到其他页面中
+        if (self != top) {
+            top.location = self.location;
         }
-
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-            updateThemeIcons(true);
-        } else if (savedTheme === 'light') {
-            body.classList.remove('dark-mode');
-            updateThemeIcons(false);
-        } else {
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                body.classList.add('dark-mode');
-                updateThemeIcons(true);
-            } else {
-                body.classList.remove('dark-mode');
-                updateThemeIcons(false);
-            }
-        }
-
-        themeToggles.forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (body.classList.contains('dark-mode')) {
-                    body.classList.remove('dark-mode');
-                    updateThemeIcons(false);
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-mode');
-                    updateThemeIcons(true);
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
+        
+        // GitHub Pages部署问题解决：添加错误处理
+        window.addEventListener('error', function(e) {
+            console.warn('页面加载错误:', e.message);
         });
-
-        // 图片点击放大
-        const images = document.querySelectorAll('.evidence-image');
-        images.forEach(img => {
-            img.addEventListener('click', function() {
-                const lightbox = document.createElement('div');
-                lightbox.className = 'lightbox';
-                lightbox.innerHTML = `
-                    <span class="lightbox-close">&times;</span>
-                    <img src="${this.src}" alt="${this.alt}">
-                `;
-                document.body.appendChild(lightbox);
-                document.body.style.overflow = 'hidden';
-
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-                        lightbox.remove();
-                        document.body.style.overflow = '';
-                    }
+        
+        // Wayback触发计数器
+        let menuClickCount = 0;
+        let menuClickTimer = null;
+        let currentPdfFileId = null;
+        let currentPdfLoaded = false;
+        
+        // 章节编号显示名称映射（扩展以支持分章）
+        const chapterDisplayMap = {
+            '1-01': '第1章',
+            '2-01': '第2章',
+            '3-01': '第3章',
+            '4-1-01': '第4章（上）',
+            '4-2-01': '第4章（下）',
+            '5-1-01': '第5章（上）',
+            '5-2-01': '第5章（下）',
+            '6-01': '第6章',
+            '7-1-01': '第7章（上）',
+            '7-2-01': '第7章（下）',
+            '8-1-01': '第8章（上）',
+            '8-2-01': '第8章（下）',
+            '9-1-01': '第9章（上）',
+            '9-2-01': '第9章（下）',
+            '10-1-01': '第10章（上）',
+            '10-2-01': '第10章（下）',
+            '11-01': '第11章',
+            '12-1-01': '第12章（上）',
+            '12-2-01': '第12章（中）',
+            '12-3-01': '第12章（下）',
+            '13-01': '第13章',
+            '14-01': '第14章',
+            '15-01': '第15章',
+            '16-01': '第16章',
+            '17-1-01': '第17章（上）',
+            '17-2-01': '第17章（下）',
+            '18-01': '第18章',
+            'extra': '番外'
+        };
+        
+        function getChapterDisplayNumber(chapterId) {
+            return chapterDisplayMap[chapterId] || chapterId;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const wantToReadBtn = document.getElementById('wantToReadBtn');
+            const moonOverlay = document.getElementById('moonOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const menuDropdown = document.getElementById('menuDropdown');
+            const supportLink = document.querySelector('.support-link');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwG07Yt5QMXsk5wvvnUsNcvMzG8XKgsUYnzd1F36ixiZvLU2-lNLz24v0km6aNU1oKk/exec';
+            
+            const archiveToast = document.getElementById('archiveToast');
+            const toastClose = document.getElementById('toastClose');
+            const remindLater = document.getElementById('remindLater');
+            const evidenceSearch = document.getElementById('evidenceSearch');
+            const evidenceTable = document.getElementById('evidenceTable');
+            const searchCount = document.getElementById('searchCount');
+            const pdfModal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const pdfClose = document.getElementById('pdfClose');
+            const chapterDrawer = document.getElementById('chapterContents');
+            const evidenceDrawer = document.querySelector('.evidence-drawer');
+            
+            // 原有抽屉Aria设置
+            function setupDrawerAria(drawer) {
+                if (!drawer) return;
+                const summary = drawer.querySelector('summary');
+                if (!summary) return;
+                drawer.addEventListener('toggle', function() {
+                    summary.setAttribute('aria-expanded', drawer.open);
                 });
+                summary.setAttribute('aria-expanded', drawer.open);
+            }
+            setupDrawerAria(chapterDrawer);
+            setupDrawerAria(evidenceDrawer);
+            
+            // 焦点陷阱相关变量
+            let focusTrapHandler = null;
+            
+            // PDF模态框功能（完全不变）
+            function showPdfModal(fileId, fileName) {
+                if (!fileId || fileId.trim() === '') {
+                    alert('文件不存在');
+                    return;
+                }
+                const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                const pdfFrame = document.getElementById('pdfFrame');
+                const pdfLoading = document.getElementById('pdfLoading');
+                const pdfModal = document.getElementById('pdfModal');
+                
+                pdfModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                if (currentPdfFileId === fileId && currentPdfLoaded) {
+                    pdfLoading.classList.add('hidden');
+                    pdfFrame.classList.add('visible');
+                    setupFocusTrap();
+                    return;
+                }
+                
+                pdfLoading.classList.remove('hidden');
+                pdfFrame.classList.remove('visible');
+                currentPdfFileId = fileId;
+                currentPdfLoaded = false;
+                pdfFrame.src = previewUrl;
+                
+                pdfFrame.onload = function() {
+                    currentPdfLoaded = true;
+                    pdfLoading.classList.add('hidden');
+                    pdfFrame.classList.add('visible');
+                    setupFocusTrap();
+                };
+                
+                pdfModal._previousActiveElement = document.activeElement;
+                
+                function setupFocusTrap() {
+                    if (focusTrapHandler) {
+                        document.removeEventListener('keydown', focusTrapHandler);
+                    }
+                    focusTrapHandler = function(e) {
+                        if (e.key !== 'Tab') return;
+                        const focusableElements = pdfModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                        if (focusableElements.length === 0) return;
+                        const firstElement = focusableElements[0];
+                        const lastElement = focusableElements[focusableElements.length - 1];
+                        
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            }
+                        } else {
+                            if (document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    };
+                    document.addEventListener('keydown', focusTrapHandler);
+                    const firstFocusable = pdfModal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (firstFocusable) firstFocusable.focus();
+                }
+            }
+            
+            function closePdfModal() {
+                pdfModal.classList.remove('active');
+                document.body.style.overflow = '';
+                if (focusTrapHandler) {
+                    document.removeEventListener('keydown', focusTrapHandler);
+                    focusTrapHandler = null;
+                }
+                if (pdfModal._previousActiveElement) {
+                    pdfModal._previousActiveElement.focus();
+                }
+            }
+            
+            // PDF按钮点击事件（处理证据库）
+            function handlePdfClick(e) {
+                const pdfTrigger = e.target.closest('.pdf-trigger');
+                if (!pdfTrigger) return;
+                // 只处理证据库按钮（有 data-file-id）
+                const fileId = pdfTrigger.getAttribute('data-file-id');
+                if (!fileId) return; // 章节按钮无 data-file-id，忽略
+                
+                e.preventDefault();
+                showPdfModal(fileId, pdfTrigger.getAttribute('data-file-name') || '证据文件');
+            }
+            
+            document.addEventListener('click', handlePdfClick);
+            
+            pdfClose.addEventListener('click', closePdfModal);
+            pdfModal.addEventListener('click', function(e) {
+                if (e.target === pdfModal) {
+                    closePdfModal();
+                }
             });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && pdfModal.classList.contains('active')) {
+                    closePdfModal();
+                }
+            });// ========== 证据库按钮动态控制（基于 evidence.json） ==========
+fetch('/data/evidence.json')
+    .then(response => response.json())
+    .then(evidenceData => {
+        // 构建证据链接映射表：evidenceId -> pdfLink
+        const evidenceMap = {};
+        evidenceData.evidences.forEach(item => {
+            evidenceMap[item.id] = item.pdfLink || '';
         });
-    })();
+
+        // 遍历所有证据按钮
+        document.querySelectorAll('[data-evidence-id]').forEach(btn => {
+            const evidenceId = btn.getAttribute('data-evidence-id');
+            const link = evidenceMap[evidenceId];
+
+            if (link && link.trim() !== '') {
+                // 绿色：链接非空
+                btn.classList.remove('disabled', 'status-preparing');
+                btn.classList.add('status-ready');
+                btn.href = link;
+                btn.removeAttribute('title');
+                btn.onclick = null; // 移除任何旧点击事件
+            } else {
+                // 灰色：链接为空
+                btn.classList.remove('status-ready');
+                btn.classList.add('disabled', 'status-preparing');
+                btn.href = 'javascript:void(0)';
+                btn.title = '稍后统一开放';
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    alert('在全书完结后统一开放，敬请期待。');
+                };
+            }
+        });
+    })
+    .catch(error => {
+        console.error('加载证据状态失败，使用默认灰色', error);
+        // 降级：所有证据按钮保持灰色
+        document.querySelectorAll('[data-evidence-id]').forEach(btn => {
+            btn.classList.add('disabled', 'status-preparing');
+            btn.href = 'javascript:void(0)';
+            btn.title = '稍后统一开放';
+            btn.onclick = function(e) {
+                e.preventDefault();
+                alert('在全书完结后统一开放，敬请期待。');
+            };
+        });
+    });
+            
+            // "想看"按钮功能
+            let hasTrackedClick = false;
+            wantToReadBtn.addEventListener('click', function() {
+                moonOverlay.classList.add('active');
+                if (!hasTrackedClick) {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' }
+                    }).catch(err => {});
+                    hasTrackedClick = true;
+                }
+                setTimeout(function() {
+                    moonOverlay.classList.remove('active');
+                }, 3000);
+            });
+            moonOverlay.addEventListener('click', function() {
+                moonOverlay.classList.remove('active');
+            });
+            
+            // 右上角菜单功能
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menuDropdown.classList.toggle('active');
+                menuClickCount++;
+                if (menuClickTimer) {
+                    clearTimeout(menuClickTimer);
+                }
+                menuClickTimer = setTimeout(function() {
+                    menuClickCount = 0;
+                }, 4000);
+                if (menuClickCount >= 3) {
+                    archiveToast.classList.add('active');
+                    menuClickCount = 0;
+                }
+            });
+            document.addEventListener('click', function() {
+                menuDropdown.classList.remove('active');
+            });
+            
+            // 赞助支持链接优化
+            supportLink.addEventListener('click', function(e) {});
+            
+            // 懒加载诗区动画
+            if ('IntersectionObserver' in window) {
+                const poetrySection = document.querySelector('.poetry-section');
+                if (poetrySection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0, rootMargin: '50px' });
+                    observer.observe(poetrySection);
+                }
+            } else {
+                document.querySelector('.poetry-section')?.classList.add('visible');
+            }
+            
+            // Wayback存档提醒功能
+            function checkArchiveReminder() {}
+            toastClose.addEventListener('click', function() {
+                archiveToast.classList.remove('active');
+                localStorage.setItem('lastArchiveReminder', Date.now());
+            });
+            remindLater.addEventListener('click', function() {
+                archiveToast.classList.remove('active');
+                localStorage.setItem('lastArchiveReminder', Date.now() - (15 * 24 * 60 * 60 * 1000));
+            });
+            checkArchiveReminder();
+            
+            // 内容保护措施
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            document.addEventListener('copy', function(e) {
+                const selectedText = window.getSelection().toString().trim();
+                const maxLength = 50;
+                if (selectedText.length > maxLength) {
+                    e.preventDefault();
+                    alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+                }
+            });
+            
+            // 证据库搜索功能
+            if (evidenceSearch && searchCount) {
+                function updateSearchResults() {
+                    const searchTerm = evidenceSearch.value.toLowerCase();
+                    const rows = evidenceTable.querySelectorAll('tbody tr');
+                    let visibleCount = 0;
+                    rows.forEach(row => {
+                        const searchText = row.getAttribute('data-search') ? row.getAttribute('data-search').toLowerCase() : '';
+                        const matchesSearch = searchTerm === '' || searchText.includes(searchTerm);
+                        row.style.display = matchesSearch ? '' : 'none';
+                        if (matchesSearch) visibleCount++;
+                    });
+                    searchCount.textContent = `共找到 ${visibleCount} 条证据`;
+                }
+                evidenceSearch.addEventListener('input', updateSearchResults);
+                updateSearchResults();
+            }
+            
+            // ========== 多链接数据结构及处理函数（保持不变） ==========
+            window.chapterLinksData = {};
+            
+            function normalizeLinks(linksArray, singleLink, defaultTitle) {
+                if (linksArray && Array.isArray(linksArray) && linksArray.length > 0) {
+                    return linksArray;
+                }
+                if (singleLink && typeof singleLink === 'string' && singleLink.trim() !== '') {
+                    return [{ title: defaultTitle, url: singleLink }];
+                }
+                return [];
+            }
+            
+            function showLinkMenu(event, links) {
+                const existingMenu = document.querySelector('.multi-link-menu');
+                if (existingMenu) existingMenu.remove();
+                
+                const icon = event.currentTarget;
+                const iconRect = icon.getBoundingClientRect();
+                
+                const menu = document.createElement('div');
+                menu.className = 'multi-link-menu';
+                menu.setAttribute('role', 'menu');
+                
+                const ul = document.createElement('ul');
+                links.forEach((link, index) => {
+                    const li = document.createElement('li');
+                    li.setAttribute('role', 'menuitem');
+                    li.tabIndex = index === 0 ? 0 : -1;
+                    li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.title}</a>`;
+                    
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        window.open(link.url, '_blank');
+                        menu.remove();
+                    });
+                    
+                    li.addEventListener('keydown', handleMenuKeydown);
+                    ul.appendChild(li);
+                });
+                menu.appendChild(ul);
+                document.body.appendChild(menu);
+                
+                const menuWidth = menu.offsetWidth;
+                const menuHeight = menu.offsetHeight;
+                
+                let left = iconRect.left + window.scrollX;
+                let top = iconRect.bottom + window.scrollY + 5;
+                let positionClass = '';
+                
+                if (top + menuHeight > window.innerHeight + window.scrollY) {
+                    top = iconRect.top + window.scrollY - menuHeight - 5;
+                    positionClass = 'position-top';
+                }
+                
+                if (left + menuWidth > window.innerWidth + window.scrollX) {
+                    left = window.innerWidth + window.scrollX - menuWidth - 10;
+                }
+                if (left < window.scrollX) {
+                    left = window.scrollX + 5;
+                }
+                
+                menu.style.left = left + 'px';
+                menu.style.top = top + 'px';
+                if (positionClass) {
+                    menu.classList.add(positionClass);
+                }
+                
+                const arrowLeft = (iconRect.left + iconRect.width/2) - left - 8;
+                menu.style.setProperty('--arrow-left', arrowLeft + 'px');
+                
+                ul.firstChild.focus();
+                
+                function outsideClickHandler(e) {
+                    if (!menu.contains(e.target) && e.target !== icon) {
+                        menu.remove();
+                        document.removeEventListener('click', outsideClickHandler);
+                        document.removeEventListener('keydown', escHandler);
+                    }
+                }
+                
+                function escHandler(e) {
+                    if (e.key === 'Escape') {
+                        menu.remove();
+                        document.removeEventListener('click', outsideClickHandler);
+                        document.removeEventListener('keydown', escHandler);
+                        icon.focus();
+                    }
+                }
+                
+                setTimeout(() => {
+                    document.addEventListener('click', outsideClickHandler);
+                    document.addEventListener('keydown', escHandler);
+                }, 0);
+            }
+            
+            function handleMenuKeydown(e) {
+                const menu = e.target.closest('.multi-link-menu');
+                if (!menu) return;
+                
+                const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+                const currentIndex = items.indexOf(e.target);
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const nextIndex = (currentIndex + 1) % items.length;
+                    items[nextIndex].focus();
+                    items[nextIndex].tabIndex = 0;
+                    e.target.tabIndex = -1;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+                    items[prevIndex].focus();
+                    items[prevIndex].tabIndex = 0;
+                    e.target.tabIndex = -1;
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.target.click();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    menu.remove();
+                }
+            }
+            
+            // ========== 章节按钮动态控制（基于 button-status.json） ==========
+            
+            // 定义章节顺序（只包含第一节）
+            const chapterOrder = [
+                '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
+                '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
+                '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
+                '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
+            ];
+            
+            // 加载按钮状态 JSON
+            fetch('/data/button-status.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 构建查找表：chapterId -> { readLink, audioLink, videoLink, externalLink }
+                    const statusMap = {};
+                    data.chapters.forEach(item => {
+                        statusMap[item.chapterId] = {
+                            read: item.readLink || '',
+                            audio: item.audioLink || '',
+                            video: item.videoLink || '',
+                            external: item.externalLink || ''
+                        };
+                    });
+                    
+                    // 对四种按钮类型分别处理
+                    const types = ['read', 'audio', 'video', 'external'];
+                    types.forEach(type => {
+                        let lastGreenIndex = -1; // 上一个绿色按钮在 chapterOrder 中的索引
+                        chapterOrder.forEach((chapterId, index) => {
+                            const link = statusMap[chapterId]?.[type] || '';
+                            // 查找页面上所有对应章节和类型的按钮
+                            const buttons = document.querySelectorAll(`[data-chapter="${chapterId}"][data-type="${type}"]`);
+                            if (buttons.length === 0) return;
+                            
+                            if (link) {
+                                // 绿色：链接非空
+                                buttons.forEach(btn => {
+                                    btn.classList.remove('status-coming', 'status-preparing');
+                                    btn.classList.add('status-ready');
+                                    btn.href = link;
+                                    btn.removeAttribute('title');
+                                    // 移除之前可能绑定的点击事件（通过克隆替换来清除旧监听，或者直接覆盖）
+                                    // 简单做法：先移除所有点击监听，再添加新的
+                                    btn.onclick = null; // 移除任何 onclick
+                                    // 添加新点击：直接跳转
+                                    btn.addEventListener('click', function(e) {
+                                        // 如果链接有效，允许跳转
+                                    }, { once: true }); // 注意：多次调用会添加多个监听，但这里我们只设置一次
+                                    // 更安全：使用新监听，但不阻止默认
+                                });
+                                lastGreenIndex = index;
+                            } else {
+                                // 链接为空，判断是黄色还是灰色
+                                if (lastGreenIndex !== -1) {
+                                    // 存在上一个绿色 → 黄色
+                                    buttons.forEach(btn => {
+                                        btn.classList.remove('status-ready', 'status-preparing');
+                                        btn.classList.add('status-coming');
+                                        btn.href = 'javascript:void(0)';
+                                        btn.title = '下周上线';
+                                        btn.onclick = null;
+                                        btn.addEventListener('click', function(e) {
+                                            e.preventDefault();
+                                            alert(`${getChapterDisplayNumber(chapterId)}下周上线。`);
+                                        });
+                                    });
+                                } else {
+                                    // 无上一个绿色 → 灰色
+                                    buttons.forEach(btn => {
+                                        btn.classList.remove('status-ready', 'status-coming');
+                                        btn.classList.add('status-preparing');
+                                        btn.href = 'javascript:void(0)';
+                                        btn.title = '准备中';
+                                        btn.onclick = null;
+                                        btn.addEventListener('click', function(e) {
+                                            e.preventDefault();
+                                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('加载按钮状态失败，使用默认灰色', error);
+                    // 降级：所有按钮设为灰色
+                    document.querySelectorAll('[data-chapter][data-type]').forEach(btn => {
+                        btn.classList.add('status-preparing');
+                        btn.href = 'javascript:void(0)';
+                        btn.title = '准备中';
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const chapterId = btn.getAttribute('data-chapter');
+                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
+                        });
+                    });
+                });
+            
+            // ========== 多链接菜单数据获取 ==========
+            function fetchChapters() {
+                fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.acts.forEach(act => {
+                            act.chapters.forEach(chapter => {
+                                if (chapter.externalreadLink) {
+                                    chapter.readLink = chapter.externalreadLink;
+                                }
+                                const chapterId = chapter.chapterNumber;
+                                window.chapterLinksData[chapterId] = {
+                                    read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                    audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                    video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                    external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                };
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
+                            .then(response => response.json())
+                            .then(data => {
+                                data.acts.forEach(act => {
+                                    act.chapters.forEach(chapter => {
+                                        if (chapter.externalreadLink) {
+                                            chapter.readLink = chapter.externalreadLink;
+                                        }
+                                        const chapterId = chapter.chapterNumber;
+                                        window.chapterLinksData[chapterId] = {
+                                            read: normalizeLinks(chapter.readLinks, chapter.readLink, '阅读全文'),
+                                            audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '听精彩瞬间'),
+                                            video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '看视频片段'),
+                                            external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯')
+                                        };
+                                    });
+                                });
+                            })
+                            .catch(() => {});
+                    });
+            }
+            
+            function initNonCritical() {
+                fetchChapters();
+            }
+            
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(initNonCritical, { timeout: 2000 });
+            } else {
+                setTimeout(initNonCritical, 100);
+            }
+            
+            // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('[data-chapter]');
+                if (!target) return;
+                // 只处理没有 data-type 的元素（多链接菜单）
+                if (target.hasAttribute('data-type')) return;
+                
+                e.preventDefault();
+                
+                const chapterId = target.getAttribute('data-chapter');
+                // 根据类名推断类型（兼容旧代码）
+                let type = null;
+                if (target.classList.contains('read-icon')) type = 'read';
+                else if (target.classList.contains('audio-icon')) type = 'audio';
+                else if (target.classList.contains('video-icon')) type = 'video';
+                else if (target.classList.contains('external-link')) type = 'external';
+                if (!type) return;
+                
+                const links = window.chapterLinksData?.[chapterId]?.[type];
+                
+                if (!links || links.length === 0) {
+                    const displayNum = getChapterDisplayNumber(chapterId);
+                    alert(`第${displayNum}章正在准备中，敬请期待。`);
+                    return;
+                }
+                
+                if (links.length === 1) {
+                    window.open(links[0].url, '_blank');
+                } else {
+                    showLinkMenu(e, links);
+                }
+            });
+            
+        });  // DOMContentLoaded 结束
+        
+        // 页面加载时检查URL hash
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#open-chapters') {
+                const chapterDetails = document.getElementById('chapterContents');
+                if (chapterDetails) {
+                    chapterDetails.open = true;
+                    chapterDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+        
+        // 分享功能
+        function shareToSocial(platform) {
+            const url = window.location.href;
+            const title = document.title;
+            const text = "MoonWane Ink | 墨染月光（月笼沙） - stories etched in fading moonlight";
+            
+            document.getElementById('menuDropdown').classList.remove('active');
+            
+            switch(platform) {
+                case 'share':
+                    if (navigator.share) {
+                        navigator.share({ title, text, url });
+                    } else {
+                        if (navigator.clipboard && window.isSecureContext) {
+                            navigator.clipboard.writeText(url).then(() => alert('链接已复制到剪贴板！'));
+                        } else {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = url;
+                            textArea.style.position = 'fixed';
+                            textArea.style.opacity = '0';
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            alert('链接已复制到剪贴板！');
+                        }
+                    }
+                    break;
+                case 'save':
+                    alert('保存功能');
+                    break;
+                case 'saveas':
+                    alert('另存为功能');
+                    break;
+                default: break;
+            }
+        }
+        
+        // 简介抽屉交互逻辑
+        const introToggle = document.getElementById('introDrawerToggle');
+        const introDrawer = document.getElementById('introDrawer');
+        const introArrow = document.getElementById('introArrow');
+        if (introToggle && introDrawer && introArrow) {
+            introToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (introDrawer.style.maxHeight === '0px' || introDrawer.style.maxHeight === '') {
+                    introDrawer.style.maxHeight = introDrawer.scrollHeight + 'px';
+                    introArrow.style.transform = 'rotate(90deg)';
+                } else {
+                    introDrawer.style.maxHeight = '0px';
+                    introArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+        
+        const toChapterLink = document.getElementById('introToChapterLink');
+        const toFirstChapterLink = document.getElementById('introToFirstChapterLink');
+        const chapterDrawer = document.getElementById('chapterContents');
+        if (toChapterLink && chapterDrawer) {
+            toChapterLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                chapterDrawer.open = true;
+                chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
     </script>
 </body>
 </html>
