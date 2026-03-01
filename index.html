@@ -779,7 +779,9 @@
     padding: 2px 5px !important;
     margin-left: 3px !important;
 }
-
+.status-ready { color: var(--green-ready) !important; background: rgba(76,175,80,0.15) !important; border: 1px solid var(--green-ready) !important; }
+.status-coming { color: #f39c12 !important; background: rgba(243,156,18,0.1) !important; border: 1px solid #f39c12 !important; }
+.status-preparing { color: var(--gray-text) !important; background: rgba(168,164,160,0.1) !important; border: 1px solid var(--gray-text) !important; cursor: not-allowed !important; }
 /* 状态类不影响尺寸，只改颜色 */
 .status-ready    { color: var(--green-ready) !important; }
 .status-coming   { color: #f39c12 !important; }          /* 黄色下周 */
@@ -2490,8 +2492,7 @@ fetch('/data/evidence.json')
                 }
             }
             
-                        // ========== 章节按钮动态控制（基于 button-status.json） - 最终修复版 ==========
-            // 定义章节顺序
+                                    // ========== 章节按钮动态控制（基于 button-status.json） - 调试加强版 ==========
             const chapterOrder = [
                 '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
                 '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
@@ -2499,10 +2500,19 @@ fetch('/data/evidence.json')
                 '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
             ];
 
-            // 加载按钮状态 JSON
-            fetch('/data/button-status.json')
-                .then(response => response.json())
+            // 尝试两种路径加载（GitHub Pages 常见问题）
+            const statusUrl = window.location.hostname.includes('github.io') 
+                ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json' 
+                : '/data/button-status.json';
+
+            fetch(statusUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('JSON 加载失败: ' + response.status);
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('button-status.json 加载成功:', data); // 调试：打开控制台查看
+
                     const statusMap = {};
                     data.chapters.forEach(item => {
                         statusMap[item.chapterId] = {
@@ -2513,63 +2523,66 @@ fetch('/data/evidence.json')
                         };
                     });
 
-                    // 对每种按钮类型分别处理进度（绿色→黄色→灰色）
                     const types = ['read', 'audio', 'video', 'external'];
                     types.forEach(type => {
                         let lastGreenIndex = -1;
                         chapterOrder.forEach((chapterId, index) => {
                             const link = statusMap[chapterId]?.[type] || '';
-                            const buttons = document.querySelectorAll(`a.pdf-trigger[data-chapter="${chapterId}"][data-type="${type}"]`);
-                            if (buttons.length === 0) return;
+                            // 兼容 <a> 或 <button> 或任何 [data-chapter][data-type]
+                            const selectors = [
+                                `[data-chapter="${chapterId}"][data-type="${type}"]`,
+                                `.${type}-icon[data-chapter="${chapterId}"]`
+                            ];
+                            let buttons = [];
+                            selectors.forEach(sel => {
+                                buttons = [...buttons, ...document.querySelectorAll(sel)];
+                            });
+
+                            if (buttons.length === 0) {
+                                console.warn(`未找到按钮: ${chapterId} ${type}`);
+                                return;
+                            }
 
                             buttons.forEach(btn => {
+                                // 移除旧类
+                                btn.classList.remove('status-ready', 'status-coming', 'status-preparing');
+
                                 if (link) {
-                                    // 绿色就绪（与证据库PDF绿色完全一致）
-                                    btn.classList.remove('status-coming', 'status-preparing');
+                                    // 绿色就绪（强制 !important 样式与证据库PDF一致）
                                     btn.classList.add('status-ready');
-                                    btn.href = link;
+                                    if (btn.tagName === 'A') btn.href = link;
                                     btn.removeAttribute('title');
-                                    btn.onclick = null;   // 清除旧事件
+                                    btn.onclick = null;
                                     lastGreenIndex = index;
+                                } else if (lastGreenIndex !== -1 && index > lastGreenIndex) {
+                                    btn.classList.add('status-coming');
+                                    if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+                                    btn.title = '下周上线';
+                                    btn.onclick = e => { e.preventDefault(); alert(`${getChapterDisplayNumber(chapterId)} 下周上线。`); };
                                 } else {
-                                    // 黄色或灰色
-                                    if (lastGreenIndex !== -1 && index > lastGreenIndex) {
-                                        btn.classList.remove('status-ready', 'status-preparing');
-                                        btn.classList.add('status-coming');
-                                        btn.href = 'javascript:void(0)';
-                                        btn.title = '下周上线';
-                                        btn.onclick = function(e) {
-                                            e.preventDefault();
-                                            alert(`${getChapterDisplayNumber(chapterId)}下周上线。`);
-                                        };
-                                    } else {
-                                        btn.classList.remove('status-ready', 'status-coming');
-                                        btn.classList.add('status-preparing');
-                                        btn.href = 'javascript:void(0)';
-                                        btn.title = '准备中';
-                                        btn.onclick = function(e) {
-                                            e.preventDefault();
-                                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
-                                        };
-                                    }
+                                    btn.classList.add('status-preparing');
+                                    if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+                                    btn.title = '准备中';
+                                    btn.onclick = e => { e.preventDefault(); alert(`${getChapterDisplayNumber(chapterId)} 正在准备中，敬请期待。`); };
                                 }
                             });
                         });
                     });
                 })
                 .catch(error => {
-                    console.error('加载按钮状态失败，使用默认灰色', error);
-                    document.querySelectorAll('a.pdf-trigger[data-chapter][data-type]').forEach(btn => {
+                    console.error('button-status 加载失败:', error);
+                    // fallback 灰色
+                    document.querySelectorAll('[data-chapter][data-type], .read-icon, .audio-icon, .video-icon, .external-link').forEach(btn => {
                         btn.classList.add('status-preparing');
-                        btn.href = 'javascript:void(0)';
+                        if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
                         btn.title = '准备中';
-                        btn.onclick = function(e) {
+                        btn.onclick = e => {
                             e.preventDefault();
-                            const chapterId = btn.getAttribute('data-chapter');
-                            alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
+                            const ch = btn.getAttribute('data-chapter') || '未知';
+                            alert(`${getChapterDisplayNumber(ch)} 正在准备中，敬请期待。`);
                         };
                     });
-                });;
+                });
             
             // ========== 多链接菜单数据获取 ==========
             function fetchChapters() {
@@ -2745,6 +2758,7 @@ fetch('/data/evidence.json')
     </script>
 </body>
 </html>
+
 
 
 
