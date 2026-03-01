@@ -782,11 +782,8 @@
 .status-ready { color: var(--green-ready) !important; background: rgba(76,175,80,0.15) !important; border: 1px solid var(--green-ready) !important; }
 .status-coming { color: #f39c12 !important; background: rgba(243,156,18,0.1) !important; border: 1px solid #f39c12 !important; }
 .status-preparing { color: var(--gray-text) !important; background: rgba(168,164,160,0.1) !important; border: 1px solid var(--gray-text) !important; cursor: not-allowed !important; }
-/* 状态类不影响尺寸，只改颜色 */
-.status-ready    { color: var(--green-ready) !important; }
-.status-coming   { color: #f39c12 !important; }          /* 黄色下周 */
-.status-preparing{ color: #95a5a6 !important; }          /* 灰色准备中 */
-    /* 状态类：绿色（就绪） */
+
+       /* 状态类：绿色（就绪） */
     .status-ready {
         background: rgba(50,205,50,0.25) !important;
         border: 2px solid #32CD32 !important;
@@ -805,6 +802,7 @@
         color: #888 !important;
         background: rgba(128,128,128,0.1) !important;
         border: 1px solid rgba(128,128,128,0.2) !important;
+        cursor: not-allowed !important;
     }
     
     .read-icon:hover, .audio-icon:hover, .video-icon:hover, .external-link:hover {
@@ -2775,6 +2773,7 @@ fetch(statusUrl)
     </script>
 </body>
 </html>
+
 
 
 
