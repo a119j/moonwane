@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>证据03：黑匣子与行车记录仪 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 添加 referrer 策略 -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Font Awesome CDN (jsDelivr) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        /* === 完全复制 evidence_02 的所有样式（保持视觉细节100%不变） === */
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, "Times New Roman", serif, sans-serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: left;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.88;
+            letter-spacing: 0.32px;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            hyphens: auto;
+        }
+        
+        .chapter-content p {
+            margin: 0 0 1.68em;
+            text-indent: 2em;
+            color: var(--text-color);
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 0;
+        }
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+            white-space: nowrap;
+        }
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* 深色模式样式 */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation,
+        body.dark-mode .evidence-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        /* 深色模式下表格数据文字颜色 */
+        body.dark-mode .evidence-table td {
+            color: #d1d5db;
+        }
+        /* 事件年表表格第三列（证据/程序矛盾点）换行优化 */
+        .timeline-table td:last-child {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* 移动端响应式 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation,
+            .evidence-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                white-space: normal;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+        }
+        
+        /* 浅色模式灯泡发光 */
+        body:not(.dark-mode) .theme-toggle {
+            background: rgba(30, 100, 200, 0.4) !important;
+            border-color: rgba(30, 100, 200, 0.5) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        body:not(.dark-mode) .theme-toggle i {
+            color: #ffffff;
+            text-shadow: 
+                0 0 12px rgba(255, 255, 255, 1),
+                0 0 24px rgba(255, 255, 255, 0.8),
+                0 0 36px rgba(255, 255, 255, 0.6);
+        }
+        
+        body.dark-mode .theme-toggle i {
+            color: #f39c12;
+            text-shadow: 
+                0 0 8px #f39c12,
+                0 0 16px #f39c12,
+                0 0 24px #f39c12;
+        }
+        
+        .theme-toggle:hover i {
+            filter: brightness(1.2);
+        }
+
+        /* === 证据页面专用样式（与 evidence_02 完全一致） === */
+        .evidence-image {
+            display: block;
+            max-width: 100%;
+            margin: 30px auto 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .evidence-image:hover {
+            transform: scale(1.02);
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            z-index: 10001;
+        }
+        .lightbox-close:hover {
+            color: #ccc;
+        }
+
+        .evidence-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0 10px 0;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .evidence-table th {
+            background: rgba(70, 90, 120, 0.25);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+        body.dark-mode .evidence-table th {
+            color: #f0f0f0;
+            background: rgba(90, 110, 140, 0.4);
+        }
+        .evidence-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.15);
+            vertical-align: top;
+            color: var(--text-color);
+        }
+        .evidence-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .evidence-meta {
+            text-align: left;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            color: #888888;
+            margin: 5px 0 25px 0;
+            padding-left: 5px;
+        }
+        body.dark-mode .evidence-meta {
+            color: #aaaaaa;
+        }
+        .evidence-meta p {
+            margin: 2px 0;
+            text-indent: 0;
+        }
+        .evidence-meta .evidence-name {
+            font-weight: 500;
+            color: #6a6a6a;
+        }
+        body.dark-mode .evidence-meta .evidence-name {
+            color: #c0c0c0;
+        }
+
+        .section-title {
+            margin-top: 50px;
+        }
+        .section-title:first-of-type {
+            margin-top: 20px;
+        }
+        .chapter-content h2, 
+        .chapter-content h3 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+        hr {
+            margin: 50px 0;
+        }
+
+        .evidence-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        .evidence-navigation .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+            white-space: nowrap;
+            text-align: center;
+        }
+        .evidence-navigation .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        .evidence-navigation .nav-link:first-child {
+            justify-self: start;
+        }
+        .evidence-navigation .nav-link:last-child {
+            justify-self: end;
+        }
+        .evidence-navigation .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .evidence-navigation .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+            white-space: nowrap;
+        }
+        .evidence-navigation .nav-center a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .evidence-navigation {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .evidence-navigation .nav-link {
+                width: 100%;
+                white-space: normal;
+            }
+            .evidence-navigation .nav-center {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <!-- 封面图片 -->
+        <div class="chapter-cover">
+            <img src="/pictures/cover-5.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        </div>
+        <!-- 版权信息 -->
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+        </div>
+        
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">证据03</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">黑匣子与行车记录仪</h2>
+            <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                <i class="fas fa-lightbulb"></i>
+            </button>
+            <div class="chapter-subtitle">Black Box (CDR) & Dashcam Footage</div>
+        </div>
+        
+        <div class="chapter-content" role="main">
+            <!-- 案卷说明 -->
+            <div class="section-title">案卷说明</div>
+            <div class="section-epigraph">—— 0.29 秒的反应窗口和 0.167 秒的黑烟如何被封印</div>
+            
+            <p><strong>【黑匣子 CDR 原始数据：右前轮和其他三轮转速对比】</strong></p>
+            
+            <!-- 轮速对比表格 -->
+            <table class="evidence-table">
+                <thead>
+                    <tr><th>时间戳</th><th>其他三轮转速 (km/h)</th><th>右前轮转速 (km/h)</th><th>物理事件描述</th><th>备注</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>17:38:17</td><td>80</td><td>80</td><td>四轮匀速行驶</td><td>轮速差异 &lt; 5%</td></tr>
+                    <tr><td>17:38:18</td><td>80</td><td>48 (-40%)</td><td>右前轮转速骤减，表明开始急速失压。其他三轮继续匀速行驶。</td><td>物理横向拉力产生。单轮转速在 1 秒内骤降而其他轮不变。车辆产生的偏航力矩是瞬间爆发的，所以工程车不可逆向右偏航。</td></tr>
+                    <tr><td>17:38:18</td><td>80</td><td>16 (-80%)</td><td>右前轮继续快速失压，降速。其他三轮继续匀速行驶。爆胎临界点。</td><td></td></tr>
+                    <tr><td>17:38:20</td><td>80 → 0</td><td>0</td><td>右前轮胎压和转速均降至零。碰撞发生。其他三轮转速因刹车也趋向为零。</td><td>刹车，数据中断记录。碰撞强度不足以触发气囊。</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence-meta">
+                <p class="evidence-name">03_1 AI Analysis of CDR Data</p>
+                <p>[档案号：MW-CASE-EXHIBIT-K (已脱敏) | Ref: MW-CASE-EXHIBIT-K]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <!-- 图片：AI Comparison of Wheel Speed Data -->
+            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/03_2%20AI%20Comparison%20of%20Wheel%20Speed%20Data.png" alt="03_2 AI Comparison of Wheel Speed Data" class="evidence-image" loading="lazy">
+            <div class="evidence-meta">
+                <p class="evidence-name">03_2 AI Comparison of Wheel Speed Data</p>
+                <p>[档案号：MW-CASE-EXHIBIT-L (已脱敏) | Ref: MW-CASE-EXHIBIT-L]</p>
+                <p>（数据图示：展示了事故前 5 秒内单侧轮速跌入“深渊曲线”的过程）<br>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <p><strong>【黑匣子原始数据：深度报告】</strong></p>
+            <p><strong>1. 数据定论：单侧轮速坠落与驾驶环境证据</strong></p>
+            <ul>
+                <li><strong>物理表征</strong>：车辆右前轮在 2 秒内经历了“断崖式”降速，数值从 80km/h → 48km/h → 16km/h 最终归零。这表明右前轮经历了爆发性失压，而非缓慢漏气。此过程只能解释为轮胎物理完整性的瞬间丧失（爆胎）。此时轮胎半径骤缩，轮毂直接接触地面，导致该侧阻力呈几何倍数增长，产生了极强的右向偏航力矩。</li>
+                <li><strong>司机操作稳定性数据（爆胎瞬间）</strong>：
+                    <ul>
+                        <li><strong>油门开度</strong>：油门开度稳定在 30%。司机当时处于匀速巡航状态，不存在突然加油或加速超车等危险驾驶动作。</li>
+                        <li><strong>转向指令</strong>：此时方向盘角仅轻微向右转约 15°。属于正常的车道微调，排除了人为大幅度误操作可能。</li>
+                        <li><strong>物理偏移量</strong>：传感器捕捉到车身横摆速率为 +5°/秒。在方向盘仅转动 15° 的情况下，如此高的横摆速率表现，直接证明了车辆的侧向偏移并非由司机指令引起，而是由右前轮爆胎产生的巨大物理偏航力矩强行拖拽所致。</li>
+                    </ul>
+                </li>
+                <li><strong>行为判定：人类意志与物理定律的博弈</strong>
+                    <ul>
+                        <li><strong>采样背景</strong>：黑匣子 CDR 采集碰撞前（Pre-Crash）数据的频率为每 0.5 秒或 0.1 秒记录一次。数据显示，右前轮速在不到 1 秒内丧失了 80%。</li>
+                        <li><strong>窗口极限</strong>：人类最快的视觉反射约为 0.15–0.2 秒。转向与制动系统的物理动作延迟约为 0.1 秒。两者叠加，意味着在爆胎产生侧向拉力的瞬间，人类修正偏差的理论极限窗口仅为 0.25–0.3 秒。</li>
+                        <li><strong>核心结论</strong>：右前轮在不足 1 秒内丧失 80% 的转速。由于爆胎瞬间产生的侧向力矩远超车辆稳定控制极限，留给驾驶员的有效物理纠偏窗口仅剩 <strong>0.29 秒</strong>。在如此短的时间内，人类必须完成“感知-识别-反向修正”的一系列复合动作，而人类应激反应的生理极限通常在 0.7 秒以上。结论显而易见：物理惯性在瞬间劫持了车辆，人类意志在那 0.29 秒内已被物理定律完全屏蔽。</li>
+                    </ul>
+                </li>
+                <li><strong>医学还原：高压应激下的生理机能</strong>
+                    <ul>
+                        <li><strong>感知机理</strong>：在极端高压应激事件中，人类大脑会出现“感知漏斗”（Perceptual Narrowing）。这会导致当事人视域极度收窄（只盯着正前方），并丧失对周围声音和时间的感知。</li>
+                        <li><strong>记忆缺失</strong>：所谓的“记忆空白”或“片段缺失”，是海马体在极高皮质醇水平下的生理机能性停滞。这是生物体面对极端压力时的自然保护反应，用于确保基础本能的运作，而非主观上的“心虚掩盖”或伪造陈述。</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <hr style="margin:40px 0; border-color:var(--border-color);">
+            
+            <p><strong>【行车记录仪：0.167秒的黑烟截图】</strong></p>
+            
+            <!-- 图片：Dashcam Footage 0.167 Second Black Smoke Frame -->
+            <img src="https://raw.githubusercontent.com/a119j/moonwane/main/pictures/03_3%20Dashcam%20Footage%200.167%20Second%20Black%20Smoke%20Frame.jpg" alt="03_3 Dashcam Footage 0.167 Second Black Smoke Frame" class="evidence-image" loading="lazy">
+            <div class="evidence-meta">
+                <p class="evidence-name">03_3 Dashcam Footage: 0.167 Second Black Smoke Frame</p>
+                <p>[档案号：MW-CASE-EXHIBIT-M (已脱敏) | Ref: MW-CASE-EXHIBIT-M]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <p><strong>【0.167秒的黑烟时间精准计算】</strong><br>
+            原始监控时间：17:38:19:12 – 17:38:19:17（29.97fps 帧每秒）<br>
+            对应视频时间轴：00:00:23:10 – 00:00:23:15<br>
+            持续帧数：5 帧<br>
+            真实时长 = 5 ÷ 29.97 ≈ 0.1668 秒（约 0.167 秒 / 167 毫秒）</p>
+            
+            <p><strong>技术结论</strong>：整个爆胎、黑烟喷出、轮速归零全过程仅存在 5 帧，0.167 秒，肉眼无法察觉。只有使用慢放工具 Adobe Premiere Pro 2020 等（0.1倍速甚至0.01倍速）才能完整呈现这团“死亡之花”。</p>
+            
+            <p><strong>【0.167 秒截图的视觉定格】</strong></p>
+            <ul>
+                <li><strong>视觉存证</strong>：行车记录仪时间戳 17:38:19.16</li>
+                <li><strong>物理现象</strong>：右前轮位置瞬间喷涌出黑烟（压缩空气+橡胶粉尘），伴随车辆投影的剧烈形变。</li>
+                <li><strong>时空对齐</strong>：该视觉瞬间与 CDR 记录的轮速从 80km/h 坠落至 16km/h 的时间点完全吻合。</li>
+            </ul>
+            
+            <!-- 司机操作还原表 -->
+            <p><strong>【黑匣子 CDR 原始数据 + 行车记录仪：司机操作还原表】</strong></p>
+            <table class="evidence-table">
+                <thead>
+                   <tr><th style="white-space: nowrap;">关键时间点</th><th>物理状态</th><th>司机操作</th><th>技术结论</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>17:38:18.0</td><td>右前轮速骤降：80 km/h → 48km/h (-40%)</td><td>油门 30%，刹车 0%</td><td>此时尚处于生理反应期之前</td></tr>
+                    <tr><td>17:38:19.1</td><td>右前轮速继续骤降：48 km/h → 16kmh (-40%)<br>右前轮侧有黑烟喷涌，持续 0.167秒</td><td>方向盘修正仅 +15°<br>车身横摆速率为 +5°/秒</td><td>工程车偏移完全由物理拉力主导</td></tr>
+                    <tr><td>17:38:20.0</td><td>右前轮速为零<br>碰撞瞬间</td><td>刹车 20% (迟滞反应)</td><td>证明大脑已进入应激“黑屏”</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence-meta">
+                <p class="evidence-name">03_4 Driver Operation Data Table</p>
+                <p>[档案号：MW-CASE-EXHIBIT-N (已脱敏) | Ref: MW-CASE-EXHIBIT-N]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <p><strong>【操作证伪：非人为转向的物理飘移】</strong><br>
+            通过黑匣子（CDR）记录的驾驶员实时操作数据和行车记录仪的慢速截图，彻底否定“分心驾驶”指控：</p>
+            <ul>
+                <li><strong>动力维持</strong>：油门保持在 30% 稳定输出。若驾驶员处于分心或主动转向状态，油门通常会出现松动或大幅度波动。数据显示动力输出极度平稳，反向证明司机在爆胎瞬间是巡航驾驶。</li>
+                <li><strong>方向盘角度</strong>：仅有 +15° 的极微小修正。+15° 的角度不足以造成剧烈偏航。车辆向右的暴力偏移完全源于右前轮爆裂后的物理拉力强行拖拽所致。</li>
+                <li><strong>刹车反应</strong>：仅出现在碰撞瞬间的前一刻（力度 20%）。从爆胎发生到剧烈碰撞，扣除物理惯性时间，留给司机的反应窗口连0.29秒都没有，只有仅有 0.167 秒。这超出了任何专业司机的生理极限，证明司机在此时处于大脑应激性“黑屏”状态，属于典型的不可抗力物理事故，不存在任何“驾驶过失”空间。</li>
+            </ul>
+            
+            <p><strong>【为什么0.167秒的黑烟指向爆胎？】</strong></p>
+            <ul>
+                <li><strong>黑匣子 CDR 数据（因）</strong>：记录了右前轮转速在不到一秒内从 80km/h 骤降。这是由于轮胎侧壁炸裂，滚动阻力瞬间激增的物理表现。<br>
+                [档案号：MW-CASE-EXHIBIT-K / L]</li>
+                <li><strong>行车记录仪视觉证据（果）</strong>：那团黑烟并非地面摩擦产生的烟雾，而是高压轮胎（实测 65 PSI）爆裂时，内部被强力压缩的空气瞬间释放，将胎体内的橡胶微粒和粉尘猛烈喷出形成的“小型爆炸云”。<br>
+                [档案号：MW-CASE-EXHIBIT-E / M]</li>
+            </ul>
+            
+            <hr style="margin:40px 0; border-color:var(--border-color);">
+            
+            <p><strong>【类似案例对比：2011年美国 NHTSA 报告】</strong></p>
+            <ul>
+                <li><strong>案情回顾</strong>：佛罗里达州皮卡右前轮爆胎，司机初审被控分心驾驶。</li>
+                <li><strong>关键证据</strong>：专家使用 Bosch CDR 工具解码 EDR 数据，展示了与本案惊人一致的“五秒轮速曲线深渊”。</li>
+                <li><strong>最终裁决</strong>：技术证据证明机械故障先于人为反应，被告当庭无罪释放。</li>
+                <li><strong>启示</strong>：2011年 EDR 数据已被 NHTSA 视作不容置疑的“沉默证人”，而本案中，类似的证据却被尘封多年。</li>
+            </ul>
+            <div class="evidence-meta">
+                <p class="evidence-name">03_5 2011 U.S. NHTSA Technical Report</p>
+                <p>[档案号：MW-CASE-EXHIBIT-O (已脱敏) | Ref: MW-CASE-EXHIBIT-O]</p>
+                <p>资料来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            <p style="font-size:0.85rem; color:var(--subtitle-color);">权威存证参考：NHTSA DOT HS 811 617 报告, p.45-52，匿名案例 #FL-2011-047。该报告基于 2010-2011 年实测数据，正式确立了 EDR 数据在判定“机械故障免责”中的核心法律地位。</p>
+            
+            <hr style="margin:40px 0; border-color:var(--border-color);">
+            
+            <p><strong>【黑匣子 CDR 数据：从“无事件（No event）”到“终极真相”的七年】</strong></p>
+            
+            <!-- 时间线表格 -->
+            <table class="evidence-table timeline-table">
+                <thead>
+                    <tr><th>时间节点</th><th>关键技术突破 / 事件</th><th>深度细节与“系统失聪”的表现</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>2018-06-12</td><td>原始数据</td><td>黑匣子自动锁死最后 5 秒数据。右前轮速1秒以内，已从 80km/h 跌至 16km/h，最后到0。</td></tr>
+                    <tr><td>2018-06-13</td><td>初步读取</td><td>警方仅读取基础报告，显示“No Event”，关键原始代码（Hex Code）被直接忽略。</td></tr>
+                    <tr><td>2019-01</td><td>定罪报告</td><td>警员 Angus 在未解码轮速曲线的情况下补写报告，强行判定爆裂是撞击结果。</td></tr>
+                    <tr><td>2020-春</td><td>视觉证据觉醒</td><td>刘思恩反复逐帧回看，锁定 0.167 秒黑烟。同年查获美国匿名佛罗里达爆胎案 NHTSA #FL-2011-047 判例。</td></tr>
+                    <tr><td>2021</td><td>撞上专家墙</td><td>即使有黑烟截图，因实体轮胎被毁，多名商业取证专家以“间接证据不足”为由拒绝出具正式报告。</td></tr>
+                    <tr><td>2025-10</td><td>数据开口</td><td>刘思恩与江远平借助 AI 成功解码黑匣子原始逻辑，0.167秒黑烟与0.29秒轮速崩塌完成 100% 时空对齐。</td></tr>
+                </tbody>
+            </table>
+            <div class="evidence-meta">
+                <p class="evidence-name">03_6 CDR Data: From "No Event" to Reconstruction</p>
+                <p>[档案号：MW-CASE-EXHIBIT-P (已脱敏) | Ref: MW-CASE-EXHIBIT-P]</p>
+                <p>图片来源自公开卷宗，已根据隐私法进行脱敏处理 / Source: Public judicial records, redacted for privacy.</p>
+            </div>
+            
+            <p style="font-weight:600; text-indent:0;">这不仅是数据的解密，更是对系统性失聪的长达七年的博弈。</p>
+            
+            <!-- 下一节小钩子 -->
+            <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+                <span style="font-weight: 600; color: #1e3c4f;">（下一证据）</span> 
+                <span style="color: #2c3e50;">警方证据链 —— 预设结论导致的裁撤。</span>
+            </p>
+        </div>
+        
+        <!-- 证据页面导航（证据03：有上一个证据，指向02；下一个指向04） -->
+        <div class="evidence-navigation">
+            <!-- 上一个证据：指向证据02 -->
+            <a href="/evidences/evidence_02_Tire_Pressure_and_Sidewall_Tear.html" class="nav-link">← 上一个证据</a>
+            <span class="nav-center">
+                <a href="/index.html#open-evidence">🌐证据库/Evidence Hub</a>
+                <button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+                    <i class="fas fa-lightbulb"></i>
+                </button>
+            </span>
+            <!-- 下一个证据：指向证据04（硬编码，页面暂不存在） -->
+            <a href="/evidences/evidence_04_Police_Evidence_Chain.html" class="nav-link">下一个证据 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        // 复制保护
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        // 阅读进度条
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        // 返回顶部
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 深色模式切换
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+            themeToggles.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-lightbulb';
+                }
+            });
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+
+        // 图片点击放大
+        const images = document.querySelectorAll('.evidence-image');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                const lightbox = document.createElement('div');
+                lightbox.className = 'lightbox';
+                lightbox.innerHTML = `
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${this.src}" alt="${this.alt}">
+                `;
+                document.body.appendChild(lightbox);
+                document.body.style.overflow = 'hidden';
+
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                        lightbox.remove();
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
