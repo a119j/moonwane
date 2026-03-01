@@ -2490,21 +2490,19 @@ fetch('/data/evidence.json')
                 }
             }
             
-            // ========== 章节按钮动态控制（基于 button-status.json） ==========
-            
-            // 定义章节顺序（只包含第一节）
+                        // ========== 章节按钮动态控制（基于 button-status.json） - 最终修复版 ==========
+            // 定义章节顺序
             const chapterOrder = [
                 '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
                 '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
                 '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
                 '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
             ];
-            
+
             // 加载按钮状态 JSON
             fetch('/data/button-status.json')
                 .then(response => response.json())
                 .then(data => {
-                    // 构建查找表：chapterId -> { readLink, audioLink, videoLink, externalLink }
                     const statusMap = {};
                     data.chapters.forEach(item => {
                         statusMap[item.chapterId] = {
@@ -2514,78 +2512,64 @@ fetch('/data/evidence.json')
                             external: item.externalLink || ''
                         };
                     });
-                    
-                    // 对四种按钮类型分别处理
+
+                    // 对每种按钮类型分别处理进度（绿色→黄色→灰色）
                     const types = ['read', 'audio', 'video', 'external'];
                     types.forEach(type => {
-                        let lastGreenIndex = -1; // 上一个绿色按钮在 chapterOrder 中的索引
+                        let lastGreenIndex = -1;
                         chapterOrder.forEach((chapterId, index) => {
                             const link = statusMap[chapterId]?.[type] || '';
-                            // 查找页面上所有对应章节和类型的按钮
-                            const buttons = document.querySelectorAll(`[data-chapter="${chapterId}"][data-type="${type}"]`);
+                            const buttons = document.querySelectorAll(`a.pdf-trigger[data-chapter="${chapterId}"][data-type="${type}"]`);
                             if (buttons.length === 0) return;
-                            
-                            if (link) {
-                                // 绿色：链接非空
-                                buttons.forEach(btn => {
+
+                            buttons.forEach(btn => {
+                                if (link) {
+                                    // 绿色就绪（与证据库PDF绿色完全一致）
                                     btn.classList.remove('status-coming', 'status-preparing');
                                     btn.classList.add('status-ready');
                                     btn.href = link;
                                     btn.removeAttribute('title');
-                                    // 移除之前可能绑定的点击事件（通过克隆替换来清除旧监听，或者直接覆盖）
-                                    // 简单做法：先移除所有点击监听，再添加新的
-                                   btn.onclick = null; // 移除任何 onclick
-                                    // 注意：多次调用会添加多个监听，但这里我们只设置一次
-                                    // 更安全：使用新监听，但不阻止默认
-                                });
-                                lastGreenIndex = index;
-                            } else {
-                                // 链接为空，判断是黄色还是灰色
-                                if (lastGreenIndex !== -1) {
-                                    // 存在上一个绿色 → 黄色
-                                    buttons.forEach(btn => {
+                                    btn.onclick = null;   // 清除旧事件
+                                    lastGreenIndex = index;
+                                } else {
+                                    // 黄色或灰色
+                                    if (lastGreenIndex !== -1 && index > lastGreenIndex) {
                                         btn.classList.remove('status-ready', 'status-preparing');
                                         btn.classList.add('status-coming');
                                         btn.href = 'javascript:void(0)';
                                         btn.title = '下周上线';
-                                        btn.onclick = null;
-                                        btn.addEventListener('click', function(e) {
+                                        btn.onclick = function(e) {
                                             e.preventDefault();
                                             alert(`${getChapterDisplayNumber(chapterId)}下周上线。`);
-                                        });
-                                    });
-                                } else {
-                                    // 无上一个绿色 → 灰色
-                                    buttons.forEach(btn => {
+                                        };
+                                    } else {
                                         btn.classList.remove('status-ready', 'status-coming');
                                         btn.classList.add('status-preparing');
                                         btn.href = 'javascript:void(0)';
                                         btn.title = '准备中';
-                                        btn.onclick = null;
-                                        btn.addEventListener('click', function(e) {
+                                        btn.onclick = function(e) {
                                             e.preventDefault();
                                             alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
-                                        });
-                                    });
+                                        };
+                                    }
                                 }
-                            }
+                            });
                         });
                     });
                 })
                 .catch(error => {
                     console.error('加载按钮状态失败，使用默认灰色', error);
-                    // 降级：所有按钮设为灰色
-                    document.querySelectorAll('[data-chapter][data-type]').forEach(btn => {
+                    document.querySelectorAll('a.pdf-trigger[data-chapter][data-type]').forEach(btn => {
                         btn.classList.add('status-preparing');
                         btn.href = 'javascript:void(0)';
                         btn.title = '准备中';
-                        btn.addEventListener('click', function(e) {
+                        btn.onclick = function(e) {
                             e.preventDefault();
                             const chapterId = btn.getAttribute('data-chapter');
                             alert(`${getChapterDisplayNumber(chapterId)}正在准备中，敬请期待。`);
-                        });
+                        };
                     });
-                });
+                });;
             
             // ========== 多链接菜单数据获取 ==========
             function fetchChapters() {
@@ -2761,6 +2745,7 @@ fetch('/data/evidence.json')
     </script>
 </body>
 </html>
+
 
 
 
