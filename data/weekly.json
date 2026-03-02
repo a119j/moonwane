@@ -1,30 +1,33 @@
 {
-    "version": "20260312",
-    "lastUpdate": "2026-03-12",
+    "version": "20260316",
+    "lastUpdate": "2026-03-16",
     "changelog": "更新金句，更换每周视频和音频",
-    "promoQuote": "“清白，比罪名更难证明”",
+    "promoQuote":"“清白，比罪名更难证明”",
     "promoVideo": {
-        "src": "/videos/promo.mp4"
+        "src": "/videos/promo.mp4",
+        "version": "20260316"
     },
     "promoLinks": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com/..." },
-        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com/..." }
+        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com" },
+        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com" }
     ],
     "weeklyVideo": {
         "src": "/videos/weekly.mp4",
+        "title": "本周精选：作者访谈",
         "isNew": true,
         "badgeText": "🆕 本周",
         "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com/..." },
-            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com/..." }
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com" },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com" }
         ]
     },
     "weeklyAudio": {
         "src": "/audios/weekly.mp3",
+        "title": "音频试听：第3章片段",
         "isNew": false,
         "badgeText": "",
         "links": [
-            { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com/..." }
+            { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
         ]
     }
 }
