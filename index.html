@@ -44,7 +44,7 @@
     --text-light: #e0e0e0;
     --primary-blue: #7bc8f8;
     --primary-blue-rgb: 123, 200, 248;
-    --gold: #ffd700;
+     --gold: #ffda47;
     --soft-gold: #e6c68e;
     --moon-light: #d4d0cb;
     --moon-shadow: #b0acaa;
@@ -57,8 +57,8 @@
     --green-ready: #4CAF50;
     --bg-dark-transparent: rgba(11, 14, 23, 0.95);
     --bg-drawer: rgba(20, 25, 40, 0.4);
-    --bg-summary: rgba(40, 50, 80, 0.6);
-    --border-light: rgba(255,255,255,0.1);
+        --shadow-lg: 0 10px 28px rgba(0,0,0,0.6);
+    --border-light: rgba(255,255,255,0.12);
     
     /* 间距变量（原有） */
     --container-padding: 2rem;
@@ -68,7 +68,7 @@
     --drawer-margin-bottom-evidence: 40px;
     --card-gap: 2rem;
     --card-padding: 1.5rem;
-    --section-spacing: 60px;
+    --section-spacing: 70px;
     
     --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
     --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
@@ -107,7 +107,7 @@
         box-sizing: border-box;
     }
     
-    body {
+        body {
         background-color: var(--dark-bg);
         color: var(--text-light);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
@@ -122,6 +122,9 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: auto;
     }
     
     .links a, .links .button, .links span,
@@ -231,9 +234,9 @@
         animation: fadeIn 2.2s ease-out;
     }
     
-    .author-credit {
+        .author-credit {
         font-size: 1.1rem;
-        opacity: 0.85;
+        opacity: 0.88;
         margin: 0;
         line-height: 1.5;
         font-family: 'Noto Serif SC', serif;
@@ -255,7 +258,7 @@
         z-index: 2;
     }
     
-    .links a, .links .button {
+        .links a, .links .button {
         display: block;
         margin: 24px auto;
         padding: 24px 24px 24px 80px;
@@ -265,7 +268,7 @@
         border-radius: 12px;
         text-decoration: none;
         color: var(--moon-light);
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
         font-size: 1.35rem;
         text-align: left;
         cursor: pointer;
@@ -300,12 +303,12 @@
         color: var(--gray-text);
     }
     
-    .links a:hover, .links .button:hover {
+                .links a:hover, .links .button:hover {
         background: #1a2d42;
-        transform: translateY(-6px);
+        transform: translateY(-6px) scale(1.02);
         box-shadow: var(--shadow-link-hover);
         color: var(--white-text);
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
     }
     
     .links a.support-link {
@@ -359,9 +362,9 @@
         animation: fadeIn 2s ease-out forwards;
     }
     
-    .poetry {
+        .poetry {
         font-size: 1.4rem;
-        line-height: 1.8;
+        line-height: 1.9;
         margin-bottom: 60px;
         font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
         animation: fadeIn 2s ease-out;
@@ -378,8 +381,8 @@
     }
     
     /* === Footer === */
-    footer {
-        padding: 40px 20px 60px;
+        footer {
+        padding: 50px 20px 50px;
         text-align: center;
         opacity: 0.92;
         font-size: 1rem;
@@ -395,10 +398,10 @@
         justify-content: center;
     }
     
-    .contact-email a {
+       .contact-email a {
         color: #e8e6e3;
         text-decoration: none;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         display: flex;
         align-items: center;
         padding: 8px 16px;
@@ -436,11 +439,12 @@
         transform: translateX(5px);
     }
     
-    .copyright {
+        .copyright {
         font-size: 0.9rem;
         opacity: 0.85;
         color: #e8e6e3;
         margin-bottom: 8px;
+        letter-spacing: 0.3px;
     }
     
     .name-parts {
@@ -456,10 +460,11 @@
         margin-bottom: 8px;
     }
     
-    .copyright-protection {
+       .copyright-protection {
         color: #e8e6e3;
         font-size: 0.85rem;
         opacity: 0.6;
+        letter-spacing: 0.3px;
     }
     
     /* === 右上角分享菜单 === */
@@ -470,7 +475,7 @@
         z-index: 1000;
     }
     
-    .menu-toggle {
+       .menu-toggle {
         background: rgba(255,255,255,0.05);
         border: 1px solid rgba(255,255,255,0.1);
         border-radius: 50%;
@@ -480,7 +485,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         color: var(--moon-light);
         font-size: 18px;
     }
@@ -490,7 +495,7 @@
         transform: scale(1.05);
     }
     
-    .menu-dropdown {
+        .menu-dropdown {
         position: absolute;
         top: 50px;
         right: 0;
@@ -503,7 +508,7 @@
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.3s;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
     }
     
     .menu-dropdown.active {
@@ -540,7 +545,7 @@
     }
     
     /* === Wayback存档提醒 === */
-    .archive-toast {
+       .archive-toast {
         position: fixed;
         top: 80px;
         right: 20px;
@@ -551,7 +556,7 @@
         max-width: 300px;
         z-index: 1001;
         box-shadow: var(--shadow-toast);
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(8px);
         transform: translateX(400px);
         transition: transform 0.4s ease;
         font-size: 0.9rem;
@@ -590,7 +595,7 @@
         margin-bottom: 12px;
     }
     
-    .toast-button {
+        .toast-button {
         background: rgba(var(--primary-blue-rgb), 0.2);
         border: 1px solid rgba(var(--primary-blue-rgb), 0.4);
         color: var(--primary-blue);
@@ -598,7 +603,7 @@
         border-radius: 4px;
         cursor: pointer;
         font-size: 0.85rem;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         text-decoration: none;
         display: inline-block;
     }
@@ -678,7 +683,7 @@
         line-height: 1.5;
     }
     
-    @keyframes moonPulse {
+        @keyframes moonPulse {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
     }
@@ -748,11 +753,11 @@
 .chapter-list .audio-icon,
 .chapter-list .video-icon,
 .chapter-list .external-link {
-    font-size: 1.1rem !important;          /* 稍小一点，更紧凑 */
-    min-width: 28px !important;             /* 核心：强制小方块宽度 */
-    min-height: 28px !important;            /* 核心：强制小方块高度 */
-    padding: 2px 5px !important;            /* 更紧的内边距 */
-    margin: 0 2px !important;               /* 按钮之间间距也收紧 */
+    font-size: 1.1rem !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    padding: 2px 5px !important;
+    margin: 0 2px !important;
     border-radius: 4px !important;
     line-height: 1 !important;
     display: inline-flex !important;
@@ -867,7 +872,7 @@
         position: relative;
     }
     
-    .chapter-drawer > summary {
+        .chapter-drawer > summary {
         padding: 20px 32px;
         background: rgba(30, 30, 30, 0.8);
         font-size: 1.3rem;
@@ -876,7 +881,7 @@
         list-style: none;
         position: relative;
         font-family: 'Inter', 'Noto Sans SC', sans-serif;
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
     
     .chapter-drawer > summary::-webkit-details-marker {
@@ -900,7 +905,7 @@
         position: relative;
     }
     
-    .evidence-drawer > summary {
+       .evidence-drawer > summary {
         padding: 20px 32px 20px 60px !important;
         background: rgba(30, 30, 30, 0.8);
         font-size: 1.35rem;
@@ -909,7 +914,7 @@
         list-style: none;
         position: relative;
         font-family: 'Inter', 'Noto Sans SC', sans-serif;
-        transition: all 0.4s ease;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     }
     
     .evidence-drawer > summary::-webkit-details-marker {
@@ -1384,7 +1389,301 @@
             overflow-x: hidden !important;
         }
     }
-    </style>
+/* 金句+固定视频卡片（与书籍卡片样式统一） */
+.promo-card {
+    display: block;
+    margin: 24px auto;
+    padding: 24px;
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    color: var(--moon-light);
+    box-shadow: var(--shadow-sm);
+    max-width: 640px;
+    transition: all 0.4s ease;
+}
+.promo-quote {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+    text-align: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 16px;
+}
+.promo-video video {
+    width: 100%;
+    border-radius: 8px;
+    background: #000;
+    box-shadow: var(--shadow-sm);
+}
+.promo-links {
+    margin-top: 16px;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    font-size: 1rem;
+}
+.promo-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(var(--primary-blue-rgb), 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border: 1px solid transparent;
+}.promo-links a:hover {
+    background: rgba(var(--primary-blue-rgb), 0.2);
+    transform: translateY(-2px);
+    border-color: rgba(var(--primary-blue-rgb), 0.3);
+    color: #fff;
+}
+.promo-links i {
+    font-size: 1.2rem;
+}
+
+/* 每周精选区块（无标题，两列） */
+.weekly-section {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    background: rgba(20, 25, 40, 0.3);
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(5px);
+}
+.weekly-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.weekly-card {
+    position: relative;
+    background: rgba(20, 25, 40, 0.5);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-light);
+}
+.update-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--gold);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(2px);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    display: none; /* 默认隐藏，由JS控制显示 */
+}
+.weekly-card[data-new="true"] .update-badge {
+    display: inline-block;
+}
+.weekly-media video,
+.weekly-media audio {
+    width: 100%;
+    border-radius: 8px;
+    background: #000;
+}
+.weekly-links {
+    margin-top: 12px;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.weekly-links a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 16px;
+    background: rgba(var(--primary-blue-rgb), 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    font-size: 0.9rem;
+}.weekly-links a:hover {
+    background: rgba(var(--primary-blue-rgb), 0.2);
+    transform: translateY(-2px);
+}
+.weekly-links i {
+    font-size: 1rem;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .weekly-grid {
+        grid-template-columns: 1fr;
+    }
+    .promo-card {
+        padding: 20px;
+    }
+}
+/* 视频容器强制16:9比例 */
+.promo-video video,
+.weekly-media video {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* 平台链接按钮：更小字体，增加与视频的间距 */
+.promo-links,
+.weekly-links {
+    margin-top: 20px !important; /* 原为16px，增大间距 */
+}
+
+.promo-links a,
+.weekly-links a {
+    font-size: 0.8rem !important;  /* 原0.85rem，再缩小一点 */
+    padding: 6px 10px !important;
+    border-radius: 20px !important;
+}
+
+.promo-links i,
+.weekly-links i {
+    font-size: 0.9rem !important;
+}    
+/* 平台链接官方颜色及图标颜色 */
+.promo-links a[href*="youtube.com"],
+.weekly-links a[href*="youtube.com"] {
+    color: #FF0000; /* YouTube 红色 */
+}
+.promo-links a[href*="bilibili.com"],
+.weekly-links a[href*="bilibili.com"] {
+    color: #00A1D6; /* B站 蓝色 */
+}
+.promo-links a[href*="ximalaya.com"],
+.weekly-links a[href*="ximalaya.com"] {
+    color: #FF5A1F; /* 喜马拉雅 橙色 */
+}
+.promo-links a i,
+.weekly-links a i {
+    color: inherit; /* 图标颜色跟随文字颜色 */
+}
+.promo-links a:hover,
+.weekly-links a:hover {
+    opacity: 0.8;
+}
+/* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
+.promo-card {
+    max-width: 560px; /* 原为640px，适当缩小 */
+}
+
+/* 调整每周视频卡片宽度，使其稍大一些，提升可视性（保持两列布局） */
+.weekly-card {
+    max-width: 100%; /* 保持原有，但可增加内部视频尺寸 */
+}
+.weekly-media video,
+.weekly-media audio {
+    width: 100%;
+    aspect-ratio: 16/9; /* 保持比例 */
+}
+
+/* 增加图标与视频的间距，解决图标紧贴视频下方的问题 */
+.promo-links {
+    margin-top: 24px !important; /* 原为20px，再增大一点 */
+}
+
+/* 稍微增加按钮水平内边距，使按钮更均衡 */
+.promo-links a,
+.weekly-links a {
+    padding: 6px 12px !important;
+}
+/* 使金句卡片与书籍卡片悬停效果一致 */
+.promo-card:hover {
+    background: #1a2d42;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-link-hover);
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* 保持内部文字颜色不变，只改变背景和阴影 */
+}
+
+/* 使每周卡片与书籍卡片悬停效果一致 */
+.weekly-card:hover {
+    background: #1a2d42;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-link-hover);
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+/* 调整金句卡片内边距，使其更扁平，突出电影屏幕效果 */
+.promo-card {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    /* 左右内边距保持不变（24px）或可适当减小，但需保持与书籍卡片协调 */
+    /* 如果希望左右也减小，可添加 padding-left: 20px; padding-right: 20px; */
+}
+
+.promo-quote {
+    margin-bottom: 12px;    /* 原16px，减小后金句更紧凑 */
+    padding-bottom: 10px;   /* 原16px，减小分割线以下空白 */
+}
+
+.promo-links {
+    margin-top: 12px;       /* 原20-24px，减小链接与视频的间距 */
+}/* 音频卡片：增加链接与播放器的间距，使其更清晰分离 */
+#weeklyAudioCard .weekly-links {
+    margin-top: 20px;        /* 原为12px，增大间距 */
+    justify-content: center; /* 保持居中对齐 */
+}
+/* 音频卡片：减小上下内边距，使播放器在卡片内更居中 */
+#weeklyAudioCard {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* 金句卡片：进一步缩小平台标识与视频的间距 */
+.promo-links {
+    margin-top: 8px !important;  /* 覆盖之前较大的值，使链接更贴近视频 */
+}
+
+.promo-quote {
+    margin-bottom: 8px;           /* 减小金句与视频的间距 */
+    padding-bottom: 6px;          /* 减小分割线下方空白 */
+}
+/* 音频卡片：调整上下内边距使播放器视觉居中，并确保链接位置合理 */
+#weeklyAudioCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* 使所有内容在垂直方向居中（包括标题、播放器、链接） */
+}
+
+/* 如果希望播放器单独居中而标题和链接保持原位，需更复杂的设置。此处采用简化方案：整体居中 */
+/* 金句卡片最终调整：与书籍卡片同宽，降低高度，缩小金句与视频间距，视频与链接紧贴 */
+#promoCard {
+    max-width: 640px !important;
+    padding-top: 2px !important;
+    padding-bottom: 0 !important;
+}
+
+#promoCard .promo-quote {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    padding-top: 4px !important;
+    font-size: 1.2rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 10px !important;  /* 从30px减小到10px，使金句更靠近视频 */
+    text-align: center !important;
+}
+
+#promoCard .promo-links {
+    margin-top: 2px !important;
+}
+
+#promoCard .promo-video {
+    margin-bottom: 0 !important;
+}
+</style>
     
     <!-- 额外的内联样式（月亮光晕动画） -->
     <style>
@@ -1393,6 +1692,10 @@
         50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
         100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
     }
+/* 使音频卡片内的链接居中对齐（仅影响音频卡片） */
+#weeklyAudioCard .weekly-links {
+    justify-content: center;
+}
     </style>
 </head>
 <body>
@@ -1443,6 +1746,18 @@
         
         <section class="links-section">
             <div class="links">
+                <!-- ===== 新增：金句+固定视频卡片 ===== -->
+                <div class="promo-card" id="promoCard">
+                    <div class="promo-quote" id="promoQuote">“清白，比罪名更难证明”</div>
+                    <div class="promo-video" id="promoVideo">
+                        <video controls preload="metadata" src="/videos/promo.mp4" style="width:100%; border-radius:8px;"></video>
+                    </div>
+                                        <div class="promo-links" id="promoLinks">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="https://bilibili.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> B站</a>
+                    </div>
+                </div>
+                <!-- ===== 新增结束 ===== -->
                 <!-- 书籍卡片 - 可点击打开抽屉的触发器 -->
                 <div id="introDrawerToggle" style="cursor: pointer;">
                     <a href="mailto:author@moonwane.ink?subject=关于《六秒钉六年》纸质书" class="book-card" onclick="return false;">
@@ -1943,10 +2258,42 @@
                         🇨🇦 多伦多作者，感谢支持创作！
                     </span>
                 </a>
+                   </div> <!-- 闭合 .links -->
+        </section> <!-- links-section 结束 -->
+    </div> <!-- 闭合 .container -->
+       
+
+    <!-- ===== 新增：每周精选区块 ===== -->
+    <section class="weekly-section" id="weeklySection">
+        <div class="weekly-grid">
+            <!-- 视频卡片 -->
+            <div class="weekly-card" id="weeklyVideoCard">
+                <span class="update-badge" id="videoBadge">🆕 本周</span>
+                                       <div class="weekly-title" id="weeklyVideoTitle"></div>
+                <div class="weekly-media" id="weeklyVideo">
+                    <video controls preload="metadata" src="/videos/weekly.mp4" style="width:100%; border-radius:8px;"></video>
+                </div>
+                                <div class="weekly-links" id="weeklyVideoLinks">
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+                    <a href="https://bilibili.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> B站</a>
+                </div>
             </div>
-        </section>
-    </div>
-    
+            <!-- 音频卡片 -->
+            <div class="weekly-card" id="weeklyAudioCard">
+                <span class="update-badge" id="audioBadge"></span>
+                           <div class="weekly-title" id="weeklyAudioTitle"></div>
+                <div class="weekly-media" id="weeklyAudio">
+                    <audio controls preload="metadata" src="/audios/weekly.mp3" style="width:100%; border-radius:8px;"></audio>
+                </div>
+                                <div class="weekly-links" id="weeklyAudioLinks">
+                    <a href="https://ximalaya.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-headphones"></i> 喜马拉雅</a>
+                    <a href="javascript:void(0)" onclick="return false;"><i class="fas fa-headphones"></i> 待定</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== 新增结束 ===== -->
+
     <section class="poetry-section">
         <div class="poetry">
             <div class="poetry-english">Ink for every phase of the moon.</div>
@@ -2074,7 +2421,17 @@
             return chapterDisplayMap[chapterId] || chapterId;
         }
         
-        document.addEventListener('DOMContentLoaded', function() {
+                      document.addEventListener('DOMContentLoaded', function() {
+            // 定义带超时的fetch函数（5秒超时）
+            function fetchWithTimeout(url, options, timeout = 5000) {
+                return Promise.race([
+                    fetch(url, options),
+                    new Promise((_, reject) =>
+                        setTimeout(() => reject(new Error('请求超时')), timeout)
+                    )
+                ]);
+            }
+
             const wantToReadBtn = document.getElementById('wantToReadBtn');
             const moonOverlay = document.getElementById('moonOverlay');
             const menuToggle = document.getElementById('menuToggle');
@@ -2093,6 +2450,7 @@
             const pdfClose = document.getElementById('pdfClose');
             const chapterDrawer = document.getElementById('chapterContents');
             const evidenceDrawer = document.querySelector('.evidence-drawer');
+            
             
             // 原有抽屉Aria设置
             function setupDrawerAria(drawer) {
@@ -2323,7 +2681,7 @@ fetch(evidenceUrl)
             supportLink.addEventListener('click', function(e) {});
             
             // 懒加载诗区动画
-            if ('IntersectionObserver' in window) {
+                       if ('IntersectionObserver' in window) {
                 const poetrySection = document.querySelector('.poetry-section');
                 if (poetrySection) {
                     const observer = new IntersectionObserver((entries) => {
@@ -2333,7 +2691,7 @@ fetch(evidenceUrl)
                                 observer.unobserve(entry.target);
                             }
                         });
-                    }, { threshold: 0, rootMargin: '50px' });
+                    }, { threshold: 0.1, rootMargin: '50px' });
                     observer.observe(poetrySection);
                 }
             } else {
@@ -2599,7 +2957,7 @@ function applyChapterStatus(data) {
     });
 }
 
-fetch(statusUrl)
+fetchWithTimeout(statusUrl)
     .then(response => response.json())
     .then(data => applyChapterStatus(data))
     .catch(error => {
@@ -2624,7 +2982,7 @@ fetch(statusUrl)
                     };
                 });
             });
-    });            // ========== 多链接菜单数据获取 ==========
+    });     // ========== 多链接菜单数据获取 ==========
             function fetchChapters() {
                 fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
                     .then(response => response.json())
@@ -2709,7 +3067,107 @@ fetch(statusUrl)
                     showLinkMenu(e, links);
                 }
             });
-            
+                       // ========== 加载每周精选数据（适配GitHub Pages）==========
+const weeklyUrl = window.location.hostname.includes('github.io')
+    ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/weekly.json'
+    : '/data/weekly.json';
+
+fetchWithTimeout(weeklyUrl)
+    .then(response => {
+        if (!response.ok) throw new Error('Network error');
+        return response.json();
+    })
+    .then(data => {
+        const version = data.version ? `?v=${data.version}` : '';
+
+        // 1. 金句卡片
+        const quoteDiv = document.getElementById('promoQuote');
+        if (quoteDiv && data.promoQuote) {
+            quoteDiv.innerHTML = `<p>${data.promoQuote}</p>`;
+        }
+
+        const promoVideo = document.getElementById('promoVideo');
+        if (promoVideo && data.promoVideo && data.promoVideo.src) {
+            promoVideo.innerHTML = `<video controls src="${data.promoVideo.src}${version}" preload="metadata"></video>`;
+        }
+
+        const promoLinks = document.getElementById('promoLinks');
+        if (promoLinks && data.promoLinks && data.promoLinks.length) {
+            promoLinks.innerHTML = '';
+            data.promoLinks.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+                promoLinks.appendChild(a);
+            });
+        }
+
+        // 2. 每周视频卡片
+        const weeklyVideo = document.getElementById('weeklyVideo');
+        if (weeklyVideo && data.weeklyVideo && data.weeklyVideo.src) {
+            weeklyVideo.innerHTML = `<video controls src="${data.weeklyVideo.src}${version}" preload="metadata"></video>`;
+        }
+        const videoLinks = document.getElementById('weeklyVideoLinks');
+        if (videoLinks && data.weeklyVideo && data.weeklyVideo.links) {
+            videoLinks.innerHTML = '';
+            data.weeklyVideo.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+                videoLinks.appendChild(a);
+            });
+        }
+        // 控制更新标记
+        const videoCard = document.getElementById('weeklyVideoCard');
+        if (videoCard && data.weeklyVideo && data.weeklyVideo.isNew) {
+            videoCard.setAttribute('data-new', 'true');
+            const badge = document.getElementById('videoBadge');
+            if (badge) badge.textContent = data.weeklyVideo.badgeText || '🆕 本周';
+        } else {
+            videoCard?.removeAttribute('data-new');
+        }
+
+        // 3. 每周音频卡片
+        const weeklyAudio = document.getElementById('weeklyAudio');
+        if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
+            weeklyAudio.innerHTML = `<audio controls src="${data.weeklyAudio.src}${version}" preload="metadata"></audio>`;
+        }
+        const audioLinks = document.getElementById('weeklyAudioLinks');
+        if (audioLinks && data.weeklyAudio && data.weeklyAudio.links) {
+            audioLinks.innerHTML = '';
+            data.weeklyAudio.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+                audioLinks.appendChild(a);
+            });
+        }
+        const audioCard = document.getElementById('weeklyAudioCard');
+        if (audioCard && data.weeklyAudio && data.weeklyAudio.isNew) {
+            audioCard.setAttribute('data-new', 'true');
+            const badge = document.getElementById('audioBadge');
+            if (badge) badge.textContent = data.weeklyAudio.badgeText || '🆕 本周';
+        } else {
+            audioCard?.removeAttribute('data-new');
+        }
+
+        // 4. 提醒机制（控制台）
+        if (data.lastUpdate) {
+            const last = new Date(data.lastUpdate);
+            const now = new Date();
+            const diffDays = Math.floor((now - last) / (1000 * 60 * 60 * 24));
+            if (diffDays > 10) {
+                console.warn(`⚠️ 每周精选已超过 ${diffDays} 天未更新。最后更新：${data.lastUpdate}${data.changelog ? '（' + data.changelog + '）' : ''}`);
+            }
+        }
+    })
+    .catch(err => console.warn('无法加载每周精选数据', err));
         });  // DOMContentLoaded 结束
         
         // 页面加载时检查URL hash
