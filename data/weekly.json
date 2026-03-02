@@ -1,0 +1,30 @@
+{
+    "version": "20260312",
+    "lastUpdate": "2026-03-12",
+    "changelog": "更新金句，更换每周视频和音频",
+    "promoQuote": "“正义或许迟到，但真相从未缺席。”",
+    "promoVideo": {
+        "src": "/videos/promo.mp4"
+    },
+    "promoLinks": [
+        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com/..." },
+        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com/..." }
+    ],
+    "weeklyVideo": {
+        "src": "/videos/weekly.mp4",
+        "isNew": true,
+        "badgeText": "🆕 本周",
+        "links": [
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com/..." },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com/..." }
+        ]
+    },
+    "weeklyAudio": {
+        "src": "/audios/weekly.mp3",
+        "isNew": false,
+        "badgeText": "",
+        "links": [
+            { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com/..." }
+        ]
+    }
+}
