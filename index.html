@@ -1402,17 +1402,6 @@
     max-width: 640px;
     transition: all 0.4s ease;
 }
-.promo-quote {
-    font-size: 1.4rem;
-    line-height: 1.6;
-    color: var(--gold);
-    font-style: italic;
-    font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
-    text-align: center;
-    margin-bottom: 16px;
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 16px;
-}
 .promo-video video {
     width: 100%;
     border-radius: 8px;
@@ -1628,11 +1617,6 @@
     /* 如果希望左右也减小，可添加 padding-left: 20px; padding-right: 20px; */
 }
 
-.promo-quote {
-    margin-bottom: 12px;    /* 原16px，减小后金句更紧凑 */
-    padding-bottom: 10px;   /* 原16px，减小分割线以下空白 */
-}
-
 .promo-links {
     margin-top: 12px;       /* 原20-24px，减小链接与视频的间距 */
 }/* 音频卡片：增加链接与播放器的间距，使其更清晰分离 */
@@ -1651,33 +1635,19 @@
     margin-top: 8px !important;  /* 覆盖之前较大的值，使链接更贴近视频 */
 }
 
-.promo-quote {
-    margin-bottom: 8px;           /* 减小金句与视频的间距 */
-    padding-bottom: 6px;          /* 减小分割线下方空白 */
-}
 /* 音频卡片：调整上下内边距使播放器视觉居中，并确保链接位置合理 */
 #weeklyAudioCard {
     display: flex;
     flex-direction: column;
     justify-content: center;  /* 使所有内容在垂直方向居中（包括标题、播放器、链接） */
 }
-
 /* 如果希望播放器单独居中而标题和链接保持原位，需更复杂的设置。此处采用简化方案：整体居中 */
+        
 /* 金句卡片最终调整：与书籍卡片同宽，降低高度，缩小金句与视频间距，视频与链接紧贴 */
 #promoCard {
     max-width: 640px !important;
     padding-top: 2px !important;
     padding-bottom: 0 !important;
-}
-
-#promoCard .promo-quote {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-    padding-top: 4px !important;
-    font-size: 1.2rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 10px !important;  /* 从30px减小到10px，使金句更靠近视频 */
-    text-align: center !important;
 }
 
 #promoCard .promo-links {
@@ -1686,23 +1656,111 @@
 
 #promoCard .promo-video {
     margin-bottom: 0 !important;
-}
-        /* 将目录抽屉中的章节主标题颜色改为 #e6c68e */
+}    
+/* 将目录抽屉中的章节主标题颜色改为 #e6c68e */
 .chapter-title {
     color: #e6c68e !important;
 }
-</style>
-    
-    <!-- 额外的内联样式（月亮光晕动画） -->
-    <style>
-    @keyframes moonGlow {
-        0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
-        50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
-        100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.3); }
-    }
-/* 使音频卡片内的链接居中对齐（仅影响音频卡片） */
-#weeklyAudioCard .weekly-links {
-    justify-content: center;
+
+/* 音频播放器默认调暗，悬停/点击时恢复亮度 */
+audio {
+    filter: brightness(0.7) !important;
+    transition: filter 0.2s ease;
+}
+audio:hover, audio:active {
+    filter: brightness(1) !important;
+}
+
+/* 喜欢按钮红心图标默认调暗，悬停恢复亮度 */
+.links .button::before {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.links .button:hover::before {
+    opacity: 1;
+}
+
+/* 赞助支持咖啡杯图标默认调暗，悬停恢复亮度 */
+.links a.support-link::before {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.links a.support-link:hover::before {
+    opacity: 1;
+}
+
+/* === 三角形及字符图标默认调暗，悬停恢复 === */
+
+/* 简介卡片三角形 */
+#introArrow {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+#introArrow:hover {
+    opacity: 1;
+}
+
+/* 目录抽屉三角形 */
+.triangle-icon {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.triangle-icon:hover {
+    opacity: 1;
+}
+
+/* 证据库抽屉三角形（伪元素） */
+.evidence-drawer > summary::before {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.evidence-drawer > summary:hover::before {
+    opacity: 1;
+}
+
+/* 目录抽屉总章数（📚） */
+#chapterContents .chapter-drawer-content > div:first-child {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+#chapterContents .chapter-drawer-content > div:first-child:hover {
+    opacity: 1;
+}
+
+/* 目录抽屉提示信息（📖全文阅读等）整体调暗 */
+#chapterContents .chapter-drawer-content > div:nth-child(2) {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+#chapterContents .chapter-drawer-content > div:nth-child(2):hover {
+    opacity: 1;
+}
+
+/* 证据库抽屉标题（🌐） */
+.evidence-drawer > summary {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+.evidence-drawer > summary:hover {
+    opacity: 1;
+}
+
+/* 赞助支持中的 💳 和 🇨🇦 所在容器 */
+.support-link span {
+    opacity: 0.8 !important;
+    transition: opacity 0.2s ease;
+}
+.support-link span:hover {
+    opacity: 1 !important;
+}
+
+/* 简介抽屉底部链接（完整目录和第一章试读） */
+#introToChapterLink, #introToFirstChapterLink {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+#introToChapterLink:hover, #introToFirstChapterLink:hover {
+    opacity: 1;
 }
     </style>
 </head>
@@ -1756,7 +1814,6 @@
             <div class="links">
                 <!-- ===== 新增：金句+固定视频卡片 ===== -->
                 <div class="promo-card" id="promoCard">
-                    <div class="promo-quote" id="promoQuote">“清白，比罪名更难证明”</div>
                     <div class="promo-video" id="promoVideo">
                         <video controls preload="metadata" src="/videos/promo.mp4" style="width:100%; border-radius:8px;"></video>
                     </div>
@@ -1775,7 +1832,7 @@
                             <span style="font-weight: 700; color: #ffd700; animation: moonGlow 3s ease-in-out infinite;">《六秒钉六年》</span>
                         </span>
                         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:4px; font-style: italic;">Six Seconds, Six Years | 作品已完成，诚寻出版与合作机会。</span>
-                        <span class="golden-sentence">六秒数据，钉死六年人生。</span>
+                        <span class="golden-sentence">清白，比罪名更难证明。</span>
                         <span style="font-size:0.95rem;opacity:0.7; display:block; margin-top:8px;">基于真实家庭经历的非虚构纪实<br>六秒数据，六年拉锯 <br>当规则失灵，一个移民家庭被迫自证清白 </span>
                     </a>
                 </div>
@@ -1816,8 +1873,8 @@
                         </div>
                         <!-- 底部链接：目录 和 第一章试读 -->
                         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; gap: 20px; justify-content: center; font-size: 0.85rem;">
-                            <a href="#" id="introToChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
-                            <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #7bc8f8; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📘 第一章试读</a>
+                            <a href="#" id="introToChapterLink" style="color: #5a9acf; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📖 完整目录</a>
+                            <a href="/chapters/chapter-1-01.html" id="introToFirstChapterLink" style="color: #5a9acf; text-decoration: none; padding: 6px 12px; background: rgba(123,200,248,0.1); border-radius: 6px; transition: all 0.3s;">📘 第一章试读</a>
                         </div>
                     </div>
                 </div>
@@ -3264,6 +3321,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
