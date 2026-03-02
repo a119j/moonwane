@@ -70,8 +70,8 @@
     --card-padding: 1.5rem;
     --section-spacing: 70px;
     
-    --shadow-sm: 0 4px 12px rgba(0,0,0,0.2);
-    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.15);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.2);
     --shadow-lg: 0 12px 32px rgba(0,0,0,0.7);
     --shadow-blue: 0 0 20px rgba(var(--primary-blue-rgb), 0.3);
     --shadow-pdf: 0 20px 60px rgba(0,0,0,0.6);
@@ -1554,26 +1554,30 @@
 .weekly-links i {
     font-size: 0.9rem !important;
 }    
-/* 平台链接官方颜色及图标颜色 */
+/* 平台链接官方颜色及图标颜色 - 默认半透明，悬停全色 */
 .promo-links a[href*="youtube.com"],
 .weekly-links a[href*="youtube.com"] {
-    color: #FF0000; /* YouTube 红色 */
+    color: #FF0000;
+    opacity: 0.8;
 }
 .promo-links a[href*="bilibili.com"],
 .weekly-links a[href*="bilibili.com"] {
-    color: #00A1D6; /* B站 蓝色 */
+    color: #00A1D6;
+    opacity: 0.8;
 }
 .promo-links a[href*="ximalaya.com"],
 .weekly-links a[href*="ximalaya.com"] {
-    color: #FF5A1F; /* 喜马拉雅 橙色 */
+    color: #FF5A1F;
+    opacity: 0.8;
 }
 .promo-links a i,
 .weekly-links a i {
-    color: inherit; /* 图标颜色跟随文字颜色 */
+    color: inherit;
 }
 .promo-links a:hover,
 .weekly-links a:hover {
-    opacity: 0.8;
+    opacity: 1;          /* 悬停时恢复全色 */
+    transform: translateY(-2px); /* 保留原有上移效果 */
 }
 /* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
 .promo-card {
@@ -3256,6 +3260,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
