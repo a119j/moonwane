@@ -1461,12 +1461,12 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255, 0, 0, 0.8);
+    background: rgba(30, 30, 30, 0.8);
     color: #ffffff;
     font-size: 0.75rem;
     padding: 2px 8px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(2px);
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -1482,7 +1482,8 @@
 
 .weekly-card:hover .update-badge {
     opacity: 1 !important;
-}.weekly-media video,
+}
+.weekly-media video,
 .weekly-media audio {
     width: 100%;
     border-radius: 8px;
@@ -3216,14 +3217,11 @@ fetchWithTimeout(weeklyUrl)
                 videoLinks.appendChild(a);
             });
         }
-       // 控制更新标记（只要视频卡片存在数据就显示 badge）
-const videoCard = document.getElementById('weeklyVideoCard');
-if (videoCard && data.weeklyVideo) {
-    videoCard.setAttribute('data-new', 'true');
-    // 标识内容已在 HTML 固定为 "📢 NEW"，不再从 JSON 读取
-} else {
-    videoCard?.removeAttribute('data-new');
-}
+                     // 两个卡片都显示徽章（始终显示）
+        const videoCard = document.getElementById('weeklyVideoCard');
+        if (videoCard) {
+            videoCard.setAttribute('data-new', 'true');
+        }
 
         // 3. 每周音频卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
@@ -3242,15 +3240,11 @@ if (videoCard && data.weeklyVideo) {
                 audioLinks.appendChild(a);
             });
         }
-      // 控制更新标记（只要音频卡片存在数据就显示 badge）
-const audioCard = document.getElementById('weeklyAudioCard');
-if (audioCard && data.weeklyAudio) {
-    audioCard.setAttribute('data-new', 'true');
-    // 标识内容已在 HTML 固定为 "📢 NEW"，不再从 JSON 读取
-} else {
-    audioCard?.removeAttribute('data-new');
-}
-
+        // 音频卡片也显示徽章
+        const audioCard = document.getElementById('weeklyAudioCard');
+        if (audioCard) {
+            audioCard.setAttribute('data-new', 'true');
+        }
         // 4. 提醒机制（控制台）
         if (data.lastUpdate) {
             const last = new Date(data.lastUpdate);
@@ -3260,8 +3254,15 @@ if (audioCard && data.weeklyAudio) {
                 console.warn(`⚠️ 每周精选已超过 ${diffDays} 天未更新。最后更新：${data.lastUpdate}${data.changelog ? '（' + data.changelog + '）' : ''}`);
             }
         }
-    })
-    .catch(err => console.warn('无法加载每周精选数据', err));
+           })
+    .catch(err => {
+        console.warn('无法加载每周精选数据', err);
+        // 默认两个卡片都显示徽章
+        const videoCard = document.getElementById('weeklyVideoCard');
+        if (videoCard) videoCard.setAttribute('data-new', 'true');
+        const audioCard = document.getElementById('weeklyAudioCard');
+        if (audioCard) audioCard.setAttribute('data-new', 'true');
+    });
         });  // DOMContentLoaded 结束
         
         // 页面加载时检查URL hash
@@ -3350,6 +3351,7 @@ if (audioCard && data.weeklyAudio) {
     </script>
 </body>
 </html>
+
 
 
 
