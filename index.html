@@ -2646,6 +2646,12 @@ const evidenceUrl = window.location.hostname.includes('github.io')
     : '/data/evidence.json';
 
 function applyEvidenceStatus(evidenceData) {
+    // 验证数据格式
+    if (!evidenceData || !Array.isArray(evidenceData.evidences)) {
+        console.error('证据数据格式错误，触发降级');
+        throw new Error('Invalid evidence data');
+    }
+
     // 构建证据链接映射表：evidenceId -> pdfLink
     const evidenceMap = {};
     evidenceData.evidences.forEach(item => {
@@ -2675,13 +2681,17 @@ function applyEvidenceStatus(evidenceData) {
             btn.onclick = function(e) {
                 e.preventDefault();
                 alert('全书完结后统一开放，谢谢。');
+                return false; // 额外确保
             };
         }
     });
 }
 
 fetch(evidenceUrl)
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+    })
     .then(evidenceData => applyEvidenceStatus(evidenceData))
     .catch(error => {
         console.error('加载证据状态失败，尝试备用路径', error);
@@ -2690,12 +2700,16 @@ fetch(evidenceUrl)
             ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/evidence.json'
             : 'https://raw.githubusercontent.com/a119j/moonwane/main/data/evidence.json';
         fetch(backupUrl)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) throw new Error('Backup response not ok');
+                return response.json();
+            })
             .then(evidenceData => applyEvidenceStatus(evidenceData))
             .catch(() => {
                 console.error('备用路径也失败，使用默认黄色预告');
                 // 最终降级：所有证据按钮保持黄色预告
                 document.querySelectorAll('[data-evidence-id]').forEach(btn => {
+                    btn.classList.remove('status-ready', 'status-preparing');
                     btn.classList.add('disabled', 'status-coming');
                     btn.href = 'javascript:void(0)';
                     btn.target = '_self';
@@ -2703,10 +2717,11 @@ fetch(evidenceUrl)
                     btn.onclick = function(e) {
                         e.preventDefault();
                         alert('全书完结后统一开放，谢谢。');
+                        return false;
                     };
                 });
             });
-    });         
+    });      
             // "喜欢"按钮功能
             let hasTrackedClick = false;
             wantToReadBtn.addEventListener('click', function() {
@@ -3326,6 +3341,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
