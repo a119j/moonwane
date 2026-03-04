@@ -1646,17 +1646,21 @@
 /* 金句卡片最终调整：与书籍卡片同宽，降低高度，缩小金句与视频间距，视频与链接紧贴 */
 #promoCard {
     max-width: 640px !important;
-    padding-top: 2px !important;
+    padding-top: 4px !important;
     padding-bottom: 0 !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
 }
 
 #promoCard .promo-links {
-    margin-top: 2px !important;
+    margin-top: 0px !important;
 }
 
 #promoCard .promo-video {
     margin-bottom: 0 !important;
-}    
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}  
 /* 将目录抽屉中的章节主标题颜色改为 #e6c68e */
 .chapter-title {
     color: #e6c68e !important;
@@ -1664,7 +1668,7 @@
 
 /* 音频播放器默认调暗，悬停/点击时恢复亮度 */
 audio {
-    filter: brightness(0.7) !important;
+    filter: brightness(0.5) !important;
     transition: filter 0.2s ease;
 }
 audio:hover, audio:active {
@@ -3206,9 +3210,9 @@ fetchWithTimeout(weeklyUrl)
                 videoLinks.appendChild(a);
             });
         }
-        // 控制更新标记
+        // 控制更新标记（只要视频卡片存在数据就显示 badge）
         const videoCard = document.getElementById('weeklyVideoCard');
-        if (videoCard && data.weeklyVideo && data.weeklyVideo.isNew) {
+        if (videoCard && data.weeklyVideo) {
             videoCard.setAttribute('data-new', 'true');
             const badge = document.getElementById('videoBadge');
             if (badge) badge.textContent = data.weeklyVideo.badgeText || '🆕 本周';
@@ -3233,8 +3237,9 @@ fetchWithTimeout(weeklyUrl)
                 audioLinks.appendChild(a);
             });
         }
+        // 控制更新标记（只要音频卡片存在数据就显示 badge）
         const audioCard = document.getElementById('weeklyAudioCard');
-        if (audioCard && data.weeklyAudio && data.weeklyAudio.isNew) {
+        if (audioCard && data.weeklyAudio) {
             audioCard.setAttribute('data-new', 'true');
             const badge = document.getElementById('audioBadge');
             if (badge) badge.textContent = data.weeklyAudio.badgeText || '🆕 本周';
@@ -3341,6 +3346,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
