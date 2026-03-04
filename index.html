@@ -782,7 +782,6 @@
     border: 2px solid #F4A100 !important;
     color: #F4A100 !important;
 }
-
 /* 状态类：灰色（准备中）—— 供章节按钮使用，证据库不会用到 */
 .status-preparing {
     color: #888 !important;
@@ -1462,22 +1461,28 @@
     position: absolute;
     top: 8px;
     right: 8px;
-    background: rgba(255, 215, 0, 0.2);
-    color: var(--gold);
+    background: rgba(255, 0, 0, 0.8);
+    color: #ffffff;
     font-size: 0.75rem;
     padding: 2px 8px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(255, 0, 0, 0.5);
     backdrop-filter: blur(2px);
     font-weight: 500;
     letter-spacing: 0.5px;
     z-index: 2;
     display: none; /* 默认隐藏，由JS控制显示 */
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
 }
+
 .weekly-card[data-new="true"] .update-badge {
     display: inline-block;
 }
-.weekly-media video,
+
+.weekly-card:hover .update-badge {
+    opacity: 1 !important;
+}.weekly-media video,
 .weekly-media audio {
     width: 100%;
     border-radius: 8px;
@@ -1567,8 +1572,7 @@
 .weekly-links a:hover {
     opacity: 1;          /* 悬停时恢复全色 */
     transform: translateY(-2px); /* 保留原有上移效果 */
-}
-/* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
+}/* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
 .promo-card {
     max-width: 560px; /* 原为640px，适当缩小 */
 }
@@ -1641,6 +1645,7 @@
     flex-direction: column;
     justify-content: center;  /* 使所有内容在垂直方向居中（包括标题、播放器、链接） */
 }
+
 /* 如果希望播放器单独居中而标题和链接保持原位，需更复杂的设置。此处采用简化方案：整体居中 */
         
 /* 金句卡片最终调整：与书籍卡片同宽，降低高度，缩小金句与视频间距，视频与链接紧贴 */
@@ -1660,7 +1665,7 @@
     margin-bottom: 0 !important;
     padding-left: 8px !important;
     padding-right: 8px !important;
-}  
+}
 /* 将目录抽屉中的章节主标题颜色改为 #e6c68e */
 .chapter-title {
     color: #e6c68e !important;
@@ -1674,7 +1679,6 @@ audio {
 audio:hover, audio:active {
     filter: brightness(1) !important;
 }
-
 /* 喜欢按钮红心图标默认调暗，悬停恢复亮度 */
 .links .button::before {
     opacity: 0.8;
@@ -1765,8 +1769,8 @@ audio:hover, audio:active {
 }
 #introToChapterLink:hover, #introToFirstChapterLink:hover {
     opacity: 1;
-}
-    </style>
+}  
+ </style>
 </head>
 <body>
     <!-- 右上角分享菜单 -->
@@ -1845,7 +1849,7 @@ audio:hover, audio:active {
                     <div style="padding: 0 24px 0 24px; color: #e0e0e0; max-height: 70vh; overflow-y: auto;">
                         <!-- 故事梗概等内容保持不变 -->
                         <div style="font-size: 1.2rem; color: #e6c68e; margin: 20px 0 10px 0; border-bottom: 1px solid #333; padding-bottom: 5px;">【故事梗概】</div>
-                        <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
+                          <div style="font-size: 1rem; line-height: 1.8; margin-bottom: 20px;">
                             2018年，多伦多一场普通车祸，事发前两分钟的一段六秒手机后台数据，将空调技师江远平推向分心驾驶的刑事指控，检方建议刑期四年。<br>
 此后六年司法拉锯， 他沦为被严格限制驾驶的保释犯；妻子自学法律和刑侦，女儿在法庭翻译与高中学业间挣扎。<br>
 案件背后，轮胎侧壁撕裂，胎压异常、行车记录仪不明黑烟、黑匣子数据等关键证据被忽视或拒绝分析。<br>
@@ -2341,30 +2345,32 @@ audio:hover, audio:active {
     <section class="weekly-section" id="weeklySection">
         <div class="weekly-grid">
             <!-- 视频卡片 -->
-            <div class="weekly-card" id="weeklyVideoCard">
-                <span class="update-badge" id="videoBadge">🆕 本周</span>
-                                       <div class="weekly-title" id="weeklyVideoTitle"></div>
-                <div class="weekly-media" id="weeklyVideo">
-                    <video controls preload="metadata" src="/videos/weekly.mp4" style="width:100%; border-radius:8px;"></video>
-                </div>
-                                <div class="weekly-links" id="weeklyVideoLinks">
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
-                    <a href="https://bilibili.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> B站</a>
-                </div>
-            </div>
-            <!-- 音频卡片 -->
-            <div class="weekly-card" id="weeklyAudioCard">
-                <span class="update-badge" id="audioBadge"></span>
-                           <div class="weekly-title" id="weeklyAudioTitle"></div>
-                <div class="weekly-media" id="weeklyAudio">
-                    <audio controls preload="metadata" src="/audios/weekly.mp3" style="width:100%; border-radius:8px;"></audio>
-                </div>
-                                <div class="weekly-links" id="weeklyAudioLinks">
-                    <a href="https://ximalaya.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-headphones"></i> 喜马拉雅</a>
-                    <a href="javascript:void(0)" onclick="return false;"><i class="fas fa-headphones"></i> 待定</a>
-                </div>
-            </div>
-        </div>
+            <!-- 视频卡片 -->
+<!-- 视频卡片 -->
+<div class="weekly-card" id="weeklyVideoCard">
+    <span class="update-badge" id="videoBadge">📢 NEW</span>
+    <div class="weekly-title" id="weeklyVideoTitle"></div>
+    <div class="weekly-media" id="weeklyVideo">
+        <video controls preload="metadata" src="/videos/weekly.mp4" style="width:100%; border-radius:8px;"></video>
+    </div>
+    <div class="weekly-links" id="weeklyVideoLinks">
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://bilibili.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> B站</a>
+    </div>
+</div>
+
+<!-- 音频卡片 -->
+<div class="weekly-card" id="weeklyAudioCard">
+    <span class="update-badge" id="audioBadge">📢 NEW</span>
+    <div class="weekly-title" id="weeklyAudioTitle"></div>
+    <div class="weekly-media" id="weeklyAudio">
+        <audio controls preload="metadata" src="/audios/weekly.mp3" style="width:100%; border-radius:8px;"></audio>
+    </div>
+    <div class="weekly-links" id="weeklyAudioLinks">
+        <a href="https://ximalaya.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-headphones"></i> 喜马拉雅</a>
+        <a href="javascript:void(0)" onclick="return false;"><i class="fas fa-headphones"></i> 待定</a>
+    </div>
+</div>        </div>
     </section>
     <!-- ===== 新增结束 ===== -->
 
@@ -3210,15 +3216,14 @@ fetchWithTimeout(weeklyUrl)
                 videoLinks.appendChild(a);
             });
         }
-        // 控制更新标记（只要视频卡片存在数据就显示 badge）
-        const videoCard = document.getElementById('weeklyVideoCard');
-        if (videoCard && data.weeklyVideo) {
-            videoCard.setAttribute('data-new', 'true');
-            const badge = document.getElementById('videoBadge');
-            if (badge) badge.textContent = data.weeklyVideo.badgeText || '🆕 本周';
-        } else {
-            videoCard?.removeAttribute('data-new');
-        }
+       // 控制更新标记（只要视频卡片存在数据就显示 badge）
+const videoCard = document.getElementById('weeklyVideoCard');
+if (videoCard && data.weeklyVideo) {
+    videoCard.setAttribute('data-new', 'true');
+    // 标识内容已在 HTML 固定为 "📢 NEW"，不再从 JSON 读取
+} else {
+    videoCard?.removeAttribute('data-new');
+}
 
         // 3. 每周音频卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
@@ -3237,15 +3242,14 @@ fetchWithTimeout(weeklyUrl)
                 audioLinks.appendChild(a);
             });
         }
-        // 控制更新标记（只要音频卡片存在数据就显示 badge）
-        const audioCard = document.getElementById('weeklyAudioCard');
-        if (audioCard && data.weeklyAudio) {
-            audioCard.setAttribute('data-new', 'true');
-            const badge = document.getElementById('audioBadge');
-            if (badge) badge.textContent = data.weeklyAudio.badgeText || '🆕 本周';
-        } else {
-            audioCard?.removeAttribute('data-new');
-        }
+      // 控制更新标记（只要音频卡片存在数据就显示 badge）
+const audioCard = document.getElementById('weeklyAudioCard');
+if (audioCard && data.weeklyAudio) {
+    audioCard.setAttribute('data-new', 'true');
+    // 标识内容已在 HTML 固定为 "📢 NEW"，不再从 JSON 读取
+} else {
+    audioCard?.removeAttribute('data-new');
+}
 
         // 4. 提醒机制（控制台）
         if (data.lastUpdate) {
@@ -3346,6 +3350,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
