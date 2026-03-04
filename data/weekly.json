@@ -15,7 +15,7 @@
         "src": "/videos/weekly.mp4",
         "title": "本周精选：作者访谈",
         "isNew": true,
-        "badgeText": "📢NEW",
+        "badgeText": "📢 NEW",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com" },
             { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com" }
@@ -25,7 +25,7 @@
         "src": "/audios/weekly.mp3",
         "title": "音频试听：第3章片段",
         "isNew": false,
-        "badgeText": ""📢NEW",
+        "badgeText": ""📢 NEW",
         "links": [
             { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
         ]
