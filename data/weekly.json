@@ -1,8 +1,8 @@
 {
     "version": "20260316",
     "lastUpdate": "2026-03-16",
-    "changelog": "更新金句，更换每周视频和音频",
-    "promoQuote":"“清白，比罪名更难证明”",
+    "changelog": "更新金句，更换每周视频和音频，新增每周资讯",
+    "promoQuote": "“清白，比罪名更难证明”",
     "promoVideo": {
         "src": "/videos/promo.mp4",
         "version": "20260316"
@@ -15,7 +15,7 @@
         "src": "/videos/weekly.mp4",
         "title": "本周精选：作者访谈",
         "isNew": true,
-        "badgeText": "📢 NEW",
+        "badgeText": "🆕 本周",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtube.com" },
             { "icon": "fab fa-bilibili", "text": "B站", "url": "https://bilibili.com" }
@@ -25,9 +25,18 @@
         "src": "/audios/weekly.mp3",
         "title": "音频试听：第3章片段",
         "isNew": false,
-        "badgeText": ""📢 NEW",
+        "badgeText": "",
         "links": [
             { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
+        ]
+    },
+    "weeklyInfo": {
+        "title": "每周资讯",
+        "isNew": true,
+        "badgeText": "📢 资讯",
+        "links": [
+            { "icon": "fas fa-newspaper", "text": "知乎专栏", "url": "https://zhihu.com" },
+            { "icon": "fab fa-medium", "text": "Medium", "url": "https://medium.com" }
         ]
     }
 }
