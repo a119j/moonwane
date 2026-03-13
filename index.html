@@ -3196,7 +3196,6 @@ fetchWithTimeout(weeklyUrl)
 
         const promoVideo = document.getElementById('promoVideo');
 if (promoVideo && data.promoVideo && data.promoVideo.src) {
-    // 使用全球 CDN 加速（jsDelivr）
     const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
     let videoSrc = cdnBase + data.promoVideo.src;
     if (version) {
@@ -3409,6 +3408,7 @@ if (infoCard && data.weeklyInfo) {
     </script>
 </body>
 </html>
+
 
 
 
