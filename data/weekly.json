@@ -31,12 +31,11 @@
         ]
     },
     "weeklyInfo": {
-        "title": "每周资讯",
-        "isNew": true,
-        "badgeText": "📢 资讯",
-        "links": [
-            { "icon": "fas fa-newspaper", "text": "知乎专栏", "url": "https://zhihu.com" },
-            { "icon": "fab fa-medium", "text": "Medium", "url": "https://medium.com" }
-        ]
-    }
+    "title": "每周资讯",
+    "isNew": true,
+    "badgeText": "📰 待定",
+    "links": [
+        { "icon": "fas fa-newspaper", "text": "知乎专栏", "url": "https://zhihu.com" },
+        { "icon": "fab fa-medium", "text": "Medium", "url": "https://medium.com" }
+    ]
 }
