@@ -1869,10 +1869,17 @@ audio:hover, audio:active {
                                 <div style="white-space: nowrap;">小个体与大系统（The Individual vs. The System）</div>
                             </div>
                         </div>
-                        <!-- 创作背景 -->
+                                                <!-- 创作背景 -->
                         <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【创作背景】</div>
                         <div style="font-size: 1rem; line-height: 1.6; margin-bottom: 15px;color: #b8b4b0;">
                             作者为当事人，全程旁听庭审、整理证据、参与案件资料准备。<br>书中技术细节均有法庭文件或第三方报告支撑。<br>为保护隐私，人物化名、日期与部分地点作技术性处理，但事实链完整。
+                        </div>
+                                                                                                                     <!-- 法律免责链接 -->
+                        <div style="display: flex; align-items: center; white-space: nowrap; line-height: 1.2; margin-top: 10px;">
+                            <a href="legal-disclaimer.html" style="color: #e6c68e; text-decoration: none; font-size: 0.95rem;">
+                                <i class="fas fa-balance-scale" style="margin-right: 5px; font-size: 0.95rem;"></i>
+                                法律免责声明 ｜ Legal Disclaimer
+                            </a>
                         </div>
                         <!-- 版权说明 -->
                         <div style="font-size: 1.2rem; color: #e6c68e; margin: 60px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px;">【版权说明】</div>
@@ -2346,7 +2353,6 @@ audio:hover, audio:active {
     <section class="weekly-section" id="weeklySection">
         <div class="weekly-grid">
             <!-- 视频卡片 -->
-            <!-- 视频卡片 -->
 <!-- 视频卡片 -->
 <div class="weekly-card" id="weeklyVideoCard">
     <span class="update-badge" id="videoBadge">📢 NEW</span>
@@ -2372,6 +2378,12 @@ audio:hover, audio:active {
         <a href="javascript:void(0)" onclick="return false;"><i class="fas fa-headphones"></i> 待定</a>
     </div>
 </div>        </div>
+        <!-- 每周资讯卡片（单独一行） -->
+    <div class="weekly-card" id="weeklyInfoCard" style="margin-top: 20px;">
+        <span class="update-badge" id="infoBadge">📰 待定</span>
+        <div class="weekly-title" id="weeklyInfoTitle"></div>
+        <div class="weekly-links" id="weeklyInfoLinks"></div>
+    </div>
     </section>
     <!-- ===== 新增结束 ===== -->
 
@@ -3183,9 +3195,15 @@ fetchWithTimeout(weeklyUrl)
         }
 
         const promoVideo = document.getElementById('promoVideo');
-        if (promoVideo && data.promoVideo && data.promoVideo.src) {
-            promoVideo.innerHTML = `<video controls src="${data.promoVideo.src}${version}" preload="metadata"></video>`;
-        }
+if (promoVideo && data.promoVideo && data.promoVideo.src) {
+    // 使用全球 CDN 加速（jsDelivr）
+    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
+    let videoSrc = cdnBase + data.promoVideo.src;
+    if (version) {
+        videoSrc += version;
+    }
+    promoVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata"></video>`;
+}
 
         const promoLinks = document.getElementById('promoLinks');
         if (promoLinks && data.promoLinks && data.promoLinks.length) {
@@ -3202,9 +3220,14 @@ fetchWithTimeout(weeklyUrl)
 
         // 2. 每周视频卡片
         const weeklyVideo = document.getElementById('weeklyVideo');
-        if (weeklyVideo && data.weeklyVideo && data.weeklyVideo.src) {
-            weeklyVideo.innerHTML = `<video controls src="${data.weeklyVideo.src}${version}" preload="metadata"></video>`;
-        }
+if (weeklyVideo && data.weeklyVideo && data.weeklyVideo.src) {
+    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
+    let videoSrc = cdnBase + data.weeklyVideo.src;
+    if (version) {
+        videoSrc += version;
+    }
+    weeklyVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata"></video>`;
+}
         const videoLinks = document.getElementById('weeklyVideoLinks');
         if (videoLinks && data.weeklyVideo && data.weeklyVideo.links) {
             videoLinks.innerHTML = '';
@@ -3225,9 +3248,14 @@ fetchWithTimeout(weeklyUrl)
 
         // 3. 每周音频卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
-        if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
-            weeklyAudio.innerHTML = `<audio controls src="${data.weeklyAudio.src}${version}" preload="metadata"></audio>`;
-        }
+if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
+    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
+    let audioSrc = cdnBase + data.weeklyAudio.src;
+    if (version) {
+        audioSrc += version;
+    }
+    weeklyAudio.innerHTML = `<audio controls src="${audioSrc}" preload="metadata"></audio>`;
+}
         const audioLinks = document.getElementById('weeklyAudioLinks');
         if (audioLinks && data.weeklyAudio && data.weeklyAudio.links) {
             audioLinks.innerHTML = '';
@@ -3245,6 +3273,36 @@ fetchWithTimeout(weeklyUrl)
         if (audioCard) {
             audioCard.setAttribute('data-new', 'true');
         }
+                // 4. 每周资讯卡片
+const infoCard = document.getElementById('weeklyInfoCard');
+const infoBadge = document.getElementById('infoBadge');
+const infoTitle = document.getElementById('weeklyInfoTitle');
+const infoLinks = document.getElementById('weeklyInfoLinks');
+
+if (infoCard && data.weeklyInfo) {
+    // 强制显示徽章（与视频/音频卡片统一）
+    infoCard.setAttribute('data-new', 'true');
+    // 设置标题
+    if (infoTitle) {
+        infoTitle.textContent = data.weeklyInfo.title || '每周资讯';
+    }
+    // 设置徽章文本（图标+文字，如 "📰 待定"）
+    if (infoBadge) {
+        infoBadge.textContent = data.weeklyInfo.badgeText || '📰 待定';
+    }
+    // 设置链接（与视频/音频卡片逻辑一致）
+    if (infoLinks && data.weeklyInfo.links && data.weeklyInfo.links.length) {
+        infoLinks.innerHTML = '';
+        data.weeklyInfo.links.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+            infoLinks.appendChild(a);
+        });
+    }
+}
         // 4. 提醒机制（控制台）
         if (data.lastUpdate) {
             const last = new Date(data.lastUpdate);
@@ -3351,6 +3409,7 @@ fetchWithTimeout(weeklyUrl)
     </script>
 </body>
 </html>
+
 
 
 
