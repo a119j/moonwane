@@ -28,7 +28,6 @@
             margin: 0 auto;
         }
 
-        /* 头部月亮装饰 */
         .header {
             text-align: center;
             margin-bottom: 3rem;
@@ -74,7 +73,6 @@
             margin-top: 0.5rem;
         }
 
-        /* 卡片网格 */
         .section {
             margin-bottom: 3rem;
         }
@@ -118,7 +116,6 @@
             color: #aaa;
             margin-bottom: 1.2rem;
         }
-        /* 二维码容器 */
         .qrcode-placeholder {
             background: #fff;
             width: 180px;
@@ -162,7 +159,6 @@
             margin-top: 0.5rem;
         }
 
-        /* 返回链接 */
         .back-link {
             text-align: center;
             margin-top: 3rem;
@@ -204,7 +200,6 @@
             .qrcode-placeholder { width: 150px; height: 150px; }
         }
     </style>
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -221,21 +216,17 @@
             <i class="fab fa-weixin" style="margin-right: 8px;"></i> 微信公众号 · 纪实档案
         </div>
         <div class="grid">
-            <!-- 深渊回响 -->
             <div class="qr-card">
                 <div class="qr-name">📖 深渊回响</div>
                 <div class="qr-desc">长文深度 · 9周总结 + 3人物肖像</div>
                 <div class="qrcode-placeholder">
                     <img class="qrcode-img" src="/moonwane/pictures/syhx.png" alt="深渊回响二维码" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-text" style="display: none;">
-                        <i class="fas fa-qrcode"></i>
-                        二维码待补充<br>
-                        <span class="note">(请替换为实际图片)</span>
+                        <i class="fas fa-qrcode"></i> 二维码待补充
                     </div>
                 </div>
                 <div class="note">适合深夜阅读 · 长文推送</div>
             </div>
-            <!-- 现场入微 -->
             <div class="qr-card">
                 <div class="qr-name">🎥 现场入微</div>
                 <div class="qr-desc">正片纪实 · 46正片 + 9周回顾视频</div>
@@ -247,7 +238,6 @@
                 </div>
                 <div class="note">视频号联动 · 连载感</div>
             </div>
-            <!-- 快析切片 -->
             <div class="qr-card">
                 <div class="qr-name">⚡ 快析切片</div>
                 <div class="qr-desc">短视频拆解 · 46短片 + 9周回顾短片</div>
@@ -259,7 +249,6 @@
                 </div>
                 <div class="note">快节奏 · 案情速览</div>
             </div>
-            <!-- 铁券内参 -->
             <div class="qr-card">
                 <div class="qr-name">📂 铁券内参</div>
                 <div class="qr-desc">资料库 · 46图文+20主题+9总结+4科普</div>
@@ -280,7 +269,6 @@
             <i class="fab fa-tiktok" style="margin-right: 8px;"></i> 抖音 · 影像现场
         </div>
         <div class="grid">
-            <!-- 正片纪实 -->
             <div class="qr-card">
                 <div class="qr-name">🎬 正片纪实</div>
                 <div class="qr-desc">完整正片 · 长篇视频</div>
@@ -292,7 +280,6 @@
                 </div>
                 <div class="note">抖音搜索「正片纪实」</div>
             </div>
-            <!-- 短片拆解 -->
             <div class="qr-card">
                 <div class="qr-name">✂️ 短片拆解</div>
                 <div class="qr-desc">短视频精剪 · 核心片段</div>
@@ -304,7 +291,6 @@
                 </div>
                 <div class="note">快节奏解析</div>
             </div>
-            <!-- 周综回顾 -->
             <div class="qr-card">
                 <div class="qr-name">📅 周综回顾</div>
                 <div class="qr-desc">每周精华汇总</div>
@@ -327,12 +313,11 @@
 
     <footer>
         <p>© 2025 MoonWane Ink · 墨染月光</p>
-        <p>二维码图片已存放于 /moonwane/pictures/ 目录，如无法显示请检查图片是否存在。</p>
     </footer>
 </div>
 
 <script>
-    // 无额外动作，图片加载失败时已通过 onerror 显示占位符
+    // 图片加载失败时自动显示占位符（由onerror处理）
 </script>
 </body>
 </html>
