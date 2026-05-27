@@ -8,9 +8,11 @@
         .container { max-width: 800px; margin: auto; }
         .section { margin: 40px 0; background: rgba(20, 25, 40, 0.6); padding: 20px; border-radius: 12px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-        .item img { width: 100%; max-width: 160px; border-radius: 8px; }
+        .item img { width: 100%; max-width: 160px; border-radius: 8px; display: block; margin: 0 auto; }
         .item p { color: #ffda47; margin-top: 10px; font-weight: bold; }
         h2 { color: #7bc8f8; margin-bottom: 20px; }
+        a { color: #fff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -20,22 +22,23 @@
         <div class="section">
             <h2>核心纪实 · 公众号</h2>
             <div class="grid">
-                <div class="item"><img src="pictures/syhx.png"><p>深渊回响</p></div>
-                <div class="item"><img src="pictures/xcrw.png"><p>现场入微</p></div>
-                <div class="item"><img src="pictures/kxcp.png"><p>快析切片</p></div>
-                <div class="item"><img src="pictures/tqnc.png"><p>铁券内参</p></div>
+                <!-- 请确保文件名与 GitHub 仓库 /pictures/ 目录下的名称 100% 一致 -->
+                <div class="item"><img src="/moonwane/pictures/syhx.png" alt="深渊回响"><p>深渊回响</p></div>
+                <div class="item"><img src="/moonwane/pictures/xcrw.png" alt="现场入微"><p>现场入微</p></div>
+                <div class="item"><img src="/moonwane/pictures/kxcp.png" alt="快析切片"><p>快析切片</p></div>
+                <div class="item"><img src="/moonwane/pictures/tqnc.png" alt="铁券内参"><p>铁券内参</p></div>
             </div>
         </div>
 
         <div class="section">
             <h2>影像现场 · 抖音</h2>
             <div class="grid">
-                <div class="item"><img src="pictures/dy_zp.jpg"><p>正片纪实</p></div>
-                <div class="item"><img src="pictures/dy_sp.jpg"><p>短片拆解</p></div>
-                <div class="item"><img src="pictures/dy_zj.jpg"><p>周综回顾</p></div>
+                <div class="item"><img src="/moonwane/pictures/dy_zp.jpg" alt="正片纪实"><p>正片纪实</p></div>
+                <div class="item"><img src="/moonwane/pictures/dy_sp.jpg" alt="短片拆解"><p>短片拆解</p></div>
+                <div class="item"><img src="/moonwane/pictures/dy_zj.jpg" alt="周综回顾"><p>周综回顾</p></div>
             </div>
         </div>
-        <a href="index.html" style="color:#fff;">返回主站</a>
+        <a href="/moonwane/index.html">返回主站</a>
     </div>
 </body>
 </html>
