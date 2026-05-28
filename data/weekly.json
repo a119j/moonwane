@@ -24,7 +24,7 @@
     "weeklyVideo2": {
         "src": "/videos/weekly2.mp4",
         "title": "新增视频（占位）",
-        "isNew": ture,
+        "isNew": true,
         "badgeText": "🆕 NEW",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "#" },
