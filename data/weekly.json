@@ -25,7 +25,7 @@
         "src": "/videos/weekly2.mp4",
         "title": "新增视频（占位）",
         "isNew": ture,
-        "badgeText": "🆕 新",
+        "badgeText": "🆕 NEW",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "#" },
             { "icon": "fab fa-bilibili", "text": "B站", "url": "#" }
