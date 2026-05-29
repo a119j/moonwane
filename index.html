@@ -3291,11 +3291,54 @@ fetchWithTimeout(statusUrl)
                 } else {
                     showLinkMenu(e, links);
                 }
-            });
-                       // ========== 加载每周精选数据（适配GitHub Pages）==========
+            });// ========== 加载每周精选数据 ==========
 const weeklyUrl = window.location.hostname.includes('github.io')
     ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/weekly.json'
     : '/data/weekly.json';
+
+// 通用视频嵌入函数（支持 YouTube 和 B站，返回 iframe HTML）
+function getVideoEmbedHtml(url) {
+    if (!url) return '';
+    
+    // 处理 YouTube 链接（支持 youtu.be、youtube.com/watch、youtube.com/embed）
+    let youtubeId = null;
+    if (url.includes('youtu.be/')) {
+        youtubeId = url.split('youtu.be/')[1]?.split(/[?#]/)[0];
+    } else if (url.includes('youtube.com/watch')) {
+        const urlParams = new URLSearchParams(new URL(url).search);
+        youtubeId = urlParams.get('v');
+    } else if (url.includes('youtube.com/embed/')) {
+        youtubeId = url.split('/embed/')[1]?.split(/[?#]/)[0];
+    }
+    if (youtubeId) {
+        return `<iframe src="https://www.youtube.com/embed/${youtubeId}" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>`;
+    }
+    
+    // 处理 B站链接（支持 bilibili.com/video/）
+    let bvid = null;
+    if (url.includes('bilibili.com/video/')) {
+        const match = url.match(/\/video\/(BV[a-zA-Z0-9]+)/);
+        if (match) bvid = match[1];
+    }
+    if (bvid) {
+        return `<iframe src="//player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0" 
+            frameborder="0" allowfullscreen style="width:100%; aspect-ratio:16/9; border-radius:8px;"></iframe>`;
+    }
+    
+    // 默认当作普通 MP4 视频
+    return `<video controls preload="metadata" src="${url}" style="width:100%; border-radius:8px;"></video>`;
+}
+
+// 辅助函数：给容器内的 iframe 添加 loading="lazy"（仅用于 weekly 卡片）
+function addLazyLoadingToIframe(container) {
+    if (!container) return;
+    const iframe = container.querySelector('iframe');
+    if (iframe && !iframe.hasAttribute('loading')) {
+        iframe.setAttribute('loading', 'lazy');
+    }
+}
 
 fetchWithTimeout(weeklyUrl)
     .then(response => {
@@ -3305,47 +3348,28 @@ fetchWithTimeout(weeklyUrl)
     .then(data => {
         const version = data.version ? `?v=${data.version}` : '';
 
-        // 1. 金句卡片
+        // 1. 金句卡片（如果有）
         const quoteDiv = document.getElementById('promoQuote');
         if (quoteDiv && data.promoQuote) {
             quoteDiv.innerHTML = `<p>${data.promoQuote}</p>`;
         }
 
+        // 2. 金句视频（promoVideo）
         const promoVideo = document.getElementById('promoVideo');
-if (promoVideo && data.promoVideo && data.promoVideo.src) {
-    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
-    let videoSrc = cdnBase + data.promoVideo.src;
-    if (version) {
-        videoSrc += version;
-    }
-    promoVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata"></video>`;
-}
+        if (promoVideo && data.promoVideo && data.promoVideo.src) {
+            const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
+            let videoSrc = cdnBase + data.promoVideo.src;
+            if (version) videoSrc += version;
+            promoVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata" style="width:100%; border-radius:8px;"></video>`;
+        }
 
-        /*
-const promoLinks = document.getElementById('promoLinks');
-if (promoLinks && data.promoLinks && data.promoLinks.length) {
-    promoLinks.innerHTML = '';
-    data.promoLinks.forEach(link => {
-        const a = document.createElement('a');
-        a.href = link.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
-        promoLinks.appendChild(a);
-    });
-}
-*/
-
-        // 2. 每周视频卡片
-        const weeklyVideo = document.getElementById('weeklyVideo');
-if (weeklyVideo && data.weeklyVideo && data.weeklyVideo.src) {
-    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
-    let videoSrc = cdnBase + data.weeklyVideo.src;
-    if (version) {
-        videoSrc += version;
-    }
-    weeklyVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata"></video>`;
-}
+        // 3. weeklyVideo 卡片
+        const weeklyVideoContainer = document.getElementById('weeklyVideo');
+        if (weeklyVideoContainer && data.weeklyVideo && data.weeklyVideo.src) {
+            weeklyVideoContainer.innerHTML = getVideoEmbedHtml(data.weeklyVideo.src);
+            addLazyLoadingToIframe(weeklyVideoContainer);
+        }
+        // 设置 weeklyVideo 下方的链接按钮
         const videoLinks = document.getElementById('weeklyVideoLinks');
         if (videoLinks && data.weeklyVideo && data.weeklyVideo.links) {
             videoLinks.innerHTML = '';
@@ -3358,34 +3382,34 @@ if (weeklyVideo && data.weeklyVideo && data.weeklyVideo.src) {
                 videoLinks.appendChild(a);
             });
         }
-                     // 两个卡片都显示徽章（始终显示）
-        const videoCard = document.getElementById('weeklyVideoCard');
-        if (videoCard) {
-            videoCard.setAttribute('data-new', 'true');
+
+        // 4. weeklyVideo2 卡片
+        const weeklyVideo2Container = document.getElementById('weeklyVideo2');
+        if (weeklyVideo2Container && data.weeklyVideo2 && data.weeklyVideo2.src) {
+            weeklyVideo2Container.innerHTML = getVideoEmbedHtml(data.weeklyVideo2.src);
+            addLazyLoadingToIframe(weeklyVideo2Container);
         }
-// 2.2 第二个视频卡片（新增）
-const weeklyVideo2 = document.getElementById('weeklyVideo2');
-if (weeklyVideo2 && data.weeklyVideo2 && data.weeklyVideo2.src) {
-    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
-    let videoSrc = cdnBase + data.weeklyVideo2.src;
-    if (version) videoSrc += version;
-    weeklyVideo2.innerHTML = `<video controls src="${videoSrc}" preload="metadata"></video>`;
-}
-// 更新第二个视频卡片的标题和徽章
-const weeklyTitle2 = document.getElementById('weeklyVideoTitle2');
-if (weeklyTitle2 && data.weeklyVideo2 && data.weeklyVideo2.title) {
-    weeklyTitle2.textContent = data.weeklyVideo2.title;
-}
-        // 3. 每周音频卡片
+        const videoLinks2 = document.getElementById('weeklyVideoLinks2');
+        if (videoLinks2 && data.weeklyVideo2 && data.weeklyVideo2.links) {
+            videoLinks2.innerHTML = '';
+            data.weeklyVideo2.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+                videoLinks2.appendChild(a);
+            });
+        }
+
+        // 5. weeklyAudio 卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
-if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
-    const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
-    let audioSrc = cdnBase + data.weeklyAudio.src;
-    if (version) {
-        audioSrc += version;
-    }
-    weeklyAudio.innerHTML = `<audio controls src="${audioSrc}" preload="metadata"></audio>`;
-}
+        if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
+            const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
+            let audioSrc = cdnBase + data.weeklyAudio.src;
+            if (version) audioSrc += version;
+            weeklyAudio.innerHTML = `<audio controls src="${audioSrc}" preload="metadata" style="width:100%;"></audio>`;
+        }
         const audioLinks = document.getElementById('weeklyAudioLinks');
         if (audioLinks && data.weeklyAudio && data.weeklyAudio.links) {
             audioLinks.innerHTML = '';
@@ -3398,13 +3422,22 @@ if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
                 audioLinks.appendChild(a);
             });
         }
-        // 音频卡片也显示徽章
+
+        // 6. 可选：显示新内容徽章
+        const videoCard = document.getElementById('weeklyVideoCard');
+        if (videoCard && data.weeklyVideo && data.weeklyVideo.isNew) {
+            videoCard.setAttribute('data-new', 'true');
+        }
+        const videoCard2 = document.getElementById('weeklyVideoCard2');
+        if (videoCard2 && data.weeklyVideo2 && data.weeklyVideo2.isNew) {
+            videoCard2.setAttribute('data-new', 'true');
+        }
         const audioCard = document.getElementById('weeklyAudioCard');
-        if (audioCard) {
+        if (audioCard && data.weeklyAudio && data.weeklyAudio.isNew) {
             audioCard.setAttribute('data-new', 'true');
         }
-                
-        // 4. 提醒机制（控制台）
+        
+        // 7. 更新提醒（控制台）
         if (data.lastUpdate) {
             const last = new Date(data.lastUpdate);
             const now = new Date();
@@ -3413,12 +3446,14 @@ if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
                 console.warn(`⚠️ 每周精选已超过 ${diffDays} 天未更新。最后更新：${data.lastUpdate}${data.changelog ? '（' + data.changelog + '）' : ''}`);
             }
         }
-           })
+    })
     .catch(err => {
         console.warn('无法加载每周精选数据', err);
-        // 默认两个卡片都显示徽章
+        // 降级：默认两个卡片显示徽章（可选）
         const videoCard = document.getElementById('weeklyVideoCard');
         if (videoCard) videoCard.setAttribute('data-new', 'true');
+        const videoCard2 = document.getElementById('weeklyVideoCard2');
+        if (videoCard2) videoCard2.setAttribute('data-new', 'true');
         const audioCard = document.getElementById('weeklyAudioCard');
         if (audioCard) audioCard.setAttribute('data-new', 'true');
     });
