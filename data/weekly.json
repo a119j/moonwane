@@ -1,45 +1,39 @@
 {
-    "version": "20260316",
-    "lastUpdate": "2026-03-16",
-    "changelog": "更新金句，更换每周视频和音频，新增每周资讯",
+    "version": "20260529",
+    "lastUpdate": "2026-05-29",
+    "changelog": "YouTube + B站双视频更新",
     "promoQuote": "“清白，比罪名更难证明”",
     "promoVideo": {
         "src": "/videos/promovideo1.mp4",
         "version": "20260321"
     },
-    "promoLinks": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/@MoonwaneInk" },
-        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459" }
-    ],
     "weeklyVideo": {
-        "src": "/videos/weekly.mp4",
-        "title": "本周精选：作者访谈",
+        "src": "https://youtu.be/X-GaQMj80Ww",
+        "title": "YouTube 本周推荐",
         "isNew": true,
         "badgeText": "🆕 本周",
         "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "#" },
-            { "icon": "fab fa-bilibili", "text": "B站", "url": "#" }
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
         ]
     },
     "weeklyVideo2": {
-        "src": "/videos/weekly2.mp4",
-        "title": "新增视频（占位）",
+        "src": "https://www.bilibili.com/video/BV11gVF6kE4w/",
+        "title": "B站 本周推荐",
         "isNew": true,
-        "badgeText": "🆕 NEW",
+        "badgeText": "📢 NEW",
         "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "#" },
-            { "icon": "fab fa-bilibili", "text": "B站", "url": "#" }
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
         ]
     },
     "weeklyAudio": {
         "src": "/audios/weekly.mp3",
-        "title": "音频试听：第3章片段",
+        "title": "音频试听",
         "isNew": false,
         "badgeText": "",
         "links": [
             { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
-        ]
-    }
         ]
     }
 }
