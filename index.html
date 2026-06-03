@@ -3543,23 +3543,19 @@ fetchWithTimeout(weeklyUrl)
                 chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
-        // ========== 安全动态渲染章节列表（失败时静默回退） ==========
+        // ========== 安全动态渲染章节列表（只生成结构，不处理颜色/链接，交给 applyChapterStatus） ==========
 (function() {
-    // 等待 DOM 加载完成
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
     }
 
-    function init() {
+    async function init() {
         const container = document.getElementById('dynamic-chapters-container');
         if (!container) return;
 
-        // 保存静态内容备份（如果动态失败，什么都不做）
-        const staticBackup = container.innerHTML;
-
-        // 加载两个 JSON
+        // 加载 chapters.json 和 button-status.json
         const chaptersUrl = window.location.hostname.includes('github.io')
             ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
             : '/data/chapters.json';
@@ -3567,92 +3563,71 @@ fetchWithTimeout(weeklyUrl)
             ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
             : '/data/button-status.json';
 
-        Promise.all([
-            fetch(chaptersUrl).then(res => res.ok ? res.json() : Promise.reject()),
-            fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
-        ]).then(([chaptersData, buttonData]) => {
-            // 构建按钮状态映射
-            const statusMap = {};
-            buttonData.chapters.forEach(item => {
-                statusMap[item.chapterId] = {
-                    read: item.readLink || '',
-                    audio: item.audioLink || '',
-                    video: item.videoLink || '',
-                    external: item.externalLink || ''
-                };
-            });
+        try {
+            const [chaptersRes, buttonRes] = await Promise.all([
+                fetch(chaptersUrl).then(res => res.ok ? res.json() : Promise.reject()),
+                fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
+            ]);
+
+            // 获取所有需要渲染的 chapterId（使用 button-status.json 中的列表，保证顺序与静态一致）
+            const validChapterIds = new Set(buttonRes.chapters.map(c => c.chapterId));
 
             // 辅助函数：防XSS
-            function escapeHtml(str) {
+            const escapeHtml = (str) => {
                 if (!str) return '';
-                return str.replace(/[&<>]/g, function(m) {
+                return str.replace(/[&<>]/g, (m) => {
                     if (m === '&') return '&amp;';
                     if (m === '<') return '&lt;';
                     if (m === '>') return '&gt;';
                     return m;
                 });
-            }
+            };
 
-            // 生成新 HTML
+            // 遍历 acts，只渲染 validChapterIds 中的章节（每个章节只渲染一次）
             let html = '';
-            for (const act of chaptersData.acts) {
-                // 去重
-                const chaptersMap = new Map();
-                act.chapters.forEach(ch => {
-                    if (!chaptersMap.has(ch.chapterNumber)) {
-                        chaptersMap.set(ch.chapterNumber, {
-                            title: ch.title,
-                            subtitle: ch.subtitle,
-                            chapterNumber: ch.chapterNumber
-                        });
-                    }
-                });
-                const uniqueChapters = Array.from(chaptersMap.values());
+            for (const act of chaptersRes.acts) {
+                const renderedInThisAct = new Set(); // 用于同幕内去重（同一个 chapterNumber 只渲染一次）
+                let actHasChapters = false;
 
-                html += `<div class="act-card">
-                            <span class="act-title">· ${escapeHtml(act.actTitle)} ·</span>
-                            <span class="act-title-second-line">${escapeHtml(act.actSubtitle)}</span>
-                            <ul class="chapter-list">`;
-                for (const ch of uniqueChapters) {
+                for (const ch of act.chapters) {
                     const chapterId = ch.chapterNumber;
-                    const links = statusMap[chapterId] || { read: '', audio: '', video: '', external: '' };
-
-                    const makeButton = (type, icon) => {
-                        const link = links[type];
-                        let href = 'javascript:void(0)';
-                        let extraClass = '';
-                        let clickAttr = '';
-                        if (link) {
-                            href = link;
-                            extraClass = 'status-ready';
-                            clickAttr = `onclick="event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');"`;
-                        } else {
-                            extraClass = 'status-coming';
-                            const displayNum = window.getChapterDisplayNumber ? window.getChapterDisplayNumber(chapterId) : chapterId;
-                            clickAttr = `onclick="event.preventDefault(); alert('${displayNum} 即将上线。');"`;
+                    // 只渲染主章节（在 button-status.json 中存在的），且每个 chapterId 只渲染一次
+                    if (validChapterIds.has(chapterId) && !renderedInThisAct.has(chapterId)) {
+                        if (!actHasChapters) {
+                            // 第一次遇到有效章节时，先输出幕头
+                            html += `<div class="act-card">
+                                        <span class="act-title">· ${escapeHtml(act.actTitle)} ·</span>
+                                        <span class="act-title-second-line">${escapeHtml(act.actSubtitle)}</span>
+                                        <ul class="chapter-list">`;
+                            actHasChapters = true;
                         }
-                        return `<a class="pdf-trigger ${type}-icon ${extraClass}" data-chapter="${chapterId}" data-type="${type}" href="${href}" ${clickAttr}>${icon}</a>`;
-                    };
+                        renderedInThisAct.add(chapterId);
 
-                    html += `<li>
-                                <span class="chapter-title">${escapeHtml(ch.title)}</span>
-                                <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
-                                <div class="chapter-actions">
-                                    ${makeButton('read', '📖')}
-                                    ${makeButton('audio', '🎧')}
-                                    ${makeButton('video', '🎬')}
-                                    ${makeButton('external', '🔗')}
-                                </div>
-                            </li>`;
+                        // 生成不带状态类、不带 onclick 的干净按钮（所有属性由 applyChapterStatus 后续填充）
+                        const makePlaceholderButton = (type, icon) => {
+                            return `<a class="pdf-trigger ${type}-icon" data-chapter="${chapterId}" data-type="${type}" href="javascript:void(0)">${icon}</a>`;
+                        };
+
+                        html += `<li>
+                                    <span class="chapter-title">${escapeHtml(ch.title)}</span>
+                                    <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
+                                    <div class="chapter-actions">
+                                        ${makePlaceholderButton('read', '📖')}
+                                        ${makePlaceholderButton('audio', '🎧')}
+                                        ${makePlaceholderButton('video', '🎬')}
+                                        ${makePlaceholderButton('external', '🔗')}
+                                    </div>
+                                </li>`;
+                    }
                 }
-                html += `</ul></div>`;
+                if (actHasChapters) {
+                    html += `</ul></div>`;
+                }
             }
-            // 替换容器内容
             container.innerHTML = html;
-        }).catch(err => {
-            // 静默失败，保留静态备份（什么都不做）
+        } catch (err) {
             console.warn('动态渲染失败，保留静态章节列表', err);
-        });
+        }
     }
 })();
     </script>
