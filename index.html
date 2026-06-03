@@ -1819,27 +1819,39 @@ audio:hover, audio:active {
 .qr-close:hover {
     color: white;
 }
-/* 公众号二维码弹窗 */
-.qr-modal {
-    ...
-}
-.qr-modal-content {
-    ...
-}
-... /* 其他二维码相关样式 */
-
-/* 在这里插入我们新增的矩阵卡片链接样式 */
+/* 矩阵卡片内链接明显化 - 与整体风格协调 */
 #matrixCard a {
-    color: #7bc8f8 !important;
-    text-decoration: underline !important;
-    ...
-}
-#matrixCard a::before {
-    content: "👉";
-    ...
+    color: #7bc8f8 !important;           /* 主题蓝色，不刺眼 */
+    text-decoration: underline !important; /* 下划线，经典可点击提示 */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
 }
 
-</style>
+/* 添加手部图标，初始半透明，避免喧宾夺主 */
+#matrixCard a::before {
+    content: "👉";                        /* 手势图标 */
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 0.85em;
+    opacity: 0.7;                         /* 半透明，与整体协调 */
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* 悬停时图标完全可见并轻微右移，增强交互反馈 */
+#matrixCard a:hover::before {
+    opacity: 1;
+    transform: translateX(2px);
+}
+
+/* 悬停时链接样式 */
+#matrixCard a:hover {
+    color: #ffffff !important;
+    text-decoration-thickness: 2px;
+    text-shadow: 0 0 6px rgba(123, 200, 248, 0.5);
+    background: rgba(123, 200, 248, 0.1);
+    border-radius: 4px;
+}
  </style>
 </head>
 <body>
