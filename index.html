@@ -3543,7 +3543,7 @@ fetchWithTimeout(weeklyUrl)
                 chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
-        // ========== 安全动态渲染章节列表（只生成结构，不处理颜色/链接，交给 applyChapterStatus） ==========
+       // ========== 安全动态渲染章节列表（独立生成颜色和点击行为） ==========
 (function() {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
@@ -3569,8 +3569,17 @@ fetchWithTimeout(weeklyUrl)
                 fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
             ]);
 
-            // 获取所有需要渲染的 chapterId（使用 button-status.json 中的列表，保证顺序与静态一致）
-            const validChapterIds = new Set(buttonRes.chapters.map(c => c.chapterId));
+            // 获取所有需要渲染的 chapterId 及其链接状态（使用 button-status.json）
+            const chapterStatusMap = {};
+            buttonRes.chapters.forEach(item => {
+                chapterStatusMap[item.chapterId] = {
+                    read: item.readLink || '',
+                    audio: item.audioLink || '',
+                    video: item.videoLink || '',
+                    external: item.externalLink || ''
+                };
+            });
+            const validChapterIds = new Set(Object.keys(chapterStatusMap));
 
             // 辅助函数：防XSS
             const escapeHtml = (str) => {
@@ -3583,18 +3592,64 @@ fetchWithTimeout(weeklyUrl)
                 });
             };
 
-            // 遍历 acts，只渲染 validChapterIds 中的章节（每个章节只渲染一次）
+            // 获取章节显示名称（复用全局函数）
+            const getDisplayNum = window.getChapterDisplayNumber || ((id) => id);
+
+            // 预先确定每个按钮的颜色和点击行为（基于黄色跟随绿色的逻辑）
+            // 定义章节顺序（与原有 chapterOrder 一致）
+            const chapterOrder = [
+                '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
+                '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
+                '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
+                '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
+            ];
+
+            // 为每个类型（read/audio/video/external）计算每个章节的颜色状态
+            const types = ['read', 'audio', 'video', 'external'];
+            const buttonStatus = {}; // buttonStatus[chapterId][type] = { class, href, onclick }
+
+            types.forEach(type => {
+                let lastGreenIndex = -1;
+                let yellowAssigned = false;
+                chapterOrder.forEach((chapterId, index) => {
+                    const link = chapterStatusMap[chapterId]?.[type] || '';
+                    let btnClass = '';
+                    let href = 'javascript:void(0)';
+                    let onclick = '';
+
+                    if (link) {
+                        btnClass = 'status-ready';
+                        href = link;
+                        onclick = `event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');`;
+                        lastGreenIndex = index;
+                        yellowAssigned = false;
+                    } else {
+                        if (lastGreenIndex !== -1 && !yellowAssigned) {
+                            btnClass = 'status-coming';
+                            const displayNum = getDisplayNum(chapterId);
+                            onclick = `event.preventDefault(); alert('${displayNum} 即将上线。');`;
+                            yellowAssigned = true;
+                        } else {
+                            btnClass = 'status-preparing';
+                            const displayNum = getDisplayNum(chapterId);
+                            onclick = `event.preventDefault(); alert('${displayNum} 正在准备中，敬请期待。');`;
+                        }
+                    }
+                    if (!buttonStatus[chapterId]) buttonStatus[chapterId] = {};
+                    buttonStatus[chapterId][type] = { class: btnClass, href, onclick };
+                });
+            });
+
+            // 生成 HTML
             let html = '';
             for (const act of chaptersRes.acts) {
-                const renderedInThisAct = new Set(); // 用于同幕内去重（同一个 chapterNumber 只渲染一次）
+                const renderedInThisAct = new Set();
                 let actHasChapters = false;
 
                 for (const ch of act.chapters) {
                     const chapterId = ch.chapterNumber;
-                    // 只渲染主章节（在 button-status.json 中存在的），且每个 chapterId 只渲染一次
                     if (validChapterIds.has(chapterId) && !renderedInThisAct.has(chapterId)) {
                         if (!actHasChapters) {
-                            // 第一次遇到有效章节时，先输出幕头
                             html += `<div class="act-card">
                                         <span class="act-title">· ${escapeHtml(act.actTitle)} ·</span>
                                         <span class="act-title-second-line">${escapeHtml(act.actSubtitle)}</span>
@@ -3603,19 +3658,20 @@ fetchWithTimeout(weeklyUrl)
                         }
                         renderedInThisAct.add(chapterId);
 
-                        // 生成不带状态类、不带 onclick 的干净按钮（所有属性由 applyChapterStatus 后续填充）
-                        const makePlaceholderButton = (type, icon) => {
-                            return `<a class="pdf-trigger ${type}-icon" data-chapter="${chapterId}" data-type="${type}" href="javascript:void(0)">${icon}</a>`;
-                        };
+                        // 获取预计算的按钮状态
+                        const readBtn = buttonStatus[chapterId]?.read || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                        const audioBtn = buttonStatus[chapterId]?.audio || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                        const videoBtn = buttonStatus[chapterId]?.video || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                        const externalBtn = buttonStatus[chapterId]?.external || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
 
                         html += `<li>
                                     <span class="chapter-title">${escapeHtml(ch.title)}</span>
                                     <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
                                     <div class="chapter-actions">
-                                        ${makePlaceholderButton('read', '📖')}
-                                        ${makePlaceholderButton('audio', '🎧')}
-                                        ${makePlaceholderButton('video', '🎬')}
-                                        ${makePlaceholderButton('external', '🔗')}
+                                        <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
+                                        <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
+                                        <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}">🎬</a>
+                                        <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
                                     </div>
                                 </li>`;
                     }
@@ -3625,8 +3681,6 @@ fetchWithTimeout(weeklyUrl)
                 }
             }
             container.innerHTML = html;
-            // 重新触发一次 button-status 加载，给新生成的按钮上色
-fetchWithTimeout(statusUrl).then(res => res.json()).then(data => applyChapterStatus(data)).catch(console.warn);
         } catch (err) {
             console.warn('动态渲染失败，保留静态章节列表', err);
         }
