@@ -1970,7 +1970,7 @@ audio:hover, audio:active {
                         </div>
                         
                         <!-- 卡片网格开始 -->
-                        <div class="acts-grid">
+                        <div clas<div id="dynamic-chapters-container" class="acts-grid">s="acts-grid">
                             <!-- 第一幕 -->
                             <div class="act-card">
                                 <span class="act-title">· 崩塌 ·</span>
@@ -3543,6 +3543,118 @@ fetchWithTimeout(weeklyUrl)
                 chapterDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
+        // ========== 安全动态渲染章节列表（失败时静默回退） ==========
+(function() {
+    // 等待 DOM 加载完成
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    function init() {
+        const container = document.getElementById('dynamic-chapters-container');
+        if (!container) return;
+
+        // 保存静态内容备份（如果动态失败，什么都不做）
+        const staticBackup = container.innerHTML;
+
+        // 加载两个 JSON
+        const chaptersUrl = window.location.hostname.includes('github.io')
+            ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
+            : '/data/chapters.json';
+        const buttonUrl = window.location.hostname.includes('github.io')
+            ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
+            : '/data/button-status.json';
+
+        Promise.all([
+            fetch(chaptersUrl).then(res => res.ok ? res.json() : Promise.reject()),
+            fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
+        ]).then(([chaptersData, buttonData]) => {
+            // 构建按钮状态映射
+            const statusMap = {};
+            buttonData.chapters.forEach(item => {
+                statusMap[item.chapterId] = {
+                    read: item.readLink || '',
+                    audio: item.audioLink || '',
+                    video: item.videoLink || '',
+                    external: item.externalLink || ''
+                };
+            });
+
+            // 辅助函数：防XSS
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str.replace(/[&<>]/g, function(m) {
+                    if (m === '&') return '&amp;';
+                    if (m === '<') return '&lt;';
+                    if (m === '>') return '&gt;';
+                    return m;
+                });
+            }
+
+            // 生成新 HTML
+            let html = '';
+            for (const act of chaptersData.acts) {
+                // 去重
+                const chaptersMap = new Map();
+                act.chapters.forEach(ch => {
+                    if (!chaptersMap.has(ch.chapterNumber)) {
+                        chaptersMap.set(ch.chapterNumber, {
+                            title: ch.title,
+                            subtitle: ch.subtitle,
+                            chapterNumber: ch.chapterNumber
+                        });
+                    }
+                });
+                const uniqueChapters = Array.from(chaptersMap.values());
+
+                html += `<div class="act-card">
+                            <span class="act-title">· ${escapeHtml(act.actTitle)} ·</span>
+                            <span class="act-title-second-line">${escapeHtml(act.actSubtitle)}</span>
+                            <ul class="chapter-list">`;
+                for (const ch of uniqueChapters) {
+                    const chapterId = ch.chapterNumber;
+                    const links = statusMap[chapterId] || { read: '', audio: '', video: '', external: '' };
+
+                    const makeButton = (type, icon) => {
+                        const link = links[type];
+                        let href = 'javascript:void(0)';
+                        let extraClass = '';
+                        let clickAttr = '';
+                        if (link) {
+                            href = link;
+                            extraClass = 'status-ready';
+                            clickAttr = `onclick="event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');"`;
+                        } else {
+                            extraClass = 'status-coming';
+                            const displayNum = window.getChapterDisplayNumber ? window.getChapterDisplayNumber(chapterId) : chapterId;
+                            clickAttr = `onclick="event.preventDefault(); alert('${displayNum} 即将上线。');"`;
+                        }
+                        return `<a class="pdf-trigger ${type}-icon ${extraClass}" data-chapter="${chapterId}" data-type="${type}" href="${href}" ${clickAttr}>${icon}</a>`;
+                    };
+
+                    html += `<li>
+                                <span class="chapter-title">${escapeHtml(ch.title)}</span>
+                                <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
+                                <div class="chapter-actions">
+                                    ${makeButton('read', '📖')}
+                                    ${makeButton('audio', '🎧')}
+                                    ${makeButton('video', '🎬')}
+                                    ${makeButton('external', '🔗')}
+                                </div>
+                            </li>`;
+                }
+                html += `</ul></div>`;
+            }
+            // 替换容器内容
+            container.innerHTML = html;
+        }).catch(err => {
+            // 静默失败，保留静态备份（什么都不做）
+            console.warn('动态渲染失败，保留静态章节列表', err);
+        });
+    }
+})();
     </script>
 <!-- 公众号二维码弹窗 -->
 <div id="wechatQrModal" class="qr-modal">
