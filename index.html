@@ -3625,6 +3625,8 @@ fetchWithTimeout(weeklyUrl)
                 }
             }
             container.innerHTML = html;
+            // 重新触发一次 button-status 加载，给新生成的按钮上色
+fetchWithTimeout(statusUrl).then(res => res.json()).then(data => applyChapterStatus(data)).catch(console.warn);
         } catch (err) {
             console.warn('动态渲染失败，保留静态章节列表', err);
         }
