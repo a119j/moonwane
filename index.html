@@ -1851,8 +1851,7 @@ audio:hover, audio:active {
     text-shadow: 0 0 6px rgba(123, 200, 248, 0.5);
     background: rgba(123, 200, 248, 0.1);
     border-radius: 4px;
-}
-            /* === 公告横幅（由 banner.json 驱动） === */
+}    /* === 公告横幅（优化版） === */
     .banner-outer {
         max-width: 640px;
         margin: 0 auto 30px auto;
@@ -1860,52 +1859,38 @@ audio:hover, audio:active {
     }
 
     .banner-inner {
-        background: linear-gradient(135deg, rgba(255, 218, 71, 0.12), rgba(123, 200, 248, 0.08));
-        border: 1px solid rgba(255, 218, 71, 0.35);
+        background: linear-gradient(135deg, rgba(255, 218, 71, 0.10), rgba(123, 200, 248, 0.06));
+        border: 1px solid rgba(255, 218, 71, 0.3);
         border-radius: 12px;
-        padding: 14px 24px;
+        padding: 12px 20px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         flex-wrap: wrap;
-        gap: 10px 18px;
-        box-shadow: 0 0 30px rgba(255, 218, 71, 0.06);
+        gap: 8px 16px;
+        box-shadow: 0 0 30px rgba(255, 218, 71, 0.04);
         animation: bannerPulse 3s ease-in-out infinite;
         transition: all 0.3s ease;
     }
 
-    .banner-inner.status-live {
-        border-color: rgba(50, 205, 50, 0.4);
-        background: linear-gradient(135deg, rgba(50, 205, 50, 0.08), rgba(123, 200, 248, 0.08));
-        animation: bannerPulseGreen 3s ease-in-out infinite;
-    }
-
-    .banner-inner.status-ended {
-        border-color: rgba(136, 136, 136, 0.3);
-        background: rgba(255, 255, 255, 0.03);
-        animation: none;
-    }
-
-    @keyframes bannerPulse {
-        0%, 100% { border-color: rgba(255, 218, 71, 0.35); }
-        50% { border-color: rgba(255, 218, 71, 0.65); }
-    }
-
-    @keyframes bannerPulseGreen {
-        0%, 100% { border-color: rgba(50, 205, 50, 0.3); }
-        50% { border-color: rgba(50, 205, 50, 0.6); }
+    .banner-left {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px 14px;
     }
 
     .banner-badge {
         font-size: 0.7rem;
         font-weight: 700;
-        padding: 2px 12px;
+        padding: 2px 14px;
         border-radius: 20px;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         white-space: nowrap;
         background: #ffda47;
         color: #0a0a14;
+        flex-shrink: 0;
     }
 
     .banner-badge.status-live {
@@ -1922,9 +1907,13 @@ audio:hover, audio:active {
         color: #f0f0f0;
         font-size: 1.05rem;
         font-weight: 400;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px 8px;
     }
 
-    .banner-text strong {
+    .banner-text .book-title {
         color: #ffda47;
         font-weight: 700;
     }
@@ -1934,38 +1923,86 @@ audio:hover, audio:active {
         font-weight: 700;
     }
 
+    .banner-text .separator {
+        color: #666;
+        font-weight: 300;
+        margin: 0 2px;
+    }
+
     .banner-link {
         color: #7bc8f8;
-        font-size: 0.9rem;
-        font-weight: 300;
+        font-size: 1rem;
+        font-weight: 500;
         white-space: nowrap;
-        opacity: 0.85;
         text-decoration: none;
+        padding: 4px 12px;
+        border-radius: 6px;
+        border: 1px solid rgba(123, 200, 248, 0.2);
+        background: rgba(123, 200, 248, 0.06);
         transition: all 0.3s ease;
+        flex-shrink: 0;
+        margin-left: auto;
     }
 
     .banner-link:hover {
         opacity: 1;
         color: #ffffff;
-        text-shadow: 0 0 10px rgba(123, 200, 248, 0.5);
+        background: rgba(123, 200, 248, 0.15);
+        border-color: rgba(123, 200, 248, 0.4);
+        box-shadow: 0 0 20px rgba(123, 200, 248, 0.15);
+        transform: translateX(3px);
+    }
+
+    .banner-inner.status-live {
+        border-color: rgba(50, 205, 50, 0.35);
+        background: linear-gradient(135deg, rgba(50, 205, 50, 0.08), rgba(123, 200, 248, 0.06));
+        animation: bannerPulseGreen 3s ease-in-out infinite;
+    }
+
+    .banner-inner.status-ended {
+        border-color: rgba(136, 136, 136, 0.25);
+        background: rgba(255, 255, 255, 0.03);
+        animation: none;
+    }
+
+    @keyframes bannerPulse {
+        0%, 100% { border-color: rgba(255, 218, 71, 0.3); }
+        50% { border-color: rgba(255, 218, 71, 0.6); }
+    }
+
+    @keyframes bannerPulseGreen {
+        0%, 100% { border-color: rgba(50, 205, 50, 0.3); }
+        50% { border-color: rgba(50, 205, 50, 0.55); }
     }
 
     .banner-hidden {
         display: none !important;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
         .banner-inner {
-            padding: 12px 16px;
             flex-direction: column;
+            align-items: stretch;
             gap: 6px;
-            text-align: center;
+            padding: 12px 16px;
+        }
+        .banner-left {
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .banner-text {
             font-size: 0.95rem;
+            justify-content: center;
+            text-align: center;
         }
         .banner-link {
-            font-size: 0.8rem;
+            margin-left: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+        }
+        .banner-badge {
+            font-size: 0.65rem;
         }
     }
  </style>
@@ -3664,7 +3701,7 @@ fetchWithTimeout(weeklyUrl)
         const audioCard = document.getElementById('weeklyAudioCard');
         if (audioCard) audioCard.setAttribute('data-new', 'true');
     });
-            // ========== 加载公告横幅（banner.json） ==========
+                        // ========== 加载公告横幅（banner.json） ==========
             const bannerContainer = document.getElementById('bannerContainer');
             if (bannerContainer) {
                 const bannerUrl = window.location.hostname.includes('github.io')
@@ -3693,18 +3730,24 @@ fetchWithTimeout(weeklyUrl)
                         }
 
                         const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
-                        const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
 
-                        // 先处理换行符，再处理日期高亮
-                        const textHtml = data.text
-                            .replace(/\n/g, '<br>')
+                        // 处理正文：将 "｜" 替换为带样式的分隔符，并高亮日期
+                        let textHtml = data.text
+                            .replace(/\｜/g, '<span class="separator">｜</span>')
                             .replace(/(\d{1,2}月\d{1,2}日[（(]?[周一二三四五六日][）)]?)/g, '<span class="date-highlight">$1</span>');
+
+                        // 如果包含书名号，单独高亮书名
+                        textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
+
+                        const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
 
                         bannerContainer.innerHTML = `
                             <div class="banner-outer">
                                 <div class="banner-inner ${statusClass}">
-                                    ${badgeHtml}
-                                    <span class="banner-text"><strong>《六秒钉六年》</strong> ${textHtml}</span>
+                                    <div class="banner-left">
+                                        ${badgeHtml}
+                                        <span class="banner-text">${textHtml}</span>
+                                    </div>
                                     ${linkHtml}
                                 </div>
                             </div>
@@ -3712,13 +3755,14 @@ fetchWithTimeout(weeklyUrl)
                     })
                     .catch(err => {
                         console.warn('无法加载公告横幅数据', err);
-                        // 降级：分两行显示
                         bannerContainer.innerHTML = `
                             <div class="banner-outer">
                                 <div class="banner-inner">
-                                    <span class="banner-badge">📢 即将上线</span>
-                                    <span class="banner-text"><strong>《六秒钉六年》</strong><br>6月24日（周三）<br>开始连载更新</span>
-                                    <span class="banner-link">⏳ 敬请期待 →</span>
+                                    <div class="banner-left">
+                                        <span class="banner-badge">📢 即将上线</span>
+                                        <span class="banner-text"><span class="book-title">《六秒钉六年》</span> <span class="date-highlight">6月24日（周三）</span> <span class="separator">｜</span> 开始连载更新</span>
+                                    </div>
+                                    <a href="#" class="banner-link">敬请期待 →</a>
                                 </div>
                             </div>
                         `;
