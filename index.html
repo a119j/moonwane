@@ -3664,7 +3664,7 @@ fetchWithTimeout(weeklyUrl)
         const audioCard = document.getElementById('weeklyAudioCard');
         if (audioCard) audioCard.setAttribute('data-new', 'true');
     });
-                                      // ========== 加载公告横幅（banner.json） ==========
+            // ========== 加载公告横幅（banner.json） ==========
             const bannerContainer = document.getElementById('bannerContainer');
             if (bannerContainer) {
                 const bannerUrl = window.location.hostname.includes('github.io')
@@ -3677,37 +3677,28 @@ fetchWithTimeout(weeklyUrl)
                         return response.json();
                     })
                     .then(data => {
-                        // 如果 isActive 为 false，隐藏横幅
                         if (!data.isActive) {
                             bannerContainer.innerHTML = '';
                             return;
                         }
 
-                        // 根据 status 设置不同的样式类
                         let statusClass = '';
                         let badgeClass = '';
-                        let badgeBg = '#ffda47';
-                        let textColor = '#ffda47';
-                        let borderColor = 'rgba(255, 218, 71, 0.35)';
-
                         if (data.status === 'live') {
                             statusClass = 'status-live';
                             badgeClass = 'status-live';
-                            badgeBg = '#32CD32';
-                            textColor = '#32CD32';
                         } else if (data.status === 'ended') {
                             statusClass = 'status-ended';
                             badgeClass = 'status-ended';
-                            badgeBg = '#888';
-                            textColor = '#888';
                         }
 
-                        // 构建横幅 HTML
                         const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
                         const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
 
-                        // 解析日期高亮
-                        const textHtml = data.text.replace(/(\d{1,2}月\d{1,2}日[（(]?[周一二三四五六日][）)]?)/g, '<span class="date-highlight">$1</span>');
+                        // 先处理换行符，再处理日期高亮
+                        const textHtml = data.text
+                            .replace(/\n/g, '<br>')
+                            .replace(/(\d{1,2}月\d{1,2}日[（(]?[周一二三四五六日][）)]?)/g, '<span class="date-highlight">$1</span>');
 
                         bannerContainer.innerHTML = `
                             <div class="banner-outer">
@@ -3721,12 +3712,12 @@ fetchWithTimeout(weeklyUrl)
                     })
                     .catch(err => {
                         console.warn('无法加载公告横幅数据', err);
-                        // 降级：显示静默的默认横幅
+                        // 降级：分两行显示
                         bannerContainer.innerHTML = `
                             <div class="banner-outer">
                                 <div class="banner-inner">
                                     <span class="banner-badge">📢 即将上线</span>
-                                    <span class="banner-text"><strong>《六秒钉六年》</strong> 6月24日（周三）开始连载更新</span>
+                                    <span class="banner-text"><strong>《六秒钉六年》</strong><br>6月24日（周三）<br>开始连载更新</span>
                                     <span class="banner-link">⏳ 敬请期待 →</span>
                                 </div>
                             </div>
