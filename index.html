@@ -1852,6 +1852,122 @@ audio:hover, audio:active {
     background: rgba(123, 200, 248, 0.1);
     border-radius: 4px;
 }
+            /* === 公告横幅（由 banner.json 驱动） === */
+    .banner-outer {
+        max-width: 640px;
+        margin: 0 auto 30px auto;
+        padding: 0 20px;
+    }
+
+    .banner-inner {
+        background: linear-gradient(135deg, rgba(255, 218, 71, 0.12), rgba(123, 200, 248, 0.08));
+        border: 1px solid rgba(255, 218, 71, 0.35);
+        border-radius: 12px;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        box-shadow: 0 0 30px rgba(255, 218, 71, 0.06);
+        animation: bannerPulse 3s ease-in-out infinite;
+        transition: all 0.3s ease;
+    }
+
+    .banner-inner.status-live {
+        border-color: rgba(50, 205, 50, 0.4);
+        background: linear-gradient(135deg, rgba(50, 205, 50, 0.08), rgba(123, 200, 248, 0.08));
+        animation: bannerPulseGreen 3s ease-in-out infinite;
+    }
+
+    .banner-inner.status-ended {
+        border-color: rgba(136, 136, 136, 0.3);
+        background: rgba(255, 255, 255, 0.03);
+        animation: none;
+    }
+
+    @keyframes bannerPulse {
+        0%, 100% { border-color: rgba(255, 218, 71, 0.35); }
+        50% { border-color: rgba(255, 218, 71, 0.65); }
+    }
+
+    @keyframes bannerPulseGreen {
+        0%, 100% { border-color: rgba(50, 205, 50, 0.3); }
+        50% { border-color: rgba(50, 205, 50, 0.6); }
+    }
+
+    .banner-badge {
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 12px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        background: #ffda47;
+        color: #0a0a14;
+    }
+
+    .banner-badge.status-live {
+        background: #32CD32;
+        color: #0a0a14;
+    }
+
+    .banner-badge.status-ended {
+        background: #888;
+        color: #0a0a14;
+    }
+
+    .banner-text {
+        color: #f0f0f0;
+        font-size: 1.05rem;
+        font-weight: 400;
+    }
+
+    .banner-text strong {
+        color: #ffda47;
+        font-weight: 700;
+    }
+
+    .banner-text .date-highlight {
+        color: #ffda47;
+        font-weight: 700;
+    }
+
+    .banner-link {
+        color: #7bc8f8;
+        font-size: 0.9rem;
+        font-weight: 300;
+        white-space: nowrap;
+        opacity: 0.85;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .banner-link:hover {
+        opacity: 1;
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(123, 200, 248, 0.5);
+    }
+
+    .banner-hidden {
+        display: none !important;
+    }
+
+    @media (max-width: 768px) {
+        .banner-inner {
+            padding: 12px 16px;
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+        }
+        .banner-text {
+            font-size: 0.95rem;
+        }
+        .banner-link {
+            font-size: 0.8rem;
+        }
+    }
  </style>
 </head>
 <body>
@@ -1899,6 +2015,8 @@ audio:hover, audio:active {
             <p class="tagline-translation">月光渐逝，人生海海，刻即是记。</p>
             <p class="author-credit">— 墨染月光（又名月笼沙） 作品站 —</p>
         </header>
+                <!-- ===== 公告横幅容器（由 banner.json 驱动） ===== -->
+        <div id="bannerContainer" style="max-width:640px; margin:0 auto 30px auto; padding:0 20px;"></div>
         
         <section class="links-section">
             <div class="links">
@@ -3546,6 +3664,75 @@ fetchWithTimeout(weeklyUrl)
         const audioCard = document.getElementById('weeklyAudioCard');
         if (audioCard) audioCard.setAttribute('data-new', 'true');
     });
+                                      // ========== 加载公告横幅（banner.json） ==========
+            const bannerContainer = document.getElementById('bannerContainer');
+            if (bannerContainer) {
+                const bannerUrl = window.location.hostname.includes('github.io')
+                    ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/banner.json'
+                    : '/data/banner.json';
+
+                fetchWithTimeout(bannerUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network error');
+                        return response.json();
+                    })
+                    .then(data => {
+                        // 如果 isActive 为 false，隐藏横幅
+                        if (!data.isActive) {
+                            bannerContainer.innerHTML = '';
+                            return;
+                        }
+
+                        // 根据 status 设置不同的样式类
+                        let statusClass = '';
+                        let badgeClass = '';
+                        let badgeBg = '#ffda47';
+                        let textColor = '#ffda47';
+                        let borderColor = 'rgba(255, 218, 71, 0.35)';
+
+                        if (data.status === 'live') {
+                            statusClass = 'status-live';
+                            badgeClass = 'status-live';
+                            badgeBg = '#32CD32';
+                            textColor = '#32CD32';
+                        } else if (data.status === 'ended') {
+                            statusClass = 'status-ended';
+                            badgeClass = 'status-ended';
+                            badgeBg = '#888';
+                            textColor = '#888';
+                        }
+
+                        // 构建横幅 HTML
+                        const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
+                        const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
+
+                        // 解析日期高亮
+                        const textHtml = data.text.replace(/(\d{1,2}月\d{1,2}日[（(]?[周一二三四五六日][）)]?)/g, '<span class="date-highlight">$1</span>');
+
+                        bannerContainer.innerHTML = `
+                            <div class="banner-outer">
+                                <div class="banner-inner ${statusClass}">
+                                    ${badgeHtml}
+                                    <span class="banner-text"><strong>《六秒钉六年》</strong> ${textHtml}</span>
+                                    ${linkHtml}
+                                </div>
+                            </div>
+                        `;
+                    })
+                    .catch(err => {
+                        console.warn('无法加载公告横幅数据', err);
+                        // 降级：显示静默的默认横幅
+                        bannerContainer.innerHTML = `
+                            <div class="banner-outer">
+                                <div class="banner-inner">
+                                    <span class="banner-badge">📢 即将上线</span>
+                                    <span class="banner-text"><strong>《六秒钉六年》</strong> 6月24日（周三）开始连载更新</span>
+                                    <span class="banner-link">⏳ 敬请期待 →</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+            }
         });  // DOMContentLoaded 结束
         
         // 页面加载时检查URL hash
