@@ -3731,12 +3731,12 @@ fetchWithTimeout(weeklyUrl)
 
                         const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
 
-                        // 处理正文：将 "｜" 替换为带样式的分隔符，并高亮日期
+                                                // 处理换行、日期高亮、书名高亮
                         let textHtml = data.text
-                            .replace(/\｜/g, '<span class="separator">｜</span>')
-                            .replace(/(\d{1,2}月\d{1,2}日[（(]?[周一二三四五六日][）)]?)/g, '<span class="date-highlight">$1</span>');
+                            .replace(/\n/g, '<br>')
+                            .replace(/(\d{1,2}月\d{1,2}日[（(][^）)]+[）)])/g, '<span class="date-highlight">$1</span>');
 
-                        // 如果包含书名号，单独高亮书名
+                        // 高亮书名
                         textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
 
                         const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
