@@ -8,12 +8,12 @@
         "version": "20260622"
     },
     "weeklyVideo": {
-        "src": "https://youtu.be/X-GaQMj80Ww",
+        "src": "https://youtu.be/7hXNyln78iA",
         "title": "YouTube 本周推荐",
         "isNew": true,
         "badgeText": "🆕 本周",
         "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtu.be/7hXNyln78iA" },
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
             { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
         ]
     },
