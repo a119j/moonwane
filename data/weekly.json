@@ -5,7 +5,7 @@
     "promoQuote": "“清白，比罪名更难证明”",
     "promoVideo": {
         "src": "/videos/promovideo1.mp4",
-        "version": "20260321"
+        "version": "20260622"
     },
     "weeklyVideo": {
         "src": "https://youtu.be/X-GaQMj80Ww",
@@ -13,7 +13,7 @@
         "isNew": true,
         "badgeText": "🆕 本周",
         "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://youtu.be/7hXNyln78iA" },
             { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
         ]
     },
