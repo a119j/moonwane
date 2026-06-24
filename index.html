@@ -1828,14 +1828,19 @@ audio:hover, audio:active {
     transition: all 0.2s ease;
 }
 
-/* 添加手部图标，初始半透明，避免喧宾夺主 */
+/* 矩阵卡片默认手图标（保留） */
 #matrixCard a::before {
-    content: "👉";                        /* 手势图标 */
+    content: "👉";
     display: inline-block;
     margin-right: 6px;
     font-size: 0.85em;
-    opacity: 0.7;                         /* 半透明，与整体协调 */
+    opacity: 0.7;
     transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* 指定链接不显示手图标（覆盖） */
+#matrixCard a.no-hand-icon::before {
+    content: none !important;
 }
 
 /* 悬停时图标完全可见并轻微右移，增强交互反馈 */
