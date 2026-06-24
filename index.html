@@ -3522,7 +3522,6 @@ fetchWithTimeout(statusUrl)
                 setTimeout(initNonCritical, 100);
             }
             
-            // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
             // ========== 统一监听 data-chapter 按钮（优先处理 data-multi-links）==========
 document.addEventListener('click', function(e) {
     const target = e.target.closest('[data-chapter]');
@@ -3540,18 +3539,17 @@ document.addEventListener('click', function(e) {
                 const firstLink = JSON.parse(multiLinks)[0];
                 if (firstLink && firstLink.url) window.open(firstLink.url, '_blank');
             }
-        } catch(err) {
-            console.warn('解析 data-multi-links 失败:', err);
-        }
+        } catch(err) {}
         return;
     }
 
-    // 只处理没有 data-type 的元素（原有逻辑）
+    // 只处理没有 data-type 的元素（多链接菜单）
     if (target.hasAttribute('data-type')) return;
     
     e.preventDefault();
     
     const chapterId = target.getAttribute('data-chapter');
+    // 根据类名推断类型（兼容旧代码）
     let type = null;
     if (target.classList.contains('read-icon')) type = 'read';
     else if (target.classList.contains('audio-icon')) type = 'audio';
