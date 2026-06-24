@@ -1568,8 +1568,11 @@
 }
 .promo-links a:hover,
 .weekly-links a:hover {
-    opacity: 1;          
-    /* 今日头条链接颜色（金句卡片） */
+    opacity: 1;
+    transform: translateY(-2px); /* 保留原有上移效果 */
+}
+
+/* 今日头条链接颜色（金句卡片） */
 .promo-links a[href*="toutiao.com"] {
     color: #FF0036 !important;
     opacity: 0.8;
@@ -1588,10 +1591,7 @@
 .weekly-links a[href*="v.douyin.com"]:hover {
     opacity: 1;
 }
-    
-    /* 悬停时恢复全色 */
-    transform: translateY(-2px); /* 保留原有上移效果 */
-}/* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
+        /* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
 .promo-card {
     max-width: 560px; /* 原为640px，适当缩小 */
 }
@@ -2689,7 +2689,7 @@ audio:hover, audio:active {
                 <video controls preload="metadata" src="/videos/weekly.mp4" style="width:100%; border-radius:8px;"></video>
             </div>
             <div class="weekly-links" id="weeklyVideoLinks">
-              · <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" class="no-hand-icon" style="text-decoration: none; text-decoration: none;">YouTube-Official Series</a>
+             · <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" class="no-hand-icon" style="text-decoration: none;">YouTube-Official Series</a>
              · <a href="https://v.douyin.com/nVUiWjeG88w/" target="_blank" class="no-hand-icon" style="text-decoration: none;">抖音-高能切片</a>
             </div>
         </div>
