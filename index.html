@@ -3539,7 +3539,21 @@ fetchWithTimeout(statusUrl)
                 else if (target.classList.contains('video-icon')) type = 'video';
                 else if (target.classList.contains('external-link')) type = 'external';
                 if (!type) return;
-                
+                    // ---- 优先处理视频多链接（data-multi-links） ----
+    const multiLinks = target.getAttribute('data-multi-links');
+    if (multiLinks) {
+        e.preventDefault();
+        try {
+            const links = JSON.parse(multiLinks);
+            if (typeof showLinkMenu === 'function') {
+                showLinkMenu(e, links);
+            } else {
+                const firstLink = JSON.parse(multiLinks)[0];
+                if (firstLink && firstLink.url) window.open(firstLink.url, '_blank');
+            }
+        } catch(err) {}
+        return;
+    }
                 const links = window.chapterLinksData?.[chapterId]?.[type];
                 
                 if (!links || links.length === 0) {
@@ -3937,7 +3951,7 @@ fetchWithTimeout(weeklyUrl)
             const types = ['read', 'audio', 'video', 'external'];
             const buttonStatus = {}; // buttonStatus[chapterId][type] = { class, href, onclick }
 
-           types.forEach(type => {
+          types.forEach(type => {
     let lastGreenIndex = -1;
     let yellowAssigned = false;
     chapterOrder.forEach((chapterId, index) => {
