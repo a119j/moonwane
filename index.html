@@ -3524,22 +3524,10 @@ fetchWithTimeout(statusUrl)
             
             // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
             document.addEventListener('click', function(e) {
-                const target = e.target.closest('[data-chapter]');
-                if (!target) return;
-                // 只处理没有 data-type 的元素（多链接菜单）
-                if (target.hasAttribute('data-type')) return;
-                
-                e.preventDefault();
-                
-                const chapterId = target.getAttribute('data-chapter');
-                // 根据类名推断类型（兼容旧代码）
-                let type = null;
-                if (target.classList.contains('read-icon')) type = 'read';
-                else if (target.classList.contains('audio-icon')) type = 'audio';
-                else if (target.classList.contains('video-icon')) type = 'video';
-                else if (target.classList.contains('external-link')) type = 'external';
-                if (!type) return;
-                    // ---- 优先处理视频多链接（data-multi-links） ----
+    const target = e.target.closest('[data-chapter]');
+    if (!target) return;
+
+    // ---- 优先处理视频多链接（data-multi-links） ----
     const multiLinks = target.getAttribute('data-multi-links');
     if (multiLinks) {
         e.preventDefault();
@@ -3554,20 +3542,35 @@ fetchWithTimeout(statusUrl)
         } catch(err) {}
         return;
     }
-                const links = window.chapterLinksData?.[chapterId]?.[type];
-                
-                if (!links || links.length === 0) {
-                    const displayNum = getChapterDisplayNumber(chapterId);
-                    alert(`第${displayNum}章正在准备中，敬请期待。`);
-                    return;
-                }
-                
-                if (links.length === 1) {
-                    window.open(links[0].url, '_blank');
-                } else {
-                    showLinkMenu(e, links);
-                }
-            });
+
+    // 只处理没有 data-type 的元素（多链接菜单）
+    if (target.hasAttribute('data-type')) return;
+    
+    e.preventDefault();
+    
+    const chapterId = target.getAttribute('data-chapter');
+    // 根据类名推断类型（兼容旧代码）
+    let type = null;
+    if (target.classList.contains('read-icon')) type = 'read';
+    else if (target.classList.contains('audio-icon')) type = 'audio';
+    else if (target.classList.contains('video-icon')) type = 'video';
+    else if (target.classList.contains('external-link')) type = 'external';
+    if (!type) return;
+    
+    const links = window.chapterLinksData?.[chapterId]?.[type];
+    
+    if (!links || links.length === 0) {
+        const displayNum = getChapterDisplayNumber(chapterId);
+        alert(`第${displayNum}章正在准备中，敬请期待。`);
+        return;
+    }
+    
+    if (links.length === 1) {
+        window.open(links[0].url, '_blank');
+    } else {
+        showLinkMenu(e, links);
+    }
+});
             // ========== 加载每周精选数据 ==========
 const weeklyUrl = window.location.hostname.includes('github.io')
     ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/weekly.json'
