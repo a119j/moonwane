@@ -3898,45 +3898,159 @@ fetchWithTimeout(weeklyUrl)
     }
 
     async function init() {
-        const container = document.getElementById('dynamic-chapters-container');
-        if (!container) return;
+    const container = document.getElementById('dynamic-chapters-container');
+    if (!container) return;
 
-        // 加载 chapters.json 和 button-status.json
-        const chaptersUrl = window.location.hostname.includes('github.io')
-            ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
-            : '/data/chapters.json';
-        const buttonUrl = window.location.hostname.includes('github.io')
-            ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
-            : '/data/button-status.json';
+    // 加载 chapters.json 和 button-status.json
+    const chaptersUrl = window.location.hostname.includes('github.io')
+        ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
+        : '/data/chapters.json';
+    const buttonUrl = window.location.hostname.includes('github.io')
+        ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
+        : '/data/button-status.json';
 
-        try {
-            const [chaptersRes, buttonRes] = await Promise.all([
-                fetch(chaptersUrl).then(res => res.ok ? res.json() : Promise.reject()),
-                fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
-            ]);
+    try {
+        const [chaptersRes, buttonRes] = await Promise.all([
+            fetch(chaptersUrl).then(res => res.ok ? res.json() : Promise.reject()),
+            fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
+        ]);
 
-            // 获取所有需要渲染的 chapterId 及其链接状态（使用 button-status.json）
-            const chapterStatusMap = {};
-            buttonRes.chapters.forEach(item => {
-                chapterStatusMap[item.chapterId] = {
-                    read: item.readLink || '',
-                    audio: item.audioLink || '',
-                    video: item.videoLink || '',
-                    external: item.externalLink || ''
-                };
-            });
-            const validChapterIds = new Set(Object.keys(chapterStatusMap));
-
-            // 辅助函数：防XSS
-            const escapeHtml = (str) => {
-                if (!str) return '';
-                return str.replace(/[&<>]/g, (m) => {
-                    if (m === '&') return '&amp;';
-                    if (m === '<') return '&lt;';
-                    if (m === '>') return '&gt;';
-                    return m;
-                });
+        // 获取所有需要渲染的 chapterId 及其链接状态
+        const chapterStatusMap = {};
+        buttonRes.chapters.forEach(item => {
+            chapterStatusMap[item.chapterId] = {
+                read: item.readLink || '',
+                audio: item.audioLink || '',
+                video: item.videoLink || '',
+                external: item.externalLink || ''
             };
+        });
+        const validChapterIds = new Set(Object.keys(chapterStatusMap));
+
+        // 辅助函数：防XSS
+        const escapeHtml = (str) => {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, (m) => {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        };
+
+        const getDisplayNum = window.getChapterDisplayNumber || ((id) => id);
+        const chapterOrder = [
+            '1-01', '2-01', '3-01', '4-1-01', '4-2-01', '5-1-01', '5-2-01', '6-01',
+            '7-1-01', '7-2-01', '8-1-01', '8-2-01', '9-1-01', '9-2-01', '10-1-01',
+            '10-2-01', '11-01', '12-1-01', '12-2-01', '12-3-01', '13-01', '14-01',
+            '15-01', '16-01', '17-1-01', '17-2-01', '18-01', 'extra'
+        ];
+        const types = ['read', 'audio', 'video', 'external'];
+        const buttonStatus = {};
+
+        types.forEach(type => {
+            let lastGreenIndex = -1;
+            let yellowAssigned = false;
+            chapterOrder.forEach((chapterId, index) => {
+                const link = chapterStatusMap[chapterId]?.[type] || '';
+                let btnClass = '';
+                let href = 'javascript:void(0)';
+                let onclick = '';
+                let multiLinks = null;
+
+                if (link) {
+                    // ---- 检测是否为 JSON 数组（多链接） ----
+                    let isMulti = false;
+                    let linksArray = [];
+                    try {
+                        if (typeof link === 'string' && link.trim().startsWith('[')) {
+                            const parsed = JSON.parse(link);
+                            if (Array.isArray(parsed) && parsed.length > 0) {
+                                isMulti = true;
+                                linksArray = parsed;
+                                multiLinks = JSON.stringify(parsed);
+                            }
+                        }
+                    } catch(e) {}
+
+                    if (isMulti) {
+                        btnClass = 'status-ready';
+                        href = 'javascript:void(0)';
+                        onclick = 'event.preventDefault();';
+                    } else {
+                        btnClass = 'status-ready';
+                        href = link;
+                        onclick = `event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');`;
+                    }
+                    lastGreenIndex = index;
+                    yellowAssigned = false;
+                } else {
+                    if (lastGreenIndex !== -1 && !yellowAssigned) {
+                        btnClass = 'status-coming';
+                        const displayNum = getDisplayNum(chapterId);
+                        onclick = `event.preventDefault(); alert('${displayNum} 即将上线。');`;
+                        yellowAssigned = true;
+                    } else {
+                        btnClass = 'status-preparing';
+                        const displayNum = getDisplayNum(chapterId);
+                        onclick = `event.preventDefault(); alert('${displayNum} 正在准备中，敬请期待。');`;
+                    }
+                }
+                if (!buttonStatus[chapterId]) buttonStatus[chapterId] = {};
+                buttonStatus[chapterId][type] = { class: btnClass, href, onclick, multiLinks };
+            });
+        });
+
+        // 生成 HTML
+        let html = '';
+        for (const act of chaptersRes.acts) {
+            const renderedInThisAct = new Set();
+            let actHasChapters = false;
+            for (const ch of act.chapters) {
+                const chapterId = ch.chapterNumber;
+                if (validChapterIds.has(chapterId) && !renderedInThisAct.has(chapterId)) {
+                    if (!actHasChapters) {
+                        html += `<div class="act-card">
+                                    <span class="act-title">· ${escapeHtml(act.actTitle)} ·</span>
+                                    <span class="act-title-second-line">${escapeHtml(act.actSubtitle)}</span>
+                                    <ul class="chapter-list">`;
+                        actHasChapters = true;
+                    }
+                    renderedInThisAct.add(chapterId);
+
+                    const readBtn = buttonStatus[chapterId]?.read || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                    const audioBtn = buttonStatus[chapterId]?.audio || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                    const videoBtn = buttonStatus[chapterId]?.video || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+                    const externalBtn = buttonStatus[chapterId]?.external || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
+
+                    const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
+                    html += `<li>
+                        <span class="chapter-title">${escapeHtml(ch.title)}</span>
+                        <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
+                        <div class="chapter-actions">
+                            <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
+                            <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
+                            <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}"${videoAttr}>🎬</a>
+                            <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
+                        </div>
+                    </li>`;
+                }
+            }
+            if (actHasChapters) {
+                html += `</ul></div>`;
+            }
+        }
+        container.innerHTML = html;
+
+        // ---- 重新应用状态（给动态生成的按钮补充颜色和事件，并确保 data-multi-links 已存在） ----
+        if (typeof applyChapterStatus === 'function') {
+            applyChapterStatus(buttonRes);
+        }
+
+    } catch (err) {
+        console.warn('动态渲染失败，保留静态章节列表', err);
+    }
+}
 
             // 获取章节显示名称（复用全局函数）
             const getDisplayNum = window.getChapterDisplayNumber || ((id) => id);
