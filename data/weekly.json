@@ -14,7 +14,7 @@
         "badgeText": "🆕 本周",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
-           { "icon": "fas fa-play-circle", "text": "高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" }
+           { "icon": "fas fa-play-circle", "text": "抖音-高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" }
         ]
     },
     "weeklyVideo2": {
@@ -24,7 +24,7 @@
         "badgeText": "📢 NEW",
         "links": [
             { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
-           { "icon": "fas fa-play-circle", "text": "每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
+           { "icon": "fas fa-play-circle", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
         ]
     },
     "weeklyAudio": {
