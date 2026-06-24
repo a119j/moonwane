@@ -1508,6 +1508,46 @@
     background: rgba(var(--primary-blue-rgb), 0.2);
     transform: translateY(-2px);
 }
+        /* ===== 仅保留平台图标颜色（文字不受影响） ===== */
+.weekly-links a i,
+.promo-links a i {
+    transition: color 0.2s ease;
+}
+
+.weekly-links a[href*="youtube.com"] i,
+.weekly-links a[href*="youtu.be"] i,
+.promo-links a[href*="youtube.com"] i,
+.promo-links a[href*="youtu.be"] i {
+    color: #FF0000 !important;
+}
+
+.weekly-links a[href*="douyin.com"] i,
+.weekly-links a[href*="v.douyin.com"] i,
+.promo-links a[href*="douyin.com"] i,
+.promo-links a[href*="v.douyin.com"] i {
+    color: #FF0050 !important;
+}
+
+.promo-links a[href*="toutiao.com"] i {
+    color: #FF0036 !important;
+}
+
+.weekly-links a[href*="bilibili.com"] i,
+.promo-links a[href*="bilibili.com"] i {
+    color: #00A1D6 !important;
+}
+
+.weekly-links a[href*="ximalaya.com"] i,
+.promo-links a[href*="ximalaya.com"] i {
+    color: #FF5A1F !important;
+}
+
+/* 公众号图标（微信绿）—— 注意 .fa-weixin 是你使用的类 */
+.weekly-links a .fa-weixin,
+.promo-links a .fa-weixin,
+#matrixCard a .fa-weixin {
+    color: #07C160 !important;
+}
 .weekly-links i {
     font-size: 1rem;
 }
@@ -1546,43 +1586,7 @@
 .weekly-links i {
     font-size: 0.9rem !important;
 }    
-/* 平台链接官方颜色 - 使用 !important 确保优先级 */
-.promo-links a[href*="youtube.com"],
-.weekly-links a[href*="youtube.com"],
-.weekly-links a[href*="youtu.be"] {
-    color: #FF0000 !important;
-    opacity: 0.8;
-}
 
-.promo-links a[href*="toutiao.com"] {
-    color: #FF0036 !important;
-    opacity: 0.8;
-}
-
-.weekly-links a[href*="douyin.com"],
-.weekly-links a[href*="v.douyin.com"] {
-    color: #FF0050 !important;   /* 抖音官方主色（红紫） */
-    opacity: 0.8;
-}
-
-/* 如果有 B站或喜马拉雅，保留 */
-.promo-links a[href*="bilibili.com"],
-.weekly-links a[href*="bilibili.com"] {
-    color: #00A1D6;
-    opacity: 0.8;
-}
-.promo-links a[href*="ximalaya.com"],
-.weekly-links a[href*="ximalaya.com"] {
-    color: #FF5A1F;
-    opacity: 0.8;
-}
-
-/* 公众号 - 微信绿 */
-.promo-links a#wechatBtnPromo,
-#matrixCard a#wechatBtnMatrix {
-    color: #07C160 !important;
-    opacity: 0.8;
-}
 .promo-links a#wechatBtnPromo:hover,
 #matrixCard a#wechatBtnMatrix:hover {
     opacity: 1;
@@ -1595,8 +1599,9 @@
 
 .promo-links a:hover,
 .weekly-links a:hover {
-    opacity: 1;
+    background: rgba(var(--primary-blue-rgb), 0.2);
     transform: translateY(-2px);
+    color: #ffffff !important;
 }
         /* 调整固定视频卡片宽度，使其稍小一些，与书籍卡片区分但保持协调 */
 .promo-card {
