@@ -3623,17 +3623,23 @@ fetchWithTimeout(weeklyUrl)
         }
         // 设置 weeklyVideo 下方的链接按钮
         const videoLinks = document.getElementById('weeklyVideoLinks');
-        if (videoLinks && data.weeklyVideo && data.weeklyVideo.links) {
-            videoLinks.innerHTML = '';
-            data.weeklyVideo.links.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
-                videoLinks.appendChild(a);
-            });
+if (videoLinks && data.weeklyVideo && data.weeklyVideo.links) {
+    videoLinks.innerHTML = '';
+    data.weeklyVideo.links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        // 根据 URL 设置颜色（兜底，即使 CSS 不生效也显示）
+        if (link.url.includes('youtube.com') || link.url.includes('youtu.be')) {
+            a.style.color = '#FF0000';
+        } else if (link.url.includes('douyin.com') || link.url.includes('v.douyin.com')) {
+            a.style.color = '#00A1D6';
         }
+        a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+        videoLinks.appendChild(a);
+    });
+}
 
         // 4. weeklyVideo2 卡片
         const weeklyVideo2Container = document.getElementById('weeklyVideo2');
@@ -3642,17 +3648,22 @@ fetchWithTimeout(weeklyUrl)
             addLazyLoadingToIframe(weeklyVideo2Container);
         }
         const videoLinks2 = document.getElementById('weeklyVideoLinks2');
-        if (videoLinks2 && data.weeklyVideo2 && data.weeklyVideo2.links) {
-            videoLinks2.innerHTML = '';
-            data.weeklyVideo2.links.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
-                videoLinks2.appendChild(a);
-            });
+if (videoLinks2 && data.weeklyVideo2 && data.weeklyVideo2.links) {
+    videoLinks2.innerHTML = '';
+    data.weeklyVideo2.links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        if (link.url.includes('youtube.com') || link.url.includes('youtu.be')) {
+            a.style.color = '#FF0000';
+        } else if (link.url.includes('douyin.com') || link.url.includes('v.douyin.com')) {
+            a.style.color = '#00A1D6';
         }
+        a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
+        videoLinks2.appendChild(a);
+    });
+}
 
         // 5. weeklyAudio 卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
