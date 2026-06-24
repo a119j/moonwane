@@ -3382,17 +3382,37 @@ function applyChapterStatus(data) {
             buttons.forEach(btn => btn.classList.remove('status-ready', 'status-coming', 'status-preparing'));
 
             if (link) {
-                // 绿色：链接非空
-                console.log(`✅ 设置绿色: ${chapterId} ${type}, 链接: ${link}`);
-                buttons.forEach(btn => {
-                    btn.classList.add('status-ready');
-                    if (btn.tagName === 'A') btn.href = link;
-                    btn.removeAttribute('title');
-                    btn.onclick = null;
-                });
-                lastGreenIndex = index;
-                yellowAssigned = false; // 遇到新的绿色，重置黄色标志，允许下一个空链接变黄
-            } else {
+    // ---- 检测 JSON 数组（多链接） ----
+    let isMulti = false;
+    let linksArray = [];
+    try {
+        if (typeof link === 'string' && link.trim().startsWith('[')) {
+            const parsed = JSON.parse(link);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                isMulti = true;
+                linksArray = parsed;
+            }
+        }
+    } catch(e) {}
+
+    console.log(`✅ 设置绿色: ${chapterId} ${type}${isMulti ? ' (多链接)' : ''}`);
+    buttons.forEach(btn => {
+        btn.classList.add('status-ready');
+        if (isMulti && type === 'video') {
+            btn.setAttribute('data-multi-links', JSON.stringify(linksArray));
+            if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+            btn.title = '点击选择视频';
+            btn.onclick = null;
+        } else {
+            btn.removeAttribute('data-multi-links');
+            if (btn.tagName === 'A') btn.href = link;
+            btn.removeAttribute('title');
+            btn.onclick = null;
+        }
+    });
+    lastGreenIndex = index;
+    yellowAssigned = false;
+}else {
                 // 链接为空：判断是黄色还是灰色
                 if (lastGreenIndex !== -1 && !yellowAssigned) {
                     // 存在上一个绿色，且尚未分配黄色 → 黄色
@@ -3505,10 +3525,29 @@ fetchWithTimeout(statusUrl)
             
             // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
             document.addEventListener('click', function(e) {
-                const target = e.target.closest('[data-chapter]');
-                if (!target) return;
-                // 只处理没有 data-type 的元素（多链接菜单）
-                if (target.hasAttribute('data-type')) return;
+    const target = e.target.closest('[data-chapter]');
+    if (!target) return;
+
+    // ---- 优先处理视频多链接（data-multi-links） ----
+    const multiLinks = target.getAttribute('data-multi-links');
+    if (multiLinks) {
+        e.preventDefault();
+        try {
+            const links = JSON.parse(multiLinks);
+            if (typeof showLinkMenu === 'function') {
+                showLinkMenu(e, links);
+            } else {
+                const firstLink = JSON.parse(multiLinks)[0];
+                if (firstLink && firstLink.url) window.open(firstLink.url, '_blank');
+            }
+        } catch(err) {}
+        return;
+    }
+
+    // 只处理没有 data-type 的元素（多链接菜单）
+    if (target.hasAttribute('data-type')) return;
+    // ... 后面代码保持不变
+});
                 
                 e.preventDefault();
                 
@@ -3926,7 +3965,7 @@ fetchWithTimeout(weeklyUrl)
                     let btnClass = '';
                     let href = 'javascript:void(0)';
                     let onclick = '';
-
+let multiLinks = null;  // ← 添加这一行
                     if (link) {
                         btnClass = 'status-ready';
                         href = link;
@@ -3946,7 +3985,7 @@ fetchWithTimeout(weeklyUrl)
                         }
                     }
                     if (!buttonStatus[chapterId]) buttonStatus[chapterId] = {};
-                    buttonStatus[chapterId][type] = { class: btnClass, href, onclick };
+                    buttonStatus[chapterId][type] = { class: btnClass, href, onclick, multiLinks };
                 });
             });
 
@@ -3980,7 +4019,9 @@ fetchWithTimeout(weeklyUrl)
                                     <div class="chapter-actions">
                                         <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
                                         <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
-                                        <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}">🎬</a>
+                                        // ---- 在 html += 之前定义 videoAttr ----
+const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
+html += `<a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}"${videoAttr}>🎬</a>`;
                                         <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
                                     </div>
                                 </li>`;
