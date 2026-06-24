@@ -3240,20 +3240,31 @@ fetch(evidenceUrl)
                 
                 const ul = document.createElement('ul');
                 links.forEach((link, index) => {
-                    const li = document.createElement('li');
-                    li.setAttribute('role', 'menuitem');
-                    li.tabIndex = index === 0 ? 0 : -1;
-                    li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.title}</a>`;
-                    
-                    li.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        window.open(link.url, '_blank');
-                        menu.remove();
-                    });
-                    
-                    li.addEventListener('keydown', handleMenuKeydown);
-                    ul.appendChild(li);
-                });
+    const li = document.createElement('li');
+    li.setAttribute('role', 'menuitem');
+    li.tabIndex = index === 0 ? 0 : -1;
+    
+    // ---- 判断是否有有效链接 ----
+    const hasUrl = link.url && link.url.trim() !== '';
+    
+    if (hasUrl) {
+        // 蓝色下划线，可点击
+        li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer" style="color: #7bc8f8; text-decoration: underline; text-underline-offset: 2px;">${link.title}</a>`;
+        li.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(link.url, '_blank');
+            menu.remove();
+        });
+    } else {
+        // 浅灰色/白色占位，不可点击
+        li.innerHTML = `<span style="color: #cccccc; cursor: default;">${link.title}</span>`;
+        li.style.cursor = 'default';
+        // 不绑定 click 事件
+    }
+    
+    li.addEventListener('keydown', handleMenuKeydown);
+    ul.appendChild(li);
+});
                 menu.appendChild(ul);
                 document.body.appendChild(menu);
                 
@@ -3507,6 +3518,22 @@ fetchWithTimeout(statusUrl)
             document.addEventListener('click', function(e) {
                 const target = e.target.closest('[data-chapter]');
                 if (!target) return;
+                    // ---- 优先处理视频多链接（data-multi-links） ----
+    const multiLinks = target.getAttribute('data-multi-links');
+    if (multiLinks) {
+        e.preventDefault();
+        try {
+            const links = JSON.parse(multiLinks);
+            if (typeof showLinkMenu === 'function') {
+                showLinkMenu(e, links);
+            } else {
+                // 降级：直接打开第一个
+                const firstLink = JSON.parse(multiLinks)[0];
+                if (firstLink && firstLink.url) window.open(firstLink.url, '_blank');
+            }
+        } catch(err) {}
+        return;
+    }
                 // 只处理没有 data-type 的元素（多链接菜单）
                 if (target.hasAttribute('data-type')) return;
                 
@@ -3927,13 +3954,32 @@ fetchWithTimeout(weeklyUrl)
                     let href = 'javascript:void(0)';
                     let onclick = '';
 
-                    if (link) {
-                        btnClass = 'status-ready';
-                        href = link;
-                        onclick = `event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');`;
-                        lastGreenIndex = index;
-                        yellowAssigned = false;
-                    } else {
+                 if (link) {
+    // ---- 检测是否为 JSON 数组（多链接） ----
+    let isMulti = false;
+    let multiLinks = null;
+    try {
+        if (typeof link === 'string' && link.trim().startsWith('[')) {
+            const parsed = JSON.parse(link);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                isMulti = true;
+                multiLinks = JSON.stringify(parsed);
+            }
+        }
+    } catch(e) {}
+
+    if (isMulti) {
+        btnClass = 'status-ready';
+        href = 'javascript:void(0)';
+        onclick = 'event.preventDefault();';  // 交给全局监听处理
+    } else {
+        btnClass = 'status-ready';
+        href = link;
+        onclick = `event.preventDefault(); window.open('${link.replace(/'/g, "\\'")}', '_blank');`;
+    }
+    lastGreenIndex = index;
+    yellowAssigned = false;
+} else {
                         if (lastGreenIndex !== -1 && !yellowAssigned) {
                             btnClass = 'status-coming';
                             const displayNum = getDisplayNum(chapterId);
@@ -3946,7 +3992,7 @@ fetchWithTimeout(weeklyUrl)
                         }
                     }
                     if (!buttonStatus[chapterId]) buttonStatus[chapterId] = {};
-                    buttonStatus[chapterId][type] = { class: btnClass, href, onclick };
+                    buttonStatus[chapterId][type] = { class: btnClass, href, onclick, multiLinks };
                 });
             });
 
@@ -3974,16 +4020,17 @@ fetchWithTimeout(weeklyUrl)
                         const videoBtn = buttonStatus[chapterId]?.video || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
                         const externalBtn = buttonStatus[chapterId]?.external || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
 
-                        html += `<li>
-                                    <span class="chapter-title">${escapeHtml(ch.title)}</span>
-                                    <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
-                                    <div class="chapter-actions">
-                                        <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
-                                        <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
-                                        <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}">🎬</a>
-                                        <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
-                                    </div>
-                                </li>`;
+                       const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
+html += `<li>
+    <span class="chapter-title">${escapeHtml(ch.title)}</span>
+    <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
+    <div class="chapter-actions">
+        <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
+        <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
+        <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}"${videoAttr}>🎬</a>
+        <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
+    </div>
+</li>`;
                     }
                 }
                 if (actHasChapters) {
