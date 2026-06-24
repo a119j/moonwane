@@ -1828,26 +1828,6 @@ audio:hover, audio:active {
     transition: all 0.2s ease;
 }
 
-/* 矩阵卡片默认手图标（保留） */
-#matrixCard a::before {
-    content: "👉";
-    display: inline-block;
-    margin-right: 6px;
-    font-size: 0.85em;
-    opacity: 0.7;
-    transition: opacity 0.2s ease, transform 0.1s ease;
-}
-
-/* 指定链接不显示手图标（覆盖） */
-#matrixCard a.no-hand-icon::before {
-    content: none !important;
-}
-
-/* 悬停时图标完全可见并轻微右移，增强交互反馈 */
-#matrixCard a:hover::before {
-    opacity: 1;
-    transform: translateX(2px);
-}
 
 /* 悬停时链接样式 */
 #matrixCard a:hover {
@@ -1856,7 +1836,8 @@ audio:hover, audio:active {
     text-shadow: 0 0 6px rgba(123, 200, 248, 0.5);
     background: rgba(123, 200, 248, 0.1);
     border-radius: 4px;
-}    /* === 公告横幅（优化版） === */
+}   
+        /* === 公告横幅（优化版） === */
     .banner-outer {
         max-width: 640px;
         margin: 0 auto 30px auto;
@@ -2608,8 +2589,8 @@ audio:hover, audio:active {
             <span style="color: #7bc8f8;">↗</span> 点击跳转：今日头条 （图文文章）&nbsp;｜&nbsp; <span style="color: #ffda47;">📱</span> 公众号（图文文章）
         </p>
         <p style="margin-bottom: 0.2rem; margin-left: 0.5rem;">
-            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4528543147874091014#wechat_redirect" target="_blank" style="color: #ffda47; text-decoration: none;">公众号-深渊回声</a><br>
-            · <a href="https://m.toutiao.com/is/MVb0brlvxac/" target="_blank" style="color: #ffda47; text-decoration: none;">今日头条-周记文本档案</a>
+            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4528543147874091014#wechat_redirect" target="_blank" style="color: #ffda47; text-decoration: none;">👉 公众号-深渊回声</a><br>
+            · <a href="https://m.toutiao.com/is/MVb0brlvxac/" target="_blank" style="color: #ffda47; text-decoration: none;">👉 今日头条-周记文本档案</a>
         </p>
     </div>
 
@@ -2623,11 +2604,11 @@ audio:hover, audio:active {
             <span style="color: #7bc8f8;">↗</span> 点击跳转：YouTube ｜ Bilibili ｜ 抖音 ｜ 今日头条 （视频）&nbsp;｜&nbsp; <span style="color: #ffda47;">📱</span> 公众号（视频）
         </p>
         <p style="margin-bottom: 0.2rem; margin-left: 0.5rem;">
-            · <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" style="color: #FF0000; text-decoration: none;">YouTube-Official Series</a><br>
-            · <a href="https://space.bilibili.com/3546574686784459" target="_blank" style="color: #00A1D6; text-decoration: none;">Bilibili 频道</a><br>
-            · <a href="https://v.douyin.com/aJvGC3D9Xis/" target="_blank" style="color: #7bc8f8; text-decoration: none;">抖音-正片纪实</a><br>
-            · <a href="https://www.toutiao.com/video/7654662285146735156/" target="_blank" style="color: #00A1D6; text-decoration: none;">今日头条-全纪录影像档案</a><br>
-            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535014890243391488#wechat_redirect" target="_blank" style="color: #7bc8f8; text-decoration: none;">公众号-现场细录</a>
+            · <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" style="color: #FF0000; text-decoration: none;">👉 YouTube-Official Series</a><br>
+            · <a href="https://space.bilibili.com/3546574686784459" target="_blank" style="color: #00A1D6; text-decoration: none;">👉 Bilibili 频道(电脑上点击观看）</a><br>
+            · <a href="https://v.douyin.com/aJvGC3D9Xis/" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 抖音-正片纪实</a><br>
+            · <a href="https://www.toutiao.com/video/7654662285146735156/" target="_blank" style="color: #00A1D6; text-decoration: none;">👉 今日头条-全纪录影像档案</a><br>
+            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535014890243391488#wechat_redirect" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 公众号-现场细录</a>
         </p>
     </div>
 
@@ -2641,10 +2622,10 @@ audio:hover, audio:active {
             <span style="color: #7bc8f8;">↗</span> 点击跳转：YouTube ｜ 抖音 &nbsp;｜&nbsp; <span style="color: #ffda47;">📱</span> 公众号（视频）
         </p>
         <p style="margin-bottom: 0.2rem; margin-left: 0.5rem;">
-            · <a href="https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" target="_blank" style="color: #FF0000; text-decoration: none;">YouTube-Highlights</a><br>
-            · <a href="https://v.douyin.com/nVUiWjeG88w/" target="_blank" style="color: #7bc8f8; text-decoration: none;">抖音-高能切片</a><br>
-            · <a href="https://v.douyin.com/JM0MBKAeADY/" target="_blank" style="color: #7bc8f8; text-decoration: none;">抖音-每周剧集导航</a><br>
-            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535017761647132673#wechat_redirect" target="_blank" style="color: #7bc8f8; text-decoration: none;">公众号-瞬间切片</a>
+            · <a href="https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" target="_blank" style="color: #FF0000; text-decoration: none;">👉 YouTube-Highlights</a><br>
+            · <a href="https://v.douyin.com/nVUiWjeG88w/" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 抖音-高能切片</a><br>
+            · <a href="https://v.douyin.com/JM0MBKAeADY/" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 抖音-每周剧集导航</a><br>
+            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535017761647132673#wechat_redirect" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 公众号-瞬间切片</a>
         </p>
     </div>
 
@@ -2658,8 +2639,8 @@ audio:hover, audio:active {
             <span style="color: #7bc8f8;">↗</span> 点击跳转：今日头条（图文文章）&nbsp;｜&nbsp; <span style="color: #ffda47;">📱</span> 公众号（图文文章）
         </p>
         <p style="margin-bottom: 0.2rem; margin-left: 0.5rem;">
-            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535021059125051393#wechat_redirect" target="_blank" style="color: #ffda47; text-decoration: none;">公众号-铁券内参</a><br>
-            · <a href="https://m.toutiao.com/is/btXTsKqhWMA/" target="_blank" style="color: #ffda47; text-decoration: none;">今日头条-镜外瞬间档案</a>
+            · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535021059125051393#wechat_redirect" target="_blank" style="color: #ffda47; text-decoration: none;">👉 公众号-铁券内参</a><br>
+            · <a href="https://m.toutiao.com/is/btXTsKqhWMA/" target="_blank" style="color: #ffda47; text-decoration: none;">👉 今日头条-镜外瞬间档案</a>
         </p>
     </div>
 
