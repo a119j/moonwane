@@ -3897,7 +3897,7 @@ fetchWithTimeout(weeklyUrl)
         init();
     }
 
-    async function init() {
+ async function init() {
     const container = document.getElementById('dynamic-chapters-container');
     if (!container) return;
 
@@ -3915,7 +3915,7 @@ fetchWithTimeout(weeklyUrl)
             fetch(buttonUrl).then(res => res.ok ? res.json() : Promise.reject())
         ]);
 
-        // 获取所有需要渲染的 chapterId 及其链接状态
+        // 构建状态映射
         const chapterStatusMap = {};
         buttonRes.chapters.forEach(item => {
             chapterStatusMap[item.chapterId] = {
@@ -3927,7 +3927,7 @@ fetchWithTimeout(weeklyUrl)
         });
         const validChapterIds = new Set(Object.keys(chapterStatusMap));
 
-        // 辅助函数：防XSS
+        // 防XSS
         const escapeHtml = (str) => {
             if (!str) return '';
             return str.replace(/[&<>]/g, (m) => {
@@ -3948,6 +3948,7 @@ fetchWithTimeout(weeklyUrl)
         const types = ['read', 'audio', 'video', 'external'];
         const buttonStatus = {};
 
+        // ---- 计算每个按钮的状态 ----
         types.forEach(type => {
             let lastGreenIndex = -1;
             let yellowAssigned = false;
@@ -3959,7 +3960,6 @@ fetchWithTimeout(weeklyUrl)
                 let multiLinks = null;
 
                 if (link) {
-                    // ---- 检测是否为 JSON 数组（多链接） ----
                     let isMulti = false;
                     let linksArray = [];
                     try {
@@ -4001,7 +4001,7 @@ fetchWithTimeout(weeklyUrl)
             });
         });
 
-        // 生成 HTML
+        // ---- 生成 HTML ----
         let html = '';
         for (const act of chaptersRes.acts) {
             const renderedInThisAct = new Set();
@@ -4042,13 +4042,15 @@ fetchWithTimeout(weeklyUrl)
         }
         container.innerHTML = html;
 
-        // ---- 重新应用状态（给动态生成的按钮补充颜色和事件，并确保 data-multi-links 已存在） ----
+        // 确保 applyChapterStatus 也被调用（用于补充任何遗漏）
         if (typeof applyChapterStatus === 'function') {
             applyChapterStatus(buttonRes);
         }
 
     } catch (err) {
         console.warn('动态渲染失败，保留静态章节列表', err);
+        // 降级：显示静态章节列表
+        container.innerHTML = document.querySelector('.acts-grid')?.innerHTML || '';
     }
 }
 
