@@ -3629,7 +3629,7 @@ a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
             });
         }
 
-        // 4. weeklyVideo2 卡片
+                // 4. weeklyVideo2 卡片
         const weeklyVideo2Container = document.getElementById('weeklyVideo2');
         if (weeklyVideo2Container && data.weeklyVideo2 && data.weeklyVideo2.src) {
             weeklyVideo2Container.innerHTML = getVideoEmbedHtml(data.weeklyVideo2.src);
@@ -3643,12 +3643,13 @@ a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
                 a.href = link.url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
+                a.referrerPolicy = 'no-referrer';   // ⬅️ 新增
                 a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
                 videoLinks2.appendChild(a);
             });
         }
 
-        // 5. weeklyAudio 卡片
+                // 5. weeklyAudio 卡片
         const weeklyAudio = document.getElementById('weeklyAudio');
         if (weeklyAudio && data.weeklyAudio && data.weeklyAudio.src) {
             const cdnBase = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@main';
@@ -3664,6 +3665,7 @@ a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
                 a.href = link.url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
+                a.referrerPolicy = 'no-referrer';   // ⬅️ 新增
                 a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
                 audioLinks.appendChild(a);
             });
