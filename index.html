@@ -3392,7 +3392,7 @@ function applyChapterStatus(data) {
             // 移除所有按钮上的旧状态类
             buttons.forEach(btn => btn.classList.remove('status-ready', 'status-coming', 'status-preparing'));
 
-           if (link) {
+          if (link) {
     // ---- 检测是否为 JSON 数组（多链接） ----
     let isMulti = false;
     let linksArray = [];
@@ -3401,7 +3401,7 @@ function applyChapterStatus(data) {
             const parsed = JSON.parse(link);
             if (Array.isArray(parsed) && parsed.length > 0) {
                 isMulti = true;
-                linksArray = parsed;  // 直接使用 parsed，保留 title/url
+                linksArray = parsed;
             }
         }
     } catch(e) {}
@@ -3410,13 +3410,11 @@ function applyChapterStatus(data) {
     buttons.forEach(btn => {
         btn.classList.add('status-ready');
         if (isMulti) {
-            // 多链接：存为 data-multi-links，href 改为 void
             btn.setAttribute('data-multi-links', JSON.stringify(linksArray));
             if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
             btn.title = '点击选择视频';
             btn.onclick = null;
         } else {
-            // 单链接：原有逻辑
             btn.removeAttribute('data-multi-links');
             if (btn.tagName === 'A') btn.href = link;
             btn.removeAttribute('title');
@@ -3425,37 +3423,30 @@ function applyChapterStatus(data) {
     });
     lastGreenIndex = index;
     yellowAssigned = false;
-}else {
-                // 链接为空：判断是黄色还是灰色
-                if (lastGreenIndex !== -1 && !yellowAssigned) {
-                    // 存在上一个绿色，且尚未分配黄色 → 黄色
-                    console.log(`🟡 设置黄色: ${chapterId} ${type} (紧跟在绿色 ${lastGreenIndex} 之后)`);
-                    buttons.forEach(btn => {
-                        btn.classList.add('status-coming');
-                        if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
-                        btn.title = '即将上线';
-                        btn.onclick = function(e) {
-                            e.preventDefault();
-                            alert(`${getChapterDisplayNumber(chapterId)} 即将上线。`);
-                        };
-                    });
-                    yellowAssigned = true; // 标记已经分配了黄色
-                } else {
-                    // 无上一个绿色，或者黄色已分配 → 灰色
-                    console.log(`⚪ 设置灰色: ${chapterId} ${type}`);
-                    buttons.forEach(btn => {
-                        btn.classList.add('status-preparing');
-                        if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
-                        btn.title = '准备中';
-                        btn.onclick = function(e) {
-                            e.preventDefault();
-                            alert(`${getChapterDisplayNumber(chapterId)} 正在准备中，敬请期待。`);
-                        };
-                    });
-                }
-            }
+} else {
+    // ---- 链接为空：判断是黄色还是灰色 ----
+    if (lastGreenIndex !== -1 && !yellowAssigned) {
+        buttons.forEach(btn => {
+            btn.classList.add('status-coming');
+            if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+            btn.title = '即将上线';
+            btn.onclick = function(e) {
+                e.preventDefault();
+                alert(`${getChapterDisplayNumber(chapterId)} 即将上线。`);
+            };
         });
-    });
+        yellowAssigned = true;
+    } else {
+        buttons.forEach(btn => {
+            btn.classList.add('status-preparing');
+            if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+            btn.title = '准备中';
+            btn.onclick = function(e) {
+                e.preventDefault();
+                alert(`${getChapterDisplayNumber(chapterId)} 正在准备中，敬请期待。`);
+            };
+        });
+    }
 }
 
 fetchWithTimeout(statusUrl)
