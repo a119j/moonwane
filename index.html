@@ -4014,14 +4014,14 @@ fetchWithTimeout(weeklyUrl)
                         const videoBtn = buttonStatus[chapterId]?.video || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
                         const externalBtn = buttonStatus[chapterId]?.external || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
 
-                        html += `<li>
+                        const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
+html += `<li>
     <span class="chapter-title">${escapeHtml(ch.title)}</span>
     <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
     <div class="chapter-actions">
         <a class="pdf-trigger read-icon ${readBtn.class}" data-chapter="${chapterId}" data-type="read" href="${readBtn.href}" onclick="${readBtn.onclick}">📖</a>
         <a class="pdf-trigger audio-icon ${audioBtn.class}" data-chapter="${chapterId}" data-type="audio" href="${audioBtn.href}" onclick="${audioBtn.onclick}">🎧</a>
-        const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
-        html += `<a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}"${videoAttr}>🎬</a>`;
+        <a class="pdf-trigger video-icon ${videoBtn.class}" data-chapter="${chapterId}" data-type="video" href="${videoBtn.href}" onclick="${videoBtn.onclick}"${videoAttr}>🎬</a>
         <a class="pdf-trigger external-link ${externalBtn.class}" data-chapter="${chapterId}" data-type="external" href="${externalBtn.href}" onclick="${externalBtn.onclick}">🔗</a>
     </div>
 </li>`;
