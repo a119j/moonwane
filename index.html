@@ -4015,6 +4015,8 @@ fetchWithTimeout(weeklyUrl)
                         const externalBtn = buttonStatus[chapterId]?.external || { class: 'status-preparing', href: 'javascript:void(0)', onclick: 'event.preventDefault(); alert(\'准备中\');' };
 
                       
+// ---- 在 html += 之前定义 videoAttr ----
+const videoAttr = videoBtn.multiLinks ? ` data-multi-links='${videoBtn.multiLinks}'` : '';
 html += `<li>
     <span class="chapter-title">${escapeHtml(ch.title)}</span>
     <span class="chapter-subtitle">${escapeHtml(ch.subtitle)}</span>
