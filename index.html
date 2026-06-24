@@ -3470,6 +3470,7 @@ fetchWithTimeout(statusUrl)
                             });
                         });
                     })
+                    
                     .catch(error => {
                         fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
                             .then(response => response.json())
@@ -3702,72 +3703,92 @@ fetchWithTimeout(weeklyUrl)
         if (audioCard) audioCard.setAttribute('data-new', 'true');
     });
                         // ========== 加载公告横幅（banner.json） ==========
-            const bannerContainer = document.getElementById('bannerContainer');
-            if (bannerContainer) {
-                const bannerUrl = window.location.hostname.includes('github.io')
-                    ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/banner.json'
-                    : '/data/banner.json';
+const bannerContainer = document.getElementById('bannerContainer');
+if (bannerContainer) {
+    const bannerUrl = window.location.hostname.includes('github.io')
+        ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/banner.json'
+        : '/data/banner.json';
 
-                fetchWithTimeout(bannerUrl)
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network error');
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (!data.isActive) {
-                            bannerContainer.innerHTML = '';
-                            return;
-                        }
-
-                        let statusClass = '';
-                        let badgeClass = '';
-                        if (data.status === 'live') {
-                            statusClass = 'status-live';
-                            badgeClass = 'status-live';
-                        } else if (data.status === 'ended') {
-                            statusClass = 'status-ended';
-                            badgeClass = 'status-ended';
-                        }
-
-                        const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
-
-                                                // 处理换行、日期高亮、书名高亮
-                        let textHtml = data.text
-                            .replace(/\n/g, '<br>')
-                            .replace(/(\d{1,2}月\d{1,2}日[（(][^）)]+[）)])/g, '<span class="date-highlight">$1</span>');
-
-                        // 高亮书名
-                        textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
-
-                        const linkHtml = data.linkText ? `<a href="${data.linkUrl}" target="_blank" class="banner-link">${data.linkText}</a>` : '';
-
-                        bannerContainer.innerHTML = `
-                            <div class="banner-outer">
-                                <div class="banner-inner ${statusClass}">
-                                    <div class="banner-left">
-                                        ${badgeHtml}
-                                        <span class="banner-text">${textHtml}</span>
-                                    </div>
-                                    ${linkHtml}
-                                </div>
-                            </div>
-                        `;
-                    })
-                    .catch(err => {
-                        console.warn('无法加载公告横幅数据', err);
-                        bannerContainer.innerHTML = `
-                            <div class="banner-outer">
-                                <div class="banner-inner">
-                                    <div class="banner-left">
-                                        <span class="banner-badge">📢 即将上线</span>
-                                        <span class="banner-text"><span class="book-title">《六秒钉六年》</span> <span class="date-highlight">6月24日（周三）</span> <span class="separator">｜</span> 开始连载更新</span>
-                                    </div>
-                                    <a href="#" class="banner-link">敬请期待 →</a>
-                                </div>
-                            </div>
-                        `;
-                    });
+    fetchWithTimeout(bannerUrl)
+        .then(response => {
+            if (!response.ok) throw new Error('Network error');
+            return response.json();
+        })
+        .then(data => {
+            if (!data.isActive) {
+                bannerContainer.innerHTML = '';
+                return;
             }
+
+            let statusClass = '';
+            let badgeClass = '';
+            if (data.status === 'live') {
+                statusClass = 'status-live';
+                badgeClass = 'status-live';
+            } else if (data.status === 'ended') {
+                statusClass = 'status-ended';
+                badgeClass = 'status-ended';
+            }
+
+            const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
+
+            // 处理换行、日期高亮、书名高亮
+            let textHtml = data.text
+                .replace(/\n/g, '<br>')
+                .replace(/(\d{1,2}月\d{1,2}日[（(][^）)]+[）)])/g, '<span class="date-highlight">$1</span>');
+            textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
+
+            // ---- 修改点：判断是否为内部锚点，移除 target="_blank" ----
+            let linkHtml = '';
+            if (data.linkText) {
+                const isInternal = data.linkUrl && data.linkUrl.startsWith('#');
+                linkHtml = `<a href="${data.linkUrl}" class="banner-link" ${isInternal ? 'data-internal="true"' : 'target="_blank"'} rel="noopener noreferrer">${data.linkText}</a>`;
+            }
+
+            bannerContainer.innerHTML = `
+                <div class="banner-outer">
+                    <div class="banner-inner ${statusClass}">
+                        <div class="banner-left">
+                            ${badgeHtml}
+                            <span class="banner-text">${textHtml}</span>
+                        </div>
+                        ${linkHtml}
+                    </div>
+                </div>
+            `;
+
+            // ---- 关键：绑定内部锚点点击事件 ----
+            const internalLink = bannerContainer.querySelector('.banner-link[data-internal]');
+            if (internalLink) {
+                internalLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href === '#open-chapters') {
+                        const drawer = document.getElementById('chapterContents');
+                        if (drawer) {
+                            drawer.open = true;
+                            drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                    // 如需支持其他内部锚点，可在此扩展（如 '#open-evidence'）
+                });
+            }
+        })
+        .catch(err => {
+            console.warn('无法加载公告横幅数据', err);
+            bannerContainer.innerHTML = `
+                <div class="banner-outer">
+                    <div class="banner-inner">
+                        <div class="banner-left">
+                            <span class="banner-badge">📢 即将上线</span>
+                            <span class="banner-text"><span class="book-title">《六秒钉六年》</span> <span class="date-highlight">6月24日（周三）</span> <span class="separator">｜</span> 开始连载更新</span>
+                        </div>
+                        <a href="#" class="banner-link">敬请期待 →</a>
+                    </div>
+                </div>
+            `;
+        });
+}
         });  // DOMContentLoaded 结束
         
         // 页面加载时检查URL hash
