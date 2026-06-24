@@ -4051,6 +4051,8 @@ html += `<li>
                 }
             }
             container.innerHTML = html;
+// ---- 重新应用状态（给动态生成的按钮上色和绑定事件） ----
+applyChapterStatus(buttonRes);
         } catch (err) {
             console.warn('动态渲染失败，保留静态章节列表', err);
         }
