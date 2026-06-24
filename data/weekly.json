@@ -7,18 +7,26 @@
         "src": "/videos/promovideo1.mp4",
         "version": "20260622"
     },
-   "weeklyVideo": {
-    "links": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
-        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://m.bilibili.com/space/3546574686784459?favlist=3885029359&ftype=create" }
-    ]
-},
-"weeklyVideo2": {
-    "links": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
-        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://m.bilibili.com/space/3546574686784459?favlist=3885029359&ftype=create" }
-    ]
-},
+weeklyVideo": {
+        "src": "https://youtu.be/6bZT8gn8Dco",
+        "title": "YouTube 本周推荐",
+        "isNew": true,
+        "badgeText": "🆕 本周",
+        "links": [
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
+        ]
+    },
+    "weeklyVideo2": {
+        "src": "https://www.bilibili.com/video/BV1nRjU6mEA3/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
+        "title": "B站 本周推荐",
+        "isNew": true,
+        "badgeText": "📢 NEW",
+        "links": [
+            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
+            { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459/favlist?fid=3885029359&ftype=create" }
+        ]
+    },
     "weeklyAudio": {
         "src": "/audios/weekly.mp3",
         "title": "音频试听",
