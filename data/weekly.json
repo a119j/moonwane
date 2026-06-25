@@ -8,7 +8,7 @@
         "version": "20260622"
     },
    "weeklyVideo": {
-        "src": "https://youtu.be/6bZT8gn8Dco",
+        "src": "https://youtu.be/hn9n9xVMEhU",
         "title": "YouTube 本周推荐",
         "isNew": true,
         "badgeText": "🆕 本周",
@@ -18,7 +18,7 @@
         ]
     },
     "weeklyVideo2": {
-        "src": "https://www.bilibili.com/video/BV1nRjU6mEA3/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
+        "src": "https://www.toutiao.com/video/7655116583349666344/",
         "title": "B站 本周推荐",
         "isNew": true,
         "badgeText": "📢 NEW",
