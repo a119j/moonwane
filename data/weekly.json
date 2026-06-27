@@ -1,4 +1,5 @@
-"promoVideo": {
+{
+  "promoVideo": {
     "src": "/videos/promovideo1.mp4",
     "version": "20260622",
     "links": [
@@ -19,34 +20,34 @@
             "url": "https://space.bilibili.com/3546574686784459"
         }
     ]
-},
-   "weeklyVideo": {
-        "src": "https://youtu.be/s7LmA3KtqmM",
-        "title": "YouTube 本周推荐",
-        "isNew": true,
-        "badgeText": "🆕 本周",
-        "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
-           { "icon": "fas fa-play-circle", "text": "抖音-高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" }
-        ]
-    },
-    "weeklyVideo2": {
-        "src": "https://www.bilibili.com/video/BV1gy7B6BELN/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
-        "title": "B站 本周推荐",
-        "isNew": true,
-        "badgeText": "📢 NEW",
-        "links": [
-            { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
-           { "icon": "fas fa-play-circle", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
-        ]
-    },
-    "weeklyAudio": {
-        "src": "/audios/weekly.mp3",
-        "title": "音频试听",
-        "isNew": false,
-        "badgeText": "",
-        "links": [
-            { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
-        ]
-    }
+  },
+  "weeklyVideo": {
+    "src": "https://youtu.be/s7LmA3KtqmM",
+    "title": "YouTube 本周推荐",
+    "isNew": true,
+    "badgeText": "🆕 本周",
+    "links": [
+        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+        { "icon": "fas fa-play-circle", "text": "抖音-高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" }
+    ]
+  },
+  "weeklyVideo2": {
+    "src": "https://www.bilibili.com/video/BV1gy7B6BELN/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
+    "title": "B站 本周推荐",
+    "isNew": true,
+    "badgeText": "📢 NEW",
+    "links": [
+        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
+        { "icon": "fas fa-play-circle", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
+    ]
+  },
+  "weeklyAudio": {
+    "src": "/audios/weekly.mp3",
+    "title": "音频试听",
+    "isNew": false,
+    "badgeText": "",
+    "links": [
+        { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
+    ]
+  }
 }
