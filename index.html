@@ -2081,11 +2081,7 @@ audio:hover, audio:active {
     <div class="promo-video" id="promoVideo">
         <video controls preload="metadata" src="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/videos/promovideo1.mp4?v=20260312" style="width:100%; border-radius:8px;"></video>
     </div>
-    <div class="promo-links" id="promoLinks">
- <a href="javascript:void(0)" id="wechatBtnPromo" style="color: #07C160;">公众号</a>
-   <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
-  <a href="https://www.toutiao.com/video/7655348878086013450/" target="_blank" rel="noopener noreferrer"><i class="fas fa-newspaper"></i> 今日头条</a>
-</div>
+    <div class="promo-links" id="promoLinks"></div>
 </div>
                 <!-- ===== 新增结束 ===== -->
                 <!-- 书籍卡片 - 可点击打开抽屉的触发器 -->
@@ -2798,14 +2794,28 @@ function hideQrModal() {
 
 // 绑定事件（确保元素加载后）
 document.addEventListener('DOMContentLoaded', function() {
-    const btnPromo = document.getElementById('wechatBtnPromo');
-    const btnMatrix = document.getElementById('wechatBtnMatrix');
-    const closeBtn = document.getElementById('qrModalCloseBtn');
-    const modal = document.getElementById('qrModal');
+    // ===== 公众号弹窗事件绑定 =====
+    // 1. 使用事件委托监听 promoLinks 容器（动态元素由它代理）
+    const promoLinksContainer = document.getElementById('promoLinks');
+    if (promoLinksContainer) {
+        promoLinksContainer.addEventListener('click', function(e) {
+            const target = e.target.closest('#wechatBtnPromo');
+            if (target) {
+                showQrModal();
+            }
+        });
+    }
 
-    if (btnPromo) btnPromo.addEventListener('click', showQrModal);
+    // 2. 矩阵卡片的公众号按钮（静态元素，直接绑定）
+    const btnMatrix = document.getElementById('wechatBtnMatrix');
     if (btnMatrix) btnMatrix.addEventListener('click', showQrModal);
+
+    // 3. 关闭按钮（静态元素，直接绑定）
+    const closeBtn = document.getElementById('qrModalCloseBtn');
     if (closeBtn) closeBtn.addEventListener('click', hideQrModal);
+
+    // 4. 点击模态框外部关闭
+    const modal = document.getElementById('qrModal');
     if (modal) modal.addEventListener('click', function(e) {
         if (e.target === modal) hideQrModal();
     });
@@ -3636,7 +3646,25 @@ fetchWithTimeout(weeklyUrl)
             if (version) videoSrc += version;
             promoVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata" style="width:100%; border-radius:8px;"></video>`;
         }
-
+// 动态渲染 promoLinks（从 JSON 控制）
+const promoLinks = document.getElementById('promoLinks');
+if (promoLinks && data.promoVideo && data.promoVideo.links) {
+    promoLinks.innerHTML = '';
+    data.promoVideo.links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        // 如果指定了 id，则设置
+        if (link.id) {
+            a.id = link.id;
+        }
+        // 微信公众号图标特殊处理，使用 fab fa-weixin
+        const iconClass = link.icon || 'fas fa-link';
+        a.innerHTML = `<i class="${iconClass}"></i> ${link.text}`;
+        promoLinks.appendChild(a);
+    });
+}
         // 3. weeklyVideo 卡片
         const weeklyVideoContainer = document.getElementById('weeklyVideo');
         if (weeklyVideoContainer && data.weeklyVideo && data.weeklyVideo.src) {
