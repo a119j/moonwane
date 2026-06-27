@@ -3548,9 +3548,8 @@ function applyChapterStatus(data) {
                 buttons.forEach(btn => {
                     btn.classList.add('status-ready');
                     if (btn.tagName === 'A') {
-                        // ★★★ 修改点：video 类型固定为 javascript:void(0) ★★★
                         if (type === 'video') {
-                            btn.href = 'javascript:void(0)';
+                            btn.href = 'javascript:void(0)';   // ★★★ 关键修改
                         } else {
                             btn.href = link;
                         }
@@ -3578,7 +3577,7 @@ function applyChapterStatus(data) {
                 if (lastGreenIndex !== -1 && !yellowAssigned) {
                     buttons.forEach(btn => {
                         btn.classList.add('status-coming');
-                        if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+                        btn.href = 'javascript:void(0)';
                         btn.title = '即将上线';
                         btn.onclick = function(e) {
                             e.preventDefault();
@@ -3589,7 +3588,7 @@ function applyChapterStatus(data) {
                 } else {
                     buttons.forEach(btn => {
                         btn.classList.add('status-preparing');
-                        if (btn.tagName === 'A') btn.href = 'javascript:void(0)';
+                        btn.href = 'javascript:void(0)';
                         btn.title = '准备中';
                         btn.onclick = function(e) {
                             e.preventDefault();
@@ -3606,17 +3605,6 @@ const statusUrl = window.location.hostname.includes('github.io')
     ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
     : '/data/button-status.json';
 
-function applyChapterStatus(data) {
-    // 构建状态映射表
-    const statusMap = {};
-    data.chapters.forEach(item => {
-        statusMap[item.chapterId] = {
-            read: item.readLink || '',
-            audio: item.audioLink || '',
-            video: item.videoLink || '',
-            external: item.externalLink || ''
-        };
-    });
 
     const types = ['read', 'audio', 'video', 'external'];
 
@@ -3721,100 +3709,68 @@ fetchWithTimeout(statusUrl)
                     };
                 });
             });
-    });     // ========== 多链接菜单数据获取 ==========
-            function fetchChapters() {
-                fetch('https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json')
-                    .then(response => response.json())
-                    .then(data => {
-        // 保存 weekVideoMap 到全局
-        if (data.weekVideoMap && Array.isArray(data.weekVideoMap)) {
-            window.weekVideoMapData = data.weekVideoMap;
-        }
-                        data.acts.forEach(act => {
-                            act.chapters.forEach(chapter => {
-                                if (chapter.externalreadLink) {
-                                    chapter.readLink = chapter.externalreadLink;
-                                }
-                                const chapterId = chapter.chapterNumber;
-                                window.chapterLinksData[chapterId] = {
-                                    read: normalizeLinks(chapter.readLinks, chapter.readLink, '全文阅读/Full Text'),
-                                    audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '声音切片/Audio Highlights'),
-                                    video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '影像瞬间 / Visual Moments '),
-                                    external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯/Further Information ')
-                                };
-                            });
-                        });
-                    })
-                    
-                    .catch(error => {
-                        fetch('https://raw.githubusercontent.com/a119j/moonwane/main/data/chapters.json')
-                            .then(response => response.json())
-                            .then(data => {
-                                    // 保存 weekVideoMap 到全局
-        if (data.weekVideoMap && Array.isArray(data.weekVideoMap)) {
-            window.weekVideoMapData = data.weekVideoMap;
-        }
-                                data.acts.forEach(act => {
-                                    act.chapters.forEach(chapter => {
-                                        if (chapter.externalreadLink) {
-                                            chapter.readLink = chapter.externalreadLink;
-                                        }
-                                        const chapterId = chapter.chapterNumber;
-                                        window.chapterLinksData[chapterId] = {
-                                            read: normalizeLinks(chapter.readLinks, chapter.readLink, '全文阅读/Full Text'),
-                                            audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '声音切片/Audio Highlights'),
-                                            video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '影像瞬间 / Visual Moments '),
-                                            external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯/Further Information /Further Information')
-                                        };
-                                    });
-                                });
-                            })
-                            .catch(() => {});
-                    });
-            }
-            
-            function initNonCritical() {
-                fetchChapters();
-            }
-            
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(initNonCritical, { timeout: 2000 });
-            } else {
-                setTimeout(initNonCritical, 100);
-            }
-            
-            // ========== 统一监听 data-chapter 按钮（仅处理没有 data-type 的元素，即多链接菜单）==========
-            document.addEventListener('click', function(e) {
-                const target = e.target.closest('[data-chapter]');
-                if (!target) return;
-                // 只处理没有 data-type 的元素（多链接菜单）
-                if (target.hasAttribute('data-type')) return;
-                
-                e.preventDefault();
-                
-                const chapterId = target.getAttribute('data-chapter');
-                // 根据类名推断类型（兼容旧代码）
-                let type = null;
-                if (target.classList.contains('read-icon')) type = 'read';
-                else if (target.classList.contains('audio-icon')) type = 'audio';
-                else if (target.classList.contains('video-icon')) type = 'video';
-                else if (target.classList.contains('external-link')) type = 'external';
-                if (!type) return;
-                
-                const links = window.chapterLinksData?.[chapterId]?.[type];
-                
-                if (!links || links.length === 0) {
-                    const displayNum = getChapterDisplayNumber(chapterId);
-                    alert(`第${displayNum}章正在准备中，敬请期待。`);
-                    return;
-                }
-                
-                if (links.length === 1) {
-                    window.open(links[0].url, '_blank');
-                } else {
-                    showLinkMenu(e, links);
-                }
+    });     // ========== 数据加载与按钮状态控制 ==========
+const statusUrl = window.location.hostname.includes('github.io')
+    ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/button-status.json'
+    : '/data/button-status.json';
+
+const chaptersUrl = window.location.hostname.includes('github.io')
+    ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
+    : '/data/chapters.json';
+
+// 1. 加载 chapters.json 并保存数据
+const loadChapters = fetchWithTimeout(chaptersUrl)
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(data => {
+        window.weekVideoMapData = data.weekVideoMap || [];
+        // 处理多链接数据
+        window.chapterLinksData = {};
+        data.acts.forEach(act => {
+            act.chapters.forEach(chapter => {
+                if (chapter.externalreadLink) chapter.readLink = chapter.externalreadLink;
+                const cid = chapter.chapterNumber;
+                window.chapterLinksData[cid] = {
+                    read: normalizeLinks(chapter.readLinks, chapter.readLink, '全文阅读/Full Text'),
+                    audio: normalizeLinks(chapter.audioLinks, chapter.audioLink, '声音切片/Audio Highlights'),
+                    video: normalizeLinks(chapter.videoLinks, chapter.videoLink, '影像瞬间 / Visual Moments '),
+                    external: normalizeLinks(chapter.externalLinks, chapter.externalLink, '更多资讯/Further Information ')
+                };
             });
+        });
+    })
+    .catch(err => console.warn('chapters.json 加载失败', err));
+
+// 2. 加载 button-status.json
+const loadButtonStatus = fetchWithTimeout(statusUrl)
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .catch(err => {
+        console.warn('button-status 加载失败，使用全灰色降级');
+        return null;
+    });
+
+// 3. 两者都完成后应用按钮状态
+Promise.all([loadChapters, loadButtonStatus])
+    .then(([_, buttonData]) => {
+        if (buttonData) {
+            applyChapterStatus(buttonData);
+        } else {
+            // 降级：所有按钮灰色
+            document.querySelectorAll('[data-chapter][data-type]').forEach(btn => {
+                btn.classList.add('status-preparing');
+                btn.href = 'javascript:void(0)';
+                btn.title = '准备中';
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    const cid = this.getAttribute('data-chapter');
+                    alert(`${getChapterDisplayNumber(cid)} 正在准备中，敬请期待。`);
+                };
+            });
+        }
+    })
+    .catch(err => console.error('数据加载异常', err));
+
+// 删除原来的 fetchChapters、initNonCritical 和 requestIdleCallback 相关代码
+// 以及第二段 applyChapterStatus 定义
             // ========== 加载每周精选数据 ==========
 const weeklyUrl = window.location.hostname.includes('github.io')
     ? 'https://raw.githubusercontent.com/a119j/moonwane/main/data/weekly.json'
