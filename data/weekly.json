@@ -1,12 +1,25 @@
-{
-    "version": "20260529",
-    "lastUpdate": "2026-05-29",
-    "changelog": "YouTube + B站双视频更新",
-    "promoQuote": "“清白，比罪名更难证明”",
-    "promoVideo": {
-        "src": "/videos/promovideo1.mp4",
-        "version": "20260622"
-    },
+"promoVideo": {
+    "src": "/videos/promovideo1.mp4",
+    "version": "20260622",
+    "links": [
+        {
+            "icon": "fab fa-weixin",
+            "text": "公众号",
+            "url": "javascript:void(0)",
+            "id": "wechatBtnPromo"
+        },
+        {
+            "icon": "fab fa-youtube",
+            "text": "YouTube",
+            "url": "https://www.youtube.com/@MoonwaneInk"
+        },
+        {
+            "icon": "fab fa-bilibili",
+            "text": "B站",
+            "url": "https://space.bilibili.com/3546574686784459"
+        }
+    ]
+},
    "weeklyVideo": {
         "src": "https://youtu.be/s7LmA3KtqmM",
         "title": "YouTube 本周推荐",
