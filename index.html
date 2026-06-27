@@ -3655,15 +3655,13 @@ if (promoLinks && data.promoVideo && data.promoVideo.links) {
         a.href = link.url;
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
-        // 如果指定了 id，则设置
-        if (link.id) {
-            a.id = link.id;
-        }
-        // 微信公众号图标特殊处理，使用 fab fa-weixin
-        const iconClass = link.icon || 'fas fa-link';
-        a.innerHTML = `<i class="${iconClass}"></i> ${link.text}`;
+        if (link.id) a.id = link.id;
+        a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
         promoLinks.appendChild(a);
     });
+    console.log('✅ 按钮已手动渲染:', promoLinks.innerHTML);
+} else {
+    console.warn('⚠️ 渲染条件不满足');
 }
         // 3. weeklyVideo 卡片
         const weeklyVideoContainer = document.getElementById('weeklyVideo');
