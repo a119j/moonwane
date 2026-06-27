@@ -1,4 +1,286 @@
 {
+ "weekVideoMap": [
+    {
+        "week": 1,
+        "chapters": [
+            "1-01", "1-02", "1-03",
+            "2-01", "2-02", "2-03", "2-04",
+            "3-01", "3-02", "3-03", "3-04"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W1-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/f4WbikgURV4" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1CC7E6qEin/" }
+                ]
+            },
+            "summary": {
+                "label": "W1-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/9sBypgwju_M" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "https://v.douyin.com/4yaZYXTrHsA/" }
+                ]
+            },
+            "review": {
+                "label": "W1-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 2,
+        "chapters": [
+            "4-1-01", "4-1-02", "4-1-03",
+            "4-2-01", "4-2-02",
+            "5-1-01", "5-1-02",
+            "5-2-01", "5-2-02"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W2-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W2-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W2-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 3,
+        "chapters": [
+            "6-01", "6-02", "6-03",
+            "7-1-01", "7-1-02",
+            "7-2-01", "7-2-02", "7-2-03", "7-2-04"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W3-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W3-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W3-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 4,
+        "chapters": [
+            "8-1-01", "8-1-02", "8-1-03",
+            "8-2-01", "8-2-02",
+            "9-1-01", "9-1-02",
+            "9-2-01", "9-2-02", "9-2-03"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W4-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W4-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W4-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 5,
+        "chapters": [
+            "10-1-01", "10-1-02", "10-1-03",
+            "10-2-01", "10-2-02", "10-2-03",
+            "11-01", "11-02", "11-03"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W5-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W5-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W5-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 6,
+        "chapters": [
+            "12-1-01", "12-1-02", "12-1-03",
+            "12-2-01", "12-2-02", "12-2-03",
+            "12-3-01", "12-3-02", "12-3-03"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W6-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W6-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W6-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 7,
+        "chapters": [
+            "13-01", "13-02", "13-03",
+            "14-01", "14-02", "14-03",
+            "15-01", "15-02", "15-03"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W7-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W7-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W7-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 8,
+        "chapters": [
+            "16-01", "16-02", "16-03", "16-04", "16-05",
+            "17-1-01", "17-1-02",
+            "17-2-01", "17-2-02"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W8-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W8-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W8-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    },
+    {
+        "week": 9,
+        "chapters": [
+            "18-01", "18-02",
+            "extra"
+        ],
+        "videos": {
+            "compilation": {
+                "label": "W9-C｜本周合集",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+                ]
+            },
+            "summary": {
+                "label": "W9-S｜本周总结",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            },
+            "review": {
+                "label": "W9-R｜本周回顾",
+                "links": [
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+                    { "platform": "抖音", "icon": "fab fa-tiktok", "url": "" }
+                ]
+            }
+        }
+    }
+]
   "acts": [
     {
       "actNumber": 1,
