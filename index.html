@@ -2081,7 +2081,11 @@ audio:hover, audio:active {
     <div class="promo-video" id="promoVideo">
         <video controls preload="metadata" src="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/videos/promovideo1.mp4?v=20260312" style="width:100%; border-radius:8px;"></video>
     </div>
-    <div class="promo-links" id="promoLinks"></div>
+   <div class="promo-links" id="promoLinks">
+    <a href="javascript:void(0)" id="wechatBtnPromo" style="color: #07C160;">公众号</a>
+    <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+    <a href="https://space.bilibili.com/3546574686784459" target="_blank" rel="noopener noreferrer"><i class="fab fa-bilibili"></i> B站</a>
+</div>
 </div>
                 <!-- ===== 新增结束 ===== -->
                 <!-- 书籍卡片 - 可点击打开抽屉的触发器 -->
@@ -3646,9 +3650,10 @@ fetchWithTimeout(weeklyUrl)
             if (version) videoSrc += version;
             promoVideo.innerHTML = `<video controls src="${videoSrc}" preload="metadata" style="width:100%; border-radius:8px;"></video>`;
         }
-// 动态渲染 promoLinks（从 JSON 控制）
+// 动态渲染 promoLinks（仅在硬编码不存在时才渲染）
 const promoLinks = document.getElementById('promoLinks');
-if (promoLinks && data.promoVideo && data.promoVideo.links) {
+if (promoLinks && data.promoVideo && data.promoVideo.links && promoLinks.innerHTML.trim() === '') {
+    // 只有容器为空时才渲染
     promoLinks.innerHTML = '';
     data.promoVideo.links.forEach(link => {
         const a = document.createElement('a');
@@ -3659,9 +3664,6 @@ if (promoLinks && data.promoVideo && data.promoVideo.links) {
         a.innerHTML = `<i class="${link.icon}"></i> ${link.text}`;
         promoLinks.appendChild(a);
     });
-    console.log('✅ 按钮已手动渲染:', promoLinks.innerHTML);
-} else {
-    console.warn('⚠️ 渲染条件不满足');
 }
         // 3. weeklyVideo 卡片
         const weeklyVideoContainer = document.getElementById('weeklyVideo');
