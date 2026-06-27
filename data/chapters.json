@@ -11,14 +11,14 @@
             "compilation": {
                 "label": "W1-C｜本周合集",
                 "links": [
-                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/f4WbikgURV4" },
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://www.youtu.be/f4WbikgURV4" },
                     { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1CC7E6qEin/" }
                 ]
             },
             "summary": {
                 "label": "W1-S｜本周总结",
                 "links": [
-                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/9sBypgwju_M" },
+                    { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://www.youtube.com/shorts/9sBypgwju_M" },
                     { "platform": "抖音", "icon": "fab fa-tiktok", "url": "https://v.douyin.com/4yaZYXTrHsA/" }
                 ]
             },
