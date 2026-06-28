@@ -2901,26 +2901,41 @@ function generateVideoModalHtml(videosData) {
     ];
     
     var html = '';
-links.forEach(function(link) {
-    var url = link.url || '';
-    var isActive = url && url.trim() !== '';
-    var id = link.id || '';
-    var label = link.label || '链接';
-    var displayText = id ? id + '｜' + label : label;
-    var icon = link.icon || 'fab fa-weixin';
-    html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
-    html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
-    html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
-    if (isActive) {
-        html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
-        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
-    } else {
-        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
-        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
+    for (var i = 0; i < videoTypes.length; i++) {
+        var vt = videoTypes[i];
+        var video = videosData[vt.key];
+        if (!video) continue;
+        
+        var labelText = video.label || vt.label;
+        var links = video.links || [];
+        var hasLinks = false;
+        for (var j = 0; j < links.length; j++) {
+            if (links[j].url && links[j].url.trim() !== '') {
+                hasLinks = true;
+                break;
+            }
+        }
+        
+        html += '<div class="video-modal-link">';
+        html += '<span class="label">' + labelText + '</span>';
+        html += '<span class="platform-icons">';
+        
+        if (hasLinks) {
+            for (var k = 0; k < links.length; k++) {
+                var link = links[k];
+                if (link.url && link.url.trim() !== '') {
+                    var icon = link.icon || 'fas fa-link';
+                    var platform = link.platform || '链接';
+                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '"><i class="' + icon + '"></i></a>';
+                }
+            }
+        } else {
+            html += '<span class="status-pending">待定</span>';
+        }
+        
+        html += '</span>';
+        html += '</div>';
     }
-    html += '</span>';
-    html += '</div>';
-});
     
     return html || '<div style="color:#888; text-align:center; padding:20px 0;">暂无视频</div>';
 }
@@ -3606,33 +3621,39 @@ function applyChapterStatus(data) {
             }
         };
     } else if (type === 'external') {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            var chapterId = this.getAttribute('data-chapter');
-            var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
-var links = week?.externalLinks || [];
-            if (links.length === 0) {
-                showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
-                return;
+    btn.onclick = function(e) {
+        e.preventDefault();
+        var chapterId = this.getAttribute('data-chapter');
+        var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
+        var links = week?.externalLinks || [];
+        if (links.length === 0) {
+            showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
+            return;
+        }
+        var html = '';
+        links.forEach(function(link) {
+            var url = link.url || '';
+            var isActive = url && url.trim() !== '';
+            var id = link.id || '';
+            var label = link.label || '链接';
+            var displayText = id ? id + '｜' + label : label;
+            var icon = link.icon || 'fab fa-weixin';
+            html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
+            html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
+            html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
+            if (isActive) {
+                html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
+            } else {
+                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
+                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
             }
-            var html = '';
-            links.forEach(function(link) {
-                var url = link.url || '#';
-                var isActive = url && url !== '#';
-                var platform = link.title || link.platform || '链接';
-                var icon = link.icon || 'fas fa-link';
-                html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
-                html += '<span style="color:#e0e0e0;">' + platform + '</span>';
-                if (isActive) {
-                    html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#7bc8f8; text-decoration:none;"><i class="' + icon + '"></i> 访问</a>';
-                } else {
-                    html += '<span style="color:#666; font-style:italic;">待定</span>';
-                }
-                html += '</div>';
-            });
-            showExternalModal(html || '<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
-        };
-    }
+            html += '</span>';
+            html += '</div>';
+        });
+        showExternalModal(html || '<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
+    };
+}
 });
                 lastGreenIndex = index;
                 yellowAssigned = false;
