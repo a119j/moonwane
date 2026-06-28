@@ -3726,6 +3726,26 @@ const loadButtonStatus = fetchWithTimeout(statusUrl)
 // ---------- 等待两个都完成 ----------
 Promise.all([loadChapters, loadButtonStatus])
     .then(([_, buttonData]) => {
+        // 检查 weekVideoMapData 是否正确加载
+        if (!window.weekVideoMapData || window.weekVideoMapData.length === 0) {
+            console.warn('weekVideoMapData 未加载，尝试重新加载...');
+            // 直接用 fetch 重新加载（不使用超时）
+            fetch(chaptersUrl)
+                .then(r => r.json())
+                .then(data => {
+                    window.weekVideoMapData = data.weekVideoMap || [];
+                    if (buttonData) {
+                        applyChapterStatus(buttonData);
+                    }
+                })
+                .catch(() => {
+                    // 即使重新加载失败，也尝试显示按钮
+                    if (buttonData) {
+                        applyChapterStatus(buttonData);
+                    }
+                });
+            return;
+        }
         if (buttonData) {
             applyChapterStatus(buttonData);
         } else {
