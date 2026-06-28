@@ -3623,7 +3623,8 @@ function applyChapterStatus(data) {
         btn.onclick = function(e) {
             e.preventDefault();
             var chapterId = this.getAttribute('data-chapter');
-            var links = window.chapterLinksData?.[chapterId]?.external || [];
+            var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
+var links = week?.externalLinks || [];
             if (links.length === 0) {
                 showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
                 return;
