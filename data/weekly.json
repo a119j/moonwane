@@ -21,7 +21,7 @@
         }
     ]
   },
-   "weeklyVideo": {
+    "weeklyVideo": {
     "src": "https://youtu.be/s7LmA3KtqmM",
     "title": "YouTube 本周推荐",
     "isNew": true,
@@ -42,13 +42,4 @@
         { "icon": "fab fa-tiktok", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
     ]
   },
-  "weeklyAudio": {
-    "src": "/audios/weekly.mp3",
-    "title": "音频试听",
-    "isNew": false,
-    "badgeText": "",
-    "links": [
-        { "icon": "fas fa-headphones", "text": "喜马拉雅", "url": "https://ximalaya.com" }
-    ]
-  }
 }
