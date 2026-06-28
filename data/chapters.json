@@ -140,28 +140,28 @@
         }
       },
       "externalLinks": [
-        {
-          "id": "W3-A",
-          "label": "第3周长文总结｜【待补充标题】",
-          "platform": "公众号",
-          "icon": "fab fa-weixin",
-          "url": ""
-        },
-        {
-          "id": "VIS6",
-          "label": "第3周图文总结｜【待补充标题】",
-          "platform": "公众号",
-          "icon": "fab fa-weixin",
-          "url": ""
-        },
-        {
-          "id": "P3",
-          "label": "人物肖像｜江若瑶：她只问了一句"爸爸没事吧？"",
-          "platform": "公众号",
-          "icon": "fab fa-weixin",
-          "url": ""
-        }
-      ]
+  {
+    "id": "W3-A",
+    "label": "第3周长文总结｜【待补充标题】",
+    "platform": "公众号",
+    "icon": "fab fa-weixin",
+    "url": ""
+  },
+  {
+    "id": "VIS6",
+    "label": "第3周图文总结｜【待补充标题】",
+    "platform": "公众号",
+    "icon": "fab fa-weixin",
+    "url": ""
+  },
+  {
+    "id": "P3",
+    "label": "人物肖像｜江若瑶：她只问了一句\"爸爸没事吧？\"",
+    "platform": "公众号",
+    "icon": "fab fa-weixin",
+    "url": ""
+  }
+]
     },
     {
       "week": 4,
