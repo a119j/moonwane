@@ -2688,7 +2688,7 @@ audio:hover, audio:active {
             · <a href="https://www.youtube.com/@MoonwaneInk" target="_blank" style="color: #FF0000; text-decoration: none;">👉 YouTube-Official Series</a><br>
             · <a href="https://space.bilibili.com/3546574686784459" target="_blank" style="color: #00A1D6; text-decoration: none;">👉 Bilibili 频道</a><br>
             · <a href="https://v.douyin.com/aJvGC3D9Xis/" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 抖音-正片纪实</a><br>
-            · <a href="https://www.toutiao.com/video/7654662285146735156/" target="_blank" style="color: #00A1D6; text-decoration: none;">👉 今日头条-全纪录影像档案</a><br>
+            · <a href="https://www.toutiao.com/video/7654662285146735156/" target="_blank" style="color: #00A1D6; text-decoration: none;">👉 今日头条-全纪录影像档案(待定）</a><br>
             · <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzYzODE0MDkyNQ==&action=getalbum&album_id=4535014890243391488#wechat_redirect" target="_blank" style="color: #7bc8f8; text-decoration: none;">👉 公众号-现场细录</a>
         </p>
     </div>
@@ -2750,7 +2750,7 @@ audio:hover, audio:active {
             </div>
          <div class="weekly-links" id="weeklyVideoLinks" style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
     <a href="https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" target="_blank" rel="noopener noreferrer" style="color: #FF0000;"><i class="fab fa-youtube"></i> YouTube-Official Series</a>
-    <a href="https://v.douyin.com/nVUiWjeG88w/" target="_blank" class="no-hand-icon" style="color: #00A1D6; text-decoration: none;"><i class="fab fa-tiktok"></i> 抖音-高能切片</a>
+    <a href="https://space.bilibili.com/3546574686784459" target="_blank" rel="noopener noreferrer" style="color: #00A1D6;"><i class="fab fa-bilibili"></i> B站</a>
 </div>
         </div>
 
@@ -2761,9 +2761,10 @@ audio:hover, audio:active {
     <div class="weekly-media" id="weeklyVideo2">
         <video controls preload="metadata" src="/videos/weekly2.mp4" style="width:100%; border-radius:8px;"></video>
     </div>
-   <div class="weekly-links" id="weeklyVideoLinks2" style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+  <div class="weekly-links" id="weeklyVideoLinks2" style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
     <a href="https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" target="_blank" rel="noopener noreferrer" style="color: #FF0000;"><i class="fab fa-youtube"></i> YouTube-Highlights</a>
-    <a href="https://v.douyin.com/JM0MBKAeADY/" target="_blank" class="no-hand-icon" style="color: #00A1D6; text-decoration: none;"><i class="fab fa-tiktok"></i> 抖音-每周剧集导航</a>
+    <a href="https://v.douyin.com/nVUiWjeG88w/" target="_blank" class="no-hand-icon" style="color: #00A1D6; text-decoration: none;"><i class="fab fa-tiktok"></i> 抖音-高能切片</a>
+    <a href="https://v.douyin.com/JM0MBKAeADY/" target="_blank" class="no-hand-icon" style="color: #00A1D6; text-decoration: none;"><i class="fab fa-tiktok"></i> 抖音-每周导航</a>
 </div>
 </div>
     </div>
@@ -2900,41 +2901,26 @@ function generateVideoModalHtml(videosData) {
     ];
     
     var html = '';
-    for (var i = 0; i < videoTypes.length; i++) {
-        var vt = videoTypes[i];
-        var video = videosData[vt.key];
-        if (!video) continue;
-        
-        var labelText = video.label || vt.label;
-        var links = video.links || [];
-        var hasLinks = false;
-        for (var j = 0; j < links.length; j++) {
-            if (links[j].url && links[j].url.trim() !== '') {
-                hasLinks = true;
-                break;
-            }
-        }
-        
-        html += '<div class="video-modal-link">';
-        html += '<span class="label">' + labelText + '</span>';
-        html += '<span class="platform-icons">';
-        
-        if (hasLinks) {
-            for (var k = 0; k < links.length; k++) {
-                var link = links[k];
-                if (link.url && link.url.trim() !== '') {
-                    var icon = link.icon || 'fas fa-link';
-                    var platform = link.platform || '链接';
-                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '"><i class="' + icon + '"></i></a>';
-                }
-            }
-        } else {
-            html += '<span class="status-pending">待定</span>';
-        }
-        
-        html += '</span>';
-        html += '</div>';
+links.forEach(function(link) {
+    var url = link.url || '';
+    var isActive = url && url.trim() !== '';
+    var id = link.id || '';
+    var label = link.label || '链接';
+    var displayText = id ? id + '｜' + label : label;
+    var icon = link.icon || 'fab fa-weixin';
+    html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
+    html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
+    html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
+    if (isActive) {
+        html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
+    } else {
+        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
+        html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
     }
+    html += '</span>';
+    html += '</div>';
+});
     
     return html || '<div style="color:#888; text-align:center; padding:20px 0;">暂无视频</div>';
 }
