@@ -21,14 +21,14 @@
         }
     ]
   },
-  "weeklyVideo": {
+   "weeklyVideo": {
     "src": "https://youtu.be/s7LmA3KtqmM",
     "title": "YouTube 本周推荐",
     "isNew": true,
     "badgeText": "🆕 本周",
     "links": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
-        { "icon": "fas fa-play-circle", "text": "抖音-高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" }
+        { "icon": "fab fa-youtube", "text": "YouTube-Official Series", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3NBswJmwh6dXlAE3PgfKtpi" },
+        { "icon": "fab fa-bilibili", "text": "B站", "url": "https://space.bilibili.com/3546574686784459" }
     ]
   },
   "weeklyVideo2": {
@@ -37,8 +37,9 @@
     "isNew": true,
     "badgeText": "📢 NEW",
     "links": [
-        { "icon": "fab fa-youtube", "text": "YouTube", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
-        { "icon": "fas fa-play-circle", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
+        { "icon": "fab fa-youtube", "text": "YouTube-Highlights", "url": "https://www.youtube.com/playlist?list=PLRj9VGdWAW3OOegWxBLRA-0Xs9Pss85eI" },
+        { "icon": "fab fa-tiktok", "text": "抖音-高能切片", "url": "https://v.douyin.com/nVUiWjeG88w/" },
+        { "icon": "fab fa-tiktok", "text": "抖音-每周导航", "url": "https://v.douyin.com/JM0MBKAeADY/" }
     ]
   },
   "weeklyAudio": {
