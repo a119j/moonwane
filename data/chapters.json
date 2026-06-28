@@ -154,13 +154,13 @@
     "icon": "fab fa-weixin",
     "url": ""
   },
-  {
-    "id": "P3",
-    "label": "人物肖像｜江若瑶：她只问了一句爸爸没事吧？",
-    "platform": "公众号",
-    "icon": "fab fa-weixin",
-    "url": ""
-  }
+ {
+  "id": "P3",
+  "label": "人物肖像｜江若瑶：她只问了一句爸爸没事吧？",
+  "platform": "公众号",
+  "icon": "fab fa-weixin",
+  "url": ""
+}
 ]
     },
     {
