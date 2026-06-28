@@ -3683,7 +3683,9 @@ const statusUrl = window.location.hostname.includes('github.io')
     : '/data/button-status.json';
 
 // ---------- 加载 chapters.json 的 Promise ----------
-const chaptersUrl = 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json';
+const chaptersUrl = window.location.hostname.includes('github.io')
+    ? 'https://cdn.jsdelivr.net/gh/a119j/moonwane@latest/data/chapters.json'
+    : '/data/chapters.json';
 
 const loadChapters = fetchWithTimeout(chaptersUrl)
     .then(response => {
