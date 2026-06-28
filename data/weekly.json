@@ -22,7 +22,7 @@
     ]
   },
     "weeklyVideo": {
-    "src": "https://youtu.be/s7LmA3KtqmM",
+    "src": "https://youtu.be/f4WbikgURV4",
     "title": "YouTube 本周推荐",
     "isNew": true,
     "badgeText": "🆕 本周",
@@ -32,7 +32,7 @@
     ]
   },
   "weeklyVideo2": {
-    "src": "https://www.bilibili.com/video/BV1gy7B6BELN/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
+    "src": "https://www.bilibili.com/video/BV1rT7E6wENe/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
     "title": "B站 本周推荐",
     "isNew": true,
     "badgeText": "📢 NEW",
