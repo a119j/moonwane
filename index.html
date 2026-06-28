@@ -3621,38 +3621,39 @@ function applyChapterStatus(data) {
             }
         };
     } else if (type === 'external') {
-    btn.onclick = function(e) {
-        e.preventDefault();
-        var chapterId = this.getAttribute('data-chapter');
-        var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
-        var links = week?.externalLinks || [];
-        if (links.length === 0) {
-            showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
-            return;
+   btn.onclick = function(e) {
+    e.preventDefault();
+    var chapterId = this.getAttribute('data-chapter');
+    var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
+    var links = week?.externalLinks || [];
+    // 只保留有 url 的链接
+    var activeLinks = [];
+    for (var i = 0; i < links.length; i++) {
+        if (links[i].url && links[i].url.trim() !== '') {
+            activeLinks.push(links[i]);
         }
-        var html = '';
-        links.forEach(function(link) {
-            var url = link.url || '';
-            var isActive = url && url.trim() !== '';
-            var id = link.id || '';
-            var label = link.label || '链接';
-            var displayText = id ? id + '｜' + label : label;
-            var icon = link.icon || 'fab fa-weixin';
-            html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
-            html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
-            html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
-            if (isActive) {
-                html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
-                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
-            } else {
-                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
-                html += '<span style="color:#666; font-style:italic; font-size:0.75rem;">待定</span>';
-            }
-            html += '</span>';
-            html += '</div>';
-        });
-        showExternalModal(html || '<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
-    };
+    }
+    if (activeLinks.length === 0) {
+        showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
+        return;
+    }
+    var html = '';
+    for (var j = 0; j < activeLinks.length; j++) {
+        var link = activeLinks[j];
+        var url = link.url;
+        var id = link.id || '';
+        var label = link.label || '链接';
+        var displayText = id ? id + '｜' + label : label;
+        var icon = link.icon || 'fab fa-weixin';
+        html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
+        html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
+        html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
+        html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+        html += '</span>';
+        html += '</div>';
+    }
+    showExternalModal(html);
+};
 }
 });
                 lastGreenIndex = index;
