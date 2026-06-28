@@ -33,21 +33,21 @@
       "externalLinks": [
         {
           "id": "W1-A",
-          "label": "第1周长文总结｜那一周，所有东西都断了",
+          "label": "第1周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": "https://mp.weixin.qq.com/s/-bloH5WGvgcRlXUEfViEeg"
         },
         {
           "id": "VIS4",
-          "label": "第1周图文总结｜一条下坡路",
+          "label": "第1周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": "https://mp.weixin.qq.com/s/ORNqB1P2hG0FknW8q2PYkQ"
         },
         {
           "id": "P1",
-          "label": "人物肖像｜刘思恩：那天之后，她再也没有离开厨房",
+          "label": "P1人物肖像｜刘思恩",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": "https://mp.weixin.qq.com/s/D-WgUB67-V0BPB8fEPVPSQ"
@@ -88,21 +88,21 @@
       "externalLinks": [
         {
           "id": "W2-A",
-          "label": "第2周长文总结｜【待补充标题】",
+          "label": "第2周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS5",
-          "label": "第2周图文总结｜【待补充标题】",
+          "label": "第2周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "P2",
-          "label": "人物肖像｜江远平：后来，他越来越少说话",
+          "label": "P1人物肖像｜江远平",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -142,21 +142,21 @@
       "externalLinks": [
   {
     "id": "W3-A",
-    "label": "第3周长文总结｜【待补充标题】",
+    "label": "第3周长文总结",
     "platform": "公众号",
     "icon": "fab fa-weixin",
     "url": ""
   },
   {
     "id": "VIS6",
-    "label": "第3周图文总结｜【待补充标题】",
+    "label": "第3周图文总结",
     "platform": "公众号",
     "icon": "fab fa-weixin",
     "url": ""
   },
   {
     "id": "P3",
-    "label": "人物肖像｜江若瑶：她只问了一句\"爸爸没事吧？\"",
+    "label": "人物肖像｜江若瑶",
     "platform": "公众号",
     "icon": "fab fa-weixin",
     "url": ""
@@ -197,14 +197,14 @@
       "externalLinks": [
         {
           "id": "W4-A",
-          "label": "第4周长文总结｜【待补充标题】",
+          "label": "第4周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS7",
-          "label": "第4周图文总结｜【待补充标题】",
+          "label": "第4周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -251,14 +251,14 @@
       "externalLinks": [
         {
           "id": "W5-A",
-          "label": "第5周长文总结｜【待补充标题】",
+          "label": "第5周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS8",
-          "label": "第5周图文总结｜【待补充标题】",
+          "label": "第5周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -305,21 +305,21 @@
       "externalLinks": [
         {
           "id": "W6-A",
-          "label": "第6周长文总结｜【待补充标题】",
+          "label": "第6周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS9",
-          "label": "第6周图文总结｜【待补充标题】",
+          "label": "第6周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "EXTRA3",
-          "label": "其他信息｜【待补充】",
+          "label": "其他信息",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -359,14 +359,14 @@
       "externalLinks": [
         {
           "id": "W7-A",
-          "label": "第7周长文总结｜【待补充标题】",
+          "label": "第7周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS10",
-          "label": "第7周图文总结｜【待补充标题】",
+          "label": "第7周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -413,14 +413,14 @@
       "externalLinks": [
         {
           "id": "W8-A",
-          "label": "第8周长文总结｜【待补充标题】",
+          "label": "第8周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS11",
-          "label": "第8周图文总结｜【待补充标题】",
+          "label": "第8周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
@@ -466,14 +466,14 @@
       "externalLinks": [
         {
           "id": "W9-A",
-          "label": "第9周长文总结｜【待补充标题】",
+          "label": "第9周长文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
         },
         {
           "id": "VIS12",
-          "label": "第9周图文总结｜【待补充标题】",
+          "label": "第9周图文总结",
           "platform": "公众号",
           "icon": "fab fa-weixin",
           "url": ""
