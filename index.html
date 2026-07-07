@@ -2076,45 +2076,45 @@ audio:hover, audio:active {
 .video-modal-link .platform-icons a .fa-weixin {
     color: #07C160 !important;
 }
-       /* ===== 平台图标颜色（覆盖默认样式 + 修复资讯弹窗） ===== */
-/* 通用规则 - 同时覆盖视频和资讯弹窗 */
+       /* ===== 资讯弹窗 + 视频弹窗 平台图标颜色（最终加强版） ===== */
+/* 通用基础样式 */
 .video-modal-link .platform-icons a,
 #externalModalContent .platform-icons a,
-#videoModalContent .platform-icons a {
-    color: #aaa;
+.platform-icon-link {
+    color: #aaa !important;
     transition: color 0.25s ease;
 }
 
 .video-modal-link .platform-icons a:hover,
-#externalModalContent .platform-icons a:hover {
-    color: #ffffff;
+#externalModalContent .platform-icons a:hover,
+.platform-icon-link:hover {
+    color: #ffffff !important;
 }
 
-/* 具体平台颜色 */
-#externalModalContent .platform-icons a[href*="youtube.com"] i,
+/* 具体平台颜色 - 高优先级 */
+#externalModalContent .platform-icons a[href*="youtube"] i,
 #externalModalContent .platform-icons a[href*="youtu.be"] i,
-.video-modal-link .platform-icons a[href*="youtube"] i {
+.video-modal-link .platform-icons a[href*="youtube"] i,
+.platform-icon-link[href*="youtube"] i {
     color: #FF0000 !important;
 }
 
-#externalModalContent .platform-icons a[href*="bilibili.com"] i,
-.video-modal-link .platform-icons a[href*="bilibili"] i {
+#externalModalContent .platform-icons a[href*="bilibili"] i,
+.video-modal-link .platform-icons a[href*="bilibili"] i,
+.platform-icon-link[href*="bilibili"] i {
     color: #00A1D6 !important;
 }
 
-#externalModalContent .platform-icons a[href*="douyin.com"] i,
-#externalModalContent .platform-icons a[href*="v.douyin.com"] i {
+#externalModalContent .platform-icons a[href*="douyin"] i,
+.video-modal-link .platform-icons a[href*="douyin"] i,
+.platform-icon-link[href*="douyin"] i {
     color: #FF0050 !important;
 }
 
-#externalModalContent .platform-icons a i.fa-weixin,
-.video-modal-link .platform-icons a i.fa-weixin {
+#externalModalContent .platform-icons a .fa-weixin,
+.video-modal-link .platform-icons a .fa-weixin,
+.platform-icon-link .fa-weixin {
     color: #07C160 !important;
-}
-
-#externalModalContent .platform-icons a i.fa-blog,
-.video-modal-link .platform-icons a i.fa-blog {
-    color: #FF6B35 !important;
 }
  </style>
 </head>
