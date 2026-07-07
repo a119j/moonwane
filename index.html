@@ -3639,33 +3639,68 @@ function applyChapterStatus(data) {
    btn.onclick = function(e) {
     e.preventDefault();
     var chapterId = this.getAttribute('data-chapter');
-    var week = window.weekVideoMapData?.find(function(w) { return w.chapters && w.chapters.indexOf(chapterId) !== -1; });
-    var links = week?.externalLinks || [];
-    // 只保留有 url 的链接
-    var activeLinks = [];
-    for (var i = 0; i < links.length; i++) {
-        if (links[i].url && links[i].url.trim() !== '') {
-            activeLinks.push(links[i]);
-        }
-    }
-    if (activeLinks.length === 0) {
+    var chapterData = window.chapterLinksData?.[chapterId];
+    if (!chapterData) {
         showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
         return;
     }
+    
+    var entries = chapterData.external || [];
+    
+    if (!entries || entries.length === 0) {
+        showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">暂无外部链接</div>');
+        return;
+    }
+    
     var html = '';
-    for (var j = 0; j < activeLinks.length; j++) {
-        var link = activeLinks[j];
-        var url = link.url;
-        var id = link.id || '';
-        var label = link.label || '链接';
+    var hasActiveLink = false;
+    
+    for (var j = 0; j < entries.length; j++) {
+        var entry = entries[j];
+        var id = entry.id || '';
+        var label = entry.label || '链接';
         var displayText = id ? id + '｜' + label : label;
-        var icon = link.icon || 'fab fa-weixin';
+        
+        var links = entry.links || [];
+        var hasOldUrl = entry.url && entry.url.trim() !== '';
+        
+        if (hasOldUrl && links.length === 0) {
+            links = [{ platform: entry.platform || '链接', icon: entry.icon || 'fas fa-link', url: entry.url }];
+        }
+        
+        var hasValidLink = false;
+        for (var k = 0; k < links.length; k++) {
+            if (links[k].url && links[k].url.trim() !== '') {
+                hasValidLink = true;
+                break;
+            }
+        }
+        
         html += '<div class="video-modal-link" style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">';
         html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
         html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
-        html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" style="color:#07C160; text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+        
+        if (hasValidLink) {
+            for (var m = 0; m < links.length; m++) {
+                var link = links[m];
+                if (link.url && link.url.trim() !== '') {
+                    var icon = link.icon || 'fas fa-link';
+                    var platform = link.platform || '链接';
+                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+                    hasActiveLink = true;
+                }
+            }
+        } else {
+            html += '<span style="color:#666; font-size:0.8rem; font-style:italic;">待定</span>';
+        }
+        
         html += '</span>';
         html += '</div>';
+    }
+    
+    if (!hasActiveLink) {
+        showExternalModal('<div style="color:#888; text-align:center; padding:20px 0;">更多资讯正在准备中，敬请期待。</div>');
+        return;
     }
     showExternalModal(html);
 };
