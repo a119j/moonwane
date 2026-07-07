@@ -3724,13 +3724,13 @@ function applyChapterStatus(data) {
         html += '<span style="color:#e0e0e0; font-size:0.95rem; line-height:1.4;">' + displayText + '</span>';
         html += '<span style="display:flex; gap:12px; align-items:center; flex-shrink:0;">';
         
-        if (hasValidLink) {
+                if (hasValidLink) {
             for (var m = 0; m < links.length; m++) {
                 var link = links[m];
                 if (link.url && link.url.trim() !== '') {
                     var icon = link.icon || 'fas fa-link';
                     var platform = link.platform || '链接';
-                    html += '<a href="' + link.url + '" target="_blank" rel="noopener nohtml += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '" class="platform-icon-link" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';referrer" title="' + platform + '" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '" class="platform-icon-link" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
                     hasActiveLink = true;
                 }
             }
