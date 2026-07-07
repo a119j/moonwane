@@ -705,7 +705,32 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+         "externalLinks": [
+  {
+    "id": "W2-A",
+    "label": "第2周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/3227.html" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/dc5Ad_U59VfEbarz6hGEBw" }
+    ]
+  },
+  {
+    "id": "W2-VIS",
+    "label": "第2周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/ohwEL_nFvw9PwYI1gXTtTQ" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "P2",
+    "label": "人物肖像｜江远平",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/UM6guXFSsq0yX_tDEjzcqA" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -831,7 +856,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+         "externalLinks": [
+  {
+    "id": "W6-A",
+    "label": "第6周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W6-VIS",
+    "label": "第6周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA3",
+    "label": "其他信息",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -964,7 +1013,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+         "externalLinks": [
+  {
+    "id": "W4-A",
+    "label": "第4周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W4-VIS",
+    "label": "第4周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA1",
+    "label": "其他信息｜【待补充】",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -1104,7 +1177,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+              "externalLinks": [
+  {
+    "id": "W5-A",
+    "label": "第5周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W5-VIS",
+    "label": "第5周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA2",
+    "label": "其他信息｜【待补充】",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -1230,7 +1327,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+          "externalLinks": [
+  {
+    "id": "W6-A",
+    "label": "第6周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W6-VIS",
+    "label": "第6周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA3",
+    "label": "其他信息",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -1363,7 +1484,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+          "externalLinks": [
+  {
+    "id": "W7-A",
+    "label": "第7周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W7-VIS",
+    "label": "第7周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA4",
+    "label": "其他信息｜【待补充】",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -1489,7 +1634,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+           "externalLinks": [
+  {
+    "id": "W8-A",
+    "label": "第8周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W8-VIS",
+    "label": "第8周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA5",
+    "label": "其他信息｜【待补充】",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
@@ -1615,7 +1784,31 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": [],
+         "externalLinks": [
+  {
+    "id": "W9-A",
+    "label": "第9周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  },
+  {
+    "id": "W9-VIS",
+    "label": "第9周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "EXTRA6",
+    "label": "其他信息｜【待补充】",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": ""
         },
         {
