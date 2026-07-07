@@ -2076,36 +2076,47 @@ audio:hover, audio:active {
 .video-modal-link .platform-icons a .fa-weixin {
     color: #07C160 !important;
 }
-       /* ===== 平台图标颜色（覆盖默认样式） ===== */
-/* 针对 externalModal 弹窗 */
-#externalModalContent .platform-icons a i.fa-blog,
-#externalModal .video-modal-link .platform-icons a i.fa-blog {
-    color: #FF6B35 !important;  /* 文学城橙色 */
+               /* ===== 平台图标颜色（统一覆盖视频和资讯弹窗） ===== */
+.platform-icons a,
+#externalModalContent .platform-icons a,
+#videoModalContent .platform-icons a {
+    color: #aaa;
+    transition: color 0.2s ease;
 }
 
-#externalModalContent .platform-icons a i.fa-weixin,
-#externalModal .video-modal-link .platform-icons a i.fa-weixin {
-    color: #07C160 !important;  /* 微信绿 */
+.platform-icons a:hover,
+#externalModalContent .platform-icons a:hover {
+    color: #fff;
 }
 
-/* 针对 videoModal 弹窗 */
-.video-modal-link .platform-icons a i.fa-blog {
-    color: #FF6B35 !important;
-}
-.video-modal-link .platform-icons a i.fa-weixin {
-    color: #07C160 !important;
-}
-
-/* YouTube 红色 */
-#externalModalContent .platform-icons a i.fa-youtube,
-.video-modal-link .platform-icons a i.fa-youtube {
+/* 各平台颜色 */
+.platform-icons a[href*="youtube.com"] i,
+.platform-icons a[href*="youtu.be"] i,
+#externalModalContent .platform-icons a[href*="youtube"] i {
     color: #FF0000 !important;
 }
 
-/* B站 粉色 */
-#externalModalContent .platform-icons a i.fa-bilibili,
-.video-modal-link .platform-icons a i.fa-bilibili {
+.platform-icons a[href*="bilibili.com"] i,
+#externalModalContent .platform-icons a[href*="bilibili"] i {
     color: #00A1D6 !important;
+}
+
+.platform-icons a[href*="douyin.com"] i,
+.platform-icons a[href*="v.douyin.com"] i,
+#externalModalContent .platform-icons a[href*="douyin"] i {
+    color: #FF0050 !important;
+}
+
+/* 微信/公众号/视频号 */
+.platform-icons a .fa-weixin,
+#externalModalContent .platform-icons a .fa-weixin {
+    color: #07C160 !important;
+}
+
+/* 文学城 */
+.platform-icons a .fa-blog,
+#externalModalContent .platform-icons a .fa-blog {
+    color: #FF6B35 !important;
 }
  </style>
 </head>
@@ -3721,7 +3732,7 @@ function applyChapterStatus(data) {
                 if (link.url && link.url.trim() !== '') {
                     var icon = link.icon || 'fas fa-link';
                     var platform = link.platform || '链接';
-                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
+                    html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platfohtml += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" class="platform-icon-link" title="' + platform + '" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';rm + '" style="text-decoration:none; font-size:1.2rem;"><i class="' + icon + '"></i></a>';
                     hasActiveLink = true;
                 }
             }
