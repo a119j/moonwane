@@ -526,7 +526,32 @@
           "audioLinks": [],
           "videoLink": "",
           "videoLinks": [],
-          "externalLinks": "https://mp.weixin.qq.com/s/-bloH5WGvgcRlXUEfViEeg",
+         "externalLinks": [
+  {
+    "id": "W1-A",
+    "label": "第1周长文总结",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/1044.html" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/-bloH5WGvgcRlXUEfViEeg" }
+    ]
+  },
+  {
+    "id": "W1-VIS",
+    "label": "第1周图文总结",
+    "links": [
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/ORNqB1P2hG0FknW8q2PYkQ" },
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+    ]
+  },
+  {
+    "id": "P1",
+    "label": "人物肖像｜刘思恩",
+    "links": [
+      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+    ]
+  }
+],
           "externalreadLink": "/chapters/chapter-1-01.html"
         },
         {
