@@ -2076,20 +2076,27 @@ audio:hover, audio:active {
 .video-modal-link .platform-icons a .fa-weixin {
     color: #07C160 !important;
 }
-        /* 外部链接弹窗平台图标颜色 */
-#externalModal .platform-icons a .fa-blog {
-    color: #FF6B35 !important;  /* 文学城官方橙色 */
+        /* ===== 平台图标颜色（覆盖默认样式） ===== */
+#externalModalContent .platform-icons a i.fa-blog,
+.video-modal-link .platform-icons a i.fa-blog {
+    color: #FF6B35 !important;  /* 文学城橙色 */
 }
-#externalModal .platform-icons a .fa-weixin {
+
+#externalModalContent .platform-icons a i.fa-weixin,
+.video-modal-link .platform-icons a i.fa-weixin {
     color: #07C160 !important;  /* 微信绿 */
 }
 
-/* 同时支持 video-modal-link 中的文学城图标 */
-.video-modal-link .platform-icons a .fa-blog {
-    color: #FF6B35 !important;
+/* YouTube 红色 - 已在其他地方定义，这里保持一致性 */
+#externalModalContent .platform-icons a i.fa-youtube,
+.video-modal-link .platform-icons a i.fa-youtube {
+    color: #FF0000 !important;
 }
-.video-modal-link .platform-icons a .fa-weixin {
-    color: #07C160 !important;
+
+/* B站 粉色 */
+#externalModalContent .platform-icons a i.fa-bilibili,
+.video-modal-link .platform-icons a i.fa-bilibili {
+    color: #00A1D6 !important;
 }
  </style>
 </head>
