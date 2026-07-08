@@ -10,6 +10,11 @@
             "id": "wechatBtnPromo"
         },
         {
+            "icon": "fas fa-archway",
+            "text": "文学城",
+            "url": "https://blog.wenxuecity.com/myoverview/84058/"
+        },
+        {
             "icon": "fab fa-youtube",
             "text": "YouTube",
             "url": "https://www.youtube.com/@MoonwaneInk"
@@ -21,8 +26,8 @@
         }
     ]
   },
-    "weeklyVideo": {
-    "src": "https://youtu.be/gMvstd2ffow",
+  "weeklyVideo": {
+    "src": "https://www.youtube.com/watch?v=gMvstd2ffow",
     "title": "YouTube 本周推荐",
     "isNew": true,
     "badgeText": "🆕 本周",
@@ -32,7 +37,7 @@
     ]
   },
   "weeklyVideo2": {
-    "src": "https://www.bilibili.com/video/BV1XoMe66EVh/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0",
+    "src": "https://www.bilibili.com/video/BV1KdMx6gEmX/",
     "title": "B站 本周推荐",
     "isNew": true,
     "badgeText": "📢 NEW",
