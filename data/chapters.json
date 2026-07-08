@@ -35,7 +35,7 @@
     "id": "W1-A",
     "label": "第1周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/1044.html" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/1044.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/-bloH5WGvgcRlXUEfViEeg" }
     ]
   },
@@ -44,14 +44,14 @@
     "label": "第1周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/sLZQt3kTFibz2_ePTtPmKA" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
     "id": "P1",
     "label": "人物肖像｜刘思恩",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/BUpl5_T-USYQ5wiWghRTQw" }
     ]
   }
@@ -93,7 +93,7 @@
     "id": "W2-A",
     "label": "第2周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/3227.html" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/3227.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/dc5Ad_U59VfEbarz6hGEBw" }
     ]
   },
@@ -102,14 +102,14 @@
     "label": "第2周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/ohwEL_nFvw9PwYI1gXTtTQ" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
     "id": "P2",
     "label": "人物肖像｜江远平",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/UM6guXFSsq0yX_tDEjzcqA" }
     ]
   }
@@ -150,7 +150,7 @@
     "id": "W3-A",
     "label": "第3周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -159,14 +159,14 @@
     "label": "第3周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
     "id": "P3",
     "label": "人物肖像｜江若瑶",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/4680.html" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/4680.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/LIuMYd0vG9J78FzkkwDLQQ" }
     ]
   }
@@ -208,7 +208,7 @@
     "id": "W4-A",
     "label": "第4周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -217,7 +217,7 @@
     "label": "第4周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -264,7 +264,7 @@
     "id": "W5-A",
     "label": "第5周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -273,7 +273,7 @@
     "label": "第5周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -320,7 +320,7 @@
     "id": "W6-A",
     "label": "第6周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -329,7 +329,7 @@
     "label": "第6周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -376,7 +376,7 @@
     "id": "W7-A",
     "label": "第7周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -385,7 +385,7 @@
     "label": "第7周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -432,7 +432,7 @@
     "id": "W8-A",
     "label": "第8周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -441,7 +441,7 @@
     "label": "第8周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -487,7 +487,7 @@
     "id": "W9-A",
     "label": "第9周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -496,7 +496,7 @@
     "label": "第9周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -531,7 +531,7 @@
     "id": "W1-A",
     "label": "第1周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/1044.html" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/1044.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/-bloH5WGvgcRlXUEfViEeg" }
     ]
   },
@@ -540,14 +540,14 @@
     "label": "第1周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/ORNqB1P2hG0FknW8q2PYkQ" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
     "id": "P1",
     "label": "人物肖像｜刘思恩",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   }
@@ -710,7 +710,7 @@
     "id": "W2-A",
     "label": "第2周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "https://blog.wenxuecity.com/myblog/84058/202607/3227.html" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/3227.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/dc5Ad_U59VfEbarz6hGEBw" }
     ]
   },
@@ -719,14 +719,14 @@
     "label": "第2周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/ohwEL_nFvw9PwYI1gXTtTQ" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
     "id": "P2",
     "label": "人物肖像｜江远平",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/UM6guXFSsq0yX_tDEjzcqA" }
     ]
   }
@@ -861,7 +861,7 @@
     "id": "W6-A",
     "label": "第6周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -870,7 +870,7 @@
     "label": "第6周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1018,7 +1018,7 @@
     "id": "W4-A",
     "label": "第4周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1027,7 +1027,7 @@
     "label": "第4周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1182,7 +1182,7 @@
     "id": "W5-A",
     "label": "第5周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1191,7 +1191,7 @@
     "label": "第5周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1332,7 +1332,7 @@
     "id": "W6-A",
     "label": "第6周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1341,7 +1341,7 @@
     "label": "第6周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1489,7 +1489,7 @@
     "id": "W7-A",
     "label": "第7周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1498,7 +1498,7 @@
     "label": "第7周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1639,7 +1639,7 @@
     "id": "W8-A",
     "label": "第8周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1648,7 +1648,7 @@
     "label": "第8周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
@@ -1789,7 +1789,7 @@
     "id": "W9-A",
     "label": "第9周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
@@ -1798,7 +1798,7 @@
     "label": "第9周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
-      { "platform": "文学城", "icon": "fas fa-blog", "url": "" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
