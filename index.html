@@ -2982,7 +2982,11 @@ function generateVideoModalHtml(videosData) {
             for (var k = 0; k < links.length; k++) {
                 var link = links[k];
                 if (link.url && link.url.trim() !== '') {
-                    var icon = link.icon || 'fas fa-link';
+                    var icon = link.iconvar icon = link.icon || 'fas fa-link';
+// 文学城特殊处理：换成书本图标
+if (link.url && link.url.includes('wenxue')) {
+    icon = 'fas fa-book-open';
+} || 'fas fa-link';
                     var platform = link.platform || '链接';
                     html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '"><i class="' + icon + '"></i></a>';
                 }
