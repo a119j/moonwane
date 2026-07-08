@@ -3416,21 +3416,25 @@ fetch(evidenceUrl)
             });
             
             // 右上角菜单功能
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                menuDropdown.classList.toggle('active');
-                menuClickCount++;
-                if (menuClickTimer) {
-                    clearTimeout(menuClickTimer);
-                }
-                menuClickTimer = setTimeout(function() {
-                    menuClickCount = 0;
-                }, 4000);
-                if (menuClickCount >= 3) {
-                    archiveToast.classList.add('active');
-                    menuClickCount = 0;
-                }
-            });
+menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    menuDropdown.classList.toggle('active');
+    
+    // 只在非移动设备上触发存档提醒（屏幕宽度 > 768px）
+    if (window.innerWidth > 768) {
+        menuClickCount++;
+        if (menuClickTimer) {
+            clearTimeout(menuClickTimer);
+        }
+        menuClickTimer = setTimeout(function() {
+            menuClickCount = 0;
+        }, 4000);
+        if (menuClickCount >= 3) {
+            archiveToast.classList.add('active');
+            menuClickCount = 0;
+        }
+    }
+});
             document.addEventListener('click', function() {
                 menuDropdown.classList.remove('active');
             });
