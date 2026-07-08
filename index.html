@@ -2983,9 +2983,9 @@ function generateVideoModalHtml(videosData) {
                 var link = links[k];
                 if (link.url && link.url.trim() !== '') {
                     var icon = link.icon || 'fas fa-link';
-// 文学城特殊处理：换成书本图标
+// 文学城特殊处理：换成大门图标
 if (link.url && link.url.includes('wenxue')) {
-    icon = 'fas fa-book-open';
+    icon = 'fas fa-archway';
 }
                     var platform = link.platform || '链接';
                     html += '<a href="' + link.url + '" target="_blank" rel="noopener noreferrer" title="' + platform + '"><i class="' + icon + '"></i></a>';
