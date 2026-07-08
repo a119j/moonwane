@@ -3184,7 +3184,14 @@ function hideExternalModal() {
             const supportLink = document.querySelector('.support-link');
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwG07Yt5QMXsk5wvvnUsNcvMzG8XKgsUYnzd1F36ixiZvLU2-lNLz24v0km6aNU1oKk/exec';
             
-            const archiveToast = document.getElementById('archiveToast');
+          const archiveToast = document.getElementById('archiveToast');
+// 强制隐藏Wayback弹窗 - 手机端永不显示
+if (archiveToast) {
+    archiveToast.classList.remove('active');
+    if (window.innerWidth <= 768) {
+        archiveToast.style.display = 'none';
+    }
+}
             const toastClose = document.getElementById('toastClose');
             const remindLater = document.getElementById('remindLater');
             const evidenceSearch = document.getElementById('evidenceSearch');
