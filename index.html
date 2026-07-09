@@ -4204,6 +4204,10 @@ document.querySelectorAll('.drawer-close').forEach(function(btn) {
 function updateBodyScrollLock() {
     if (window.innerWidth > 768) return; // 仅移动端生效
     
+    // 检测微信浏览器 - 微信内置浏览器禁用滚动锁定，避免卡死
+    var isWechat = /MicroMessenger/i.test(navigator.userAgent);
+    if (isWechat) return;
+    
     // 直接使用已存在的变量，不再用 const 重复声明
     introDrawer = document.getElementById('introDrawer');
     chapterDrawer = document.getElementById('chapterContents');
