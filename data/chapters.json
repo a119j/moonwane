@@ -126,15 +126,15 @@
         "compilation": {
           "label": "第3周合集",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/z1JVWBnnQjo" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1BqNn6KEYU/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         "summary": {
           "label": "第3周总结",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url":" https://www.youtube.com/shorts/Z3nQ8_Eaxd4" },
+            { "platform": "视频号", "icon": "fab fa-weixin", "url": "https://weixin.qq.com/sph/Aw3KcoyDs" }
           ]
         },
         "review": {
@@ -151,14 +151,14 @@
     "label": "第3周长文总结",
     "links": [
       { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/tBXeztqBFlrgd8_36L-xpA" }
     ]
   },
   {
     "id": "W3-VIS",
     "label": "第3周图文总结",
     "links": [
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/dq8fcwPXUHwmEVsfy7K3Kg" },
       { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
