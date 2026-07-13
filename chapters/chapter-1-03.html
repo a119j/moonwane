@@ -366,84 +366,93 @@
         }
         
         /* ========== 手动深色模式样式 ========== */
-        body.dark-mode {
-            background-color: #1e1e2e;
-            color: #d1d5db;
-        }
-        body.dark-mode .chapter-title,
-        body.dark-mode .section-title,
-        body.dark-mode .chapter-content strong {
-            color: #f0f0f0;
-        }
-        body.dark-mode .chapter-title[style*="color"] {
-            color: #f0f0f0 !important;
-        }
-        body.dark-mode .chapter-subtitle {
-            color: #9ca3af;
-            border-bottom-color: #374151;
-        }
-        body.dark-mode .section-epigraph {
-            color: #9ca3af;
-            border-left-color: #60a5fa;
-        }
-        body.dark-mode .chapter-content,
-        body.dark-mode .chapter-content p {
-            color: #d1d5db;
-        }
-        body.dark-mode .chapter-content p:last-of-type span:first-child {
-            color: #fbbf24 !important;
-        }
-        body.dark-mode .chapter-content p:last-of-type span:last-child {
-            color: #9ca3af !important;
-        }
-        body.dark-mode .chapter-navigation {
-            border-color: #374151;
-        }
-        body.dark-mode .nav-link {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
-            border-color: rgba(96, 165, 250, 0.2);
-        }
-        body.dark-mode .nav-link:hover {
-            background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
-        }
-        body.dark-mode .nav-link.disabled {
-            color: #9ca3af !important;
-            background: rgba(156, 163, 175, 0.1);
-            border-color: rgba(156, 163, 175, 0.2);
-        }
-        body.dark-mode .nav-center {
-            color: #9ca3af;
-        }
-        body.dark-mode .nav-center a {
-            color: #60a5fa;
-        }
-        body.dark-mode .back-home a {
-            color: #6b7280;
-        }
-        body.dark-mode .back-home a:hover {
-            color: #60a5fa;
-        }
-        body.dark-mode #reading-progress {
-            background: #60a5fa;
-        }
-        body.dark-mode #back-to-top {
-            background: rgba(96, 165, 250, 0.9);
-        }
-        body.dark-mode #back-to-top:hover {
-            background: #60a5fa;
-        }
-        body.dark-mode .theme-toggle {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
-            border-color: rgba(96, 165, 250, 0.2);
-        }
-                body.dark-mode .theme-toggle:hover {
-            background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
-        }
-        body.dark-mode .section-tip {
+body.dark-mode {
+    background-color: #1e1e2e;
+    color: #d1d5db;
+}
+body.dark-mode .chapter-title,
+body.dark-mode .section-title,
+body.dark-mode .chapter-content strong {
+    color: #f0f0f0;
+}
+body.dark-mode .chapter-title[style*="color"] {
+    color: #f0f0f0 !important;
+}
+body.dark-mode .chapter-subtitle {
+    color: #9ca3af;
+    border-bottom-color: #374151;
+}
+body.dark-mode .section-epigraph {
+    color: #9ca3af;
+    border-left-color: #60a5fa;
+}
+body.dark-mode .chapter-content,
+body.dark-mode .chapter-content p {
+    color: #d1d5db;
+}
+body.dark-mode .chapter-content p:last-of-type span:first-child {
+    color: #fbbf24 !important;
+}
+body.dark-mode .chapter-content p:last-of-type span:last-child {
+    color: #9ca3af !important;
+}
+body.dark-mode .chapter-navigation {
+    border-color: #374151;
+}
+body.dark-mode .nav-link {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.2);
+}
+body.dark-mode .nav-link:hover {
+    background: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+body.dark-mode .nav-link.disabled {
+    color: #9ca3af !important;
+    background: rgba(156, 163, 175, 0.1);
+    border-color: rgba(156, 163, 175, 0.2);
+}
+body.dark-mode .nav-center {
+    color: #9ca3af;
+}
+body.dark-mode .nav-center a {
+    color: #60a5fa;
+}
+body.dark-mode .back-home a {
+    color: #6b7280;
+}
+body.dark-mode .back-home a:hover {
+    color: #60a5fa;
+}
+body.dark-mode #reading-progress {
+    background: #60a5fa;
+}
+body.dark-mode #back-to-top {
+    background: rgba(96, 165, 250, 0.9);
+}
+body.dark-mode #back-to-top:hover {
+    background: #60a5fa;
+}
+body.dark-mode .theme-toggle {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.2);
+}
+body.dark-mode .theme-toggle:hover {
+    background: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+body.dark-mode .section-tip {
+    color: #fbbf24 !important;
+}
+/* 预览文字深色模式适配 */
+body.dark-mode .preview-text {
+    color: #d1d5db !important;
+}
+
+/* ========== 移动端细化 ========== */
+dark-mode .section-tip {
             color: #fbbf24 !important;
         }
         
@@ -677,7 +686,7 @@ body.dark-mode .theme-toggle i {
 </p>
 
  <!-- 预览文字（作为普通段落，左对齐） -->
-<p style="text-align: left; color: #2c3e50; line-height: 1.8; margin-top: 6px;">
+<p class="preview-text" style="text-align: left; color: #2c3e50; line-height: 1.8; margin-top: 6px;">
 索赔两百万加元的律师函几乎把他们压扁，公司保险迟迟不给答复。<br>
 胸口的惶恐从颈项潜入骨髓，冰冷刺骨，窒息感直冲肺腑。<br>
 站在悬崖边，<br>
