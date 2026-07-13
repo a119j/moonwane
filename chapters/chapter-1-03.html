@@ -670,14 +670,20 @@ body.dark-mode .theme-toggle i {
 她只能点头，又摇头，都极轻、极轻。<br>
 胸口那颗狂跳不安的心，一直往下沉。<br>
 没有尽头。
+</p> 
+<!-- 未完待续提示 -->
+<p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+ <span class="section-tip" style="font-weight: 600;">（未完待续）</span>
 </p>
-            
-            <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
-    <span class="section-tip" style="font-weight: 600;">（未完待续）</span>
+
+ <!-- 预览文字（作为普通段落，左对齐） -->
+<p style="text-align: left; color: #2c3e50; line-height: 1.8; margin-top: 6px;">
+索赔两百万加元的律师函几乎把他们压扁，公司保险迟迟不给答复。<br>
+胸口的惶恐从颈项潜入骨髓，冰冷刺骨，窒息感直冲肺腑。<br>
+站在悬崖边，<br>
+下一秒随时可能被未知风暴卷走，<br>
+葬身谷底。
 </p>
-            
-            <p>索赔两百万加元的律师函几乎把他们压扁，公司保险迟迟不给答复。胸口的惶恐从颈项潜入骨髓，冰冷刺骨，窒息感直冲肺腑。站在悬崖边，下一秒随时可能被未知风暴卷走，葬身谷底。</p>
-            
             <!-- 读者致谢部分（完全保留03内容） -->
             <div class="reader-note">
                 <p>📢 <strong>致读者：</strong></p>
@@ -803,48 +809,39 @@ body.dark-mode .theme-toggle i {
         });
     });
 
-    // ========== 根据 button-status.json 控制“下一章”链接 ==========
-    // 本页面是第一章第三节，下一章指向第二章第一节（2-01）
-    fetch('/data/button-status.json')
-        .then(response => response.json())
-        .then(data => {
-            // 查找第二章（2-01）的状态
-            const chapter2 = data.chapters.find(item => item.chapterId === '2-01');
-            // 获取“下一章”链接（使用精确的 href 匹配，避免误选）
-            const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-2-01.html"]');
-            if (!nextLink) return;
+    // 根据 button-status.json 控制"下一章"链接
+fetch('/data/button-status.json')
+    .then(response => response.json())
+    .then(data => {
+        const chapter2 = data.chapters.find(item => item.chapterId === '2-01');
+        const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-2-01.html"]');
+        if (!nextLink) return;
 
-            if (chapter2 && chapter2.readLink) {
-                // 第二章已开放：确保链接正常（移除可能添加的禁用标记）
-                nextLink.classList.remove('disabled');
-                nextLink.style.pointerEvents = '';
-                nextLink.style.opacity = '';
-                nextLink.style.cursor = '';
-                nextLink.href = '/chapters/chapter-2-01.html'; // 确保地址正确
-                nextLink.title = '';
-                // 移除自定义点击事件（克隆替换，彻底清除）
-                const newLink = nextLink.cloneNode(true);
-                nextLink.parentNode.replaceChild(newLink, nextLink);
-                        } else {
-                // 第二章未开放：禁用链接（不使用 disabled 类，因为该类包含 pointer-events: none）
-                // 手动设置灰色样式（与 .disabled 类一致，但去掉 pointer-events）
-                nextLink.style.color = '#888';
-                nextLink.style.backgroundColor = 'rgba(128,128,128,0.1)';
-                nextLink.style.border = '1px solid rgba(128,128,128,0.2)';
-                nextLink.style.opacity = '0.5';
-                nextLink.style.cursor = 'default';
-                nextLink.href = 'javascript:void(0)';
-                nextLink.title = ''即将上线';
-                // 绑定点击事件
-                nextLink.onclick = function(e) {
-                    e.preventDefault();
-                    alert('第2章下周上线，谢谢。');
-                };
-            }
-        })
-        .catch(err => {
-            console.error('加载 button-status.json 失败，不影响导航', err);
-        });
+        if (chapter2 && chapter2.readLink) {
+            nextLink.classList.remove('disabled');
+            nextLink.style.pointerEvents = '';
+            nextLink.style.opacity = '';
+            nextLink.style.cursor = '';
+            nextLink.href = '/chapters/chapter-2-01.html';
+            nextLink.title = '';
+            // 删除克隆替换逻辑
+        } else {
+            nextLink.style.color = '#888';
+            nextLink.style.backgroundColor = 'rgba(128,128,128,0.1)';
+            nextLink.style.border = '1px solid rgba(128,128,128,0.2)';
+            nextLink.style.opacity = '0.5';
+            nextLink.style.cursor = 'default';
+            nextLink.href = 'javascript:void(0)';
+            nextLink.title = '即将上线';   // ← 修复语法错误
+            nextLink.onclick = function(e) {
+                e.preventDefault();
+                alert('第2章下周上线，谢谢。');
+            };
+        }
+    })
+    .catch(err => {
+        console.error('加载 button-status.json 失败，不影响导航', err);
+    });
 })();
 </script>
         </body>
