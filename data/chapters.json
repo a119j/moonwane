@@ -150,7 +150,7 @@
     "id": "W3-A",
     "label": "第3周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/8449.html" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/tBXeztqBFlrgd8_36L-xpA" }
     ]
   },
@@ -159,7 +159,7 @@
     "label": "第3周图文总结",
     "links": [
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/dq8fcwPXUHwmEVsfy7K3Kg" },
-      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202607/8449.html" }
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
   {
