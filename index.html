@@ -2387,7 +2387,41 @@ audio:hover, audio:active {
 .platform-icon-link i.fa-archway { 
     color: #008C45 !important;     /* 文学城品牌深绿色，更匹配官方标识 */
 }
+        /* 文学城按钮颜色 - 根据官方标识调整为品牌绿色 */
+#externalModalContent .platform-icons a i.fa-archway, 
+#externalModalContent .platform-icons a[href*="wenxue"] i, 
+.video-modal-link .platform-icons a i.fa-archway, 
+.platform-icon-link i.fa-archway { 
+    color: #008C45 !important;     /* 文学城品牌深绿色，更匹配官方标识 */
+}
+/* ===== 终极强制：每周按钮平台图标颜色 ===== */
+#weeklySection #weeklyVideoLinks a[href*="youtube"] i,
+#weeklySection #weeklyVideoLinks2 a[href*="youtube"] i {
+    color: #FF0000 !important;
+}
+#weeklySection #weeklyVideoLinks a[href*="bilibili"] i,
+#weeklySection #weeklyVideoLinks2 a[href*="bilibili"] i {
+    color: #00A1D6 !important;
+}
+#weeklySection #weeklyVideoLinks2 a[href*="douyin"] i {
+    color: #00A1D6 !important;
+}
 
+/* ===== 按钮文字保持蓝色 ===== */
+#weeklySection #weeklyVideoLinks a,
+#weeklySection #weeklyVideoLinks2 a {
+    color: #7bc8f8 !important;
+}
+
+#weeklySection #weeklyVideoLinks a:hover,
+#weeklySection #weeklyVideoLinks2 a:hover {
+    color: #ffffff !important;
+}
+/* ===== 抖音图标 - 强制红色（放在最后防止被覆盖） ===== */
+#weeklySection #weeklyVideoLinks2 a[href*="douyin"] i,
+#weeklySection #weeklyVideoLinks2 a[href*="v.douyin"] i {
+    color: #FF0050 !important;
+}
  </style>
 </head>
 <body>
