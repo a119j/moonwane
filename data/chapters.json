@@ -184,15 +184,15 @@
         "compilation": {
           "label": "第4周合集",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/e8m12HJJtmg" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1JnNZ6kEtf/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         "summary": {
           "label": "第4周总结",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/rJLbBPNnEIE" },
+            { "platform": "视频号", "icon": "fab fa-weixin", "url": "https://weixin.qq.com/sph/APQvby9Hn" }
           ]
         },
         "review": {
