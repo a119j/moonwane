@@ -798,8 +798,12 @@ body.dark-mode .chapter-notes strong {
         });
     });
 
-
 })();
+           // 下一章点击拦截（保留蓝色，防止404）
+        document.querySelector('.chapter-navigation a[href="/chapters/chapter-12-1-01.html"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('第12章（上/中/下）下周上线，谢谢。');
+        });     
 </script>
 </body>
 </html>
