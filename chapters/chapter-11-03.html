@@ -293,9 +293,13 @@ text-align: left;          /* ← 加这一行，确保正文左对齐 */
         }
         
         .back-home {
-            text-align: center;
-            margin-top: 30px;
-        }
+    text-align: center;
+    margin-top: 30px;
+    display: block !important;
+    clear: both !important;
+    width: 100% !important;
+    flex: 0 0 100% !important;
+}
         
         .back-home a {
             color: var(--back-home-color);
