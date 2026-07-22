@@ -798,48 +798,7 @@ body.dark-mode .chapter-notes strong {
         });
     });
 
-    // ========== 根据 button-status.json 控制“下一章”链接 ==========
-    // 本页面是第十一章第三节，下一章指向第十二章上第一节（12-1-01）
-    fetch('/data/button-status.json')
-        .then(response => response.json())
-        .then(data => {
-            // 查找第十二章上第一节（12-1-01）的状态
-            const chapter12 = data.chapters.find(item => item.chapterId === '12-1-01');
-            // 获取“下一章”链接（使用精确的 href 匹配，避免误选）
-            const nextLink = document.querySelector('.chapter-navigation a[href="/chapters/chapter-12-1-01.html"]');
-            if (!nextLink) return;
 
-            if (chapter12 && chapter12.readLink) {
-                // 第十二章上第一节已开放：确保链接正常（移除可能添加的禁用标记）
-                nextLink.classList.remove('disabled');
-                nextLink.style.pointerEvents = '';
-                nextLink.style.opacity = '';
-                nextLink.style.cursor = '';
-                nextLink.href = '/chapters/chapter-12-1-01.html'; // 确保地址正确
-                nextLink.title = '';
-                // 移除自定义点击事件（克隆替换，彻底清除）
-                const newLink = nextLink.cloneNode(true);
-                nextLink.parentNode.replaceChild(newLink, nextLink);
-                        } else {
-                // 第十二章未开放：禁用链接（不使用 disabled 类，因为该类包含 pointer-events: none）
-                // 手动设置灰色样式（与 .disabled 类一致，但去掉 pointer-events）
-                   // nextLink.style.color = '#888';
-                // nextLink.style.backgroundColor = 'rgba(128,128,128,0.1)';
-               // nextLink.style.border = '1px solid rgba(128,128,128,0.2)';
-                nextLink.style.opacity = '0.5';
-                nextLink.style.cursor = 'default';
-                nextLink.href = 'javascript:void(0)';
-                nextLink.title = '即将上线';
-                // 绑定点击事件
-                nextLink.onclick = function(e) {
-                    e.preventDefault();
-                    alert('第12章（上/中/下）下周上线，谢谢。'); 
-                };
-            }
-        })
-        .catch(err => {
-            console.error('加载 button-status.json 失败，不影响导航', err);
-        });
 })();
 </script>
 </body>
