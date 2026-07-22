@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>第十章(下 ) 第二节：真相与证据的深渊：系统不接纳的事实 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+    font-size: 18px;
+    line-height: 1.88;
+    letter-spacing: 0.36px;
+    color: var(--text-color);
+    margin-bottom: 60px;
+    hyphens: auto;
+    text-align: left;          /* 修正拼写 */
+}
+
+.chapter-content p {
+    margin: 0 0 1.68em;
+    text-indent: 2em;
+    color: var(--text-color);
+    text-align: left;          /* 修正拼写 */
+}
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* ========== 手动深色模式样式 ========== */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* ========== 移动端细化 ========== */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+        }
+/* 浅色模式：按钮背景加深，灯泡白色发光 */
+body:not(.dark-mode) .theme-toggle {
+    background: rgba(30, 100, 200, 0.4) !important;   /* 加深背景，增强对比 */
+    border-color: rgba(30, 100, 200, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);        /* 轻微外阴影 */
+}
+
+body:not(.dark-mode) .theme-toggle i {
+    color: #ffffff;
+    text-shadow: 
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 24px rgba(255, 255, 255, 0.8),
+        0 0 36px rgba(255, 255, 255, 0.6);            /* 三层光晕，柔和明亮 */
+}
+
+/* 深色模式：灯泡橙色发光（覆盖原有蓝色） */
+body.dark-mode .theme-toggle i {
+    color: #f39c12;
+    text-shadow: 
+        0 0 8px #f39c12,
+        0 0 16px #f39c12,
+        0 0 24px #f39c12;                              /* 橙色光晕，温暖柔和 */
+}
+
+/* 悬停效果（通用） */
+.theme-toggle:hover i {
+    filter: brightness(1.2);
+}
+.section-tip {
+    color: var(--next-section-blue) !important;
+}
+body.dark-mode .section-tip {
+    color: #fbbf24 !important;
+}
+.reader-note {
+    margin: 50px 0 30px;
+    padding: 30px;
+    background: #e8f0da;
+    border-radius: 8px;
+    border-left: 4px solid var(--link-color);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.reader-note p {
+    text-indent: 0 !important;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.reader-note a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--link-color);
+}
+
+.reader-note a:hover {
+    border-bottom: 1px solid var(--link-color);
+}
+
+body.dark-mode .reader-note {
+    background: #2a2a3a;
+    color: #d1d5db;
+    border-left-color: #60a5fa;
+}
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <div class="chapter-cover">
+            <img src="/pictures/cover-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+</div>
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第十章（下）</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">穿越时空，剥茧自证的荆棘</h2>
+           <!-- 顶部按钮（位于 chapter-info 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            <div class="chapter-subtitle">—— 0.167秒的黑烟，挡在专家墙之外</div>
+        </div>
+        
+        <div class="chapter-content" role="main">
+            <div class="section-title">第二节 真相与证据的深渊：系统不接纳的事实</div>
+            <div class="section-epigraph">—— 事实明明存在，却无法成为"证据"</div>
+            
+            <p><strong>专家之墙</strong></p>
+            
+            <p>刘思恩按下发送键。<br>黄昏透过书房窗户，光线被切成明暗交错的条纹。</p>
+            <p>证据包里塞满了内容：
+            <br>"轮胎裂口十倍放大图，钢丝断口清晰；
+            <br>"黑烟逐帧分解，每一帧标注时间；
+            <br>"2011年，美国NHTSA报告，匿名佛罗里达爆胎案。</p>
+            <p>刘思恩朝着厨房的丈夫大声喊："专家会给我们答案的。"</p>
+            <p>厨房里的锅铲声停了一瞬。</p>
+            <p>哪知道答案，却早在专家的墙上写好：NO。</p>
+            <p>第一位北美轮胎学会资深会员回复：<br>"没有轮胎实体，无法进行断口金相、剪切角或热损伤分析。<br>任何关于'内爆'或'外刺'的结论均属推测，不具备法庭科学效力。"</p>
+            <p>第二位工程师更直接：<br>"照片不能替代显微镜，无法出具报告。"</p>
+            <p>专家们甚至互相否定、拆解对方观点。</p>
+            <p>退休警官电话里说：<br>"黑烟顺序就是铁证：胎压先没，黑烟后喷，符合单侧急速失压特征。"</p>
+            <p>影像专家迅速反驳：<br>"行车记录仪是24 fps、480p、被强压缩的视频，<br>那0.1倍速下的'黑烟'，大概率是H.264块效应与运动模糊的视觉伪像。<br>地面影子形变可从镜头畸变或光线折射来解释。"</p>
+            <p>同一秒画面被拆成两个结论：<br>一个说"爆胎"，<br>一个说"幻觉"。</p>
+          <p>刘思恩盯着屏幕上专家们一条条回复，呼吸渐渐沉重。<br>胸口发闷，指尖一点点失去温度。</p>
+            <p>专家不是在看证据，他们在守各自的墙：<br>轮胎专家的墙——"没有实体"；<br>影像专家的墙——"像素不足"。</p>
+            <p>每个人都扔出"不可靠","无法排除合理怀疑"的砖，<br>真相被拆成碎片，没有人愿意拼起来。</p>
+            <p>但她知道，即便全世界专家都摇头，<br>那0.167秒的黑烟仍然存在，<br>躺在硬盘里，等着被再次唤醒。</p>
+            
+            <p><strong>律师的转向</strong></p>
+            
+            <p>Patrick第一次看到0.167秒黑烟录像时，几乎从椅子上弹起来。<br>"再放一遍。"<br>他的脸几乎贴到镜头上，手伸向显示器，想抓住那团黑烟。<br>"如果这真是爆胎，整个案子就要推倒重来。"</p>
+            <p>但当专家报告接连到手，他的火焰便被浇灭。</p>
+            <p>视频会议里，四份报告整齐排开，沉默地占满屏幕。<br>“胎压、轮速、照片，全是间接证据。那段录像……”</p>
+            <p> 他停了一下。<br> 会议室里一片安静。</p>
+              <p>“就像让医生隔着磨砂玻璃看一张X光片。”</p>
+<p>“我理解专家的立场。在司法系统里，面对无法完全确认的证据，谨慎往往是最安全的选择。”</p>
+            <p>他的手指敲击实木桌面。<br>咚、咚、咚。节奏砸在他们胸口上。<br>"谨慎，就是站在警方那边。"</p>
+            <p>光标在记录上滑动：<br>"数据流动不等于主动使用，这点我同意。<br>"但陪审团不会听技术细节。<br>"检察官只要说一句：'他可能在看孩子照片，也可能在刷社交媒体。'就够了。"</p>
+            <p>江远平猛地打断，声音硬挤出来：<br>"我根本没碰手机！"</p>
+            <p>Patrick眼神瞬间冷下，切断了眼中的光源：<br>"那就证明它。<br>证明那六秒、那两分钟，<br>你的手指，离屏幕十万八千里。<br>你的眼睛，一秒都没离开路面。"</p>
+            
+            <p><strong>自证无罪的悖论</strong></p>
+            
+            <p>他目光穿过屏幕，死死盯着江远平。<br>"最致命的是，你那最后两到三秒的记忆空白。<br>在陪审团眼里，这比任何物证都更有说服力。<br>他们会认为你在逃避。"</p>
+            <p>刘思恩的神经绷成一条铁丝。<br>空气沉得发实，一寸寸压进胸腔，呼吸只剩薄薄一层。</p>
+            <p>Patrick声音低沉而坚定：<br>"光证明警方错了，远远不够。<br>你们得给法庭一个全新的故事，<br>一个他们能听懂、信得过、带得走的故事。"</p>
+            <p>他伸出手指，在空中一帧一帧点着：<br>"你们要让他们看见：<br>那0.167秒里，<br>轮胎怎么炸，<br>车怎么被拽走，<br>驾驶座上的人为什么不可能有反应。"</p>
+            <p>停顿两秒，每个字再次落下，极重。<br>"司法系统写着'谁主张，谁举证'，<br>但这个案子，<br>你们得自证无罪。"</p>
+            <p>窗口右上角时间跳到晚上九点整。<br>Patrick轻轻叹气，短促而干脆：<br>"给我一个陪审团能带回家的故事，<br>我才能带你，回家。"</p>
+            <p>屏幕闪了一下，会议结束。<br>房间陷入黑暗。<br>电脑风扇嗡嗡转动，计数着剩下多少时间去找到一个能让陪审团相信的叙事。</p>
+            <p>"自证无罪？"</p>
+            <p>刘思恩低声重复，舌尖含着四个字。<br>她坐在黑暗里，手指几乎把鼠标捏碎，掌心温度瞬间消失。</p>
+
+ <p><strong>你怎么证明？</strong></p>
+            
+            <p>刘思恩盯着黑掉的屏幕，Patrick的声音仍在脑中响起：<br>"想象你在雪地行走。<br>回头看见自己的脚印，确信那是你走过的路。<br>可现在有人说：<br>'证明这些脚印是你留下的，而且你全程都在正常走路。'<br>你怎么证明？"</p>
+            <p>她的声音低到几乎听不见，气流在喉咙里磨得发疼：</p>
+            <p>"你怎么证明？"</p>
+            <p>证明那六秒没碰手机？<br>证明那0.167秒是轮胎自己炸的？<br>证明那三秒记忆黑屏不是心虚，而是大脑直接格式化？</p>
+            <p>还是，<br>让电信公司为六秒的数据流作证？<br>让消失的轮胎开口说话？<br>或者在他脑子里也装一个行车记录仪？"</p>
+            <p>没人回答。</p>
+            <p>卧室传来女儿均匀的呼吸，<br>厨房传来丈夫准备明天早餐的声响。<br>那些声音都真实存在，却隔着无法触及的距离。</p>
+            <p>怎么证明，他就是他？<br>每天六点起床做早餐、六点半出门上班、陪女儿打羽毛球、帮邻居修锅炉；<br>而不是档案里的编号，"涉嫌危险驾驶"的江远平？</p>
+            <p>"你怎么证明？"</p>
+            <p>这五个字像一道无形的阴影，<br>潜伏在每一次陌生来电里，让人条件反射般以为是警方；<br>潜伏在女儿一句"爸爸，周六能带我们出去吗？"那句问话里；<br>潜伏在朋友聚会的笑声中，<br>他低头，避开目光，随口说："车坏了。"</p>
+            <p>他还能如何证明 ——</p>
+            <p>"我就是我？"</p>
+            <p>女儿昨晚问："爸爸，什么时候能带我去湖边？"</p>
+            <p>脚印正在被新雪覆盖。<br>连他最亲近的人，都快隔着这场事故重新认识他。 </p>
+            <p>所有证据存在着，却触不可及。</p>
+            <p>雪仍在下，雪地无边延伸。</p>
+
+  
+            <!-- 未完待续提示 -->
+            <p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+                <span class="section-tip" style="font-weight: 600;">（未完待续）</span>
+            </p>
+            
+            <!-- 预览文字（作为普通段落） -->
+            <p>就在他们深陷自证无罪困境时，一封来自Patrick助理的邮件弹出。<br>只有短短一行字。</p>
+            <p>他们再一次被猛然抛进法律暗流 ——<br>前方迷雾重重，无岸；身后鬼影森森，无路。</p>
+            
+              <!-- 读者致谢部分 -->
+            <div class="reader-note">
+                <p>📢 <strong>致读者：</strong></p>
+                <p>本作品所涉及的技术细节，已在官方作品站留存备查（证据库）：<br>
+                <a href="https://www.moonwane.ink" target="_blank">https://www.moonwane.ink</a></p>
+                <p>写作过程记录与交流，请关注微信公众号：<strong>墨染月光</strong><br>
+                或通过邮件联系：<a href="mailto:author@moonwane.ink">author@moonwane.ink</a></p>
+                <p>本作品基于真实经历与公开资料创作，所有细节均已做必要匿名处理。</p>
+            </div>
+        </div>
+        
+        <div class="chapter-navigation">
+            <a href="/chapters/chapter-10-2-02.html" class="nav-link">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#open-chapters">📖 目录</a>
+               <!-- 底部按钮（位于 nav-center 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            </span>
+            <a href="/chapters/chapter-11-01.html" class="nav-link">下一章 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+    themeToggles.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = 'fas fa-lightbulb';   // 固定为实心灯泡
+        }
+    });
+}
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
