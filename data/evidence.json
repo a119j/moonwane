@@ -86,15 +86,15 @@
         {
           "label": "同一场车祸，不同的叙事",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/2LJ2IQolMQo" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1PZ3c6kEo7/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         {
           "label": "胎洞被发现之前，结论已经写好了",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/Ba3aWij6_Lc" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV15S3z6aETJ/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         {
