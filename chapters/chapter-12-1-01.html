@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>第十二章(上）) 第一节：'无意之恶'的报告 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Font Awesome 图标库 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.88;
+            letter-spacing: 0.36px;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            hyphens: auto;
+text-align: left;          /* ← 加这一行，确保正文左对齐 */
+        }
+        
+        .chapter-content p {
+            margin: 0 0 1.68em;
+            text-indent: 2em;
+  text-align: left;          /* ← 加这一行，确保正文左对齐 */          color: var(--text-color);
+
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* ========== 手动深色模式样式 ========== */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* ========== 移动端细化 ========== */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+        }
+/* 浅色模式：按钮背景加深，灯泡白色发光 */
+body:not(.dark-mode) .theme-toggle {
+    background: rgba(30, 100, 200, 0.4) !important;   /* 加深背景，增强对比 */
+    border-color: rgba(30, 100, 200, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);        /* 轻微外阴影 */
+}
+
+body:not(.dark-mode) .theme-toggle i {
+    color: #ffffff;
+    text-shadow: 
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 24px rgba(255, 255, 255, 0.8),
+        0 0 36px rgba(255, 255, 255, 0.6);            /* 三层光晕，柔和明亮 */
+}
+
+/* 深色模式：灯泡橙色发光（覆盖原有蓝色） */
+body.dark-mode .theme-toggle i {
+    color: #f39c12;
+    text-shadow: 
+        0 0 8px #f39c12,
+        0 0 16px #f39c12,
+        0 0 24px #f39c12;                              /* 橙色光晕，温暖柔和 */
+}
+
+/* 悬停效果（通用） */
+.theme-toggle:hover i {
+    filter: brightness(1.2);
+}
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <div class="chapter-cover">
+            <img src="/pictures/cover-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+</div>
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第十二章（上）</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">盲转齿轮：罪证靶环的绘制</h2>
+            <!-- 顶部按钮（位于 chapter-info 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            <div class="chapter-subtitle">—— 闭环如何形成的真相</div>
+        </div>
+        
+        <div class="chapter-content" role="main">
+            <div class="section-title">第一节 '无意之恶'的报告</div>
+            <div class="section-epigraph">——刹车疑云与分心驾驶的依据</div>
+            
+            <p><strong>刹车疑云</strong></p>
+            
+            <p>屏幕透着老旧钟盘的哑光。<br>Zoom法庭审界面迅速打开，头像方格安静排列，页面纹理与缝隙一览无余。</p>
+            <p>2022年1月一个星期四，拖延四年的车祸案预审听证会，在线上滴答启动。<br>检察官的窗口占据中心，头像明亮，展示着不容置疑的官方权威；<br>律师Roderick的窗口暗半度，是探入机芯的校表工具，泛着幽幽冷光。</p>
+            <p>负责事故重建的侦探Kenneth出现在屏幕右上角，高挑、白人，身影在延迟中轻微抖动，动作不够连贯，发丝也被卡成断续的轨迹。</p>
+            <p> 刘思恩盯着他，无法将这张年轻的面孔，与那份把丈夫江远平钉在"罪犯"位置上的权威报告联系起来。  </p>
+            <p>  而那份报告，是建立在一条被刻意拨乱的时间线上。 </p>
+            <p>律师 Roderick的声音开始切入，节奏均匀，毫无波动，每个停顿都紧贴着他心里那套固定的节拍。</p>
+            <p>"基于你的调查，你是否认为司机在碰撞发生前，踩了刹车？"</p>
+            <p>短暂延迟后，侦探Kenneth开口，声音先在喉间蹭出一阵干涩的摩擦，然后才被逼出来。<br>"是。根据车辆最终状态分析，碰撞前一刻很可能踩了刹车。"</p>
+            <p>这第一声回答，就指向了报告里一个错误的刻度。</p>
+            <p>刘思恩瞥向身旁的江远平，屏幕的荧光在他脸上投下坚硬的线条，放在桌下的手纹丝不动，只有指关节处微微泛白 。</p>
+            <p>他们都清楚记得警方报告第17页的那行字：</p>
+            <p>"现场路面未发现任何刹车痕迹。"</p>
+            <p>而此刻的证词，是在试图用新的指针覆盖原始的铭文。</p>
+            <p>Roderick的声音平直向前，每一拍都踩得极准，读秒一样往前推进。<br>"为什么正式报告里，从未提及司机尝试刹车的任何可能性？"</p>
+            <p>Kenneth微微侧了一下身体，刻意避开镜头，<br>摄像头跟着轻轻一晃，画面头像松动了一瞬。<br>"因为......当时不确定。我不想把可能误导读者的推测写进报告。"</p>
+            <p>"推测？"Roderick低声重复，在辨认一个模糊的齿痕是否真的存在。<br>"写报告时，你不确定，所以选择省略。<br>今天，在法庭上，在宣誓之下，你就确定了？"</p>
+            <p>Kenneth抬起眼，瞳孔微微一缩，一枚咬合已久的齿轮，忽然轻轻松动了一格。<br>在三秒的沉默里，只有麦克风捕捉到他轻微的呼吸声。<br>然后，他缓缓说道：<br>"作证时，我感觉......更自由些。"</p>
+            <p>"更自由些？"</p>
+            <p>这四个字一经脱轨，内部接连的滑珠开始乱跳，原本精密运转的平衡，瞬间被打破。</p>
+            <p>Roderick的嘴角轻轻一跳，校表仪上跃过一道微脉冲，短促、干净、精准。<br>"自由到可以说出报告里没有写的......线索？"</p>
+            <p>检察官插话："证人无需回答非技术细节。"</p>
+            <p>刘思恩死死盯住那张年轻的面孔，试图辨清他那里，是哪个零件出了故障。</p>
+            <p>江远平的手在桌下缓缓松开，指节留下四道浅浅压痕。<br>屏幕光落在脸上，层层铺开。<br>他修得了最精密的仪表，却在这套封闭的系统前无能为力。</p><br>
+            
+            <p><strong>分心驾驶的空中楼阁</strong></p>
+            
+            <p>接着，Roderick共享屏幕，开始拆解Kenneth构建的"分心驾驶"证据链。</p>
+            <p>波形图清晰显示时间轴：17:38:19--20，工程车突然加速右偏，越过白实线，车祸瞬间发生。</p>
+            <p>"你推断我的当事人“分心驾驶”，依据是什么？"</p>
+            <p>Kenneth重新稳住声音，恢复专业语调，他在努力绷住那根失衡的运转链条：<br>"记录显示，碰撞时段出现了一次数据连接活动。"</p>
+            <p>"只有一段性质不明的数据连接？"Roderick立刻反问，同时放大右前轮撕裂的照片。</p>
+            <p>“车辆右前轮侧壁的撕裂，同样发生在这段时间。<br>有没有一种可能——<br>右前轮侧壁先发生破损，车辆因此失控，碰撞只是随后发生的结果？” </p>
+            <p>Kenneth的音频出现爆音，他急切想跳过这个故障点 ：<br>"我主要关注的是碰撞瞬间，司机的行为反应。"</p>
+            <p>"那，你是否事先排除了车辆本身状态，也有可能影响驾驶行为？"Roderick再次共享屏幕，调出车辆的胎压数据，</p>
+            <p>"车祸次日，右前轮胎压0 PSI，左前轮65 PSI，两个后轮78 /76 PSI。<br>车祸后出现如此极端的胎压异常，不值得你优先考虑吗？"</p>
+            <p>Kenneth继续回避同步响应 ："轮胎失压可能是在碰撞中造成的损伤所导致的。"</p>
+            <p>Roderick虚晃一枪，下一瞬间便精准出击，直中要害：<br>"所以，你事先已经排除过轮胎预先漏气，这种可能性，对吗？"</p>
+            <p>Kenneth肩膀轻轻一抖，声音从喉间松塌下来 ： "没......没专门查这个。"</p>
+            <p>刘思恩的手死死扣住桌边，指节发白。<br>江远平胸腔绷紧，每一次呼吸都抽走半分力气。</p>
+            <p>办案警察每一次回避，都是一枚齿轮拒绝归位。<br>而他们的人生，就卡在这一步。</p><br>
+            
+            <p><strong>看不见的"大洞"</strong></p>
+            
+            <p>Roderick将探针直接指向那个最关键的"零件" —— 右前轮胎侧壁的破损：</p>
+            <p>"报告说工程车右前轮胎被自行车踏板刺穿，出现'显著破损'。请描述这个破损？"</p>
+            <p>Kenneth的描述含混不清： "呃......轮胎侧壁有一个较大的洞。"</p>
+            <p>Roderick步步紧逼，语气稳得让人无处可逃 ："你是否亲自检查过？"</p>
+            <p>Kenneth的声音开始出现一串杂讯：<br>"我......没直接检查，有现场记录和机械检测报告。"</p>
+            <p>Roderick请检察官 —— 这次是一位秃顶的白人男子，开始共享车祸现场的轮胎照片。<br>检察官微微皱眉，目光透出些许警觉。</p>
+            <p>屏幕上，轮胎侧壁布满尘土与正常磨损的纹理，但看不出任何清晰破裂或穿刺痕迹。<br> (注：现场照片无法拍到胎洞，因为胎洞位于轮胎底部，被压住，并被草丛遮挡。）</p>
+            <p>Roderick 提示道，"请指认'破损'位置。"</p>
+            <p>Kenneth的光标犹豫，最后停在一个模糊的暗痕上："可能......这里。"</p>
+            <p>可能意识到那痕迹小得不成比例，他急忙补充 "'大'是相对的。"</p>
+            <p>Roderick不容他多说一个字，动作干脆利落，一击落下：</p>
+            <p>"这就是你报告中的'显著破损'—— 那个大洞？而踏板却毫无损坏和痕迹？"</p>
+            <p>短暂静默，屏幕角落的虚拟钟缓缓滴答。</p>
+            <p>Kenneth的摄像头黑掉三秒，重新亮起时，一切都还是原来的样子。<br> 只是，已经错了一格。 </p>
+            <p>江远平握紧着拳头，青筋凸出，呼吸急促。<br>他盯着屏幕，话语从牙缝挤出，在空气里震动:<br>"连胎洞都没看到......就毁了我四年......"</p><br> 
+            
+            <p><strong>溃败与闭环</strong></p>
+            
+            <p>Roderick推了推眼镜，继续校准每一个失准的零件。他共享了完好的自行车后轮照片，<br>"在报告中，你如何认定路面上的痕迹就是'自行车拖行痕迹'？"</p>
+            <p>Kenneth被迫改口："那也可能是其他车辆留下的。"</p>
+            <p>Roderick继续步步紧逼：<br>"在报告中，你认为车门上黑痕也是由自行车轮胎造成，那么，为何自行车轮胎没有对应的刮痕？<br> 车门上的垂直黑痕，又怎么会由一条与车门平行、水平滚动的自行车轮胎形成？"</p>
+            <p>Kenneth哑口无言。</p>
+            <p>每一问，都是一次微小的校准，将那些被拨偏的刻度，重新拉回原位。</p>
+            <p>Kenneth只盯着“司机反应”这一处，<br>却忽视了整个动力系统一旦出现故障，可能引发的连锁反应。 </p>
+            <p> Roderick开始收紧校准工具：<br>"你直接引用了同事的机械检测报告。之后，你有和他有再次核实吗？"</p>
+            <p>"我认为没必要。"Kenneth低声回应。</p>
+            <p>Roderick最后校对了整条证据。<br>"单凭一段不明的数据连接你就认定司机'分心驾驶'，<br>可你没有考虑胎压，没有排查预先漏气，没有分析EDR（黑匣子）数据，<br>没有逐帧核对行车记录，甚至没有直接验证你报告里所宣称的 ‘显著破损’。<br>这究竟是专业判断，还是确认偏差？"</p>
+            <p>他停顿了一下。<br>没有继续追问</p>
+            <p>Kenneth肩膀微微一动，手肘碰到桌面。<br> 他停在那里，一秒后，低声说道： <br>"我......不认为是。"</p><br> 
+            
+            <p><strong>豆腐撞石头</strong></p>
+            
+            <p>接下来，检察官的询问过程非常简短。Kenneth的声音也恢复了平稳，每一句都在试图修补那份漏洞百出的报告。 </p>
+            <p>在他的叙述下，碰撞就是一次魔幻历险记：时间错位，顺序倒置 。</p>
+            <p>豆腐撞上石头。<br>豆腐毫发无伤，石头却留下一个巨大的裂口。</p>
+            <p>刘思恩望向江远平。<br>他早已不再看屏幕，双手紧扣扶手，每一次吸气，都压着胸中里的怒火 。</p>
+            <p>四年里，每一份报告、每一场证词，都曾将他们的生活切割成不规则的碎片。<br>他曾相信——事实自有它的节奏。<br> 可此刻，刘思恩从他眼底看到的，是一条被错误时序拖垮的人生。</p>
+            <p>Kenneth不过是其中一个小齿轮。<br>他嵌在庞大的司法机器里，按照既定方向转动，把那些无法嵌入这套叙事的部分，一点点挤了出去。 </p>
+            <p>他们或许"并无恶意"。</p>
+            <p>可有些偏差，正是在这样的运转中，慢慢形成。</p>
+            
+            <!-- 下一节小钩子 -->
+<p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+<span style="font-weight: 600; color: #1e3c4f; display: block; margin-bottom: 12px;">（下一节）</span>
+<span style="color: #2c3e50;">
+    Kenneth退场。<br>Roderick发来私信：<br>"第一个错位齿轮已标记。<br>但下一个，才是真正推动整套系统运行的发条。"<br><br>刘思恩盯着那句话。<br>一阵寒意慢慢沉了下来。<br>她知道 —— <br>真正支撑那份结论的，不是那段数据连接。<br> 而是报告里，那几句从未被质疑过的话。 </span>
+            </p>
+        </div>
+        
+        <div class="chapter-navigation">
+            <a href="/chapters/chapter-11-03.html" class="nav-link">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#open-chapters">📖 目录</a>
+                <!-- 底部按钮（位于 nav-center 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            </span>
+            <a href="/chapters/chapter-12-1-02.html" class="nav-link">下一节 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+    themeToggles.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = 'fas fa-lightbulb';   // 固定为实心灯泡
+        }
+    });
+}
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
