@@ -262,17 +262,14 @@
      "externalLinks": [
   {
     "id": "W5-A",
+     "label": "第5周长文总结",  
    "links": [
-  {
-    "platform": "文学城",
+  {"platform": "文学城",
     "icon": "fas fa-archive",
-    "url": "https://blog.wenxuecity.com/myblog/84058/202607/22055.html"
-  },  // <-- 这里必须有逗号！
-  {
-    "platform": "文学城",
+    "url": "https://blog.wenxuecity.com/myblog/84058/202607/22055.html" },  
+  {"platform": "文学城",
     "icon": "fas fa-archive",
-    "url": "https://blog.wenxuecity.com/myblog/84058/202607/22896.html"
-  }
+    "url": "https://blog.wenxuecity.com/myblog/84058/202607/22896.html" }
 ]
   },
   {
