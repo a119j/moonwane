@@ -140,7 +140,7 @@
         "review": {
           "label": "第3周回顾",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://www.youtube.com/shorts/30jC_TcS7sc" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url":"https://www.youtube.com/shorts/30jC_TcS7sc" },
             { "platform": "视频号", "icon": "fab fa-weixin", "url": "https://weixin.qq.com/sph/AjX8Wqs2m" }
           ]
         }
@@ -300,7 +300,7 @@
         "compilation": {
           "label": "第6周合集",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/1PnuQVoBS-E" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/1PnuQVoBS-E"},
             { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1CeGP6UEk3/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
