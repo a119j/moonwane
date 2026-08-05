@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>第十三章 第二节：狼群易散 · 六秒钉六年</title>
+    
+    <!-- 防止缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- 禁止被搜索引擎收录 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --link-rgb: 123, 200, 248;
+            --link-color: rgb(var(--link-rgb));
+            --link-hover-bg: rgba(var(--link-rgb), 0.2);
+            --theme-toggle-bg: rgba(var(--link-rgb), 0.1);
+            --theme-toggle-border: rgba(var(--link-rgb), 0.2);
+            --back-to-top-bg: rgba(var(--link-rgb), 0.9);
+            --back-to-top-hover: rgb(var(--link-rgb));
+            --progress-color: rgb(var(--link-rgb));
+
+            --bg-color: #f0f7e6;
+            --text-color: #1e2f3a;
+            --title-color: #0f2a3a;
+            --subtitle-color: #4a6a7a;
+            --border-color: #c0d4b0;
+            --next-section-blue: #0066cc;
+            --disabled-color: #888;
+            --back-home-color: #888;
+
+            --font-weight-normal: 420;
+            --font-weight-bold: 650;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 
+                         "Noto Serif SC", "Songti SC", "Hiragino Serif", Georgia, serif;
+            font-weight: var(--font-weight-normal);
+            line-height: 1.88;
+            font-size: 18px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+        
+        .chapter-cover {
+            width: 100%;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .chapter-cover img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            loading: lazy;
+            decoding: async;
+        }
+        
+        .chapter-info {
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .chapter-number {
+            font-size: 16px;
+            color: var(--link-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-align: center;
+            color: var(--title-color);
+            letter-spacing: 1px;
+        }
+        
+        .chapter-subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 0;
+            text-align: center;
+            color: var(--subtitle-color);
+            font-style: italic;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 10px 0;
+            color: var(--title-color);
+        }
+        
+        .section-epigraph {
+            font-style: italic;
+            color: var(--subtitle-color);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--link-color);
+            padding-left: 16px;
+        }
+        
+        .chapter-content {
+            font-size: 18px;
+            line-height: 1.88;
+            letter-spacing: 0.36px;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            hyphens: auto;
+text-align: left;          /* ← 加这一行，确保正文左对齐 */
+        }
+        
+        .chapter-content p {
+            margin: 0 0 1.68em;
+            text-indent: 2em;
+            color: var(--text-color);
+text-align: left;          /* ← 加这一行，确保正文左对齐 */
+        }
+        
+        .chapter-content p.no-indent {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:first-of-type {
+            text-indent: 0;
+        }
+        
+        .chapter-content strong {
+            font-weight: var(--font-weight-bold);
+            color: var(--title-color);
+        }
+        
+        .chapter-content p:has(> strong) {
+            text-indent: 0;
+        }
+        
+        .chapter-content p:last-of-type span:first-child {
+            color: var(--next-section-blue) !important;
+        }
+        .chapter-content p:last-of-type span:last-child {
+            color: var(--text-color) !important;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .chapter-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0 20px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 40px;
+            font-size: 18px;
+        }
+        
+        .nav-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(var(--link-rgb), 0.1);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .nav-link.disabled {
+            color: var(--disabled-color);
+            background: rgba(128,128,128,0.1);
+            border: 1px solid rgba(128,128,128,0.2);
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .nav-center {
+            color: var(--subtitle-color);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-center a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        
+        .nav-center a:hover {
+            text-decoration: underline;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--link-color);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--link-rgb), 0.1);
+            border: 1px solid rgba(var(--link-rgb), 0.2);
+        }
+        .theme-toggle:hover {
+            background: rgba(var(--link-rgb), 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--link-rgb), 0.3);
+        }
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-home a {
+            color: var(--back-home-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .back-home a:hover {
+            color: var(--link-color);
+        }
+        
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--progress-color);
+            z-index: 9999;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+        
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: rgba(var(--link-rgb), 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        #back-to-top:hover {
+            transform: scale(1.1);
+            background: var(--back-to-top-hover);
+        }
+        
+        /* ========== 手动深色模式样式 ========== */
+        body.dark-mode {
+            background-color: #1e1e2e;
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-title,
+        body.dark-mode .section-title,
+        body.dark-mode .chapter-content strong {
+            color: #f0f0f0;
+        }
+        body.dark-mode .chapter-title[style*="color"] {
+            color: #f0f0f0 !important;
+        }
+        body.dark-mode .chapter-subtitle {
+            color: #9ca3af;
+            border-bottom-color: #374151;
+        }
+        body.dark-mode .section-epigraph {
+            color: #9ca3af;
+            border-left-color: #60a5fa;
+        }
+        body.dark-mode .chapter-content,
+        body.dark-mode .chapter-content p {
+            color: #d1d5db;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:first-child {
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .chapter-content p:last-of-type span:last-child {
+            color: #9ca3af !important;
+        }
+        body.dark-mode .chapter-navigation {
+            border-color: #374151;
+        }
+        body.dark-mode .nav-link {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .nav-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        body.dark-mode .nav-link.disabled {
+            color: #9ca3af !important;
+            background: rgba(156, 163, 175, 0.1);
+            border-color: rgba(156, 163, 175, 0.2);
+        }
+        body.dark-mode .nav-center {
+            color: #9ca3af;
+        }
+        body.dark-mode .nav-center a {
+            color: #60a5fa;
+        }
+        body.dark-mode .back-home a {
+            color: #6b7280;
+        }
+        body.dark-mode .back-home a:hover {
+            color: #60a5fa;
+        }
+        body.dark-mode #reading-progress {
+            background: #60a5fa;
+        }
+        body.dark-mode #back-to-top {
+            background: rgba(96, 165, 250, 0.9);
+        }
+        body.dark-mode #back-to-top:hover {
+            background: #60a5fa;
+        }
+        body.dark-mode .theme-toggle {
+            color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+            border-color: rgba(96, 165, 250, 0.2);
+        }
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(96, 165, 250, 0.2);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+        }
+        
+        /* ========== 移动端细化 ========== */
+        @media (max-width: 768px) {
+            body {
+                font-size: 17px;
+            }
+            .container {
+                padding: 30px 16px 50px;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .chapter-subtitle {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .chapter-content {
+                font-size: 17px;
+            }
+            .chapter-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-center {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 44px;
+                height: 44px;
+                font-size: 24px;
+            }
+            .chapter-info {
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            body {
+                font-size: 16.5px;
+            }
+            .chapter-content {
+                font-size: 17px;
+                line-height: 1.92;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 12px 50px;
+            }
+            body {
+                overscroll-behavior: none;
+            }
+            .chapter-content {
+                font-size: 16.8px;
+            }
+        }
+        
+        html {
+            font-size: 100%;
+  /* 浅色模式：按钮背景加深，灯泡白色发光 */
+body:not(.dark-mode) .theme-toggle {
+    background: rgba(30, 100, 200, 0.4) !important;   /* 加深背景，增强对比 */
+    border-color: rgba(30, 100, 200, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);        /* 轻微外阴影 */
+}
+
+body:not(.dark-mode) .theme-toggle i {
+    color: #ffffff;
+    text-shadow: 
+        0 0 12px rgba(255, 255, 255, 1),
+        0 0 24px rgba(255, 255, 255, 0.8),
+        0 0 36px rgba(255, 255, 255, 0.6);            /* 三层光晕，柔和明亮 */
+}
+
+/* 深色模式：灯泡橙色发光（覆盖原有蓝色） */
+body.dark-mode .theme-toggle i {
+    color: #f39c12;
+    text-shadow: 
+        0 0 8px #f39c12,
+        0 0 16px #f39c12,
+        0 0 24px #f39c12;                              /* 橙色光晕，温暖柔和 */
+}
+
+/* 悬停效果（通用） */
+.theme-toggle:hover i {
+    filter: brightness(1.2);
+}      }
+
+    </style>
+</head>
+<body>
+    <div id="reading-progress"></div>
+
+    <div class="container">
+        <div class="chapter-cover">
+            <img src="/pictures/cover-2.jpg" alt="六秒钉六年 封面" onerror="this.style.display='none'" loading="lazy" decoding="async">
+        <div class="book-info" style="color: #b8b4b0; font-size: 0.78rem; text-align: center; margin: 12px 0 18px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    © 《六秒钉六年》（Six Seconds, Six Years） | 中国登记：国作登字-2026-A-00006464 | 加拿大登记：1239217 | 侵权必究
+</div>
+
+        <div class="chapter-info">
+            <h1 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">第十三章</h1>
+            <h2 class="chapter-title" style="font-size: 28px; font-weight: 600; color: #0f2a3a; margin-bottom: 5px;">头狼离场：信任出现真空</h2>
+           <!-- 顶部按钮（位于 chapter-info 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            <div class="chapter-subtitle">—— 开庭前，律师不干了</div>
+        </div>
+
+       <div class="chapter-content" role="main">
+            <div class="section-title">第二节 狼群易散</div>
+            <div class="section-epigraph">—— 开庭前，律师不干了</div><br>
+
+<p><strong>规则与越界</strong><br>
+<p> “记住，从现在起，所有与案件有关的事 —— 必须通过我。”<br>
+Roderick的语气没有任何起伏。<br>
+他是在宣布一条规则。<br>
+没有商量。<br>
+也没有例外。</p>
+
+<p>夜深人静。<br>
+刘思恩还是打开了手机。<br>
+输入：<br>
+<strong >“微睡眠辩护”</strong></p>
+
+<p>屏幕亮起。<br>
+一行行法律文章铺开：<br>
+—— 高风险策略。<br>
+—— 若成功，可洗脱故意犯罪；<br>
+—— 若失败，则可能被认定为驾驶时已经知道自己存在风险，责任反而更重。</p>
+
+<p>她关掉页面。<br>
+屏幕暗了下去。<br>
+手有些凉。<br>
+心更凉。</p>
+
+<p>客厅里。<br>
+江远平正低着头摆弄一台旧空调压缩机。<br>
+改锥在他粗糙的手指间慢慢转动。</p>
+
+<p>他抬起头。<br>
+“查到什么了？”</p>
+
+<p>“没什么。”<br>
+刘思恩把手机倒扣在桌面。<br>
+动作很轻。<br>
+却压不住越来越快的心跳。</p>
+
+<p>她想了想，还是说了。<br>
+“我只是觉得……”<br>
+“Roderick是在赌。”</p>
+
+<p>江远平手里的动作停住。<br>
+“赌什么？”</p>
+
+<p>刘思恩望着桌面。<br>
+“赌你的病，我们是'不知道'。<br>
+而不是'明知道'，还继续开车。”</p>
+
+<p>她说完，又犹豫了一会儿。<br>
+“可是……<br>
+我记得有份问卷。<br>
+其中一个选择，你选的是——<br>
+‘偶尔嗜睡’。<br>
+为什么？<br>
+为什么当时，要勾‘偶尔’？”</p>
+
+<p>“铛——”<br>
+改锥从江远平手里滑落。<br>
+落到地板上。<br>
+滚出一串清脆而漫长的声音。<br>
+江远平没有立刻弯腰去捡。</p><br>
+
+<p><strong>裂缝初现</strong><br>
+<p> 最近，Roderick 的回复速度越来越慢。<br>
+从秒回，变成隔日回.<br>
+有一次，甚至干脆已读不回。</p>
+
+<p>刘思恩只当他忙。<br>
+有了诊断书，他们一直以为，事情还在可控范围内。</p>
+
+<p>那张睡眠诊断书，成了他们家的“稳压器”，暂时稳住了心律。</p>
+
+<p>尽管律师费和治疗费同时压在肩上，<br>
+“胜利在望”这四个字，让一切压力都显得能咬牙撑过去。</p>
+
+<p>江远平望着江若瑶，眼里浮现少年时自己的影子：<br>
+“等这事结束了，爸爸请年假，带你去班夫看雪山。”</p>
+
+<p>“真的？我要带望远镜！”<br>
+女孩的裙摆荡起一圈明亮的弧度。</p>
+
+<p>厨房里，洗菜的水声哗哗作响。<br>
+刘思恩望向窗外，<br>
+那远方雪山顶的云正慢慢向她移动。</p>
+
+<p>然后。<br>
+电话来了。<br>
+短信也来了。</p>
+
+<p>那是 2023 年 5 月一个寻常的下午。<br>
+江远平刚进门。<br>
+站在地下室门口。<br>
+外套还没脱。</p>
+<p>“下来。”</p>
+
+<p>锅炉房的节能灯嗡嗡作响，投下深长的阴影。</p>
+
+<p>他把手机递到她眼前。<br>
+Roderick 的短信冰冷：<br>
+“因诊所问卷存在致命矛盾，不再代理。<br>
+资料已退回原律所。”</p>
+
+<p>刘思恩扶住锅炉外的支架。<br>
+“什么意思？”</p>
+
+<p>“他不干了。”</p>
+
+<p>“什么叫……不干了？”<br>
+声音碎成几片。</p>
+
+<p>“他说我在睡眠问卷里勾了‘看电视时偶尔嗜睡’。”<br>
+江远平攥紧手机，几乎要把屏幕压裂。</p>
+
+<p>“他说这意味着我‘明知有病却放任’，属于重大过失……<br>
+他说这是致命矛盾（fatal contradiction），<br>会推翻他整个辩护逻辑。”</p>
+
+<p>刘思恩咬牙，努力捡起碎掉的逻辑：<br>
+“可我们去看医生，本来就是因为不知道啊！”</p>
+
+<p>江远平靠在墙边，肩膀垂着，身体失去支撑。<br>
+“他说，检察官会抓住这一点。<br>
+会说我们不诚实。<br>
+会说我们有意挑选有利证据。<br>
+会说我们隐瞒不利事实。”</p>
+
+<p>“还说Marvin 医生也拒绝出庭。”<br>
+他垂着头。<br>
+“他说医生只负责写报告，不愿卷入司法程序。”</p>
+
+<p>地下室的除湿机突然停止。<br>
+空气沉下，湿气随之沉淀。</p>
+
+<p>“6月排好的庭审也取消了。”</p>
+
+<p>刘思恩的手指紧贴着锅炉支架冰冷的铁皮：<br>
+“你联系他——<br>打电话！”</p>
+
+<p>“打了，全进语音信箱。”<br>
+江远平绞着双手，指节在暗处微微颤动。</p>
+
+<p>楼上传来江若瑶的声音。<br>
+“爸？”<br>
+“妈？”<br><br>
+江远平没有动。<br>
+刘思恩也没有回答。</p><br>
+
+<p><strong>冰封时刻</strong></p>
+<p> 深夜。<br>
+卧室里没有开灯。</p>
+
+<p>“你当时为什么勾‘偶尔’？”<br>
+刘思恩侧过身，手指抓紧床沿。</p>
+
+<p>“那张表格上写着‘保密资料，仅供医学参考’！”<br>
+江远平坐起来。<br>
+床架发出一声轻响。</p>
+
+<p>“我怎么知道，那东西以后会变成法庭上的证据？<br>
+谁去看医生不老老实实填写？<br>
+我只是按照当时的情况填写。”</p>
+
+<p>“可你也应该考虑……”</p>
+
+<p>“考虑什么？”<br>
+江远平打断她。</p>
+
+<p>“考虑以后有人会拿医学问卷里的一个词，<br>
+来证明成我明知道自己有问题？”<br>
+他的声音越来越低。</p>
+
+<p>“Roderick 如果事先告诉我，我一个字都不会写。<br>
+诊所是他安排的。<br>
+检查是他让我尽快做的。<br>
+报告也是他需要的。<br>
+从头到尾，他没有告诉过我，这些东西以后会变成麻烦。”</p>
+
+<p>刘思恩说不出话。</p>
+
+<p>江远平靠在床头。<br>
+“Patrick 至少告诉过我，面对警察，什么该说，什么不该说。<br>
+可是 Roderick 呢？<br>
+他什么都没有提醒。”</p>
+
+<p>刘思恩胸口一紧。<br>
+她突然想起那份24页的诊所报告。</p>
+<p>2022年5月4日。<br>
+第一次检查。<br>
+医生写下：<br>
+“Patient denies any significant history of daytime sleepiness prior to the past year.”<br>
+（患者否认过去一年以前存在明显的日间嗜睡史。）</p>
+<p>她慢慢坐直。<br>
+这句话对应的是——<br>
+2021年5月4日以前。<br>
+丈夫告诉医生的是：<br>
+在那之前，<br>
+没有明显的日间嗜睡史。 。</p>
+
+<p>而问卷记录的是：<br>
+2022年1月至5月之间，<br>
+偶尔出现看电视时嗜睡的情况。<br><br>
+两个时间。<br>
+两个背景。<br>
+两个医学记录中的不同问题。<br>
+为什么到了Roderick那里，<br>
+它们被重新解释成了同一个意思？ </p>
+<p>刘思恩张开嘴。<br>
+想告诉江远平。<br>
+可是声音没有出来。</p>
+
+<p>问题可能不只是那张表。<br>
+而是有人重新解释了那张表。</p>
+<p>“他真的……”<br>
+她停了一下。<br>
+“只是因为那个问卷吗？”</p>
+
+<p>黑暗里。<br>
+江远平双手握紧床沿。<br>
+很久。<br>
+他说：<br>
+“也许。<br>
+也许他早就计划好了。<br>
+只是终于找到了一个理由。”</p>
+
+<p>卧室重新安静下来。</p>
+<p>这一次。<br>
+他们面对的不只是一下子变得不确定的庭审。<br>
+还有一个更难回答的问题：<br>
+是不是他们一直相信的方向，<br>
+从一开始就错了？</p><br>
+
+<p><strong>深海遗孤</strong></p>
+<p>三天后。<br>
+律所寄来了最后一张账单。<br>
+数字后面的那些零，没有声音，<br>却让沉默慢慢铺满整个房子。</p>
+
+律师费。<br>
+治疗费。<br>
+咨询费。<br>
+那些他们以为很快就会完结的支出，<br>
+此刻，却看不到尽头。</p>
+
+<p>江若瑶悄悄把大学申请资料塞到了书架最底层。<br>
+九月，她就要升入11年级。<br>
+原本，她想和妈妈一起规划大学申请。<br>
+可是现在，<br>
+那些计划，被暂时放在那里。</p>
+
+<p>刘思恩站在窗前。<br>
+看着邻居的车从街口驶过。<br>
+车身反射出的光，一闪而过。<br>
+玻璃上，她看见自己的影子。<br>
+很模糊。</p>
+
+<p>她不知道Roderick为什么离开。<br>
+可能是他看到了新的问题。<br>
+可能是他发现了他们没有发现的风险。<br>
+也可能，<br>
+只是一个他们永远无法知道的原因。</p>
+
+<p>有些事情发生以后，<br>
+当事人只能看见结果。<br>
+却永远看不到做出决定的那一刻。<br>
+他们只知道：<br>
+那个曾经带领他们向前的人，<br>
+离开了。<br>
+他们再次被抛在航道中央。</p>
+
+<p>几天后。<br>
+原律所新的律师合同寄了过来。<br>
+刘思恩没有犹豫。<br>
+笔尖落下。<br>
+写下自己的名字。<br>
+他们签下的，<br>
+不只是新的代理关系。<br>
+也押上了最后一点积蓄，<br>
+去抓住最后的一点希望。</p>
+
+<p>他们如同惊弓之鸟，<br>
+在同一个深渊里反复坠落 ——<br>
+坠落。</p>
+<p> 下一次失去支撑，<br>
+又会发生在什么时候。</p>
+
+
+            
+         <!-- 下一节小钩子 -->
+<p style="margin-top: 40px; border-top: 1px dashed #c0d4b0; padding-top: 20px;">
+<span style="font-weight: 600; color: #1e3c4f; display: block; margin-bottom: 12px;">（下一节）</span>
+<span style="color: #2c3e50;">
+   窗外夜色沉下来。
+风从半开的窗户吹进来。<br>
+桌上的文件被轻轻掀动。<br><br>
+刘思恩看着电脑屏幕上的邮件。<br>
+那封来自“豪华律师团队”的回复，<br>
+安静地躺在那里。<br><br>
+那里面等待他们的，<br>
+会是什么?</span>
+            </p>
+        </div>
+        
+        <div class="chapter-navigation">
+            <a href="/chapters/chapter-13-01.html" class="nav-link">← 上一节</a>
+            <span class="nav-center">
+                <a href="/index.html#chapterContents">📖 目录</a>
+                <!-- 底部按钮（位于 nav-center 内） -->
+<button class="theme-toggle" aria-label="切换深色模式" role="switch" aria-checked="false">
+    <i class="fas fa-lightbulb"></i>   <!-- 原为 fas fa-moon -->
+</button>
+            </span>
+            <a href="/chapters/chapter-13-03.html" class="nav-link">下一节 →</a>
+        </div>
+        
+        <div class="back-home">
+            <a href="/index.html">← 返回 MoonWane Ink 主页</a>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="返回顶部">↑</button>
+
+    <script>
+    (function() {
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        document.addEventListener('copy', function(e) {
+            const selectedText = window.getSelection().toString().trim();
+            const maxLength = 50;
+            if (selectedText.length > maxLength) {
+                e.preventDefault();
+                alert('为保护版权，请勿复制长段文字。如需分享，请使用页面链接。');
+            }
+        });
+
+        const progressBar = document.getElementById('reading-progress');
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        };
+        window.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+
+        const backToTopBtn = document.getElementById('back-to-top');
+        const toggleBackToTop = () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        };
+        window.addEventListener('scroll', toggleBackToTop);
+        toggleBackToTop();
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const body = document.body;
+
+        function updateThemeIcons(isDark) {
+    themeToggles.forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (icon) {
+            icon.className = 'fas fa-lightbulb';   // 固定为实心灯泡
+        }
+    });
+}
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else if (savedTheme === 'light') {
+            body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                updateThemeIcons(true);
+            } else {
+                body.classList.remove('dark-mode');
+                updateThemeIcons(false);
+            }
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (body.classList.contains('dark-mode')) {
+                    body.classList.remove('dark-mode');
+                    updateThemeIcons(false);
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    updateThemeIcons(true);
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
