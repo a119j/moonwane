@@ -381,14 +381,14 @@
     "label": "第7周长文总结",
     "links": [
       { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202608/3124.html" },
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/gdzvc2tLrNHty2ZFN3vtUQ" }
     ]
   },
   {
     "id": "W7-VIS",
     "label": "第7周图文总结",
     "links": [
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/5ne56V5bpqKqGKQk0iBlfg" },
       { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
