@@ -412,21 +412,21 @@
         "compilation": {
           "label": "第8周合集",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/YrESozTGqL8" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1S9gM6eE7p/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         "summary": {
           "label": "第8周总结",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/uHOvVUnp2uQ" },
+            { "platform": "视频号", "icon": "fab fa-weixin", "url": "https://weixin.qq.com/sph/A8PcQnvT8" }
           ]
         },
         "review": {
           "label": "第8周回顾",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/E_sy_b5pc0E" },
             { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
           ]
         }
