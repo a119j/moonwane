@@ -26,7 +26,7 @@
     { "chapterId": "16-01",  "readLink": "/chapters/chapter-16-01.html", "audioLink": "", "videoLink": "https://www.youtube.com/watch?v=test", "externalLink": "https://example.com" },
     { "chapterId": "17-1-01","readLink": "/chapters/chapter-17-1-01.html", "audioLink": "", "videoLink": "", "externalLink": "" },
     { "chapterId": "17-2-01", "readLink": "/chapters/chapter-17-2-01.html", "audioLink": "", "videoLink": "", "externalLink": "" },
-    { "chapterId": "18-01", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" },
-    { "chapterId": "extra", "readLink": "", "audioLink": "", "videoLink": "", "externalLink": "" }
+    { "chapterId": "18-01", "readLink": "/chapters/chapter-18-01.html", "audioLink": "", "videoLink": "https://www.youtube.com/watch?v=test", "externalLink": "https://example.com" },
+    { "chapterId": "extra", "readLink": "/chapters/chapter-extra.html", "audioLink": "", "videoLink": "", "externalLink": "" },
   ]
 }
