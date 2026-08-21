@@ -5,7 +5,7 @@
     "badgeText": "📢 已经上线",
     "linkText": "阅读全文，点击打开“完整目录” →",
     "linkUrl": "#open-chapters",
-    "linkText2": "证据库，点击打开“证据库” →",
+    "linkText2": "查看证据，点击打开“证据库” →",
     "linkUrl2": "#open-evidence",
     "isActive": true
 }
