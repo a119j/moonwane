@@ -65,15 +65,15 @@
         {
           "label": "黑匣子EDR从未说过'无事件'",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/oRbUMkEOoJw" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1kSbm6LE2G/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         },
         {
           "label": "最后三秒的失速",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
-            { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/ayNw-I2yLH8" },
+            { "platform": "B站", "icon": "fab fa-bilibili", "url": "https://www.bilibili.com/video/BV1vAbU6iEYu/?share_source=copy_web&vd_source=c8b344dfe533e990f8677d681f1ea9b0" }
           ]
         }
       ]
