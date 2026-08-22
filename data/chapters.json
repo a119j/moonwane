@@ -467,21 +467,21 @@
         "compilation": {
           "label": "第9周合集",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/7l_cX-FCmuk" },
             { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
           ]
         },
         "summary": {
           "label": "第9周总结",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/xBgIAbwBQFA" },
             { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
           ]
         },
         "review": {
           "label": "第9周回顾",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/l3gWFjyPi-o" },
             { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
           ]
         }
@@ -491,7 +491,7 @@
     "id": "W9-A",
     "label": "第9周长文总结",
     "links": [
-      { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
+      { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myoverview/84058/" }, { "platform": "文学城", "icon": "fas fa-archway", "url": "" },
       { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
     ]
   },
