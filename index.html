@@ -2200,20 +2200,21 @@ audio:hover, audio:active {
         padding: 0 20px;
     }
 
-    .banner-inner {
-        background: linear-gradient(135deg, rgba(255, 218, 71, 0.10), rgba(123, 200, 248, 0.06));
-        border: 1px solid rgba(255, 218, 71, 0.3);
-        border-radius: 12px;
-        padding: 12px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 8px 16px;
-        box-shadow: 0 0 30px rgba(255, 218, 71, 0.04);
-        animation: bannerPulse 3s ease-in-out infinite;
-        transition: all 0.3s ease;
-    }
+.banner-inner {
+    background: linear-gradient(135deg, rgba(255, 218, 71, 0.10), rgba(123, 200, 248, 0.06));
+    border: 1px solid rgba(255, 218, 71, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column; /* 改为垂直排列，分成上下两层 */
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 0 30px rgba(255, 218, 71, 0.04);
+    animation: bannerPulse 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
 
     .banner-left {
         display: flex;
@@ -2246,14 +2247,15 @@ audio:hover, audio:active {
     }
 
     .banner-text {
-        color: #f0f0f0;
-        font-size: 1.05rem;
-        font-weight: 400;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 4px 8px;
-    }
+    color: #f0f0f0;
+    font-size: 1.3rem; /* 字体放大 */
+    font-weight: 700;  /* 加粗 */
+    text-align: center;
+    line-height: 1.5;  /* 增加行间距，两行更舒适 */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
 
     .banner-text .book-title {
         color: #ffda47;
@@ -2272,28 +2274,25 @@ audio:hover, audio:active {
     }
 
     .banner-link {
-        color: #7bc8f8;
-        font-size: 1rem;
-        font-weight: 500;
-        white-space: nowrap;
-        text-decoration: none;
-        padding: 4px 12px;
-        border-radius: 6px;
-        border: 1px solid rgba(123, 200, 248, 0.2);
-        background: rgba(123, 200, 248, 0.06);
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-        margin-left: auto;
-    }
+    color: #7bc8f8;
+    font-size: 1.1rem; /* 按钮字体放大 */
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(123, 200, 248, 0.2);
+    background: rgba(123, 200, 248, 0.06);
+    transition: all 0.3s ease;
+}
 
     .banner-link:hover {
-        opacity: 1;
-        color: #ffffff;
-        background: rgba(123, 200, 248, 0.15);
-        border-color: rgba(123, 200, 248, 0.4);
-        box-shadow: 0 0 20px rgba(123, 200, 248, 0.15);
-        transform: translateX(3px);
-    }
+    opacity: 1;
+    color: #ffffff;
+    background: rgba(123, 200, 248, 0.15);
+    border-color: rgba(123, 200, 248, 0.4);
+    box-shadow: 0 0 20px rgba(123, 200, 248, 0.15);
+    transform: translateX(3px);
+}
 
     .banner-inner.status-live {
         border-color: rgba(50, 205, 50, 0.35);
@@ -4786,10 +4785,10 @@ if (bannerContainer) {
             const badgeHtml = data.badgeText ? `<span class="banner-badge ${badgeClass}">${data.badgeText}</span>` : '';
 
             // 处理换行、日期高亮、书名高亮
-            let textHtml = data.text
-                .replace(/\n/g, '<br>')
-                .replace(/(\d{1,2}月\d{1,2}日[（(][^）)]+[）)])/g, '<span class="date-highlight">$1</span>');
-            textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
+let textHtml = data.text
+    .replace(/\|/g, '<br>')  // 将 | 替换为 br 标签，强制换行
+    .replace(/(\d{1,2}月\d{1,2}日[（(][^）)]+[）)])/g, '<span class="date-highlight">$1</span>');
+textHtml = textHtml.replace(/《([^》]+)》/g, '<span class="book-title">《$1》</span>');
 
             // ---- 修改点：判断是否为内部锚点，移除 target="_blank" ----
             let linkHtml = '';
