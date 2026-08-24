@@ -482,7 +482,7 @@
           "label": "第9周回顾",
           "links": [
             { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/shorts/l3gWFjyPi-o" },
-            { "platform": "视频号", "icon": "fab fa-weixin", "url": "" }
+            { "platform": "视频号", "icon": "fab fa-weixin", "url": "https://weixin.qq.com/sph/AXt5G8ZJF" }
           ]
         }
       },
@@ -492,14 +492,14 @@
     "label": "第9周长文总结",
     "links": [
       { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myoverview/84058/" }, { "platform": "文学城", "icon": "fas fa-archway", "url": "https://blog.wenxuecity.com/myblog/84058/202608/16797.html" },
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" }
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/sVCUc97VjeEEJ1ET2jUulg" }
     ]
   },
   {
     "id": "W9-VIS",
     "label": "第9周图文总结",
     "links": [
-      { "platform": "公众号", "icon": "fab fa-weixin", "url": "" },
+      { "platform": "公众号", "icon": "fab fa-weixin", "url": "https://mp.weixin.qq.com/s/gUQTgXY6cQ-PkjFyxrMJXg" },
       { "platform": "文学城", "icon": "fas fa-archway", "url": "" }
     ]
   },
