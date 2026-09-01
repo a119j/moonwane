@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1719,7 +1718,50 @@
 .promo-links i {
     font-size: 1.2rem;
 }
+/* 双视频网格容器 */
+.promo-videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
+/* 每个视频项 */
+.promo-video-item {
+    position: relative;
+}
+
+/* 视频左上角标签 */
+.promo-video-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* 移动端：上下排列 */
+@media (max-width: 768px) {
+    .promo-videos-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .promo-video-tag {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        top: 10px;
+        left: 10px;
+    }
+}
 /* 每周精选区块（无标题，两列） */
 .weekly-section {
     max-width: 800px;
@@ -2195,18 +2237,18 @@ audio:hover, audio:active {
 }   
         /* === 公告横幅（优化版） === */
     .banner-outer {
-        max-width: 640px;
-        margin: 0 auto 30px auto;
-        padding: 0 20px;
-    }
+    max-width: 640px;
+    margin: 0 auto 30px auto;
+    padding: 0;
+}
 
 .banner-inner {
     background: linear-gradient(135deg, rgba(255, 218, 71, 0.10), rgba(123, 200, 248, 0.06));
     border: 1px solid rgba(255, 218, 71, 0.3);
     border-radius: 12px;
-    padding: 16px 20px;
+    padding: 16px 24px;
     display: flex;
-    flex-direction: column; /* 改为垂直排列，分成上下两层 */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 12px;
@@ -2248,7 +2290,7 @@ audio:hover, audio:active {
 
     .banner-text {
     color: #f0f0f0;
-    font-size: 1.3rem; /* 字体放大 */
+    font-size: 1.30rem; /* 字体放大 */
     font-weight: 400;  /* 加粗 */
     text-align: center;
     line-height: 1.5;  /* 增加行间距，两行更舒适 */
@@ -2502,14 +2544,27 @@ audio:hover, audio:active {
             <p class="author-credit">— 墨染月光（又名月笼沙） 作品站 —</p>
         </header>
                 <!-- ===== 公告横幅容器（由 banner.json 驱动） ===== -->
-        <div id="bannerContainer" style="max-width:640px; margin:0 auto 30px auto; padding:0 20px;"></div>
+        <div id="bannerContainer" style="max-width:640px; margin:0 auto 30px auto; padding:0;"></div>
         
         <section class="links-section">
             <div class="links">
                 <!-- ===== 新增：金句+固定视频卡片 ===== -->
 <div class="promo-card" id="promoCard">
-    <div class="promo-video" id="promoVideo">
-        <video controls preload="metadata" src="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/videos/promovideo1.mp4?v=20260312" style="width:100%; border-radius:8px;"></video>
+    <div class="promo-videos-grid">
+        <!-- 左侧：小说宣传视频 -->
+        <div class="promo-video-item">
+            <div class="promo-video-tag">📖 小说</div>
+            <div class="promo-video" id="promoVideo">
+                <video controls preload="metadata" poster="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pictures/promovideo1-cover.jpg" src="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/videos/promovideo1.mp4?v=20260312" style="width:100%; border-radius:8px; display:block;"></video>
+            </div>
+        </div>
+        <!-- 右侧：证据库视频 -->
+        <div class="promo-video-item">
+            <div class="promo-video-tag">📁 证据库</div>
+            <div class="promo-video" id="promoVideo2">
+                <video controls preload="metadata" poster="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/pictures/证据库01--主宣传-封面.jpg" src="https://cdn.jsdelivr.net/gh/a119j/moonwane@main/videos/promovideo2.mp4?v=20260901" style="width:100%; border-radius:8px; display:block;"></video>
+            </div>
+        </div>
     </div>
    <div class="promo-links" id="promoLinks">
     <a href="javascript:void(0)" id="wechatBtnPromo" style="color: #7bc8f8; font-weight: 500;">
