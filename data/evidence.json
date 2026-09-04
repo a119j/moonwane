@@ -107,7 +107,7 @@
         {
           "label": "证据是真的，中间的箭头就一定是真的吗？",
           "links": [
-            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "" },
+            { "platform": "YouTube", "icon": "fab fa-youtube", "url": "https://youtu.be/2fNoXCqEWP8" },
             { "platform": "B站", "icon": "fab fa-bilibili", "url": "" }
           ]
         },
